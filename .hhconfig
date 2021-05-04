@@ -1,0 +1,2 @@
+ignored_paths=["bazel-proto-hack"]
+assume_php=false
