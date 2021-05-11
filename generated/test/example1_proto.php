@@ -144,7 +144,7 @@ class example1_aoneof_NOT_SET implements example1_aoneof {
   public function Copy(): example1_aoneof { return $this; }
 }
 
-class example1_oostring implements example1_aoneof {
+class example1_aoneof_oostring implements example1_aoneof {
   public function __construct(public string $oostring) {}
 
   public function WhichOneof(): example1_aoneof_oneof_t {
@@ -161,11 +161,11 @@ class example1_oostring implements example1_aoneof {
   }
 
   public function Copy(): example1_aoneof {
-    return new example1_oostring($this->oostring);
+    return new example1_aoneof_oostring($this->oostring);
   }
 }
 
-class example1_ooint implements example1_aoneof {
+class example1_aoneof_ooint implements example1_aoneof {
   public function __construct(public int $ooint) {}
 
   public function WhichOneof(): example1_aoneof_oneof_t {
@@ -182,7 +182,7 @@ class example1_ooint implements example1_aoneof {
   }
 
   public function Copy(): example1_aoneof {
-    return new example1_ooint($this->ooint);
+    return new example1_aoneof_ooint($this->ooint);
   }
 }
 
@@ -614,10 +614,10 @@ class example1 implements \Protobuf\Message {
           $this->amap2[$obj->key] = $obj->value ?? new \fiz\baz\example2();
           break;
         case 60:
-          $this->aoneof = new example1_oostring($d->readString());
+          $this->aoneof = new example1_aoneof_oostring($d->readString());
           break;
         case 61:
-          $this->aoneof = new example1_ooint($d->readVarint32Signed());
+          $this->aoneof = new example1_aoneof_ooint($d->readVarint32Signed());
           break;
         case 80:
           if ($this->anany == null) $this->anany = new \google\protobuf\Any();
@@ -895,10 +895,10 @@ class example1 implements \Protobuf\Message {
           }
           break;
         case 'oostring':
-          $this->aoneof = new example1_oostring(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->aoneof = new example1_aoneof_oostring(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'ooint':
-          $this->aoneof = new example1_ooint(\Protobuf\Internal\JsonDecoder::readInt32Signed($v));
+          $this->aoneof = new example1_aoneof_ooint(\Protobuf\Internal\JsonDecoder::readInt32Signed($v));
           break;
         case 'anany':
           if ($v === null) break;

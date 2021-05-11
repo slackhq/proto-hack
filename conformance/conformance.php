@@ -138,42 +138,46 @@ function conformance(ConformanceRequest $creq): ConformanceResponse {
       $tm = new \protobuf_test_messages\proto2\TestAllTypesProto2();
       break;
     default:
-      $cresp->result = new ConformanceResponse_skipped(
+      $cresp->result = new ConformanceResponse_result_skipped(
         "unsupported message type: ".$creq->message_type,
       );
       return $cresp;
   }
   $payload = "";
   $wfi = -1;
-  if ($creq->payload is ConformanceRequest_protobuf_payload) {
+  if ($creq->payload is ConformanceRequest_payload_protobuf_payload) {
     $payload = $creq->payload->protobuf_payload;
     $wfi = WireFormat::PROTOBUF;
-  } else if ($creq->payload is ConformanceRequest_json_payload) {
+  } else if ($creq->payload is ConformanceRequest_payload_json_payload) {
     $payload = $creq->payload->json_payload;
     $wfi = WireFormat::JSON;
   } else {
-    $cresp->result = new ConformanceResponse_skipped("unsupported input type");
+    $cresp->result = new ConformanceResponse_result_skipped(
+      "unsupported input type",
+    );
     return $cresp;
   }
   $wfo = $creq->requested_output_format;
   if ($wfo != WireFormat::PROTOBUF && $wfo != WireFormat::JSON) {
-    $cresp->result = new ConformanceResponse_skipped("unsupported output type");
+    $cresp->result = new ConformanceResponse_result_skipped(
+      "unsupported output type",
+    );
     return $cresp;
   }
   $r = remarshal($tm, $payload, $wfi, $wfo);
   if (!$r->Ok()) {
     $estr = $r->Error()->Error();
     p('parse error: '.$estr);
-    $cresp->result = new ConformanceResponse_parse_error($estr);
+    $cresp->result = new ConformanceResponse_result_parse_error($estr);
     return $cresp;
   }
   $result = $r->MustValue();
   switch ($wfo) {
     case WireFormat::PROTOBUF:
-      $cresp->result = new ConformanceResponse_protobuf_payload($result);
+      $cresp->result = new ConformanceResponse_result_protobuf_payload($result);
       break;
     case WireFormat::JSON:
-      $cresp->result = new ConformanceResponse_json_payload($result);
+      $cresp->result = new ConformanceResponse_result_json_payload($result);
       break;
   }
   p("response: ".\print_r($cresp, true));

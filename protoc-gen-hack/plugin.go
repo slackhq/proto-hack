@@ -687,27 +687,27 @@ func customWriteJson(w *writer, fqn, v string) bool {
 	switch fqn {
 	// Structs
 	case ".google.protobuf.Value":
-		w.p("if ($this->kind is \\google\\protobuf\\Value_null_value) {")
+		w.p("if ($this->kind is \\google\\protobuf\\Value_kind_null_value) {")
 		w.p("%s->setCustomEncoding(null);", v)
 		w.p("return;")
 		w.p("}")
-		w.p("if ($this->kind is \\google\\protobuf\\Value_number_value) {")
+		w.p("if ($this->kind is \\google\\protobuf\\Value_kind_number_value) {")
 		w.p("%s->setCustomEncoding($this->kind->number_value);", v)
 		w.p("return;")
 		w.p("}")
-		w.p("if ($this->kind is \\google\\protobuf\\Value_string_value) {")
+		w.p("if ($this->kind is \\google\\protobuf\\Value_kind_string_value) {")
 		w.p("%s->setCustomEncoding($this->kind->string_value);", v)
 		w.p("return;")
 		w.p("}")
-		w.p("if ($this->kind is \\google\\protobuf\\Value_bool_value) {")
+		w.p("if ($this->kind is \\google\\protobuf\\Value_kind_bool_value) {")
 		w.p("%s->setCustomEncoding($this->kind->bool_value);", v)
 		w.p("return;")
 		w.p("}")
-		w.p("if ($this->kind is \\google\\protobuf\\Value_list_value) {")
+		w.p("if ($this->kind is \\google\\protobuf\\Value_kind_list_value) {")
 		w.p("%s->setCustomEncoding(%s->encodeMessage($this->kind->list_value));", v, v)
 		w.p("return;")
 		w.p("}")
-		w.p("if ($this->kind is \\google\\protobuf\\Value_struct_value) {")
+		w.p("if ($this->kind is \\google\\protobuf\\Value_kind_struct_value) {")
 		w.p("%s->setCustomEncoding(%s->encodeMessage($this->kind->struct_value));", v, v)
 		w.p("return;")
 		w.p("}")
@@ -752,21 +752,21 @@ func customMergeJson(w *writer, fqn, v string) bool {
 	// Structs
 	case ".google.protobuf.Value":
 		w.p("if (%s === null) {", v)
-		w.p("$this->kind = new \\google\\protobuf\\Value_null_value(\\google\\protobuf\\NullValue::NULL_VALUE);")
+		w.p("$this->kind = new \\google\\protobuf\\Value_kind_null_value(\\google\\protobuf\\NullValue::NULL_VALUE);")
 		w.p("} else if (%s is string) {", v)
-		w.p("$this->kind = new \\google\\protobuf\\Value_string_value(%s);", v)
+		w.p("$this->kind = new \\google\\protobuf\\Value_kind_string_value(%s);", v)
 		w.p("} else if (%s is bool) {", v)
-		w.p("$this->kind = new \\google\\protobuf\\Value_bool_value(%s);", v)
+		w.p("$this->kind = new \\google\\protobuf\\Value_kind_bool_value(%s);", v)
 		w.p("} else if (\\is_numeric(%s)) {", v)
-		w.p("$this->kind = new \\google\\protobuf\\Value_number_value((float)%s);", v)
+		w.p("$this->kind = new \\google\\protobuf\\Value_kind_number_value((float)%s);", v)
 		w.p("} else if (%s is vec<_>) {", v)
 		w.p("$lv = new \\google\\protobuf\\ListValue();")
 		w.p("$lv->MergeJsonFrom(%s);", v)
-		w.p("$this->kind = new \\google\\protobuf\\Value_list_value($lv);")
+		w.p("$this->kind = new \\google\\protobuf\\Value_kind_list_value($lv);")
 		w.p("} else if (%s is dict<_,_>) {", v)
 		w.p("$struct = new \\google\\protobuf\\Struct();")
 		w.p("$struct->MergeJsonFrom(%s);", v)
-		w.p("$this->kind = new \\google\\protobuf\\Value_struct_value($struct);")
+		w.p("$this->kind = new \\google\\protobuf\\Value_kind_struct_value($struct);")
 		w.p("}")
 	case ".google.protobuf.ListValue":
 		w.p("if (%s is vec<_>) {", v)
@@ -1200,7 +1200,7 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 			fields:        oneofFields[int32(i)],
 			interfaceName: oneofName,
 			enumTypeName:  oneofName + "_oneof_t",
-			classPrefix:   strings.Join(nextNames, "_") + "_",
+			classPrefix:   oneofName + "_",
 			notsetClass:   oneofName + "_" + "NOT_SET",
 		}
 		oneofs = append(oneofs, oo)

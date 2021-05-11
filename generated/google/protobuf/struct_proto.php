@@ -219,7 +219,7 @@ class Value_kind_NOT_SET implements Value_kind {
   public function Copy(): Value_kind { return $this; }
 }
 
-class Value_null_value implements Value_kind {
+class Value_kind_null_value implements Value_kind {
   public function __construct(public \google\protobuf\NullValue_enum_t $null_value) {}
 
   public function WhichOneof(): Value_kind_oneof_t {
@@ -236,11 +236,11 @@ class Value_null_value implements Value_kind {
   }
 
   public function Copy(): Value_kind {
-    return new Value_null_value($this->null_value);
+    return new Value_kind_null_value($this->null_value);
   }
 }
 
-class Value_number_value implements Value_kind {
+class Value_kind_number_value implements Value_kind {
   public function __construct(public float $number_value) {}
 
   public function WhichOneof(): Value_kind_oneof_t {
@@ -257,11 +257,11 @@ class Value_number_value implements Value_kind {
   }
 
   public function Copy(): Value_kind {
-    return new Value_number_value($this->number_value);
+    return new Value_kind_number_value($this->number_value);
   }
 }
 
-class Value_string_value implements Value_kind {
+class Value_kind_string_value implements Value_kind {
   public function __construct(public string $string_value) {}
 
   public function WhichOneof(): Value_kind_oneof_t {
@@ -278,11 +278,11 @@ class Value_string_value implements Value_kind {
   }
 
   public function Copy(): Value_kind {
-    return new Value_string_value($this->string_value);
+    return new Value_kind_string_value($this->string_value);
   }
 }
 
-class Value_bool_value implements Value_kind {
+class Value_kind_bool_value implements Value_kind {
   public function __construct(public bool $bool_value) {}
 
   public function WhichOneof(): Value_kind_oneof_t {
@@ -299,11 +299,11 @@ class Value_bool_value implements Value_kind {
   }
 
   public function Copy(): Value_kind {
-    return new Value_bool_value($this->bool_value);
+    return new Value_kind_bool_value($this->bool_value);
   }
 }
 
-class Value_struct_value implements Value_kind {
+class Value_kind_struct_value implements Value_kind {
   public function __construct(public \google\protobuf\Struct $struct_value) {}
 
   public function WhichOneof(): Value_kind_oneof_t {
@@ -323,11 +323,11 @@ class Value_struct_value implements Value_kind {
   public function Copy(): Value_kind {
     $nv = new \google\protobuf\Struct();
     $nv->CopyFrom($this->struct_value);
-    return new Value_struct_value($nv);
+    return new Value_kind_struct_value($nv);
   }
 }
 
-class Value_list_value implements Value_kind {
+class Value_kind_list_value implements Value_kind {
   public function __construct(public \google\protobuf\ListValue $list_value) {}
 
   public function WhichOneof(): Value_kind_oneof_t {
@@ -347,7 +347,7 @@ class Value_list_value implements Value_kind {
   public function Copy(): Value_kind {
     $nv = new \google\protobuf\ListValue();
     $nv->CopyFrom($this->list_value);
-    return new Value_list_value($nv);
+    return new Value_kind_list_value($nv);
   }
 }
 
@@ -371,26 +371,26 @@ class Value implements \Protobuf\Message {
       list($fn, $wt) = $d->readTag();
       switch ($fn) {
         case 1:
-          $this->kind = new Value_null_value(\google\protobuf\NullValue::FromInt($d->readVarint()));
+          $this->kind = new Value_kind_null_value(\google\protobuf\NullValue::FromInt($d->readVarint()));
           break;
         case 2:
-          $this->kind = new Value_number_value($d->readDouble());
+          $this->kind = new Value_kind_number_value($d->readDouble());
           break;
         case 3:
-          $this->kind = new Value_string_value($d->readString());
+          $this->kind = new Value_kind_string_value($d->readString());
           break;
         case 4:
-          $this->kind = new Value_bool_value($d->readBool());
+          $this->kind = new Value_kind_bool_value($d->readBool());
           break;
         case 5:
           $obj = new \google\protobuf\Struct();
           $obj->MergeFrom($d->readDecoder());
-          $this->kind = new Value_struct_value($obj);
+          $this->kind = new Value_kind_struct_value($obj);
           break;
         case 6:
           $obj = new \google\protobuf\ListValue();
           $obj->MergeFrom($d->readDecoder());
-          $this->kind = new Value_list_value($obj);
+          $this->kind = new Value_kind_list_value($obj);
           break;
         default:
           $d->skip($fn, $wt);
@@ -405,27 +405,27 @@ class Value implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->kind is \google\protobuf\Value_null_value) {
+    if ($this->kind is \google\protobuf\Value_kind_null_value) {
       $e->setCustomEncoding(null);
       return;
     }
-    if ($this->kind is \google\protobuf\Value_number_value) {
+    if ($this->kind is \google\protobuf\Value_kind_number_value) {
       $e->setCustomEncoding($this->kind->number_value);
       return;
     }
-    if ($this->kind is \google\protobuf\Value_string_value) {
+    if ($this->kind is \google\protobuf\Value_kind_string_value) {
       $e->setCustomEncoding($this->kind->string_value);
       return;
     }
-    if ($this->kind is \google\protobuf\Value_bool_value) {
+    if ($this->kind is \google\protobuf\Value_kind_bool_value) {
       $e->setCustomEncoding($this->kind->bool_value);
       return;
     }
-    if ($this->kind is \google\protobuf\Value_list_value) {
+    if ($this->kind is \google\protobuf\Value_kind_list_value) {
       $e->setCustomEncoding($e->encodeMessage($this->kind->list_value));
       return;
     }
-    if ($this->kind is \google\protobuf\Value_struct_value) {
+    if ($this->kind is \google\protobuf\Value_kind_struct_value) {
       $e->setCustomEncoding($e->encodeMessage($this->kind->struct_value));
       return;
     }
@@ -433,21 +433,21 @@ class Value implements \Protobuf\Message {
 
   public function MergeJsonFrom(mixed $m): void {
     if ($m === null) {
-      $this->kind = new \google\protobuf\Value_null_value(\google\protobuf\NullValue::NULL_VALUE);
+      $this->kind = new \google\protobuf\Value_kind_null_value(\google\protobuf\NullValue::NULL_VALUE);
     } else if ($m is string) {
-      $this->kind = new \google\protobuf\Value_string_value($m);
+      $this->kind = new \google\protobuf\Value_kind_string_value($m);
     } else if ($m is bool) {
-      $this->kind = new \google\protobuf\Value_bool_value($m);
+      $this->kind = new \google\protobuf\Value_kind_bool_value($m);
     } else if (\is_numeric($m)) {
-      $this->kind = new \google\protobuf\Value_number_value((float)$m);
+      $this->kind = new \google\protobuf\Value_kind_number_value((float)$m);
     } else if ($m is vec<_>) {
       $lv = new \google\protobuf\ListValue();
       $lv->MergeJsonFrom($m);
-      $this->kind = new \google\protobuf\Value_list_value($lv);
+      $this->kind = new \google\protobuf\Value_kind_list_value($lv);
     } else if ($m is dict<_,_>) {
       $struct = new \google\protobuf\Struct();
       $struct->MergeJsonFrom($m);
-      $this->kind = new \google\protobuf\Value_struct_value($struct);
+      $this->kind = new \google\protobuf\Value_kind_struct_value($struct);
     }
   }
 

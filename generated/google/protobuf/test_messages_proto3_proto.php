@@ -133,7 +133,7 @@ class TestAllTypesProto3_oneof_field_NOT_SET implements TestAllTypesProto3_oneof
   public function Copy(): TestAllTypesProto3_oneof_field { return $this; }
 }
 
-class TestAllTypesProto3_oneof_uint32 implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_uint32 implements TestAllTypesProto3_oneof_field {
   public function __construct(public int $oneof_uint32) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -150,11 +150,11 @@ class TestAllTypesProto3_oneof_uint32 implements TestAllTypesProto3_oneof_field 
   }
 
   public function Copy(): TestAllTypesProto3_oneof_field {
-    return new TestAllTypesProto3_oneof_uint32($this->oneof_uint32);
+    return new TestAllTypesProto3_oneof_field_oneof_uint32($this->oneof_uint32);
   }
 }
 
-class TestAllTypesProto3_oneof_nested_message implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_nested_message implements TestAllTypesProto3_oneof_field {
   public function __construct(public \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage $oneof_nested_message) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -174,11 +174,11 @@ class TestAllTypesProto3_oneof_nested_message implements TestAllTypesProto3_oneo
   public function Copy(): TestAllTypesProto3_oneof_field {
     $nv = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
     $nv->CopyFrom($this->oneof_nested_message);
-    return new TestAllTypesProto3_oneof_nested_message($nv);
+    return new TestAllTypesProto3_oneof_field_oneof_nested_message($nv);
   }
 }
 
-class TestAllTypesProto3_oneof_string implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_string implements TestAllTypesProto3_oneof_field {
   public function __construct(public string $oneof_string) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -195,11 +195,11 @@ class TestAllTypesProto3_oneof_string implements TestAllTypesProto3_oneof_field 
   }
 
   public function Copy(): TestAllTypesProto3_oneof_field {
-    return new TestAllTypesProto3_oneof_string($this->oneof_string);
+    return new TestAllTypesProto3_oneof_field_oneof_string($this->oneof_string);
   }
 }
 
-class TestAllTypesProto3_oneof_bytes implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_bytes implements TestAllTypesProto3_oneof_field {
   public function __construct(public string $oneof_bytes) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -216,11 +216,11 @@ class TestAllTypesProto3_oneof_bytes implements TestAllTypesProto3_oneof_field {
   }
 
   public function Copy(): TestAllTypesProto3_oneof_field {
-    return new TestAllTypesProto3_oneof_bytes($this->oneof_bytes);
+    return new TestAllTypesProto3_oneof_field_oneof_bytes($this->oneof_bytes);
   }
 }
 
-class TestAllTypesProto3_oneof_bool implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_bool implements TestAllTypesProto3_oneof_field {
   public function __construct(public bool $oneof_bool) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -237,11 +237,11 @@ class TestAllTypesProto3_oneof_bool implements TestAllTypesProto3_oneof_field {
   }
 
   public function Copy(): TestAllTypesProto3_oneof_field {
-    return new TestAllTypesProto3_oneof_bool($this->oneof_bool);
+    return new TestAllTypesProto3_oneof_field_oneof_bool($this->oneof_bool);
   }
 }
 
-class TestAllTypesProto3_oneof_uint64 implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_uint64 implements TestAllTypesProto3_oneof_field {
   public function __construct(public int $oneof_uint64) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -258,11 +258,11 @@ class TestAllTypesProto3_oneof_uint64 implements TestAllTypesProto3_oneof_field 
   }
 
   public function Copy(): TestAllTypesProto3_oneof_field {
-    return new TestAllTypesProto3_oneof_uint64($this->oneof_uint64);
+    return new TestAllTypesProto3_oneof_field_oneof_uint64($this->oneof_uint64);
   }
 }
 
-class TestAllTypesProto3_oneof_float implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_float implements TestAllTypesProto3_oneof_field {
   public function __construct(public float $oneof_float) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -279,11 +279,11 @@ class TestAllTypesProto3_oneof_float implements TestAllTypesProto3_oneof_field {
   }
 
   public function Copy(): TestAllTypesProto3_oneof_field {
-    return new TestAllTypesProto3_oneof_float($this->oneof_float);
+    return new TestAllTypesProto3_oneof_field_oneof_float($this->oneof_float);
   }
 }
 
-class TestAllTypesProto3_oneof_double implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_double implements TestAllTypesProto3_oneof_field {
   public function __construct(public float $oneof_double) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -300,11 +300,11 @@ class TestAllTypesProto3_oneof_double implements TestAllTypesProto3_oneof_field 
   }
 
   public function Copy(): TestAllTypesProto3_oneof_field {
-    return new TestAllTypesProto3_oneof_double($this->oneof_double);
+    return new TestAllTypesProto3_oneof_field_oneof_double($this->oneof_double);
   }
 }
 
-class TestAllTypesProto3_oneof_enum implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_enum implements TestAllTypesProto3_oneof_field {
   public function __construct(public \protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum_enum_t $oneof_enum) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -321,11 +321,11 @@ class TestAllTypesProto3_oneof_enum implements TestAllTypesProto3_oneof_field {
   }
 
   public function Copy(): TestAllTypesProto3_oneof_field {
-    return new TestAllTypesProto3_oneof_enum($this->oneof_enum);
+    return new TestAllTypesProto3_oneof_field_oneof_enum($this->oneof_enum);
   }
 }
 
-class TestAllTypesProto3_oneof_null_value implements TestAllTypesProto3_oneof_field {
+class TestAllTypesProto3_oneof_field_oneof_null_value implements TestAllTypesProto3_oneof_field {
   public function __construct(public \google\protobuf\NullValue_enum_t $oneof_null_value) {}
 
   public function WhichOneof(): TestAllTypesProto3_oneof_field_oneof_t {
@@ -342,7 +342,7 @@ class TestAllTypesProto3_oneof_null_value implements TestAllTypesProto3_oneof_fi
   }
 
   public function Copy(): TestAllTypesProto3_oneof_field {
-    return new TestAllTypesProto3_oneof_null_value($this->oneof_null_value);
+    return new TestAllTypesProto3_oneof_field_oneof_null_value($this->oneof_null_value);
   }
 }
 
@@ -3038,36 +3038,36 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           }
           break;
         case 111:
-          $this->oneof_field = new TestAllTypesProto3_oneof_uint32($d->readVarint32());
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_uint32($d->readVarint32());
           break;
         case 112:
           $obj = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
           $obj->MergeFrom($d->readDecoder());
-          $this->oneof_field = new TestAllTypesProto3_oneof_nested_message($obj);
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_nested_message($obj);
           break;
         case 113:
-          $this->oneof_field = new TestAllTypesProto3_oneof_string($d->readString());
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_string($d->readString());
           break;
         case 114:
-          $this->oneof_field = new TestAllTypesProto3_oneof_bytes($d->readString());
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_bytes($d->readString());
           break;
         case 115:
-          $this->oneof_field = new TestAllTypesProto3_oneof_bool($d->readBool());
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_bool($d->readBool());
           break;
         case 116:
-          $this->oneof_field = new TestAllTypesProto3_oneof_uint64($d->readVarint());
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_uint64($d->readVarint());
           break;
         case 117:
-          $this->oneof_field = new TestAllTypesProto3_oneof_float($d->readFloat());
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_float($d->readFloat());
           break;
         case 118:
-          $this->oneof_field = new TestAllTypesProto3_oneof_double($d->readDouble());
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_double($d->readDouble());
           break;
         case 119:
-          $this->oneof_field = new TestAllTypesProto3_oneof_enum(\protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum::FromInt($d->readVarint()));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_enum(\protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum::FromInt($d->readVarint()));
           break;
         case 120:
-          $this->oneof_field = new TestAllTypesProto3_oneof_null_value(\google\protobuf\NullValue::FromInt($d->readVarint()));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_null_value(\google\protobuf\NullValue::FromInt($d->readVarint()));
           break;
         case 201:
           if ($this->optional_bool_wrapper == null) $this->optional_bool_wrapper = new \google\protobuf\BoolValue();
@@ -4627,36 +4627,36 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           }
           break;
         case 'oneof_uint32': case 'oneofUint32':
-          $this->oneof_field = new TestAllTypesProto3_oneof_uint32(\Protobuf\Internal\JsonDecoder::readInt32Unsigned($v));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_uint32(\Protobuf\Internal\JsonDecoder::readInt32Unsigned($v));
           break;
         case 'oneof_nested_message': case 'oneofNestedMessage':
           $obj = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
           $obj->MergeJsonFrom($v);
-          $this->oneof_field = new TestAllTypesProto3_oneof_nested_message($obj);
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_nested_message($obj);
           break;
         case 'oneof_string': case 'oneofString':
-          $this->oneof_field = new TestAllTypesProto3_oneof_string(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_string(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'oneof_bytes': case 'oneofBytes':
-          $this->oneof_field = new TestAllTypesProto3_oneof_bytes(\Protobuf\Internal\JsonDecoder::readBytes($v));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_bytes(\Protobuf\Internal\JsonDecoder::readBytes($v));
           break;
         case 'oneof_bool': case 'oneofBool':
-          $this->oneof_field = new TestAllTypesProto3_oneof_bool(\Protobuf\Internal\JsonDecoder::readBool($v));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_bool(\Protobuf\Internal\JsonDecoder::readBool($v));
           break;
         case 'oneof_uint64': case 'oneofUint64':
-          $this->oneof_field = new TestAllTypesProto3_oneof_uint64(\Protobuf\Internal\JsonDecoder::readInt64Unsigned($v));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_uint64(\Protobuf\Internal\JsonDecoder::readInt64Unsigned($v));
           break;
         case 'oneof_float': case 'oneofFloat':
-          $this->oneof_field = new TestAllTypesProto3_oneof_float(\Protobuf\Internal\JsonDecoder::readFloat($v));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_float(\Protobuf\Internal\JsonDecoder::readFloat($v));
           break;
         case 'oneof_double': case 'oneofDouble':
-          $this->oneof_field = new TestAllTypesProto3_oneof_double(\Protobuf\Internal\JsonDecoder::readFloat($v));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_double(\Protobuf\Internal\JsonDecoder::readFloat($v));
           break;
         case 'oneof_enum': case 'oneofEnum':
-          $this->oneof_field = new TestAllTypesProto3_oneof_enum(\protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum::FromMixed($v));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_enum(\protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum::FromMixed($v));
           break;
         case 'oneof_null_value': case 'oneofNullValue':
-          $this->oneof_field = new TestAllTypesProto3_oneof_null_value(\google\protobuf\NullValue::FromMixed($v));
+          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_null_value(\google\protobuf\NullValue::FromMixed($v));
           break;
         case 'optional_bool_wrapper': case 'optionalBoolWrapper':
           if ($v === null) break;

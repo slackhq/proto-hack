@@ -169,7 +169,7 @@ class ConformanceRequest_payload_NOT_SET implements ConformanceRequest_payload {
   public function Copy(): ConformanceRequest_payload { return $this; }
 }
 
-class ConformanceRequest_protobuf_payload implements ConformanceRequest_payload {
+class ConformanceRequest_payload_protobuf_payload implements ConformanceRequest_payload {
   public function __construct(public string $protobuf_payload) {}
 
   public function WhichOneof(): ConformanceRequest_payload_oneof_t {
@@ -186,11 +186,11 @@ class ConformanceRequest_protobuf_payload implements ConformanceRequest_payload 
   }
 
   public function Copy(): ConformanceRequest_payload {
-    return new ConformanceRequest_protobuf_payload($this->protobuf_payload);
+    return new ConformanceRequest_payload_protobuf_payload($this->protobuf_payload);
   }
 }
 
-class ConformanceRequest_json_payload implements ConformanceRequest_payload {
+class ConformanceRequest_payload_json_payload implements ConformanceRequest_payload {
   public function __construct(public string $json_payload) {}
 
   public function WhichOneof(): ConformanceRequest_payload_oneof_t {
@@ -207,11 +207,11 @@ class ConformanceRequest_json_payload implements ConformanceRequest_payload {
   }
 
   public function Copy(): ConformanceRequest_payload {
-    return new ConformanceRequest_json_payload($this->json_payload);
+    return new ConformanceRequest_payload_json_payload($this->json_payload);
   }
 }
 
-class ConformanceRequest_jspb_payload implements ConformanceRequest_payload {
+class ConformanceRequest_payload_jspb_payload implements ConformanceRequest_payload {
   public function __construct(public string $jspb_payload) {}
 
   public function WhichOneof(): ConformanceRequest_payload_oneof_t {
@@ -228,11 +228,11 @@ class ConformanceRequest_jspb_payload implements ConformanceRequest_payload {
   }
 
   public function Copy(): ConformanceRequest_payload {
-    return new ConformanceRequest_jspb_payload($this->jspb_payload);
+    return new ConformanceRequest_payload_jspb_payload($this->jspb_payload);
   }
 }
 
-class ConformanceRequest_text_payload implements ConformanceRequest_payload {
+class ConformanceRequest_payload_text_payload implements ConformanceRequest_payload {
   public function __construct(public string $text_payload) {}
 
   public function WhichOneof(): ConformanceRequest_payload_oneof_t {
@@ -249,7 +249,7 @@ class ConformanceRequest_text_payload implements ConformanceRequest_payload {
   }
 
   public function Copy(): ConformanceRequest_payload {
-    return new ConformanceRequest_text_payload($this->text_payload);
+    return new ConformanceRequest_payload_text_payload($this->text_payload);
   }
 }
 
@@ -288,10 +288,10 @@ class ConformanceRequest implements \Protobuf\Message {
       list($fn, $wt) = $d->readTag();
       switch ($fn) {
         case 1:
-          $this->payload = new ConformanceRequest_protobuf_payload($d->readString());
+          $this->payload = new ConformanceRequest_payload_protobuf_payload($d->readString());
           break;
         case 2:
-          $this->payload = new ConformanceRequest_json_payload($d->readString());
+          $this->payload = new ConformanceRequest_payload_json_payload($d->readString());
           break;
         case 3:
           $this->requested_output_format = \conformance\WireFormat::FromInt($d->readVarint());
@@ -307,10 +307,10 @@ class ConformanceRequest implements \Protobuf\Message {
           $this->jspb_encoding_options->MergeFrom($d->readDecoder());
           break;
         case 7:
-          $this->payload = new ConformanceRequest_jspb_payload($d->readString());
+          $this->payload = new ConformanceRequest_payload_jspb_payload($d->readString());
           break;
         case 8:
-          $this->payload = new ConformanceRequest_text_payload($d->readString());
+          $this->payload = new ConformanceRequest_payload_text_payload($d->readString());
           break;
         case 9:
           $this->print_unknown_fields = $d->readBool();
@@ -364,10 +364,10 @@ class ConformanceRequest implements \Protobuf\Message {
     foreach ($d as $k => $v) {
       switch ($k) {
         case 'protobuf_payload': case 'protobufPayload':
-          $this->payload = new ConformanceRequest_protobuf_payload(\Protobuf\Internal\JsonDecoder::readBytes($v));
+          $this->payload = new ConformanceRequest_payload_protobuf_payload(\Protobuf\Internal\JsonDecoder::readBytes($v));
           break;
         case 'json_payload': case 'jsonPayload':
-          $this->payload = new ConformanceRequest_json_payload(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->payload = new ConformanceRequest_payload_json_payload(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'requested_output_format': case 'requestedOutputFormat':
           $this->requested_output_format = \conformance\WireFormat::FromMixed($v);
@@ -384,10 +384,10 @@ class ConformanceRequest implements \Protobuf\Message {
           $this->jspb_encoding_options->MergeJsonFrom($v);
           break;
         case 'jspb_payload': case 'jspbPayload':
-          $this->payload = new ConformanceRequest_jspb_payload(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->payload = new ConformanceRequest_payload_jspb_payload(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'text_payload': case 'textPayload':
-          $this->payload = new ConformanceRequest_text_payload(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->payload = new ConformanceRequest_payload_text_payload(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'print_unknown_fields': case 'printUnknownFields':
           $this->print_unknown_fields = \Protobuf\Internal\JsonDecoder::readBool($v);
@@ -449,7 +449,7 @@ class ConformanceResponse_result_NOT_SET implements ConformanceResponse_result {
   public function Copy(): ConformanceResponse_result { return $this; }
 }
 
-class ConformanceResponse_parse_error implements ConformanceResponse_result {
+class ConformanceResponse_result_parse_error implements ConformanceResponse_result {
   public function __construct(public string $parse_error) {}
 
   public function WhichOneof(): ConformanceResponse_result_oneof_t {
@@ -466,11 +466,11 @@ class ConformanceResponse_parse_error implements ConformanceResponse_result {
   }
 
   public function Copy(): ConformanceResponse_result {
-    return new ConformanceResponse_parse_error($this->parse_error);
+    return new ConformanceResponse_result_parse_error($this->parse_error);
   }
 }
 
-class ConformanceResponse_serialize_error implements ConformanceResponse_result {
+class ConformanceResponse_result_serialize_error implements ConformanceResponse_result {
   public function __construct(public string $serialize_error) {}
 
   public function WhichOneof(): ConformanceResponse_result_oneof_t {
@@ -487,11 +487,11 @@ class ConformanceResponse_serialize_error implements ConformanceResponse_result 
   }
 
   public function Copy(): ConformanceResponse_result {
-    return new ConformanceResponse_serialize_error($this->serialize_error);
+    return new ConformanceResponse_result_serialize_error($this->serialize_error);
   }
 }
 
-class ConformanceResponse_runtime_error implements ConformanceResponse_result {
+class ConformanceResponse_result_runtime_error implements ConformanceResponse_result {
   public function __construct(public string $runtime_error) {}
 
   public function WhichOneof(): ConformanceResponse_result_oneof_t {
@@ -508,11 +508,11 @@ class ConformanceResponse_runtime_error implements ConformanceResponse_result {
   }
 
   public function Copy(): ConformanceResponse_result {
-    return new ConformanceResponse_runtime_error($this->runtime_error);
+    return new ConformanceResponse_result_runtime_error($this->runtime_error);
   }
 }
 
-class ConformanceResponse_protobuf_payload implements ConformanceResponse_result {
+class ConformanceResponse_result_protobuf_payload implements ConformanceResponse_result {
   public function __construct(public string $protobuf_payload) {}
 
   public function WhichOneof(): ConformanceResponse_result_oneof_t {
@@ -529,11 +529,11 @@ class ConformanceResponse_protobuf_payload implements ConformanceResponse_result
   }
 
   public function Copy(): ConformanceResponse_result {
-    return new ConformanceResponse_protobuf_payload($this->protobuf_payload);
+    return new ConformanceResponse_result_protobuf_payload($this->protobuf_payload);
   }
 }
 
-class ConformanceResponse_json_payload implements ConformanceResponse_result {
+class ConformanceResponse_result_json_payload implements ConformanceResponse_result {
   public function __construct(public string $json_payload) {}
 
   public function WhichOneof(): ConformanceResponse_result_oneof_t {
@@ -550,11 +550,11 @@ class ConformanceResponse_json_payload implements ConformanceResponse_result {
   }
 
   public function Copy(): ConformanceResponse_result {
-    return new ConformanceResponse_json_payload($this->json_payload);
+    return new ConformanceResponse_result_json_payload($this->json_payload);
   }
 }
 
-class ConformanceResponse_skipped implements ConformanceResponse_result {
+class ConformanceResponse_result_skipped implements ConformanceResponse_result {
   public function __construct(public string $skipped) {}
 
   public function WhichOneof(): ConformanceResponse_result_oneof_t {
@@ -571,11 +571,11 @@ class ConformanceResponse_skipped implements ConformanceResponse_result {
   }
 
   public function Copy(): ConformanceResponse_result {
-    return new ConformanceResponse_skipped($this->skipped);
+    return new ConformanceResponse_result_skipped($this->skipped);
   }
 }
 
-class ConformanceResponse_jspb_payload implements ConformanceResponse_result {
+class ConformanceResponse_result_jspb_payload implements ConformanceResponse_result {
   public function __construct(public string $jspb_payload) {}
 
   public function WhichOneof(): ConformanceResponse_result_oneof_t {
@@ -592,11 +592,11 @@ class ConformanceResponse_jspb_payload implements ConformanceResponse_result {
   }
 
   public function Copy(): ConformanceResponse_result {
-    return new ConformanceResponse_jspb_payload($this->jspb_payload);
+    return new ConformanceResponse_result_jspb_payload($this->jspb_payload);
   }
 }
 
-class ConformanceResponse_text_payload implements ConformanceResponse_result {
+class ConformanceResponse_result_text_payload implements ConformanceResponse_result {
   public function __construct(public string $text_payload) {}
 
   public function WhichOneof(): ConformanceResponse_result_oneof_t {
@@ -613,7 +613,7 @@ class ConformanceResponse_text_payload implements ConformanceResponse_result {
   }
 
   public function Copy(): ConformanceResponse_result {
-    return new ConformanceResponse_text_payload($this->text_payload);
+    return new ConformanceResponse_result_text_payload($this->text_payload);
   }
 }
 
@@ -637,28 +637,28 @@ class ConformanceResponse implements \Protobuf\Message {
       list($fn, $wt) = $d->readTag();
       switch ($fn) {
         case 1:
-          $this->result = new ConformanceResponse_parse_error($d->readString());
+          $this->result = new ConformanceResponse_result_parse_error($d->readString());
           break;
         case 2:
-          $this->result = new ConformanceResponse_runtime_error($d->readString());
+          $this->result = new ConformanceResponse_result_runtime_error($d->readString());
           break;
         case 3:
-          $this->result = new ConformanceResponse_protobuf_payload($d->readString());
+          $this->result = new ConformanceResponse_result_protobuf_payload($d->readString());
           break;
         case 4:
-          $this->result = new ConformanceResponse_json_payload($d->readString());
+          $this->result = new ConformanceResponse_result_json_payload($d->readString());
           break;
         case 5:
-          $this->result = new ConformanceResponse_skipped($d->readString());
+          $this->result = new ConformanceResponse_result_skipped($d->readString());
           break;
         case 6:
-          $this->result = new ConformanceResponse_serialize_error($d->readString());
+          $this->result = new ConformanceResponse_result_serialize_error($d->readString());
           break;
         case 7:
-          $this->result = new ConformanceResponse_jspb_payload($d->readString());
+          $this->result = new ConformanceResponse_result_jspb_payload($d->readString());
           break;
         case 8:
-          $this->result = new ConformanceResponse_text_payload($d->readString());
+          $this->result = new ConformanceResponse_result_text_payload($d->readString());
           break;
         default:
           $d->skip($fn, $wt);
@@ -682,28 +682,28 @@ class ConformanceResponse implements \Protobuf\Message {
     foreach ($d as $k => $v) {
       switch ($k) {
         case 'parse_error': case 'parseError':
-          $this->result = new ConformanceResponse_parse_error(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->result = new ConformanceResponse_result_parse_error(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'runtime_error': case 'runtimeError':
-          $this->result = new ConformanceResponse_runtime_error(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->result = new ConformanceResponse_result_runtime_error(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'protobuf_payload': case 'protobufPayload':
-          $this->result = new ConformanceResponse_protobuf_payload(\Protobuf\Internal\JsonDecoder::readBytes($v));
+          $this->result = new ConformanceResponse_result_protobuf_payload(\Protobuf\Internal\JsonDecoder::readBytes($v));
           break;
         case 'json_payload': case 'jsonPayload':
-          $this->result = new ConformanceResponse_json_payload(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->result = new ConformanceResponse_result_json_payload(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'skipped':
-          $this->result = new ConformanceResponse_skipped(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->result = new ConformanceResponse_result_skipped(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'serialize_error': case 'serializeError':
-          $this->result = new ConformanceResponse_serialize_error(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->result = new ConformanceResponse_result_serialize_error(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'jspb_payload': case 'jspbPayload':
-          $this->result = new ConformanceResponse_jspb_payload(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->result = new ConformanceResponse_result_jspb_payload(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         case 'text_payload': case 'textPayload':
-          $this->result = new ConformanceResponse_text_payload(\Protobuf\Internal\JsonDecoder::readString($v));
+          $this->result = new ConformanceResponse_result_text_payload(\Protobuf\Internal\JsonDecoder::readString($v));
           break;
         default:
         break;

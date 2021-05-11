@@ -132,7 +132,7 @@ function testExample1(foo\bar\example1 $got, string $failmsg): void {
 
   $exp->outoforder = 1;
 
-  $exp->aoneof = new \foo\bar\example1_oostring("oneofstring");
+  $exp->aoneof = new \foo\bar\example1_aoneof_oostring("oneofstring");
 
   a($got, $exp, $failmsg);
 }
