@@ -820,12 +820,13 @@ namespace Protobuf\Internal {
       if ($str === "null") {
         return null;
       }
-      $data = \json_decode($str, true, 512, \JSON_FB_HACK_ARRAYS);
+      $error_data = null;
+      $data = \json_decode_with_error($str, inout $error_data, true, 512, \JSON_FB_HACK_ARRAYS);
       if ($data !== null) {
         return $data;
       }
       throw new \ProtobufException(
-        "json_decode failed; ".\json_last_error_msg(),
+        "json_decode failed; ".($error_data[1] ?? ''),
       );
     }
 
