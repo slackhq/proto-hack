@@ -925,7 +925,7 @@ namespace Protobuf\Internal {
                 throw new \ProtobufException('uint64 out of bounds');
               }
               \gmp_clrbit(inout $mgmp, 63);
-              return \gmp_intval($mgmp) | 0x8000000000000000;
+              return \gmp_intval($mgmp) | \PHP_INT_MAX;
             }
           }
         }
