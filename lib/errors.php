@@ -1,7 +1,7 @@
 <?hh // strict
 
 namespace Errors {
-  interface Error extends \Stringish {
+  interface Error {
     public function Ok(): bool;
     public function MustOk(): void;
     public function Error(): string;
