@@ -20,12 +20,12 @@ trap fin EXIT
 
 
 
-GENHACK=`find -L -name protoc-gen-hack`
+GENHACK=`find -L . -name protoc-gen-hack`
 GENHACK=`readlink $GENHACK`
 echo genhack path: $GENHACK
 $GENHACK --version
 
-PROTOC=`find -L external -name protoc`
+PROTOC=`find -L . external -name protoc`
 PROTOC=`readlink $PROTOC`
 echo protoc path: $PROTOC
 $PROTOC --version
@@ -42,7 +42,8 @@ do
   echo
 done
 
-protoc --encode=foo.bar.example1  ./test/example1.proto < ./test/example1.pb.txt > $TMP/test/example1.pb.bin
+ARGS="-I external/com_google_protobuf/src -I ./"
+$PROTOC $ARGS --encode=foo.bar.example1  ./test/example1.proto < ./test/example1.pb.txt > $TMP/test/example1.pb.bin
 
 if [ $# -gt 0 ]; then
   # Comparison mode; see if there are diffs, if none, exit 0.
