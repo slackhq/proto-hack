@@ -166,8 +166,7 @@ class CodeGeneratorRequest implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'file_to_generate')) $this->file_to_generate = $s['file_to_generate'];
     if (Shapes::keyExists($s, 'parameter')) $this->parameter = $s['parameter'];
     if (Shapes::keyExists($s, 'proto_file')) {
-      if ($this->proto_file is null) $this->proto_file = new \google\protobuf\FileDescriptorProto();
-      $this->proto_file->setFields($s['proto_file'] as nonnull);
+      $this->proto_file = Vec\map($s['proto_file'], ($v) ==> { $o = new \google\protobuf\FileDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'compiler_version')) {
       if ($this->compiler_version is null) $this->compiler_version = new \google\protobuf\compiler\Version();
@@ -179,7 +178,7 @@ class CodeGeneratorRequest implements \Protobuf\Message {
     $s = shape();
     if (!C\is_empty($this->file_to_generate)) $s['file_to_generate'] = $this->file_to_generate;
     if ($this->parameter !== '') $s['parameter'] = $this->parameter;
-    if (!C\is_empty($this->proto_file)) $s['proto_file'] = $this->proto_file;
+    if (!C\is_empty($this->proto_file)) $s['proto_file'] = Vec\map($this->proto_file, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -491,8 +490,7 @@ class CodeGeneratorResponse implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'error')) $this->error = $s['error'];
     if (Shapes::keyExists($s, 'supported_features')) $this->supported_features = $s['supported_features'];
     if (Shapes::keyExists($s, 'file')) {
-      if ($this->file is null) $this->file = new \google\protobuf\compiler\CodeGeneratorResponse_File();
-      $this->file->setFields($s['file'] as nonnull);
+      $this->file = Vec\map($s['file'], ($v) ==> { $o = new \google\protobuf\compiler\CodeGeneratorResponse_File(); $o->setFields($v); return $o; });
     }
   }
 
@@ -500,7 +498,7 @@ class CodeGeneratorResponse implements \Protobuf\Message {
     $s = shape();
     if ($this->error !== '') $s['error'] = $this->error;
     if ($this->supported_features !== 0) $s['supported_features'] = $this->supported_features;
-    if (!C\is_empty($this->file)) $s['file'] = $this->file;
+    if (!C\is_empty($this->file)) $s['file'] = Vec\map($this->file, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 

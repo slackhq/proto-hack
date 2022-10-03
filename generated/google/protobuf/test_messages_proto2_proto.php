@@ -3053,12 +3053,10 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'repeated_string')) $this->repeated_string = $s['repeated_string'];
     if (Shapes::keyExists($s, 'repeated_bytes')) $this->repeated_bytes = $s['repeated_bytes'];
     if (Shapes::keyExists($s, 'repeated_nested_message')) {
-      if ($this->repeated_nested_message is null) $this->repeated_nested_message = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
-      $this->repeated_nested_message->setFields($s['repeated_nested_message'] as nonnull);
+      $this->repeated_nested_message = Vec\map($s['repeated_nested_message'], ($v) ==> { $o = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_foreign_message')) {
-      if ($this->repeated_foreign_message is null) $this->repeated_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
-      $this->repeated_foreign_message->setFields($s['repeated_foreign_message'] as nonnull);
+      $this->repeated_foreign_message = Vec\map($s['repeated_foreign_message'], ($v) ==> { $o = new \protobuf_test_messages\proto2\ForeignMessageProto2(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_nested_enum')) $this->repeated_nested_enum = $s['repeated_nested_enum'];
     if (Shapes::keyExists($s, 'repeated_foreign_enum')) $this->repeated_foreign_enum = $s['repeated_foreign_enum'];
@@ -3172,8 +3170,8 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if (!C\is_empty($this->repeated_bool)) $s['repeated_bool'] = $this->repeated_bool;
     if (!C\is_empty($this->repeated_string)) $s['repeated_string'] = $this->repeated_string;
     if (!C\is_empty($this->repeated_bytes)) $s['repeated_bytes'] = $this->repeated_bytes;
-    if (!C\is_empty($this->repeated_nested_message)) $s['repeated_nested_message'] = $this->repeated_nested_message;
-    if (!C\is_empty($this->repeated_foreign_message)) $s['repeated_foreign_message'] = $this->repeated_foreign_message;
+    if (!C\is_empty($this->repeated_nested_message)) $s['repeated_nested_message'] = Vec\map($this->repeated_nested_message, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_foreign_message)) $s['repeated_foreign_message'] = Vec\map($this->repeated_foreign_message, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->repeated_nested_enum)) $s['repeated_nested_enum'] = $this->repeated_nested_enum;
     if (!C\is_empty($this->repeated_foreign_enum)) $s['repeated_foreign_enum'] = $this->repeated_foreign_enum;
     if (!C\is_empty($this->repeated_string_piece)) $s['repeated_string_piece'] = $this->repeated_string_piece;

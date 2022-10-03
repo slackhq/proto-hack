@@ -45,6 +45,7 @@ message example1 {
   // Repeated
   repeated string manystring = 30;
   repeated int64 manyint64 = 31;
+  repeated fiz.baz.example2 manyexample2 = 32;
 
   // Nested Messages / namespace test.
   message example2 {
@@ -54,6 +55,7 @@ message example1 {
   .foo.bar.example2 aexample22 = 41;
   .fiz.baz.example2 aexample23 = 42;
 
+  // maps
   map<string, string> amap = 51;
   map<string, fiz.baz.example2> amap2 = 52;
 

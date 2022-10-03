@@ -1334,6 +1334,11 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 			} else {
 				w.p("if (Shapes::keyExists($s, '%s')) $this->%s = $s['%s'];", f.varName(), f.varName(), f.varName())
 			}
+		} else if f.isRepeated() && f.isMessageOrGroup() {
+			w.p("if (Shapes::keyExists($s, '%s')) {", f.varName())
+			w.p("$this->%s = Vec\\map($s['%s'], ($v) ==> { $o = new %s(); $o->setFields($v); return $o; });", f.varName(), f.varName(), f.phpType())
+			w.p("}")
+
 		} else if f.isMessageOrGroup() {
 			w.p("if (Shapes::keyExists($s, '%s')) {", f.varName())
 			w.p("if ($this->%s is null) $this->%s = new %s();", f.varName(), f.varName(), f.phpType())
@@ -1365,9 +1370,12 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 				w.p("if (!C\\is_empty($this->%s)) $s['%s'] = $this->%s;", f.varName(), f.varName(), f.varName())
 			}
 		} else if f.isRepeated() {
-			w.p("if (!C\\is_empty($this->%s)) $s['%s'] = $this->%s;", f.varName(), f.varName(), f.varName())
+			if f.isMessageOrGroup() {
+				w.p("if (!C\\is_empty($this->%s)) $s['%s'] = Vec\\map($this->%s, ($v) ==> $v->getNonDefaultFields());", f.varName(), f.varName(), f.varName())
+			} else {
+				w.p("if (!C\\is_empty($this->%s)) $s['%s'] = $this->%s;", f.varName(), f.varName(), f.varName())
+			}
 		} else if f.isMessageOrGroup() {
-
 		} else {
 			w.p("if ($this->%s !== %s) $s['%s'] = $this->%s;", f.varName(), f.defaultValue(), f.varName(), f.varName())
 		}

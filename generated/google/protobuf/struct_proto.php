@@ -521,14 +521,13 @@ class ListValue implements \Protobuf\Message {
 
   public function setFields(ListValueFields $s = shape()): void {
     if (Shapes::keyExists($s, 'values')) {
-      if ($this->values is null) $this->values = new \google\protobuf\Value();
-      $this->values->setFields($s['values'] as nonnull);
+      $this->values = Vec\map($s['values'], ($v) ==> { $o = new \google\protobuf\Value(); $o->setFields($v); return $o; });
     }
   }
 
   public function getNonDefaultFields(): ListValueFields {
     $s = shape();
-    if (!C\is_empty($this->values)) $s['values'] = $this->values;
+    if (!C\is_empty($this->values)) $s['values'] = Vec\map($this->values, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
