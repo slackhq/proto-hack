@@ -142,15 +142,15 @@ namespace Protobuf\Internal {
     }
 
     public function readVarint32(): int {
-      # Throw away the upper 32 bits.
+      // Throw away the upper 32 bits.
       return $this->readVarint() & 0xFFFFFFFF;
     }
 
     public function readVarint32Signed(): int {
       $i = $this->readVarint32();
       if ($i > 0x7FFFFFFF) {
-        # This is a corner validation case, the writer wrote to the 32 bit, but
-        # we only support 31 bits.
+        // This is a corner validation case, the writer wrote to the 32 bit, but
+        // we only support 31 bits.
         return $i | (0xFFFFFFFF << 32);
       }
       return $i;
