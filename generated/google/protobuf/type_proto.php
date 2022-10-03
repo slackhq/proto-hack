@@ -29,14 +29,6 @@ abstract class Syntax {
   }
 }
 
-type TypeFields = shape (
-  ?'name' => string,
-  ?'fields' => vec<\google\protobuf\FieldFields>,
-  ?'oneofs' => vec<string>,
-  ?'options' => vec<\google\protobuf\OptionFields>,
-  ?'source_context' => ?\google\protobuf\SourceContextFields,
-  ?'syntax' => \google\protobuf\Syntax_enum_t,
-);
 class Type implements \Protobuf\Message {
   public string $name;
   public vec<\google\protobuf\Field> $fields;
@@ -61,34 +53,6 @@ class Type implements \Protobuf\Message {
     $this->source_context = $s['source_context'] ?? null;
     $this->syntax = $s['syntax'] ?? \google\protobuf\Syntax::FromInt(0);
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(TypeFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
-    if (Shapes::keyExists($s, 'fields')) {
-      if ($this->fields is null) $this->fields = new \google\protobuf\Field();
-      $this->fields->setFields($s['fields'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'oneofs')) $this->oneofs = $s['oneofs'];
-    if (Shapes::keyExists($s, 'options')) {
-      if ($this->options is null) $this->options = new \google\protobuf\Option();
-      $this->options->setFields($s['options'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'source_context')) {
-      if ($this->source_context is null) $this->source_context = new \google\protobuf\SourceContext();
-      $this->source_context->setFields($s['source_context'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'syntax')) $this->syntax = $s['syntax'];
-  }
-
-  public function getNonDefaultFields(): TypeFields {
-    $s = shape();
-    if ($this->name !== '') $s['name'] = $this->name;
-    if (!C\is_empty($this->fields)) $s['fields'] = $this->fields;
-    if (!C\is_empty($this->oneofs)) $s['oneofs'] = $this->oneofs;
-    if (!C\is_empty($this->options)) $s['options'] = $this->options;
-    if ($this->syntax !== \google\protobuf\Syntax::FromInt(0)) $s['syntax'] = $this->syntax;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -346,18 +310,6 @@ abstract class Field_Cardinality {
   }
 }
 
-type FieldFields = shape (
-  ?'kind' => \google\protobuf\Field_Kind_enum_t,
-  ?'cardinality' => \google\protobuf\Field_Cardinality_enum_t,
-  ?'number' => int,
-  ?'name' => string,
-  ?'type_url' => string,
-  ?'oneof_index' => int,
-  ?'packed' => bool,
-  ?'options' => vec<\google\protobuf\OptionFields>,
-  ?'json_name' => string,
-  ?'default_value' => string,
-);
 class Field implements \Protobuf\Message {
   public \google\protobuf\Field_Kind_enum_t $kind;
   public \google\protobuf\Field_Cardinality_enum_t $cardinality;
@@ -394,37 +346,6 @@ class Field implements \Protobuf\Message {
     $this->json_name = $s['json_name'] ?? '';
     $this->default_value = $s['default_value'] ?? '';
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(FieldFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'kind')) $this->kind = $s['kind'];
-    if (Shapes::keyExists($s, 'cardinality')) $this->cardinality = $s['cardinality'];
-    if (Shapes::keyExists($s, 'number')) $this->number = $s['number'];
-    if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
-    if (Shapes::keyExists($s, 'type_url')) $this->type_url = $s['type_url'];
-    if (Shapes::keyExists($s, 'oneof_index')) $this->oneof_index = $s['oneof_index'];
-    if (Shapes::keyExists($s, 'packed')) $this->packed = $s['packed'];
-    if (Shapes::keyExists($s, 'options')) {
-      if ($this->options is null) $this->options = new \google\protobuf\Option();
-      $this->options->setFields($s['options'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'json_name')) $this->json_name = $s['json_name'];
-    if (Shapes::keyExists($s, 'default_value')) $this->default_value = $s['default_value'];
-  }
-
-  public function getNonDefaultFields(): FieldFields {
-    $s = shape();
-    if ($this->kind !== \google\protobuf\Field_Kind::FromInt(0)) $s['kind'] = $this->kind;
-    if ($this->cardinality !== \google\protobuf\Field_Cardinality::FromInt(0)) $s['cardinality'] = $this->cardinality;
-    if ($this->number !== 0) $s['number'] = $this->number;
-    if ($this->name !== '') $s['name'] = $this->name;
-    if ($this->type_url !== '') $s['type_url'] = $this->type_url;
-    if ($this->oneof_index !== 0) $s['oneof_index'] = $this->oneof_index;
-    if ($this->packed !== false) $s['packed'] = $this->packed;
-    if (!C\is_empty($this->options)) $s['options'] = $this->options;
-    if ($this->json_name !== '') $s['json_name'] = $this->json_name;
-    if ($this->default_value !== '') $s['default_value'] = $this->default_value;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -600,13 +521,6 @@ class Field implements \Protobuf\Message {
   }
 }
 
-type pb_EnumFields = shape (
-  ?'name' => string,
-  ?'enumvalue' => vec<\google\protobuf\EnumValueFields>,
-  ?'options' => vec<\google\protobuf\OptionFields>,
-  ?'source_context' => ?\google\protobuf\SourceContextFields,
-  ?'syntax' => \google\protobuf\Syntax_enum_t,
-);
 class pb_Enum implements \Protobuf\Message {
   public string $name;
   public vec<\google\protobuf\EnumValue> $enumvalue;
@@ -628,32 +542,6 @@ class pb_Enum implements \Protobuf\Message {
     $this->source_context = $s['source_context'] ?? null;
     $this->syntax = $s['syntax'] ?? \google\protobuf\Syntax::FromInt(0);
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(pb_EnumFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
-    if (Shapes::keyExists($s, 'enumvalue')) {
-      if ($this->enumvalue is null) $this->enumvalue = new \google\protobuf\EnumValue();
-      $this->enumvalue->setFields($s['enumvalue'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'options')) {
-      if ($this->options is null) $this->options = new \google\protobuf\Option();
-      $this->options->setFields($s['options'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'source_context')) {
-      if ($this->source_context is null) $this->source_context = new \google\protobuf\SourceContext();
-      $this->source_context->setFields($s['source_context'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'syntax')) $this->syntax = $s['syntax'];
-  }
-
-  public function getNonDefaultFields(): pb_EnumFields {
-    $s = shape();
-    if ($this->name !== '') $s['name'] = $this->name;
-    if (!C\is_empty($this->enumvalue)) $s['enumvalue'] = $this->enumvalue;
-    if (!C\is_empty($this->options)) $s['options'] = $this->options;
-    if ($this->syntax !== \google\protobuf\Syntax::FromInt(0)) $s['syntax'] = $this->syntax;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -790,11 +678,6 @@ class pb_Enum implements \Protobuf\Message {
   }
 }
 
-type EnumValueFields = shape (
-  ?'name' => string,
-  ?'number' => int,
-  ?'options' => vec<\google\protobuf\OptionFields>,
-);
 class EnumValue implements \Protobuf\Message {
   public string $name;
   public int $number;
@@ -810,23 +693,6 @@ class EnumValue implements \Protobuf\Message {
     $this->number = $s['number'] ?? 0;
     $this->options = $s['options'] ?? vec[];
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(EnumValueFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
-    if (Shapes::keyExists($s, 'number')) $this->number = $s['number'];
-    if (Shapes::keyExists($s, 'options')) {
-      if ($this->options is null) $this->options = new \google\protobuf\Option();
-      $this->options->setFields($s['options'] as nonnull);
-    }
-  }
-
-  public function getNonDefaultFields(): EnumValueFields {
-    $s = shape();
-    if ($this->name !== '') $s['name'] = $this->name;
-    if ($this->number !== 0) $s['number'] = $this->number;
-    if (!C\is_empty($this->options)) $s['options'] = $this->options;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -918,10 +784,6 @@ class EnumValue implements \Protobuf\Message {
   }
 }
 
-type OptionFields = shape (
-  ?'name' => string,
-  ?'value' => ?\google\protobuf\AnyFields,
-);
 class Option implements \Protobuf\Message {
   public string $name;
   public ?\google\protobuf\Any $value;
@@ -934,20 +796,6 @@ class Option implements \Protobuf\Message {
     $this->name = $s['name'] ?? '';
     $this->value = $s['value'] ?? null;
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(OptionFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
-    if (Shapes::keyExists($s, 'value')) {
-      if ($this->value is null) $this->value = new \google\protobuf\Any();
-      $this->value->setFields($s['value'] as nonnull);
-    }
-  }
-
-  public function getNonDefaultFields(): OptionFields {
-    $s = shape();
-    if ($this->name !== '') $s['name'] = $this->name;
-    return $s;
   }
 
   public function MessageName(): string {

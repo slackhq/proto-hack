@@ -75,9 +75,6 @@ abstract class TestCategory {
   }
 }
 
-type FailureSetFields = shape (
-  ?'failure' => vec<string>,
-);
 class FailureSet implements \Protobuf\Message {
   public vec<string> $failure;
   private string $XXX_unrecognized;
@@ -87,16 +84,6 @@ class FailureSet implements \Protobuf\Message {
   ) $s = shape()) {
     $this->failure = $s['failure'] ?? vec[];
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(FailureSetFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'failure')) $this->failure = $s['failure'];
-  }
-
-  public function getNonDefaultFields(): FailureSetFields {
-    $s = shape();
-    if (!C\is_empty($this->failure)) $s['failure'] = $this->failure;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -266,14 +253,6 @@ class ConformanceRequest_payload_text_payload implements ConformanceRequest_payl
   }
 }
 
-type ConformanceRequestFields = shape (
-  ?'requested_output_format' => \conformance\WireFormat_enum_t,
-  ?'message_type' => string,
-  ?'test_category' => \conformance\TestCategory_enum_t,
-  ?'jspb_encoding_options' => ?\conformance\JspbEncodingConfigFields,
-  ?'print_unknown_fields' => bool,
-  ?'payload' => ConformanceRequest_payload,
-);
 class ConformanceRequest implements \Protobuf\Message {
   public \conformance\WireFormat_enum_t $requested_output_format;
   public string $message_type;
@@ -298,28 +277,6 @@ class ConformanceRequest implements \Protobuf\Message {
     $this->print_unknown_fields = $s['print_unknown_fields'] ?? false;
     $this->payload = $s['payload'] ?? new ConformanceRequest_payload_NOT_SET();
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(ConformanceRequestFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'requested_output_format')) $this->requested_output_format = $s['requested_output_format'];
-    if (Shapes::keyExists($s, 'message_type')) $this->message_type = $s['message_type'];
-    if (Shapes::keyExists($s, 'test_category')) $this->test_category = $s['test_category'];
-    if (Shapes::keyExists($s, 'jspb_encoding_options')) {
-      if ($this->jspb_encoding_options is null) $this->jspb_encoding_options = new \conformance\JspbEncodingConfig();
-      $this->jspb_encoding_options->setFields($s['jspb_encoding_options'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'print_unknown_fields')) $this->print_unknown_fields = $s['print_unknown_fields'];
-    if (Shapes::keyExists($s, 'payload')) $this->payload = $s['payload'];
-  }
-
-  public function getNonDefaultFields(): ConformanceRequestFields {
-    $s = shape();
-    if ($this->requested_output_format !== \conformance\WireFormat::FromInt(0)) $s['requested_output_format'] = $this->requested_output_format;
-    if ($this->message_type !== '') $s['message_type'] = $this->message_type;
-    if ($this->test_category !== \conformance\TestCategory::FromInt(0)) $s['test_category'] = $this->test_category;
-    if ($this->print_unknown_fields !== false) $s['print_unknown_fields'] = $this->print_unknown_fields;
-    if ($this->payload is nonnull && $this->payload->WhichOneof() !== ConformanceRequest_payload_oneof_t::NOT_SET) $s['payload'] = $this->payload;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -660,9 +617,6 @@ class ConformanceResponse_result_text_payload implements ConformanceResponse_res
   }
 }
 
-type ConformanceResponseFields = shape (
-  ?'result' => ConformanceResponse_result,
-);
 class ConformanceResponse implements \Protobuf\Message {
   public ConformanceResponse_result $result;
   private string $XXX_unrecognized;
@@ -672,16 +626,6 @@ class ConformanceResponse implements \Protobuf\Message {
   ) $s = shape()) {
     $this->result = $s['result'] ?? new ConformanceResponse_result_NOT_SET();
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(ConformanceResponseFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'result')) $this->result = $s['result'];
-  }
-
-  public function getNonDefaultFields(): ConformanceResponseFields {
-    $s = shape();
-    if ($this->result is nonnull && $this->result->WhichOneof() !== ConformanceResponse_result_oneof_t::NOT_SET) $s['result'] = $this->result;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -777,9 +721,6 @@ class ConformanceResponse implements \Protobuf\Message {
   }
 }
 
-type JspbEncodingConfigFields = shape (
-  ?'use_jspb_array_any_format' => bool,
-);
 class JspbEncodingConfig implements \Protobuf\Message {
   public bool $use_jspb_array_any_format;
   private string $XXX_unrecognized;
@@ -789,16 +730,6 @@ class JspbEncodingConfig implements \Protobuf\Message {
   ) $s = shape()) {
     $this->use_jspb_array_any_format = $s['use_jspb_array_any_format'] ?? false;
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(JspbEncodingConfigFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'use_jspb_array_any_format')) $this->use_jspb_array_any_format = $s['use_jspb_array_any_format'];
-  }
-
-  public function getNonDefaultFields(): JspbEncodingConfigFields {
-    $s = shape();
-    if ($this->use_jspb_array_any_format !== false) $s['use_jspb_array_any_format'] = $this->use_jspb_array_any_format;
-    return $s;
   }
 
   public function MessageName(): string {
