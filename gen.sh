@@ -20,12 +20,12 @@ trap fin EXIT
 
 
 
-GENHACK=`find -L . -name protoc-gen-hack`
+GENHACK=`find -L . -name protoc-gen-hack | head -1`
 GENHACK=`readlink $GENHACK`
 echo genhack path: $GENHACK
 $GENHACK --version
 
-PROTOC=`find -L . external -name protoc`
+PROTOC=`find -L . external -name protoc | head -1`
 PROTOC=`readlink $PROTOC`
 echo protoc path: $PROTOC
 $PROTOC --version
