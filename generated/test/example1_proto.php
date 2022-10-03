@@ -29,9 +29,6 @@ abstract class AEnum1 {
   }
 }
 
-type example2Fields = shape (
-  ?'aint32' => int,
-);
 class example2 implements \Protobuf\Message {
   public int $aint32;
   private string $XXX_unrecognized;
@@ -41,16 +38,6 @@ class example2 implements \Protobuf\Message {
   ) $s = shape()) {
     $this->aint32 = $s['aint32'] ?? 0;
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(example2Fields $s = shape()): void {
-    if (Shapes::keyExists($s, 'aint32')) $this->aint32 = $s['aint32'];
-  }
-
-  public function getNonDefaultFields(): example2Fields {
-    $s = shape();
-    if ($this->aint32 !== 0) $s['aint32'] = $this->aint32;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -199,9 +186,6 @@ class example1_aoneof_ooint implements example1_aoneof {
   }
 }
 
-type example1_example2Fields = shape (
-  ?'astring' => string,
-);
 class example1_example2 implements \Protobuf\Message {
   public string $astring;
   private string $XXX_unrecognized;
@@ -211,16 +195,6 @@ class example1_example2 implements \Protobuf\Message {
   ) $s = shape()) {
     $this->astring = $s['astring'] ?? '';
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(example1_example2Fields $s = shape()): void {
-    if (Shapes::keyExists($s, 'astring')) $this->astring = $s['astring'];
-  }
-
-  public function getNonDefaultFields(): example1_example2Fields {
-    $s = shape();
-    if ($this->astring !== '') $s['astring'] = $this->astring;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -277,10 +251,6 @@ class example1_example2 implements \Protobuf\Message {
   }
 }
 
-type example1_AmapEntryFields = shape (
-  ?'key' => string,
-  ?'value' => string,
-);
 class example1_AmapEntry implements \Protobuf\Message {
   public string $key;
   public string $value;
@@ -293,18 +263,6 @@ class example1_AmapEntry implements \Protobuf\Message {
     $this->key = $s['key'] ?? '';
     $this->value = $s['value'] ?? '';
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(example1_AmapEntryFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
-    if (Shapes::keyExists($s, 'value')) $this->value = $s['value'];
-  }
-
-  public function getNonDefaultFields(): example1_AmapEntryFields {
-    $s = shape();
-    if ($this->key !== '') $s['key'] = $this->key;
-    if ($this->value !== '') $s['value'] = $this->value;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -373,10 +331,6 @@ class example1_AmapEntry implements \Protobuf\Message {
   }
 }
 
-type example1_Amap2EntryFields = shape (
-  ?'key' => string,
-  ?'value' => ?\fiz\baz\example2Fields,
-);
 class example1_Amap2Entry implements \Protobuf\Message {
   public string $key;
   public ?\fiz\baz\example2 $value;
@@ -389,20 +343,6 @@ class example1_Amap2Entry implements \Protobuf\Message {
     $this->key = $s['key'] ?? '';
     $this->value = $s['value'] ?? null;
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(example1_Amap2EntryFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
-    if (Shapes::keyExists($s, 'value')) {
-      if ($this->value is null) $this->value = new \fiz\baz\example2();
-      $this->value->setFields($s['value'] as nonnull);
-    }
-  }
-
-  public function getNonDefaultFields(): example1_Amap2EntryFields {
-    $s = shape();
-    if ($this->key !== '') $s['key'] = $this->key;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -481,36 +421,6 @@ class example1_Amap2Entry implements \Protobuf\Message {
   }
 }
 
-type example1Fields = shape (
-  ?'adouble' => float,
-  ?'afloat' => float,
-  ?'aint32' => int,
-  ?'aint64' => int,
-  ?'auint32' => int,
-  ?'auint64' => int,
-  ?'asint32' => int,
-  ?'asint64' => int,
-  ?'afixed32' => int,
-  ?'afixed64' => int,
-  ?'asfixed32' => int,
-  ?'asfixed64' => int,
-  ?'abool' => bool,
-  ?'astring' => string,
-  ?'abytes' => string,
-  ?'aenum1' => \foo\bar\AEnum1_enum_t,
-  ?'aenum2' => \foo\bar\example1_AEnum2_enum_t,
-  ?'aenum22' => \fiz\baz\AEnum2_enum_t,
-  ?'manystring' => vec<string>,
-  ?'manyint64' => vec<int>,
-  ?'aexample2' => ?\foo\bar\example1_example2Fields,
-  ?'aexample22' => ?\foo\bar\example2Fields,
-  ?'aexample23' => ?\fiz\baz\example2Fields,
-  ?'amap' => dict<string, string>,
-  ?'amap2' => dict<string, \fiz\baz\example2Fields>,
-  ?'outoforder' => int,
-  ?'anany' => ?\google\protobuf\AnyFields,
-  ?'aoneof' => example1_aoneof,
-);
 class example1 implements \Protobuf\Message {
   public float $adouble;
   public float $afloat;
@@ -601,78 +511,6 @@ class example1 implements \Protobuf\Message {
     $this->anany = $s['anany'] ?? null;
     $this->aoneof = $s['aoneof'] ?? new example1_aoneof_NOT_SET();
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(example1Fields $s = shape()): void {
-    if (Shapes::keyExists($s, 'adouble')) $this->adouble = $s['adouble'];
-    if (Shapes::keyExists($s, 'afloat')) $this->afloat = $s['afloat'];
-    if (Shapes::keyExists($s, 'aint32')) $this->aint32 = $s['aint32'];
-    if (Shapes::keyExists($s, 'aint64')) $this->aint64 = $s['aint64'];
-    if (Shapes::keyExists($s, 'auint32')) $this->auint32 = $s['auint32'];
-    if (Shapes::keyExists($s, 'auint64')) $this->auint64 = $s['auint64'];
-    if (Shapes::keyExists($s, 'asint32')) $this->asint32 = $s['asint32'];
-    if (Shapes::keyExists($s, 'asint64')) $this->asint64 = $s['asint64'];
-    if (Shapes::keyExists($s, 'afixed32')) $this->afixed32 = $s['afixed32'];
-    if (Shapes::keyExists($s, 'afixed64')) $this->afixed64 = $s['afixed64'];
-    if (Shapes::keyExists($s, 'asfixed32')) $this->asfixed32 = $s['asfixed32'];
-    if (Shapes::keyExists($s, 'asfixed64')) $this->asfixed64 = $s['asfixed64'];
-    if (Shapes::keyExists($s, 'abool')) $this->abool = $s['abool'];
-    if (Shapes::keyExists($s, 'astring')) $this->astring = $s['astring'];
-    if (Shapes::keyExists($s, 'abytes')) $this->abytes = $s['abytes'];
-    if (Shapes::keyExists($s, 'aenum1')) $this->aenum1 = $s['aenum1'];
-    if (Shapes::keyExists($s, 'aenum2')) $this->aenum2 = $s['aenum2'];
-    if (Shapes::keyExists($s, 'aenum22')) $this->aenum22 = $s['aenum22'];
-    if (Shapes::keyExists($s, 'manystring')) $this->manystring = $s['manystring'];
-    if (Shapes::keyExists($s, 'manyint64')) $this->manyint64 = $s['manyint64'];
-    if (Shapes::keyExists($s, 'aexample2')) {
-      if ($this->aexample2 is null) $this->aexample2 = new \foo\bar\example1_example2();
-      $this->aexample2->setFields($s['aexample2'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'aexample22')) {
-      if ($this->aexample22 is null) $this->aexample22 = new \foo\bar\example2();
-      $this->aexample22->setFields($s['aexample22'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'aexample23')) {
-      if ($this->aexample23 is null) $this->aexample23 = new \fiz\baz\example2();
-      $this->aexample23->setFields($s['aexample23'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'amap')) $this->amap = $s['amap'];
-    if (Shapes::keyExists($s, 'amap2')) $this->amap2 = Dict\map($s['amap2'], ($v) ==> { $o = new \fiz\baz\example2(); $o->setFields($v); return $o; });
-    if (Shapes::keyExists($s, 'outoforder')) $this->outoforder = $s['outoforder'];
-    if (Shapes::keyExists($s, 'anany')) {
-      if ($this->anany is null) $this->anany = new \google\protobuf\Any();
-      $this->anany->setFields($s['anany'] as nonnull);
-    }
-    if (Shapes::keyExists($s, 'aoneof')) $this->aoneof = $s['aoneof'];
-  }
-
-  public function getNonDefaultFields(): example1Fields {
-    $s = shape();
-    if ($this->adouble !== 0.0) $s['adouble'] = $this->adouble;
-    if ($this->afloat !== 0.0) $s['afloat'] = $this->afloat;
-    if ($this->aint32 !== 0) $s['aint32'] = $this->aint32;
-    if ($this->aint64 !== 0) $s['aint64'] = $this->aint64;
-    if ($this->auint32 !== 0) $s['auint32'] = $this->auint32;
-    if ($this->auint64 !== 0) $s['auint64'] = $this->auint64;
-    if ($this->asint32 !== 0) $s['asint32'] = $this->asint32;
-    if ($this->asint64 !== 0) $s['asint64'] = $this->asint64;
-    if ($this->afixed32 !== 0) $s['afixed32'] = $this->afixed32;
-    if ($this->afixed64 !== 0) $s['afixed64'] = $this->afixed64;
-    if ($this->asfixed32 !== 0) $s['asfixed32'] = $this->asfixed32;
-    if ($this->asfixed64 !== 0) $s['asfixed64'] = $this->asfixed64;
-    if ($this->abool !== false) $s['abool'] = $this->abool;
-    if ($this->astring !== '') $s['astring'] = $this->astring;
-    if ($this->abytes !== '') $s['abytes'] = $this->abytes;
-    if ($this->aenum1 !== \foo\bar\AEnum1::FromInt(0)) $s['aenum1'] = $this->aenum1;
-    if ($this->aenum2 !== \foo\bar\example1_AEnum2::FromInt(0)) $s['aenum2'] = $this->aenum2;
-    if ($this->aenum22 !== \fiz\baz\AEnum2::FromInt(0)) $s['aenum22'] = $this->aenum22;
-    if (!C\is_empty($this->manystring)) $s['manystring'] = $this->manystring;
-    if (!C\is_empty($this->manyint64)) $s['manyint64'] = $this->manyint64;
-    if (!C\is_empty($this->amap)) $s['amap'] = $this->amap;
-    if (!C\is_empty($this->amap2)) $s['amap2'] = Dict\map($this->amap2, ($v) ==> $v->getNonDefaultFields());
-    if ($this->outoforder !== 0) $s['outoforder'] = $this->outoforder;
-    if ($this->aoneof is nonnull && $this->aoneof->WhichOneof() !== example1_aoneof_oneof_t::NOT_SET) $s['aoneof'] = $this->aoneof;
-    return $s;
   }
 
   public function MessageName(): string {

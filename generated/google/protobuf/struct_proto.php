@@ -26,10 +26,6 @@ abstract class NullValue {
   }
 }
 
-type Struct_FieldsEntryFields = shape (
-  ?'key' => string,
-  ?'value' => ?\google\protobuf\ValueFields,
-);
 class Struct_FieldsEntry implements \Protobuf\Message {
   public string $key;
   public ?\google\protobuf\Value $value;
@@ -42,20 +38,6 @@ class Struct_FieldsEntry implements \Protobuf\Message {
     $this->key = $s['key'] ?? '';
     $this->value = $s['value'] ?? null;
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(Struct_FieldsEntryFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
-    if (Shapes::keyExists($s, 'value')) {
-      if ($this->value is null) $this->value = new \google\protobuf\Value();
-      $this->value->setFields($s['value'] as nonnull);
-    }
-  }
-
-  public function getNonDefaultFields(): Struct_FieldsEntryFields {
-    $s = shape();
-    if ($this->key !== '') $s['key'] = $this->key;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -133,9 +115,6 @@ class Struct_FieldsEntry implements \Protobuf\Message {
   }
 }
 
-type StructFields = shape (
-  ?'fields' => dict<string, \google\protobuf\ValueFields>,
-);
 class Struct implements \Protobuf\Message {
   public dict<string, \google\protobuf\Value> $fields;
   private string $XXX_unrecognized;
@@ -145,16 +124,6 @@ class Struct implements \Protobuf\Message {
   ) $s = shape()) {
     $this->fields = $s['fields'] ?? dict[];
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(StructFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'fields')) $this->fields = Dict\map($s['fields'], ($v) ==> { $o = new \google\protobuf\Value(); $o->setFields($v); return $o; });
-  }
-
-  public function getNonDefaultFields(): StructFields {
-    $s = shape();
-    if (!C\is_empty($this->fields)) $s['fields'] = Dict\map($this->fields, ($v) ==> $v->getNonDefaultFields());
-    return $s;
   }
 
   public function MessageName(): string {
@@ -382,9 +351,6 @@ class Value_kind_list_value implements Value_kind {
   }
 }
 
-type ValueFields = shape (
-  ?'kind' => Value_kind,
-);
 class Value implements \Protobuf\Message {
   public Value_kind $kind;
   private string $XXX_unrecognized;
@@ -394,16 +360,6 @@ class Value implements \Protobuf\Message {
   ) $s = shape()) {
     $this->kind = $s['kind'] ?? new Value_kind_NOT_SET();
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(ValueFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'kind')) $this->kind = $s['kind'];
-  }
-
-  public function getNonDefaultFields(): ValueFields {
-    $s = shape();
-    if ($this->kind is nonnull && $this->kind->WhichOneof() !== Value_kind_oneof_t::NOT_SET) $s['kind'] = $this->kind;
-    return $s;
   }
 
   public function MessageName(): string {
@@ -505,9 +461,6 @@ class Value implements \Protobuf\Message {
   }
 }
 
-type ListValueFields = shape (
-  ?'values' => vec<\google\protobuf\ValueFields>,
-);
 class ListValue implements \Protobuf\Message {
   public vec<\google\protobuf\Value> $values;
   private string $XXX_unrecognized;
@@ -517,19 +470,6 @@ class ListValue implements \Protobuf\Message {
   ) $s = shape()) {
     $this->values = $s['values'] ?? vec[];
     $this->XXX_unrecognized = '';
-  }
-
-  public function setFields(ListValueFields $s = shape()): void {
-    if (Shapes::keyExists($s, 'values')) {
-      if ($this->values is null) $this->values = new \google\protobuf\Value();
-      $this->values->setFields($s['values'] as nonnull);
-    }
-  }
-
-  public function getNonDefaultFields(): ListValueFields {
-    $s = shape();
-    if (!C\is_empty($this->values)) $s['values'] = $this->values;
-    return $s;
   }
 
   public function MessageName(): string {
