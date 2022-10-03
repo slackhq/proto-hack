@@ -26,6 +26,9 @@ abstract class AEnum2 {
   }
 }
 
+type example2Fields = shape (
+  ?'zomg' => int,
+);
 class example2 implements \Protobuf\Message {
   public int $zomg;
   private string $XXX_unrecognized;
@@ -35,6 +38,16 @@ class example2 implements \Protobuf\Message {
   ) $s = shape()) {
     $this->zomg = $s['zomg'] ?? 0;
     $this->XXX_unrecognized = '';
+  }
+
+  public function setFields(example2Fields $s = shape()): void {
+    if (Shapes::keyExists($s, 'zomg')) $this->zomg = $s['zomg'];
+  }
+
+  public function getNonDefaultFields(): example2Fields {
+    $s = shape();
+    if ($this->zomg !== 0) $s['zomg'] = $this->zomg;
+    return $s;
   }
 
   public function MessageName(): string {
@@ -91,6 +104,9 @@ class example2 implements \Protobuf\Message {
   }
 }
 
+type refexample3Fields = shape (
+  ?'funky' => ?\FunkyFields,
+);
 class refexample3 implements \Protobuf\Message {
   public ?\Funky $funky;
   private string $XXX_unrecognized;
@@ -100,6 +116,18 @@ class refexample3 implements \Protobuf\Message {
   ) $s = shape()) {
     $this->funky = $s['funky'] ?? null;
     $this->XXX_unrecognized = '';
+  }
+
+  public function setFields(refexample3Fields $s = shape()): void {
+    if (Shapes::keyExists($s, 'funky')) {
+      if ($this->funky is null) $this->funky = new \Funky();
+      $this->funky->setFields($s['funky'] as nonnull);
+    }
+  }
+
+  public function getNonDefaultFields(): refexample3Fields {
+    $s = shape();
+    return $s;
   }
 
   public function MessageName(): string {

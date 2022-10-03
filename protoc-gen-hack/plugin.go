@@ -332,6 +332,28 @@ func (f field) phpType() string {
 	}
 }
 
+// Similar to phpType but uses the Fields shape for complex types
+func (f field) phpFieldsType() string {
+	switch t := f.fd.GetType(); t {
+	case desc.FieldDescriptorProto_TYPE_STRING, desc.FieldDescriptorProto_TYPE_BYTES:
+		return "string"
+	case desc.FieldDescriptorProto_TYPE_INT64,
+		desc.FieldDescriptorProto_TYPE_INT32, desc.FieldDescriptorProto_TYPE_UINT64, desc.FieldDescriptorProto_TYPE_UINT32, desc.FieldDescriptorProto_TYPE_SINT64, desc.FieldDescriptorProto_TYPE_SINT32, desc.FieldDescriptorProto_TYPE_FIXED32, desc.FieldDescriptorProto_TYPE_FIXED64, desc.FieldDescriptorProto_TYPE_SFIXED32, desc.FieldDescriptorProto_TYPE_SFIXED64:
+		return "int"
+	case desc.FieldDescriptorProto_TYPE_FLOAT, desc.FieldDescriptorProto_TYPE_DOUBLE:
+		return "float"
+	case desc.FieldDescriptorProto_TYPE_BOOL:
+		return "bool"
+	case desc.FieldDescriptorProto_TYPE_MESSAGE,
+		desc.FieldDescriptorProto_TYPE_GROUP:
+		return f.typePhpNs + "\\" + f.typePhpName + "Fields"
+	case desc.FieldDescriptorProto_TYPE_ENUM:
+		return f.typePhpNs + "\\" + f.typePhpName + "_enum_t"
+	default:
+		panic(fmt.Errorf("unexpected proto type while converting to php type: %v", t))
+	}
+}
+
 func (f field) defaultValue() string {
 	if f.isMap {
 		return "dict[]"
@@ -384,6 +406,25 @@ func (f field) labeledType() string {
 		return "?" + f.phpType()
 	}
 	return f.phpType()
+}
+
+// Like labeledType but uses the Fields shape
+func (f field) labeledFieldsType() string {
+	if f.isMap {
+		k, v := f.mapFields()
+		kt := k.phpType()
+		if f.isMapWithBoolKey() {
+			kt = fmt.Sprintf("%s\\bool_map_key_t", libNsInternal)
+		}
+		return fmt.Sprintf("dict<%s, %s>", kt, v.phpFieldsType())
+	}
+	if f.isRepeated() {
+		return "vec<" + f.phpFieldsType() + ">"
+	}
+	if f.isMessageOrGroup() {
+		return "?" + f.phpFieldsType()
+	}
+	return f.phpFieldsType()
 }
 
 func (f field) varName() string {
@@ -1219,6 +1260,23 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 		writeDescriptor(w, ndp, ns, nextNames, syn)
 	}
 
+	// Field shape
+	fieldShapeName := name + "Fields"
+
+	w.p("type %s = shape (", fieldShapeName)
+	w.i++
+	for _, f := range fields {
+		if f.isOneofMember() {
+			continue
+		}
+		w.p("?'%s' => %s,", f.varName(), f.labeledFieldsType())
+	}
+	for _, oo := range oneofs {
+		w.p("?'%s' => %s,", oo.name, oo.interfaceName)
+	}
+	w.i--
+	w.p(");")
+
 	// w.p("// message %s", dp.GetName())
 	w.p("class %s implements %s\\Message {", name, libNs)
 
@@ -1260,6 +1318,64 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 		w.p("$this->%s = $s['%s'] ?? new %s();", oo.name, oo.name, oo.notsetClass)
 	}
 	w.p("$this->%sunrecognized = '';", specialPrefix)
+	w.p("}")
+	w.ln()
+
+	// setFields.
+	w.p("public function setFields(%s $s = shape()): void {", fieldShapeName)
+	for _, f := range fields {
+		if f.isOneofMember() {
+			continue
+		}
+		if f.isMap {
+			_, v := f.mapFields()
+			if v.isMessageOrGroup() {
+				w.p("if (Shapes::keyExists($s, '%s')) $this->%s = Dict\\map($s['%s'], ($v) ==> { $o = new %s(); $o->setFields($v); return $o; });", f.varName(), f.varName(), f.varName(), v.phpType())
+			} else {
+				w.p("if (Shapes::keyExists($s, '%s')) $this->%s = $s['%s'];", f.varName(), f.varName(), f.varName())
+			}
+		} else if f.isMessageOrGroup() {
+			w.p("if (Shapes::keyExists($s, '%s')) {", f.varName())
+			w.p("if ($this->%s is null) $this->%s = new %s();", f.varName(), f.varName(), f.phpType())
+			w.p("$this->%s->setFields($s['%s'] as nonnull);", f.varName(), f.varName())
+			w.p("}")
+		} else {
+			w.p("if (Shapes::keyExists($s, '%s')) $this->%s = $s['%s'];", f.varName(), f.varName(), f.varName())
+		}
+	}
+	for _, oo := range oneofs {
+		w.p("if (Shapes::keyExists($s, '%s')) $this->%s = $s['%s'];", oo.name, oo.name, oo.name)
+
+	}
+	w.p("}")
+	w.ln()
+
+	// getNonDefaultFields.
+	w.p("public function getNonDefaultFields(): %s {", fieldShapeName)
+	w.p("$s = shape();")
+	for _, f := range fields {
+		if f.isOneofMember() {
+			continue
+		}
+		if f.isMap {
+			_, v := f.mapFields()
+			if v.isMessageOrGroup() {
+				w.p("if (!C\\is_empty($this->%s)) $s['%s'] = Dict\\map($this->%s, ($v) ==> $v->getNonDefaultFields());", f.varName(), f.varName(), f.varName())
+			} else {
+				w.p("if (!C\\is_empty($this->%s)) $s['%s'] = $this->%s;", f.varName(), f.varName(), f.varName())
+			}
+		} else if f.isRepeated() {
+			w.p("if (!C\\is_empty($this->%s)) $s['%s'] = $this->%s;", f.varName(), f.varName(), f.varName())
+		} else if f.isMessageOrGroup() {
+
+		} else {
+			w.p("if ($this->%s !== %s) $s['%s'] = $this->%s;", f.varName(), f.defaultValue(), f.varName(), f.varName())
+		}
+	}
+	for _, oo := range oneofs {
+		w.p("if ($this->%s is nonnull && $this->%s->WhichOneof() !== %s::%s) $s['%s'] = $this->%s;", oo.name, oo.name, oo.enumTypeName, notsetEnum, oo.name, oo.name)
+	}
+	w.p("return $s;")
 	w.p("}")
 	w.ln()
 
