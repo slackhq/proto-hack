@@ -160,8 +160,8 @@ class Funky_Monkey implements \Protobuf\Message {
 }
 
 type FunkyFields = shape (
-  ?'monkey' => ?\Funky_MonkeyFields,
-  ?'dokey' => ?\DonkeyFields,
+  ?'monkey' => \Funky_MonkeyFields,
+  ?'dokey' => \DonkeyFields,
 );
 class Funky implements \Protobuf\Message {
   public ?\Funky_Monkey $monkey;
@@ -180,11 +180,11 @@ class Funky implements \Protobuf\Message {
   public function setFields(FunkyFields $s = shape()): void {
     if (Shapes::keyExists($s, 'monkey')) {
       if ($this->monkey is null) $this->monkey = new \Funky_Monkey();
-      $this->monkey->setFields($s['monkey'] as nonnull);
+      $this->monkey->setFields($s['monkey']);
     }
     if (Shapes::keyExists($s, 'dokey')) {
       if ($this->dokey is null) $this->dokey = new \Donkey();
-      $this->dokey->setFields($s['dokey'] as nonnull);
+      $this->dokey->setFields($s['dokey']);
     }
   }
 

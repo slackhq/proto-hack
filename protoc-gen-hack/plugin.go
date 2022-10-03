@@ -422,7 +422,7 @@ func (f field) labeledFieldsType() string {
 		return "vec<" + f.phpFieldsType() + ">"
 	}
 	if f.isMessageOrGroup() {
-		return "?" + f.phpFieldsType()
+		return f.phpFieldsType()
 	}
 	return f.phpFieldsType()
 }
@@ -1342,7 +1342,7 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 		} else if f.isMessageOrGroup() {
 			w.p("if (Shapes::keyExists($s, '%s')) {", f.varName())
 			w.p("if ($this->%s is null) $this->%s = new %s();", f.varName(), f.varName(), f.phpType())
-			w.p("$this->%s->setFields($s['%s'] as nonnull);", f.varName(), f.varName())
+			w.p("$this->%s->setFields($s['%s']);", f.varName(), f.varName())
 			w.p("}")
 		} else {
 			w.p("if (Shapes::keyExists($s, '%s')) $this->%s = $s['%s'];", f.varName(), f.varName(), f.varName())

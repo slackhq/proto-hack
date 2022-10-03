@@ -105,8 +105,8 @@ type FileDescriptorProtoFields = shape (
   ?'enum_type' => vec<\google\protobuf\EnumDescriptorProtoFields>,
   ?'service' => vec<\google\protobuf\ServiceDescriptorProtoFields>,
   ?'extension' => vec<\google\protobuf\FieldDescriptorProtoFields>,
-  ?'options' => ?\google\protobuf\FileOptionsFields,
-  ?'source_code_info' => ?\google\protobuf\SourceCodeInfoFields,
+  ?'options' => \google\protobuf\FileOptionsFields,
+  ?'source_code_info' => \google\protobuf\SourceCodeInfoFields,
   ?'syntax' => string,
 );
 class FileDescriptorProto implements \Protobuf\Message {
@@ -173,11 +173,11 @@ class FileDescriptorProto implements \Protobuf\Message {
     }
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\FileOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'source_code_info')) {
       if ($this->source_code_info is null) $this->source_code_info = new \google\protobuf\SourceCodeInfo();
-      $this->source_code_info->setFields($s['source_code_info'] as nonnull);
+      $this->source_code_info->setFields($s['source_code_info']);
     }
     if (Shapes::keyExists($s, 'syntax')) $this->syntax = $s['syntax'];
   }
@@ -472,7 +472,7 @@ class FileDescriptorProto implements \Protobuf\Message {
 type DescriptorProto_ExtensionRangeFields = shape (
   ?'start' => int,
   ?'end' => int,
-  ?'options' => ?\google\protobuf\ExtensionRangeOptionsFields,
+  ?'options' => \google\protobuf\ExtensionRangeOptionsFields,
 );
 class DescriptorProto_ExtensionRange implements \Protobuf\Message {
   public int $start;
@@ -496,7 +496,7 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'end')) $this->end = $s['end'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\ExtensionRangeOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
   }
 
@@ -700,7 +700,7 @@ type DescriptorProtoFields = shape (
   ?'enum_type' => vec<\google\protobuf\EnumDescriptorProtoFields>,
   ?'extension_range' => vec<\google\protobuf\DescriptorProto_ExtensionRangeFields>,
   ?'oneof_decl' => vec<\google\protobuf\OneofDescriptorProtoFields>,
-  ?'options' => ?\google\protobuf\MessageOptionsFields,
+  ?'options' => \google\protobuf\MessageOptionsFields,
   ?'reserved_range' => vec<\google\protobuf\DescriptorProto_ReservedRangeFields>,
   ?'reserved_name' => vec<string>,
 );
@@ -764,7 +764,7 @@ class DescriptorProto implements \Protobuf\Message {
     }
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\MessageOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'reserved_range')) {
       $this->reserved_range = Vec\map($s['reserved_range'], ($v) ==> { $o = new \google\protobuf\DescriptorProto_ReservedRange(); $o->setFields($v); return $o; });
@@ -1240,7 +1240,7 @@ type FieldDescriptorProtoFields = shape (
   ?'default_value' => string,
   ?'oneof_index' => int,
   ?'json_name' => string,
-  ?'options' => ?\google\protobuf\FieldOptionsFields,
+  ?'options' => \google\protobuf\FieldOptionsFields,
   ?'proto3_optional' => bool,
 );
 class FieldDescriptorProto implements \Protobuf\Message {
@@ -1296,7 +1296,7 @@ class FieldDescriptorProto implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'json_name')) $this->json_name = $s['json_name'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\FieldOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'proto3_optional')) $this->proto3_optional = $s['proto3_optional'];
   }
@@ -1503,7 +1503,7 @@ class FieldDescriptorProto implements \Protobuf\Message {
 
 type OneofDescriptorProtoFields = shape (
   ?'name' => string,
-  ?'options' => ?\google\protobuf\OneofOptionsFields,
+  ?'options' => \google\protobuf\OneofOptionsFields,
 );
 class OneofDescriptorProto implements \Protobuf\Message {
   public string $name;
@@ -1523,7 +1523,7 @@ class OneofDescriptorProto implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\OneofOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
   }
 
@@ -1709,7 +1709,7 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
 type EnumDescriptorProtoFields = shape (
   ?'name' => string,
   ?'value' => vec<\google\protobuf\EnumValueDescriptorProtoFields>,
-  ?'options' => ?\google\protobuf\EnumOptionsFields,
+  ?'options' => \google\protobuf\EnumOptionsFields,
   ?'reserved_range' => vec<\google\protobuf\EnumDescriptorProto_EnumReservedRangeFields>,
   ?'reserved_name' => vec<string>,
 );
@@ -1743,7 +1743,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
     }
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\EnumOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'reserved_range')) {
       $this->reserved_range = Vec\map($s['reserved_range'], ($v) ==> { $o = new \google\protobuf\EnumDescriptorProto_EnumReservedRange(); $o->setFields($v); return $o; });
@@ -1900,7 +1900,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
 type EnumValueDescriptorProtoFields = shape (
   ?'name' => string,
   ?'number' => int,
-  ?'options' => ?\google\protobuf\EnumValueOptionsFields,
+  ?'options' => \google\protobuf\EnumValueOptionsFields,
 );
 class EnumValueDescriptorProto implements \Protobuf\Message {
   public string $name;
@@ -1924,7 +1924,7 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'number')) $this->number = $s['number'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\EnumValueOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
   }
 
@@ -2027,7 +2027,7 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
 type ServiceDescriptorProtoFields = shape (
   ?'name' => string,
   ?'method' => vec<\google\protobuf\MethodDescriptorProtoFields>,
-  ?'options' => ?\google\protobuf\ServiceOptionsFields,
+  ?'options' => \google\protobuf\ServiceOptionsFields,
 );
 class ServiceDescriptorProto implements \Protobuf\Message {
   public string $name;
@@ -2053,7 +2053,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
     }
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\ServiceOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
   }
 
@@ -2168,7 +2168,7 @@ type MethodDescriptorProtoFields = shape (
   ?'name' => string,
   ?'input_type' => string,
   ?'output_type' => string,
-  ?'options' => ?\google\protobuf\MethodOptionsFields,
+  ?'options' => \google\protobuf\MethodOptionsFields,
   ?'client_streaming' => bool,
   ?'server_streaming' => bool,
 );
@@ -2204,7 +2204,7 @@ class MethodDescriptorProto implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'output_type')) $this->output_type = $s['output_type'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\MethodOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'client_streaming')) $this->client_streaming = $s['client_streaming'];
     if (Shapes::keyExists($s, 'server_streaming')) $this->server_streaming = $s['server_streaming'];

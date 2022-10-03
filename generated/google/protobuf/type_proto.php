@@ -34,7 +34,7 @@ type TypeFields = shape (
   ?'fields' => vec<\google\protobuf\FieldFields>,
   ?'oneofs' => vec<string>,
   ?'options' => vec<\google\protobuf\OptionFields>,
-  ?'source_context' => ?\google\protobuf\SourceContextFields,
+  ?'source_context' => \google\protobuf\SourceContextFields,
   ?'syntax' => \google\protobuf\Syntax_enum_t,
 );
 class Type implements \Protobuf\Message {
@@ -74,7 +74,7 @@ class Type implements \Protobuf\Message {
     }
     if (Shapes::keyExists($s, 'source_context')) {
       if ($this->source_context is null) $this->source_context = new \google\protobuf\SourceContext();
-      $this->source_context->setFields($s['source_context'] as nonnull);
+      $this->source_context->setFields($s['source_context']);
     }
     if (Shapes::keyExists($s, 'syntax')) $this->syntax = $s['syntax'];
   }
@@ -602,7 +602,7 @@ type pb_EnumFields = shape (
   ?'name' => string,
   ?'enumvalue' => vec<\google\protobuf\EnumValueFields>,
   ?'options' => vec<\google\protobuf\OptionFields>,
-  ?'source_context' => ?\google\protobuf\SourceContextFields,
+  ?'source_context' => \google\protobuf\SourceContextFields,
   ?'syntax' => \google\protobuf\Syntax_enum_t,
 );
 class pb_Enum implements \Protobuf\Message {
@@ -638,7 +638,7 @@ class pb_Enum implements \Protobuf\Message {
     }
     if (Shapes::keyExists($s, 'source_context')) {
       if ($this->source_context is null) $this->source_context = new \google\protobuf\SourceContext();
-      $this->source_context->setFields($s['source_context'] as nonnull);
+      $this->source_context->setFields($s['source_context']);
     }
     if (Shapes::keyExists($s, 'syntax')) $this->syntax = $s['syntax'];
   }
@@ -916,7 +916,7 @@ class EnumValue implements \Protobuf\Message {
 
 type OptionFields = shape (
   ?'name' => string,
-  ?'value' => ?\google\protobuf\AnyFields,
+  ?'value' => \google\protobuf\AnyFields,
 );
 class Option implements \Protobuf\Message {
   public string $name;
@@ -936,7 +936,7 @@ class Option implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
     if (Shapes::keyExists($s, 'value')) {
       if ($this->value is null) $this->value = new \google\protobuf\Any();
-      $this->value->setFields($s['value'] as nonnull);
+      $this->value->setFields($s['value']);
     }
   }
 

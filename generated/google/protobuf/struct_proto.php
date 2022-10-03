@@ -28,7 +28,7 @@ abstract class NullValue {
 
 type Struct_FieldsEntryFields = shape (
   ?'key' => string,
-  ?'value' => ?\google\protobuf\ValueFields,
+  ?'value' => \google\protobuf\ValueFields,
 );
 class Struct_FieldsEntry implements \Protobuf\Message {
   public string $key;
@@ -48,7 +48,7 @@ class Struct_FieldsEntry implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
     if (Shapes::keyExists($s, 'value')) {
       if ($this->value is null) $this->value = new \google\protobuf\Value();
-      $this->value->setFields($s['value'] as nonnull);
+      $this->value->setFields($s['value']);
     }
   }
 

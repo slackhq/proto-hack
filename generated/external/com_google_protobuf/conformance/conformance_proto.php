@@ -270,7 +270,7 @@ type ConformanceRequestFields = shape (
   ?'requested_output_format' => \conformance\WireFormat_enum_t,
   ?'message_type' => string,
   ?'test_category' => \conformance\TestCategory_enum_t,
-  ?'jspb_encoding_options' => ?\conformance\JspbEncodingConfigFields,
+  ?'jspb_encoding_options' => \conformance\JspbEncodingConfigFields,
   ?'print_unknown_fields' => bool,
   ?'payload' => ConformanceRequest_payload,
 );
@@ -306,7 +306,7 @@ class ConformanceRequest implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'test_category')) $this->test_category = $s['test_category'];
     if (Shapes::keyExists($s, 'jspb_encoding_options')) {
       if ($this->jspb_encoding_options is null) $this->jspb_encoding_options = new \conformance\JspbEncodingConfig();
-      $this->jspb_encoding_options->setFields($s['jspb_encoding_options'] as nonnull);
+      $this->jspb_encoding_options->setFields($s['jspb_encoding_options']);
     }
     if (Shapes::keyExists($s, 'print_unknown_fields')) $this->print_unknown_fields = $s['print_unknown_fields'];
     if (Shapes::keyExists($s, 'payload')) $this->payload = $s['payload'];

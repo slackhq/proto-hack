@@ -140,7 +140,7 @@ type CodeGeneratorRequestFields = shape (
   ?'file_to_generate' => vec<string>,
   ?'parameter' => string,
   ?'proto_file' => vec<\google\protobuf\FileDescriptorProtoFields>,
-  ?'compiler_version' => ?\google\protobuf\compiler\VersionFields,
+  ?'compiler_version' => \google\protobuf\compiler\VersionFields,
 );
 class CodeGeneratorRequest implements \Protobuf\Message {
   public vec<string> $file_to_generate;
@@ -170,7 +170,7 @@ class CodeGeneratorRequest implements \Protobuf\Message {
     }
     if (Shapes::keyExists($s, 'compiler_version')) {
       if ($this->compiler_version is null) $this->compiler_version = new \google\protobuf\compiler\Version();
-      $this->compiler_version->setFields($s['compiler_version'] as nonnull);
+      $this->compiler_version->setFields($s['compiler_version']);
     }
   }
 
@@ -325,7 +325,7 @@ type CodeGeneratorResponse_FileFields = shape (
   ?'name' => string,
   ?'insertion_point' => string,
   ?'content' => string,
-  ?'generated_code_info' => ?\google\protobuf\GeneratedCodeInfoFields,
+  ?'generated_code_info' => \google\protobuf\GeneratedCodeInfoFields,
 );
 class CodeGeneratorResponse_File implements \Protobuf\Message {
   public string $name;
@@ -353,7 +353,7 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'content')) $this->content = $s['content'];
     if (Shapes::keyExists($s, 'generated_code_info')) {
       if ($this->generated_code_info is null) $this->generated_code_info = new \google\protobuf\GeneratedCodeInfo();
-      $this->generated_code_info->setFields($s['generated_code_info'] as nonnull);
+      $this->generated_code_info->setFields($s['generated_code_info']);
     }
   }
 

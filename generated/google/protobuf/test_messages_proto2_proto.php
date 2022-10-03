@@ -289,7 +289,7 @@ class TestAllTypesProto2_oneof_field_oneof_enum implements TestAllTypesProto2_on
 
 type TestAllTypesProto2_NestedMessageFields = shape (
   ?'a' => int,
-  ?'corecursive' => ?\protobuf_test_messages\proto2\TestAllTypesProto2Fields,
+  ?'corecursive' => \protobuf_test_messages\proto2\TestAllTypesProto2Fields,
 );
 class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
   public int $a;
@@ -309,7 +309,7 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'a')) $this->a = $s['a'];
     if (Shapes::keyExists($s, 'corecursive')) {
       if ($this->corecursive is null) $this->corecursive = new \protobuf_test_messages\proto2\TestAllTypesProto2();
-      $this->corecursive->setFields($s['corecursive'] as nonnull);
+      $this->corecursive->setFields($s['corecursive']);
     }
   }
 
@@ -1838,7 +1838,7 @@ class TestAllTypesProto2_MapStringBytesEntry implements \Protobuf\Message {
 
 type TestAllTypesProto2_MapStringNestedMessageEntryFields = shape (
   ?'key' => string,
-  ?'value' => ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessageFields,
+  ?'value' => \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessageFields,
 );
 class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Message {
   public string $key;
@@ -1858,7 +1858,7 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
     if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
     if (Shapes::keyExists($s, 'value')) {
       if ($this->value is null) $this->value = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
-      $this->value->setFields($s['value'] as nonnull);
+      $this->value->setFields($s['value']);
     }
   }
 
@@ -1947,7 +1947,7 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
 
 type TestAllTypesProto2_MapStringForeignMessageEntryFields = shape (
   ?'key' => string,
-  ?'value' => ?\protobuf_test_messages\proto2\ForeignMessageProto2Fields,
+  ?'value' => \protobuf_test_messages\proto2\ForeignMessageProto2Fields,
 );
 class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Message {
   public string $key;
@@ -1967,7 +1967,7 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
     if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
     if (Shapes::keyExists($s, 'value')) {
       if ($this->value is null) $this->value = new \protobuf_test_messages\proto2\ForeignMessageProto2();
-      $this->value->setFields($s['value'] as nonnull);
+      $this->value->setFields($s['value']);
     }
   }
 
@@ -2574,13 +2574,13 @@ type TestAllTypesProto2Fields = shape (
   ?'optional_bool' => bool,
   ?'optional_string' => string,
   ?'optional_bytes' => string,
-  ?'optional_nested_message' => ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessageFields,
-  ?'optional_foreign_message' => ?\protobuf_test_messages\proto2\ForeignMessageProto2Fields,
+  ?'optional_nested_message' => \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessageFields,
+  ?'optional_foreign_message' => \protobuf_test_messages\proto2\ForeignMessageProto2Fields,
   ?'optional_nested_enum' => \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t,
   ?'optional_foreign_enum' => \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t,
   ?'optional_string_piece' => string,
   ?'optional_cord' => string,
-  ?'recursive_message' => ?\protobuf_test_messages\proto2\TestAllTypesProto2Fields,
+  ?'recursive_message' => \protobuf_test_messages\proto2\TestAllTypesProto2Fields,
   ?'repeated_int32' => vec<int>,
   ?'repeated_int64' => vec<int>,
   ?'repeated_uint32' => vec<int>,
@@ -2649,7 +2649,7 @@ type TestAllTypesProto2Fields = shape (
   ?'map_string_foreign_message' => dict<string, \protobuf_test_messages\proto2\ForeignMessageProto2Fields>,
   ?'map_string_nested_enum' => dict<string, \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t>,
   ?'map_string_foreign_enum' => dict<string, \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t>,
-  ?'data' => ?\protobuf_test_messages\proto2\TestAllTypesProto2_DataFields,
+  ?'data' => \protobuf_test_messages\proto2\TestAllTypesProto2_DataFields,
   ?'fieldname1' => int,
   ?'field_name2' => int,
   ?'_field_name3' => int,
@@ -3026,11 +3026,11 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'optional_bytes')) $this->optional_bytes = $s['optional_bytes'];
     if (Shapes::keyExists($s, 'optional_nested_message')) {
       if ($this->optional_nested_message is null) $this->optional_nested_message = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
-      $this->optional_nested_message->setFields($s['optional_nested_message'] as nonnull);
+      $this->optional_nested_message->setFields($s['optional_nested_message']);
     }
     if (Shapes::keyExists($s, 'optional_foreign_message')) {
       if ($this->optional_foreign_message is null) $this->optional_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
-      $this->optional_foreign_message->setFields($s['optional_foreign_message'] as nonnull);
+      $this->optional_foreign_message->setFields($s['optional_foreign_message']);
     }
     if (Shapes::keyExists($s, 'optional_nested_enum')) $this->optional_nested_enum = $s['optional_nested_enum'];
     if (Shapes::keyExists($s, 'optional_foreign_enum')) $this->optional_foreign_enum = $s['optional_foreign_enum'];
@@ -3038,7 +3038,7 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'optional_cord')) $this->optional_cord = $s['optional_cord'];
     if (Shapes::keyExists($s, 'recursive_message')) {
       if ($this->recursive_message is null) $this->recursive_message = new \protobuf_test_messages\proto2\TestAllTypesProto2();
-      $this->recursive_message->setFields($s['recursive_message'] as nonnull);
+      $this->recursive_message->setFields($s['recursive_message']);
     }
     if (Shapes::keyExists($s, 'repeated_int32')) $this->repeated_int32 = $s['repeated_int32'];
     if (Shapes::keyExists($s, 'repeated_int64')) $this->repeated_int64 = $s['repeated_int64'];
@@ -3114,7 +3114,7 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'map_string_foreign_enum')) $this->map_string_foreign_enum = $s['map_string_foreign_enum'];
     if (Shapes::keyExists($s, 'data')) {
       if ($this->data is null) $this->data = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
-      $this->data->setFields($s['data'] as nonnull);
+      $this->data->setFields($s['data']);
     }
     if (Shapes::keyExists($s, 'fieldname1')) $this->fieldname1 = $s['fieldname1'];
     if (Shapes::keyExists($s, 'field_name2')) $this->field_name2 = $s['field_name2'];
@@ -5495,8 +5495,8 @@ class UnknownToTestAllTypes_OptionalGroup implements \Protobuf\Message {
 type UnknownToTestAllTypesFields = shape (
   ?'optional_int32' => int,
   ?'optional_string' => string,
-  ?'nested_message' => ?\protobuf_test_messages\proto2\ForeignMessageProto2Fields,
-  ?'optionalgroup' => ?\protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroupFields,
+  ?'nested_message' => \protobuf_test_messages\proto2\ForeignMessageProto2Fields,
+  ?'optionalgroup' => \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroupFields,
   ?'optional_bool' => bool,
   ?'repeated_int32' => vec<int>,
 );
@@ -5531,11 +5531,11 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'optional_string')) $this->optional_string = $s['optional_string'];
     if (Shapes::keyExists($s, 'nested_message')) {
       if ($this->nested_message is null) $this->nested_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
-      $this->nested_message->setFields($s['nested_message'] as nonnull);
+      $this->nested_message->setFields($s['nested_message']);
     }
     if (Shapes::keyExists($s, 'optionalgroup')) {
       if ($this->optionalgroup is null) $this->optionalgroup = new \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup();
-      $this->optionalgroup->setFields($s['optionalgroup'] as nonnull);
+      $this->optionalgroup->setFields($s['optionalgroup']);
     }
     if (Shapes::keyExists($s, 'optional_bool')) $this->optional_bool = $s['optional_bool'];
     if (Shapes::keyExists($s, 'repeated_int32')) $this->repeated_int32 = $s['repeated_int32'];

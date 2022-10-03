@@ -375,7 +375,7 @@ class example1_AmapEntry implements \Protobuf\Message {
 
 type example1_Amap2EntryFields = shape (
   ?'key' => string,
-  ?'value' => ?\fiz\baz\example2Fields,
+  ?'value' => \fiz\baz\example2Fields,
 );
 class example1_Amap2Entry implements \Protobuf\Message {
   public string $key;
@@ -395,7 +395,7 @@ class example1_Amap2Entry implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
     if (Shapes::keyExists($s, 'value')) {
       if ($this->value is null) $this->value = new \fiz\baz\example2();
-      $this->value->setFields($s['value'] as nonnull);
+      $this->value->setFields($s['value']);
     }
   }
 
@@ -504,13 +504,13 @@ type example1Fields = shape (
   ?'manystring' => vec<string>,
   ?'manyint64' => vec<int>,
   ?'manyexample2' => vec<\fiz\baz\example2Fields>,
-  ?'aexample2' => ?\foo\bar\example1_example2Fields,
-  ?'aexample22' => ?\foo\bar\example2Fields,
-  ?'aexample23' => ?\fiz\baz\example2Fields,
+  ?'aexample2' => \foo\bar\example1_example2Fields,
+  ?'aexample22' => \foo\bar\example2Fields,
+  ?'aexample23' => \fiz\baz\example2Fields,
   ?'amap' => dict<string, string>,
   ?'amap2' => dict<string, \fiz\baz\example2Fields>,
   ?'outoforder' => int,
-  ?'anany' => ?\google\protobuf\AnyFields,
+  ?'anany' => \google\protobuf\AnyFields,
   ?'aoneof' => example1_aoneof,
 );
 class example1 implements \Protobuf\Message {
@@ -634,22 +634,22 @@ class example1 implements \Protobuf\Message {
     }
     if (Shapes::keyExists($s, 'aexample2')) {
       if ($this->aexample2 is null) $this->aexample2 = new \foo\bar\example1_example2();
-      $this->aexample2->setFields($s['aexample2'] as nonnull);
+      $this->aexample2->setFields($s['aexample2']);
     }
     if (Shapes::keyExists($s, 'aexample22')) {
       if ($this->aexample22 is null) $this->aexample22 = new \foo\bar\example2();
-      $this->aexample22->setFields($s['aexample22'] as nonnull);
+      $this->aexample22->setFields($s['aexample22']);
     }
     if (Shapes::keyExists($s, 'aexample23')) {
       if ($this->aexample23 is null) $this->aexample23 = new \fiz\baz\example2();
-      $this->aexample23->setFields($s['aexample23'] as nonnull);
+      $this->aexample23->setFields($s['aexample23']);
     }
     if (Shapes::keyExists($s, 'amap')) $this->amap = $s['amap'];
     if (Shapes::keyExists($s, 'amap2')) $this->amap2 = Dict\map($s['amap2'], ($v) ==> { $o = new \fiz\baz\example2(); $o->setFields($v); return $o; });
     if (Shapes::keyExists($s, 'outoforder')) $this->outoforder = $s['outoforder'];
     if (Shapes::keyExists($s, 'anany')) {
       if ($this->anany is null) $this->anany = new \google\protobuf\Any();
-      $this->anany->setFields($s['anany'] as nonnull);
+      $this->anany->setFields($s['anany']);
     }
     if (Shapes::keyExists($s, 'aoneof')) $this->aoneof = $s['aoneof'];
   }

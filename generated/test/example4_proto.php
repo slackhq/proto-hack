@@ -82,7 +82,7 @@ class pb_Class implements \Protobuf\Message {
 }
 
 type pb_InterfaceFields = shape (
-  ?'class' => ?\pb_ClassFields,
+  ?'class' => \pb_ClassFields,
 );
 class pb_Interface implements \Protobuf\Message {
   public ?\pb_Class $class;
@@ -98,7 +98,7 @@ class pb_Interface implements \Protobuf\Message {
   public function setFields(pb_InterfaceFields $s = shape()): void {
     if (Shapes::keyExists($s, 'class')) {
       if ($this->class is null) $this->class = new \pb_Class();
-      $this->class->setFields($s['class'] as nonnull);
+      $this->class->setFields($s['class']);
     }
   }
 

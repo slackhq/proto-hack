@@ -4,7 +4,7 @@
 // Source: test/exampleany.proto
 
 type AnyTestFields = shape (
-  ?'any' => ?\google\protobuf\AnyFields,
+  ?'any' => \google\protobuf\AnyFields,
 );
 class AnyTest implements \Protobuf\Message {
   public ?\google\protobuf\Any $any;
@@ -20,7 +20,7 @@ class AnyTest implements \Protobuf\Message {
   public function setFields(AnyTestFields $s = shape()): void {
     if (Shapes::keyExists($s, 'any')) {
       if ($this->any is null) $this->any = new \google\protobuf\Any();
-      $this->any->setFields($s['any'] as nonnull);
+      $this->any->setFields($s['any']);
     }
   }
 

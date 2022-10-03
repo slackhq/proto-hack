@@ -105,7 +105,7 @@ class example2 implements \Protobuf\Message {
 }
 
 type refexample3Fields = shape (
-  ?'funky' => ?\FunkyFields,
+  ?'funky' => \FunkyFields,
 );
 class refexample3 implements \Protobuf\Message {
   public ?\Funky $funky;
@@ -121,7 +121,7 @@ class refexample3 implements \Protobuf\Message {
   public function setFields(refexample3Fields $s = shape()): void {
     if (Shapes::keyExists($s, 'funky')) {
       if ($this->funky is null) $this->funky = new \Funky();
-      $this->funky->setFields($s['funky'] as nonnull);
+      $this->funky->setFields($s['funky']);
     }
   }
 

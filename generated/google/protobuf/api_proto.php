@@ -9,7 +9,7 @@ type ApiFields = shape (
   ?'methods' => vec<\google\protobuf\MethodFields>,
   ?'options' => vec<\google\protobuf\OptionFields>,
   ?'version' => string,
-  ?'source_context' => ?\google\protobuf\SourceContextFields,
+  ?'source_context' => \google\protobuf\SourceContextFields,
   ?'mixins' => vec<\google\protobuf\MixinFields>,
   ?'syntax' => \google\protobuf\Syntax_enum_t,
 );
@@ -53,7 +53,7 @@ class Api implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'version')) $this->version = $s['version'];
     if (Shapes::keyExists($s, 'source_context')) {
       if ($this->source_context is null) $this->source_context = new \google\protobuf\SourceContext();
-      $this->source_context->setFields($s['source_context'] as nonnull);
+      $this->source_context->setFields($s['source_context']);
     }
     if (Shapes::keyExists($s, 'mixins')) {
       $this->mixins = Vec\map($s['mixins'], ($v) ==> { $o = new \google\protobuf\Mixin(); $o->setFields($v); return $o; });
