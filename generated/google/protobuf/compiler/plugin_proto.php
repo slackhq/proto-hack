@@ -179,6 +179,7 @@ class CodeGeneratorRequest implements \Protobuf\Message {
     if (!C\is_empty($this->file_to_generate)) $s['file_to_generate'] = $this->file_to_generate;
     if ($this->parameter !== '') $s['parameter'] = $this->parameter;
     if (!C\is_empty($this->proto_file)) $s['proto_file'] = Vec\map($this->proto_file, ($v) ==> $v->getNonDefaultFields());
+    if ($this->compiler_version is nonnull) $s['compiler_version'] = $this->compiler_version->getNonDefaultFields();
     return $s;
   }
 
@@ -361,6 +362,7 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
     if ($this->name !== '') $s['name'] = $this->name;
     if ($this->insertion_point !== '') $s['insertion_point'] = $this->insertion_point;
     if ($this->content !== '') $s['content'] = $this->content;
+    if ($this->generated_code_info is nonnull) $s['generated_code_info'] = $this->generated_code_info->getNonDefaultFields();
     return $s;
   }
 

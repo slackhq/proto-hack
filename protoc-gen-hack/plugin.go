@@ -1376,6 +1376,7 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 				w.p("if (!C\\is_empty($this->%s)) $s['%s'] = $this->%s;", f.varName(), f.varName(), f.varName())
 			}
 		} else if f.isMessageOrGroup() {
+			w.p("if ($this->%s is nonnull) $s['%s'] = $this->%s->getNonDefaultFields();", f.varName(), f.varName(), f.varName())
 		} else {
 			w.p("if ($this->%s !== %s) $s['%s'] = $this->%s;", f.varName(), f.defaultValue(), f.varName(), f.varName())
 		}

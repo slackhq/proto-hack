@@ -104,6 +104,7 @@ class pb_Interface implements \Protobuf\Message {
 
   public function getNonDefaultFields(): pb_InterfaceFields {
     $s = shape();
+    if ($this->class is nonnull) $s['class'] = $this->class->getNonDefaultFields();
     return $s;
   }
 

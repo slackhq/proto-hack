@@ -402,6 +402,7 @@ class example1_Amap2Entry implements \Protobuf\Message {
   public function getNonDefaultFields(): example1_Amap2EntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
@@ -676,9 +677,13 @@ class example1 implements \Protobuf\Message {
     if (!C\is_empty($this->manystring)) $s['manystring'] = $this->manystring;
     if (!C\is_empty($this->manyint64)) $s['manyint64'] = $this->manyint64;
     if (!C\is_empty($this->manyexample2)) $s['manyexample2'] = Vec\map($this->manyexample2, ($v) ==> $v->getNonDefaultFields());
+    if ($this->aexample2 is nonnull) $s['aexample2'] = $this->aexample2->getNonDefaultFields();
+    if ($this->aexample22 is nonnull) $s['aexample22'] = $this->aexample22->getNonDefaultFields();
+    if ($this->aexample23 is nonnull) $s['aexample23'] = $this->aexample23->getNonDefaultFields();
     if (!C\is_empty($this->amap)) $s['amap'] = $this->amap;
     if (!C\is_empty($this->amap2)) $s['amap2'] = Dict\map($this->amap2, ($v) ==> $v->getNonDefaultFields());
     if ($this->outoforder !== 0) $s['outoforder'] = $this->outoforder;
+    if ($this->anany is nonnull) $s['anany'] = $this->anany->getNonDefaultFields();
     if ($this->aoneof is nonnull && $this->aoneof->WhichOneof() !== example1_aoneof_oneof_t::NOT_SET) $s['aoneof'] = $this->aoneof;
     return $s;
   }

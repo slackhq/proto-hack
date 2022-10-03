@@ -317,6 +317,7 @@ class ConformanceRequest implements \Protobuf\Message {
     if ($this->requested_output_format !== \conformance\WireFormat::FromInt(0)) $s['requested_output_format'] = $this->requested_output_format;
     if ($this->message_type !== '') $s['message_type'] = $this->message_type;
     if ($this->test_category !== \conformance\TestCategory::FromInt(0)) $s['test_category'] = $this->test_category;
+    if ($this->jspb_encoding_options is nonnull) $s['jspb_encoding_options'] = $this->jspb_encoding_options->getNonDefaultFields();
     if ($this->print_unknown_fields !== false) $s['print_unknown_fields'] = $this->print_unknown_fields;
     if ($this->payload is nonnull && $this->payload->WhichOneof() !== ConformanceRequest_payload_oneof_t::NOT_SET) $s['payload'] = $this->payload;
     return $s;

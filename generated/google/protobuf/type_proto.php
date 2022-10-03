@@ -85,6 +85,7 @@ class Type implements \Protobuf\Message {
     if (!C\is_empty($this->fields)) $s['fields'] = Vec\map($this->fields, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->oneofs)) $s['oneofs'] = $this->oneofs;
     if (!C\is_empty($this->options)) $s['options'] = Vec\map($this->options, ($v) ==> $v->getNonDefaultFields());
+    if ($this->source_context is nonnull) $s['source_context'] = $this->source_context->getNonDefaultFields();
     if ($this->syntax !== \google\protobuf\Syntax::FromInt(0)) $s['syntax'] = $this->syntax;
     return $s;
   }
@@ -647,6 +648,7 @@ class pb_Enum implements \Protobuf\Message {
     if ($this->name !== '') $s['name'] = $this->name;
     if (!C\is_empty($this->enumvalue)) $s['enumvalue'] = Vec\map($this->enumvalue, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->options)) $s['options'] = Vec\map($this->options, ($v) ==> $v->getNonDefaultFields());
+    if ($this->source_context is nonnull) $s['source_context'] = $this->source_context->getNonDefaultFields();
     if ($this->syntax !== \google\protobuf\Syntax::FromInt(0)) $s['syntax'] = $this->syntax;
     return $s;
   }
@@ -941,6 +943,7 @@ class Option implements \Protobuf\Message {
   public function getNonDefaultFields(): OptionFields {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 

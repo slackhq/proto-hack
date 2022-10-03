@@ -127,6 +127,7 @@ class refexample3 implements \Protobuf\Message {
 
   public function getNonDefaultFields(): refexample3Fields {
     $s = shape();
+    if ($this->funky is nonnull) $s['funky'] = $this->funky->getNonDefaultFields();
     return $s;
   }
 

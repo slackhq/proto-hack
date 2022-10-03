@@ -67,6 +67,7 @@ class Api implements \Protobuf\Message {
     if (!C\is_empty($this->methods)) $s['methods'] = Vec\map($this->methods, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->options)) $s['options'] = Vec\map($this->options, ($v) ==> $v->getNonDefaultFields());
     if ($this->version !== '') $s['version'] = $this->version;
+    if ($this->source_context is nonnull) $s['source_context'] = $this->source_context->getNonDefaultFields();
     if (!C\is_empty($this->mixins)) $s['mixins'] = Vec\map($this->mixins, ($v) ==> $v->getNonDefaultFields());
     if ($this->syntax !== \google\protobuf\Syntax::FromInt(0)) $s['syntax'] = $this->syntax;
     return $s;

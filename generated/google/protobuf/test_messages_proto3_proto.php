@@ -375,6 +375,7 @@ class TestAllTypesProto3_NestedMessage implements \Protobuf\Message {
   public function getNonDefaultFields(): TestAllTypesProto3_NestedMessageFields {
     $s = shape();
     if ($this->a !== 0) $s['a'] = $this->a;
+    if ($this->corecursive is nonnull) $s['corecursive'] = $this->corecursive->getNonDefaultFields();
     return $s;
   }
 
@@ -1923,6 +1924,7 @@ class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Messag
   public function getNonDefaultFields(): TestAllTypesProto3_MapStringNestedMessageEntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
@@ -2031,6 +2033,7 @@ class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Messa
   public function getNonDefaultFields(): TestAllTypesProto3_MapStringForeignMessageEntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
@@ -3132,11 +3135,14 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if ($this->optional_bool !== false) $s['optional_bool'] = $this->optional_bool;
     if ($this->optional_string !== '') $s['optional_string'] = $this->optional_string;
     if ($this->optional_bytes !== '') $s['optional_bytes'] = $this->optional_bytes;
+    if ($this->optional_nested_message is nonnull) $s['optional_nested_message'] = $this->optional_nested_message->getNonDefaultFields();
+    if ($this->optional_foreign_message is nonnull) $s['optional_foreign_message'] = $this->optional_foreign_message->getNonDefaultFields();
     if ($this->optional_nested_enum !== \protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum::FromInt(0)) $s['optional_nested_enum'] = $this->optional_nested_enum;
     if ($this->optional_foreign_enum !== \protobuf_test_messages\proto3\ForeignEnum::FromInt(0)) $s['optional_foreign_enum'] = $this->optional_foreign_enum;
     if ($this->optional_aliased_enum !== \protobuf_test_messages\proto3\TestAllTypesProto3_AliasedEnum::FromInt(0)) $s['optional_aliased_enum'] = $this->optional_aliased_enum;
     if ($this->optional_string_piece !== '') $s['optional_string_piece'] = $this->optional_string_piece;
     if ($this->optional_cord !== '') $s['optional_cord'] = $this->optional_cord;
+    if ($this->recursive_message is nonnull) $s['recursive_message'] = $this->recursive_message->getNonDefaultFields();
     if (!C\is_empty($this->repeated_int32)) $s['repeated_int32'] = $this->repeated_int32;
     if (!C\is_empty($this->repeated_int64)) $s['repeated_int64'] = $this->repeated_int64;
     if (!C\is_empty($this->repeated_uint32)) $s['repeated_uint32'] = $this->repeated_uint32;
@@ -3205,6 +3211,15 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if (!C\is_empty($this->map_string_foreign_message)) $s['map_string_foreign_message'] = Dict\map($this->map_string_foreign_message, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->map_string_nested_enum)) $s['map_string_nested_enum'] = $this->map_string_nested_enum;
     if (!C\is_empty($this->map_string_foreign_enum)) $s['map_string_foreign_enum'] = $this->map_string_foreign_enum;
+    if ($this->optional_bool_wrapper is nonnull) $s['optional_bool_wrapper'] = $this->optional_bool_wrapper->getNonDefaultFields();
+    if ($this->optional_int32_wrapper is nonnull) $s['optional_int32_wrapper'] = $this->optional_int32_wrapper->getNonDefaultFields();
+    if ($this->optional_int64_wrapper is nonnull) $s['optional_int64_wrapper'] = $this->optional_int64_wrapper->getNonDefaultFields();
+    if ($this->optional_uint32_wrapper is nonnull) $s['optional_uint32_wrapper'] = $this->optional_uint32_wrapper->getNonDefaultFields();
+    if ($this->optional_uint64_wrapper is nonnull) $s['optional_uint64_wrapper'] = $this->optional_uint64_wrapper->getNonDefaultFields();
+    if ($this->optional_float_wrapper is nonnull) $s['optional_float_wrapper'] = $this->optional_float_wrapper->getNonDefaultFields();
+    if ($this->optional_double_wrapper is nonnull) $s['optional_double_wrapper'] = $this->optional_double_wrapper->getNonDefaultFields();
+    if ($this->optional_string_wrapper is nonnull) $s['optional_string_wrapper'] = $this->optional_string_wrapper->getNonDefaultFields();
+    if ($this->optional_bytes_wrapper is nonnull) $s['optional_bytes_wrapper'] = $this->optional_bytes_wrapper->getNonDefaultFields();
     if (!C\is_empty($this->repeated_bool_wrapper)) $s['repeated_bool_wrapper'] = Vec\map($this->repeated_bool_wrapper, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->repeated_int32_wrapper)) $s['repeated_int32_wrapper'] = Vec\map($this->repeated_int32_wrapper, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->repeated_int64_wrapper)) $s['repeated_int64_wrapper'] = Vec\map($this->repeated_int64_wrapper, ($v) ==> $v->getNonDefaultFields());
@@ -3214,6 +3229,12 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if (!C\is_empty($this->repeated_double_wrapper)) $s['repeated_double_wrapper'] = Vec\map($this->repeated_double_wrapper, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->repeated_string_wrapper)) $s['repeated_string_wrapper'] = Vec\map($this->repeated_string_wrapper, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->repeated_bytes_wrapper)) $s['repeated_bytes_wrapper'] = Vec\map($this->repeated_bytes_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if ($this->optional_duration is nonnull) $s['optional_duration'] = $this->optional_duration->getNonDefaultFields();
+    if ($this->optional_timestamp is nonnull) $s['optional_timestamp'] = $this->optional_timestamp->getNonDefaultFields();
+    if ($this->optional_field_mask is nonnull) $s['optional_field_mask'] = $this->optional_field_mask->getNonDefaultFields();
+    if ($this->optional_struct is nonnull) $s['optional_struct'] = $this->optional_struct->getNonDefaultFields();
+    if ($this->optional_any is nonnull) $s['optional_any'] = $this->optional_any->getNonDefaultFields();
+    if ($this->optional_value is nonnull) $s['optional_value'] = $this->optional_value->getNonDefaultFields();
     if ($this->optional_null_value !== \google\protobuf\NullValue::FromInt(0)) $s['optional_null_value'] = $this->optional_null_value;
     if (!C\is_empty($this->repeated_duration)) $s['repeated_duration'] = Vec\map($this->repeated_duration, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->repeated_timestamp)) $s['repeated_timestamp'] = Vec\map($this->repeated_timestamp, ($v) ==> $v->getNonDefaultFields());

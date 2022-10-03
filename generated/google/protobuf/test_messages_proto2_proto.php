@@ -316,6 +316,7 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
   public function getNonDefaultFields(): TestAllTypesProto2_NestedMessageFields {
     $s = shape();
     if ($this->a !== 0) $s['a'] = $this->a;
+    if ($this->corecursive is nonnull) $s['corecursive'] = $this->corecursive->getNonDefaultFields();
     return $s;
   }
 
@@ -1864,6 +1865,7 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
   public function getNonDefaultFields(): TestAllTypesProto2_MapStringNestedMessageEntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
@@ -1972,6 +1974,7 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
   public function getNonDefaultFields(): TestAllTypesProto2_MapStringForeignMessageEntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
@@ -3151,10 +3154,13 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if ($this->optional_bool !== false) $s['optional_bool'] = $this->optional_bool;
     if ($this->optional_string !== '') $s['optional_string'] = $this->optional_string;
     if ($this->optional_bytes !== '') $s['optional_bytes'] = $this->optional_bytes;
+    if ($this->optional_nested_message is nonnull) $s['optional_nested_message'] = $this->optional_nested_message->getNonDefaultFields();
+    if ($this->optional_foreign_message is nonnull) $s['optional_foreign_message'] = $this->optional_foreign_message->getNonDefaultFields();
     if ($this->optional_nested_enum !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt(0)) $s['optional_nested_enum'] = $this->optional_nested_enum;
     if ($this->optional_foreign_enum !== \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt(0)) $s['optional_foreign_enum'] = $this->optional_foreign_enum;
     if ($this->optional_string_piece !== '') $s['optional_string_piece'] = $this->optional_string_piece;
     if ($this->optional_cord !== '') $s['optional_cord'] = $this->optional_cord;
+    if ($this->recursive_message is nonnull) $s['recursive_message'] = $this->recursive_message->getNonDefaultFields();
     if (!C\is_empty($this->repeated_int32)) $s['repeated_int32'] = $this->repeated_int32;
     if (!C\is_empty($this->repeated_int64)) $s['repeated_int64'] = $this->repeated_int64;
     if (!C\is_empty($this->repeated_uint32)) $s['repeated_uint32'] = $this->repeated_uint32;
@@ -3223,6 +3229,7 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if (!C\is_empty($this->map_string_foreign_message)) $s['map_string_foreign_message'] = Dict\map($this->map_string_foreign_message, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->map_string_nested_enum)) $s['map_string_nested_enum'] = $this->map_string_nested_enum;
     if (!C\is_empty($this->map_string_foreign_enum)) $s['map_string_foreign_enum'] = $this->map_string_foreign_enum;
+    if ($this->data is nonnull) $s['data'] = $this->data->getNonDefaultFields();
     if ($this->fieldname1 !== 0) $s['fieldname1'] = $this->fieldname1;
     if ($this->field_name2 !== 0) $s['field_name2'] = $this->field_name2;
     if ($this->_field_name3 !== 0) $s['_field_name3'] = $this->_field_name3;
@@ -5538,6 +5545,8 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
     $s = shape();
     if ($this->optional_int32 !== 0) $s['optional_int32'] = $this->optional_int32;
     if ($this->optional_string !== '') $s['optional_string'] = $this->optional_string;
+    if ($this->nested_message is nonnull) $s['nested_message'] = $this->nested_message->getNonDefaultFields();
+    if ($this->optionalgroup is nonnull) $s['optionalgroup'] = $this->optionalgroup->getNonDefaultFields();
     if ($this->optional_bool !== false) $s['optional_bool'] = $this->optional_bool;
     if (!C\is_empty($this->repeated_int32)) $s['repeated_int32'] = $this->repeated_int32;
     return $s;

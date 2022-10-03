@@ -26,6 +26,7 @@ class AnyTest implements \Protobuf\Message {
 
   public function getNonDefaultFields(): AnyTestFields {
     $s = shape();
+    if ($this->any is nonnull) $s['any'] = $this->any->getNonDefaultFields();
     return $s;
   }
 

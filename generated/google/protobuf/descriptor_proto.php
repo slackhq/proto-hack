@@ -193,6 +193,8 @@ class FileDescriptorProto implements \Protobuf\Message {
     if (!C\is_empty($this->enum_type)) $s['enum_type'] = Vec\map($this->enum_type, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->service)) $s['service'] = Vec\map($this->service, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->extension)) $s['extension'] = Vec\map($this->extension, ($v) ==> $v->getNonDefaultFields());
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
+    if ($this->source_code_info is nonnull) $s['source_code_info'] = $this->source_code_info->getNonDefaultFields();
     if ($this->syntax !== '') $s['syntax'] = $this->syntax;
     return $s;
   }
@@ -502,6 +504,7 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
     $s = shape();
     if ($this->start !== 0) $s['start'] = $this->start;
     if ($this->end !== 0) $s['end'] = $this->end;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     return $s;
   }
 
@@ -778,6 +781,7 @@ class DescriptorProto implements \Protobuf\Message {
     if (!C\is_empty($this->enum_type)) $s['enum_type'] = Vec\map($this->enum_type, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->extension_range)) $s['extension_range'] = Vec\map($this->extension_range, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->oneof_decl)) $s['oneof_decl'] = Vec\map($this->oneof_decl, ($v) ==> $v->getNonDefaultFields());
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     if (!C\is_empty($this->reserved_range)) $s['reserved_range'] = Vec\map($this->reserved_range, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->reserved_name)) $s['reserved_name'] = $this->reserved_name;
     return $s;
@@ -1308,6 +1312,7 @@ class FieldDescriptorProto implements \Protobuf\Message {
     if ($this->default_value !== '') $s['default_value'] = $this->default_value;
     if ($this->oneof_index !== 0) $s['oneof_index'] = $this->oneof_index;
     if ($this->json_name !== '') $s['json_name'] = $this->json_name;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     if ($this->proto3_optional !== false) $s['proto3_optional'] = $this->proto3_optional;
     return $s;
   }
@@ -1525,6 +1530,7 @@ class OneofDescriptorProto implements \Protobuf\Message {
   public function getNonDefaultFields(): OneofDescriptorProtoFields {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     return $s;
   }
 
@@ -1749,6 +1755,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
     if (!C\is_empty($this->value)) $s['value'] = Vec\map($this->value, ($v) ==> $v->getNonDefaultFields());
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     if (!C\is_empty($this->reserved_range)) $s['reserved_range'] = Vec\map($this->reserved_range, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->reserved_name)) $s['reserved_name'] = $this->reserved_name;
     return $s;
@@ -1925,6 +1932,7 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
     if ($this->number !== 0) $s['number'] = $this->number;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     return $s;
   }
 
@@ -2053,6 +2061,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
     if (!C\is_empty($this->method)) $s['method'] = Vec\map($this->method, ($v) ==> $v->getNonDefaultFields());
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     return $s;
   }
 
@@ -2206,6 +2215,7 @@ class MethodDescriptorProto implements \Protobuf\Message {
     if ($this->name !== '') $s['name'] = $this->name;
     if ($this->input_type !== '') $s['input_type'] = $this->input_type;
     if ($this->output_type !== '') $s['output_type'] = $this->output_type;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     if ($this->client_streaming !== false) $s['client_streaming'] = $this->client_streaming;
     if ($this->server_streaming !== false) $s['server_streaming'] = $this->server_streaming;
     return $s;

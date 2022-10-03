@@ -190,6 +190,8 @@ class Funky implements \Protobuf\Message {
 
   public function getNonDefaultFields(): FunkyFields {
     $s = shape();
+    if ($this->monkey is nonnull) $s['monkey'] = $this->monkey->getNonDefaultFields();
+    if ($this->dokey is nonnull) $s['dokey'] = $this->dokey->getNonDefaultFields();
     return $s;
   }
 

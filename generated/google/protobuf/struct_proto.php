@@ -55,6 +55,7 @@ class Struct_FieldsEntry implements \Protobuf\Message {
   public function getNonDefaultFields(): Struct_FieldsEntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
