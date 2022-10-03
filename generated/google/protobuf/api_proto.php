@@ -9,7 +9,7 @@ type ApiFields = shape (
   ?'methods' => vec<\google\protobuf\MethodFields>,
   ?'options' => vec<\google\protobuf\OptionFields>,
   ?'version' => string,
-  ?'source_context' => \google\protobuf\SourceContextFields,
+  ?'source_context' => ?\google\protobuf\SourceContextFields,
   ?'mixins' => vec<\google\protobuf\MixinFields>,
   ?'syntax' => \google\protobuf\Syntax_enum_t,
 );
@@ -45,18 +45,21 @@ class Api implements \Protobuf\Message {
   public function setFields(ApiFields $s = shape()): void {
     if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
     if (Shapes::keyExists($s, 'methods')) {
-      $this->methods = Vec\map($s['methods'], ($v) ==> { $o = new \google\protobuf\Method(); $o->setFields($v); return $o; });
+      if ($this->methods is null) $this->methods = new \google\protobuf\Method();
+      $this->methods->setFields($s['methods'] as nonnull);
     }
     if (Shapes::keyExists($s, 'options')) {
-      $this->options = Vec\map($s['options'], ($v) ==> { $o = new \google\protobuf\Option(); $o->setFields($v); return $o; });
+      if ($this->options is null) $this->options = new \google\protobuf\Option();
+      $this->options->setFields($s['options'] as nonnull);
     }
     if (Shapes::keyExists($s, 'version')) $this->version = $s['version'];
     if (Shapes::keyExists($s, 'source_context')) {
       if ($this->source_context is null) $this->source_context = new \google\protobuf\SourceContext();
-      $this->source_context->setFields($s['source_context']);
+      $this->source_context->setFields($s['source_context'] as nonnull);
     }
     if (Shapes::keyExists($s, 'mixins')) {
-      $this->mixins = Vec\map($s['mixins'], ($v) ==> { $o = new \google\protobuf\Mixin(); $o->setFields($v); return $o; });
+      if ($this->mixins is null) $this->mixins = new \google\protobuf\Mixin();
+      $this->mixins->setFields($s['mixins'] as nonnull);
     }
     if (Shapes::keyExists($s, 'syntax')) $this->syntax = $s['syntax'];
   }
@@ -64,11 +67,10 @@ class Api implements \Protobuf\Message {
   public function getNonDefaultFields(): ApiFields {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
-    if (!C\is_empty($this->methods)) $s['methods'] = Vec\map($this->methods, ($v) ==> $v->getNonDefaultFields());
-    if (!C\is_empty($this->options)) $s['options'] = Vec\map($this->options, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->methods)) $s['methods'] = $this->methods;
+    if (!C\is_empty($this->options)) $s['options'] = $this->options;
     if ($this->version !== '') $s['version'] = $this->version;
-    if ($this->source_context is nonnull) $s['source_context'] = $this->source_context->getNonDefaultFields();
-    if (!C\is_empty($this->mixins)) $s['mixins'] = Vec\map($this->mixins, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->mixins)) $s['mixins'] = $this->mixins;
     if ($this->syntax !== \google\protobuf\Syntax::FromInt(0)) $s['syntax'] = $this->syntax;
     return $s;
   }
@@ -287,7 +289,8 @@ class Method implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'response_type_url')) $this->response_type_url = $s['response_type_url'];
     if (Shapes::keyExists($s, 'response_streaming')) $this->response_streaming = $s['response_streaming'];
     if (Shapes::keyExists($s, 'options')) {
-      $this->options = Vec\map($s['options'], ($v) ==> { $o = new \google\protobuf\Option(); $o->setFields($v); return $o; });
+      if ($this->options is null) $this->options = new \google\protobuf\Option();
+      $this->options->setFields($s['options'] as nonnull);
     }
     if (Shapes::keyExists($s, 'syntax')) $this->syntax = $s['syntax'];
   }
@@ -299,7 +302,7 @@ class Method implements \Protobuf\Message {
     if ($this->request_streaming !== false) $s['request_streaming'] = $this->request_streaming;
     if ($this->response_type_url !== '') $s['response_type_url'] = $this->response_type_url;
     if ($this->response_streaming !== false) $s['response_streaming'] = $this->response_streaming;
-    if (!C\is_empty($this->options)) $s['options'] = Vec\map($this->options, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->options)) $s['options'] = $this->options;
     if ($this->syntax !== \google\protobuf\Syntax::FromInt(0)) $s['syntax'] = $this->syntax;
     return $s;
   }

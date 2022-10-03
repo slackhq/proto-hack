@@ -375,7 +375,7 @@ class example1_AmapEntry implements \Protobuf\Message {
 
 type example1_Amap2EntryFields = shape (
   ?'key' => string,
-  ?'value' => \fiz\baz\example2Fields,
+  ?'value' => ?\fiz\baz\example2Fields,
 );
 class example1_Amap2Entry implements \Protobuf\Message {
   public string $key;
@@ -395,14 +395,13 @@ class example1_Amap2Entry implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
     if (Shapes::keyExists($s, 'value')) {
       if ($this->value is null) $this->value = new \fiz\baz\example2();
-      $this->value->setFields($s['value']);
+      $this->value->setFields($s['value'] as nonnull);
     }
   }
 
   public function getNonDefaultFields(): example1_Amap2EntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
-    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
@@ -503,14 +502,13 @@ type example1Fields = shape (
   ?'aenum22' => \fiz\baz\AEnum2_enum_t,
   ?'manystring' => vec<string>,
   ?'manyint64' => vec<int>,
-  ?'manyexample2' => vec<\fiz\baz\example2Fields>,
-  ?'aexample2' => \foo\bar\example1_example2Fields,
-  ?'aexample22' => \foo\bar\example2Fields,
-  ?'aexample23' => \fiz\baz\example2Fields,
+  ?'aexample2' => ?\foo\bar\example1_example2Fields,
+  ?'aexample22' => ?\foo\bar\example2Fields,
+  ?'aexample23' => ?\fiz\baz\example2Fields,
   ?'amap' => dict<string, string>,
   ?'amap2' => dict<string, \fiz\baz\example2Fields>,
   ?'outoforder' => int,
-  ?'anany' => \google\protobuf\AnyFields,
+  ?'anany' => ?\google\protobuf\AnyFields,
   ?'aoneof' => example1_aoneof,
 );
 class example1 implements \Protobuf\Message {
@@ -534,7 +532,6 @@ class example1 implements \Protobuf\Message {
   public \fiz\baz\AEnum2_enum_t $aenum22;
   public vec<string> $manystring;
   public vec<int> $manyint64;
-  public vec<\fiz\baz\example2> $manyexample2;
   public ?\foo\bar\example1_example2 $aexample2;
   public ?\foo\bar\example2 $aexample22;
   public ?\fiz\baz\example2 $aexample23;
@@ -566,7 +563,6 @@ class example1 implements \Protobuf\Message {
     ?'aenum22' => \fiz\baz\AEnum2_enum_t,
     ?'manystring' => vec<string>,
     ?'manyint64' => vec<int>,
-    ?'manyexample2' => vec<\fiz\baz\example2>,
     ?'aexample2' => ?\foo\bar\example1_example2,
     ?'aexample22' => ?\foo\bar\example2,
     ?'aexample23' => ?\fiz\baz\example2,
@@ -596,7 +592,6 @@ class example1 implements \Protobuf\Message {
     $this->aenum22 = $s['aenum22'] ?? \fiz\baz\AEnum2::FromInt(0);
     $this->manystring = $s['manystring'] ?? vec[];
     $this->manyint64 = $s['manyint64'] ?? vec[];
-    $this->manyexample2 = $s['manyexample2'] ?? vec[];
     $this->aexample2 = $s['aexample2'] ?? null;
     $this->aexample22 = $s['aexample22'] ?? null;
     $this->aexample23 = $s['aexample23'] ?? null;
@@ -629,27 +624,24 @@ class example1 implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'aenum22')) $this->aenum22 = $s['aenum22'];
     if (Shapes::keyExists($s, 'manystring')) $this->manystring = $s['manystring'];
     if (Shapes::keyExists($s, 'manyint64')) $this->manyint64 = $s['manyint64'];
-    if (Shapes::keyExists($s, 'manyexample2')) {
-      $this->manyexample2 = Vec\map($s['manyexample2'], ($v) ==> { $o = new \fiz\baz\example2(); $o->setFields($v); return $o; });
-    }
     if (Shapes::keyExists($s, 'aexample2')) {
       if ($this->aexample2 is null) $this->aexample2 = new \foo\bar\example1_example2();
-      $this->aexample2->setFields($s['aexample2']);
+      $this->aexample2->setFields($s['aexample2'] as nonnull);
     }
     if (Shapes::keyExists($s, 'aexample22')) {
       if ($this->aexample22 is null) $this->aexample22 = new \foo\bar\example2();
-      $this->aexample22->setFields($s['aexample22']);
+      $this->aexample22->setFields($s['aexample22'] as nonnull);
     }
     if (Shapes::keyExists($s, 'aexample23')) {
       if ($this->aexample23 is null) $this->aexample23 = new \fiz\baz\example2();
-      $this->aexample23->setFields($s['aexample23']);
+      $this->aexample23->setFields($s['aexample23'] as nonnull);
     }
     if (Shapes::keyExists($s, 'amap')) $this->amap = $s['amap'];
     if (Shapes::keyExists($s, 'amap2')) $this->amap2 = Dict\map($s['amap2'], ($v) ==> { $o = new \fiz\baz\example2(); $o->setFields($v); return $o; });
     if (Shapes::keyExists($s, 'outoforder')) $this->outoforder = $s['outoforder'];
     if (Shapes::keyExists($s, 'anany')) {
       if ($this->anany is null) $this->anany = new \google\protobuf\Any();
-      $this->anany->setFields($s['anany']);
+      $this->anany->setFields($s['anany'] as nonnull);
     }
     if (Shapes::keyExists($s, 'aoneof')) $this->aoneof = $s['aoneof'];
   }
@@ -676,14 +668,9 @@ class example1 implements \Protobuf\Message {
     if ($this->aenum22 !== \fiz\baz\AEnum2::FromInt(0)) $s['aenum22'] = $this->aenum22;
     if (!C\is_empty($this->manystring)) $s['manystring'] = $this->manystring;
     if (!C\is_empty($this->manyint64)) $s['manyint64'] = $this->manyint64;
-    if (!C\is_empty($this->manyexample2)) $s['manyexample2'] = Vec\map($this->manyexample2, ($v) ==> $v->getNonDefaultFields());
-    if ($this->aexample2 is nonnull) $s['aexample2'] = $this->aexample2->getNonDefaultFields();
-    if ($this->aexample22 is nonnull) $s['aexample22'] = $this->aexample22->getNonDefaultFields();
-    if ($this->aexample23 is nonnull) $s['aexample23'] = $this->aexample23->getNonDefaultFields();
     if (!C\is_empty($this->amap)) $s['amap'] = $this->amap;
     if (!C\is_empty($this->amap2)) $s['amap2'] = Dict\map($this->amap2, ($v) ==> $v->getNonDefaultFields());
     if ($this->outoforder !== 0) $s['outoforder'] = $this->outoforder;
-    if ($this->anany is nonnull) $s['anany'] = $this->anany->getNonDefaultFields();
     if ($this->aoneof is nonnull && $this->aoneof->WhichOneof() !== example1_aoneof_oneof_t::NOT_SET) $s['aoneof'] = $this->aoneof;
     return $s;
   }
@@ -762,11 +749,6 @@ class example1 implements \Protobuf\Message {
           } else {
             $this->manyint64 []= $d->readVarint();
           }
-          break;
-        case 32:
-          $obj = new \fiz\baz\example2();
-          $obj->MergeFrom($d->readDecoder());
-          $this->manyexample2 []= $obj;
           break;
         case 40:
           if ($this->aexample2 == null) $this->aexample2 = new \foo\bar\example1_example2();
@@ -892,11 +874,6 @@ class example1 implements \Protobuf\Message {
       $packed->writeVarint($elem);
     }
     $e->writeEncoder($packed, 31);
-    foreach ($this->manyexample2 as $msg) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 32);
-    }
     $msg = $this->aexample2;
     if ($msg != null) {
       $nested = new \Protobuf\Internal\Encoder();
@@ -966,7 +943,6 @@ class example1 implements \Protobuf\Message {
     $e->writeEnum('aenum22', 'aenum22', \fiz\baz\AEnum2::ToStringDict(), $this->aenum22, false);
     $e->writePrimitiveList('manystring', 'manystring', $this->manystring);
     $e->writeInt64SignedList('manyint64', 'manyint64', $this->manyint64);
-    $e->writeMessageList('manyexample2', 'manyexample2', $this->manyexample2);
     $e->writeMessage('aexample2', 'aexample2', $this->aexample2, false);
     $e->writeMessage('aexample22', 'aexample22', $this->aexample22, false);
     $e->writeMessage('aexample23', 'aexample23', $this->aexample23, false);
@@ -1046,13 +1022,6 @@ class example1 implements \Protobuf\Message {
             $this->manyint64 []= \Protobuf\Internal\JsonDecoder::readInt64Signed($vv);
           }
           break;
-        case 'manyexample2':
-          foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
-            $obj = new \fiz\baz\example2();
-            $obj->MergeJsonFrom($vv);
-            $this->manyexample2 []= $obj;
-          }
-          break;
         case 'aexample2':
           if ($v === null) break;
           if ($this->aexample2 == null) $this->aexample2 = new \foo\bar\example1_example2();
@@ -1128,11 +1097,6 @@ class example1 implements \Protobuf\Message {
     $this->aenum22 = $o->aenum22;
     $this->manystring = $o->manystring;
     $this->manyint64 = $o->manyint64;
-    foreach ($o->manyexample2 as $v) {
-      $nv = new \fiz\baz\example2();
-      $nv->CopyFrom($v);
-      $this->manyexample2 []= $nv;
-    }
     $tmp = $o->aexample2;
     if ($tmp !== null) {
       $nv = new \foo\bar\example1_example2();
@@ -1209,19 +1173,19 @@ function RegisterExampleServiceServer(\Grpc\Server $server, ExampleServiceServer
 class XXX_FileDescriptor_test_example1__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'test/example1.proto';
   const string RAW =
-  'eNpsVF1v2jAUxVA+cvtFvQ55WdVZaFLdPoRhGKum7aFdK1Xawyavf8CspkKDGEHoSn/tfs'
-  .'pkO05Cy1Nyzj3H8b05NrxK1CLpqEc5nU1UN5rNdaJxfaR1NJTz8M291vcT1bH0cDnqyHjl'
-  .'NOGakTuy3YaGZ3ALanIcJz1OEEWsKlLU/hdkoi4mUJd3ejmcKKtCwkNrH020TEiZIlYWKS'
-  .'osWyku6/lBn2xRxCoiRfYLS2eoUsR2hYdZZdAnNYrYlvDQVhbOU6eIHQgPs8qgTxoUMSw8'
-  .'xCE05Gj8qO56nAQUsbrIcF4b9AlQxGoiw/gIArnwxm2K2L7IiUJ10Cc7FLGmyAl8CFU51H'
-  .'pCdiliDeGA22MyH8f3ZI8iFggP7YyGq0QtyD5FbEekCJ9ATap4Oe2SQ4rYHt+P0gBEF9eG'
-  .'FmkZf0iFnLy2QpIJswRZB08dHJ9C3b1x0vJrj5+ioXzySl/HxwBTGa/SrR/TCgtEgTGzMM'
-  .'hN/x2tsIrICfwRdgzw8SOUVtg2P8i+5gtiTYbPIZCZh1HEtnn4sqnMnItxFyADnJxa68Fz'
-  .'KxcF0ZqlR8685fkOCyLcgS05lTPSs+283TDvqZxdx8l8JawQc6iaJyd96zja7ODO4qRm8n'
-  .'qZ6JGe36k56drzU2DwETS0Tv/LFxOpm5LIGNyCqtbjOCFfzYG8KQkH8RlUZSzjFflpGz2M'
-  .'3GUS+cskuojNDowkfF+4OAr5RWv5DT9BkLWLm1D5o1apxLya4/AgJ0tlb4xAOPC5fI7C7w'
-  .'B51xucJ0Xnxn+SL9ZuQc1FF1cBfWuWzOOqCZcNqEkdKz0684quKV04xWWzzK9g79ot+EvN'
-  .'H8a/FebQ+BGrW337V+MX4emGL/PULg1rdoC9/wEAAP//vCmQgQ';
+  'eNpsVF1P2zAUrVv6kctX8VjlZYhZ1SQMD+niVh2atgcYSEh72OTxB5zhomptXKUpo/yj/c'
+  .'spdpyE0af4nHvOrX17bHiVqmU6UI9yvpipMFgkOtW4PdE6iGTiv7nX+n6mBoaOVpOBjNdW'
+  .'4z8zckv2+9BxDO5BS07jdMgJoog1RY76f71CFGICbXmnV9FMGRUSDhr7ZKZlSuoUsbrIUa'
+  .'Vto9rW8eMR2aKINUSOzC+srKFJEdsVDhaV8Yi0KGJbwkFTWVpPmyJ2IBwsKuMR6VDEsHAQ'
+  .'+9CRk+mjuhty4lHE2qLAZW08IkARa4kC4yPw5NIZtyli+6IkKtXxiOxQxLqiJPAhNGWk9Y'
+  .'zsUsQ6wgK7xzSZxvdkjyLmCQfNjKJ1qpZknyK2I3KET6AlVbyah+SQIrbH94M8AMHFdUaL'
+  .'vIw/5EJOXhshKYRFgoyD5w6OT6FtV5z0XO/pUxDJJ6d0dXwMMJfxOt/6MW0wT1SYbBYZst'
+  .'N/RxusIUoCn4MnXfYIo4htc//l7pxClGIcAhSAk1NjPfjfykVF9MwyJGfOkh9sg2WIB7Al'
+  .'53JBhrTBtvnbDYOby8V1nCZrYYSYQzP7cjIyjqPNDm4tVpqNUK9SPdHJnUpIaC5ChcFH0N'
+  .'E6H/DnLBs3NVEwuAdNradxSr5kN+umJizEZ9CUsYzX5Ic56GFgX4XAvQrBRZztIJP47ysv'
+  .'QCWI6FkQ/Y/gFcfFXWj8Vutcki2zXD/I2UqZq+8JCz7Vz5H/DaA89QbnSdW58T8pm/V70L'
+  .'IZxE1AX7u17HPVhcsOtKSOlZ6cOUWYlS6s4rJb51ewd20b/lTJw/SXwhw632N1q2//aPwi'
+  .'PKH/Mk/9WtQyAxz+CwAA//+zp37q';
   public function Name(): string {
     return self::NAME;
   }
