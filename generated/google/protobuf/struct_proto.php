@@ -28,7 +28,7 @@ abstract class NullValue {
 
 type Struct_FieldsEntryFields = shape (
   ?'key' => string,
-  ?'value' => ?\google\protobuf\ValueFields,
+  ?'value' => \google\protobuf\ValueFields,
 );
 class Struct_FieldsEntry implements \Protobuf\Message {
   public string $key;
@@ -48,13 +48,14 @@ class Struct_FieldsEntry implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
     if (Shapes::keyExists($s, 'value')) {
       if ($this->value is null) $this->value = new \google\protobuf\Value();
-      $this->value->setFields($s['value'] as nonnull);
+      $this->value->setFields($s['value']);
     }
   }
 
   public function getNonDefaultFields(): Struct_FieldsEntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
@@ -521,14 +522,13 @@ class ListValue implements \Protobuf\Message {
 
   public function setFields(ListValueFields $s = shape()): void {
     if (Shapes::keyExists($s, 'values')) {
-      if ($this->values is null) $this->values = new \google\protobuf\Value();
-      $this->values->setFields($s['values'] as nonnull);
+      $this->values = Vec\map($s['values'], ($v) ==> { $o = new \google\protobuf\Value(); $o->setFields($v); return $o; });
     }
   }
 
   public function getNonDefaultFields(): ListValueFields {
     $s = shape();
-    if (!C\is_empty($this->values)) $s['values'] = $this->values;
+    if (!C\is_empty($this->values)) $s['values'] = Vec\map($this->values, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 

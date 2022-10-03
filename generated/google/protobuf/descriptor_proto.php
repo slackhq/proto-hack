@@ -20,14 +20,13 @@ class FileDescriptorSet implements \Protobuf\Message {
 
   public function setFields(FileDescriptorSetFields $s = shape()): void {
     if (Shapes::keyExists($s, 'file')) {
-      if ($this->file is null) $this->file = new \google\protobuf\FileDescriptorProto();
-      $this->file->setFields($s['file'] as nonnull);
+      $this->file = Vec\map($s['file'], ($v) ==> { $o = new \google\protobuf\FileDescriptorProto(); $o->setFields($v); return $o; });
     }
   }
 
   public function getNonDefaultFields(): FileDescriptorSetFields {
     $s = shape();
-    if (!C\is_empty($this->file)) $s['file'] = $this->file;
+    if (!C\is_empty($this->file)) $s['file'] = Vec\map($this->file, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -106,8 +105,8 @@ type FileDescriptorProtoFields = shape (
   ?'enum_type' => vec<\google\protobuf\EnumDescriptorProtoFields>,
   ?'service' => vec<\google\protobuf\ServiceDescriptorProtoFields>,
   ?'extension' => vec<\google\protobuf\FieldDescriptorProtoFields>,
-  ?'options' => ?\google\protobuf\FileOptionsFields,
-  ?'source_code_info' => ?\google\protobuf\SourceCodeInfoFields,
+  ?'options' => \google\protobuf\FileOptionsFields,
+  ?'source_code_info' => \google\protobuf\SourceCodeInfoFields,
   ?'syntax' => string,
 );
 class FileDescriptorProto implements \Protobuf\Message {
@@ -161,28 +160,24 @@ class FileDescriptorProto implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'public_dependency')) $this->public_dependency = $s['public_dependency'];
     if (Shapes::keyExists($s, 'weak_dependency')) $this->weak_dependency = $s['weak_dependency'];
     if (Shapes::keyExists($s, 'message_type')) {
-      if ($this->message_type is null) $this->message_type = new \google\protobuf\DescriptorProto();
-      $this->message_type->setFields($s['message_type'] as nonnull);
+      $this->message_type = Vec\map($s['message_type'], ($v) ==> { $o = new \google\protobuf\DescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'enum_type')) {
-      if ($this->enum_type is null) $this->enum_type = new \google\protobuf\EnumDescriptorProto();
-      $this->enum_type->setFields($s['enum_type'] as nonnull);
+      $this->enum_type = Vec\map($s['enum_type'], ($v) ==> { $o = new \google\protobuf\EnumDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'service')) {
-      if ($this->service is null) $this->service = new \google\protobuf\ServiceDescriptorProto();
-      $this->service->setFields($s['service'] as nonnull);
+      $this->service = Vec\map($s['service'], ($v) ==> { $o = new \google\protobuf\ServiceDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'extension')) {
-      if ($this->extension is null) $this->extension = new \google\protobuf\FieldDescriptorProto();
-      $this->extension->setFields($s['extension'] as nonnull);
+      $this->extension = Vec\map($s['extension'], ($v) ==> { $o = new \google\protobuf\FieldDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\FileOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'source_code_info')) {
       if ($this->source_code_info is null) $this->source_code_info = new \google\protobuf\SourceCodeInfo();
-      $this->source_code_info->setFields($s['source_code_info'] as nonnull);
+      $this->source_code_info->setFields($s['source_code_info']);
     }
     if (Shapes::keyExists($s, 'syntax')) $this->syntax = $s['syntax'];
   }
@@ -194,10 +189,12 @@ class FileDescriptorProto implements \Protobuf\Message {
     if (!C\is_empty($this->dependency)) $s['dependency'] = $this->dependency;
     if (!C\is_empty($this->public_dependency)) $s['public_dependency'] = $this->public_dependency;
     if (!C\is_empty($this->weak_dependency)) $s['weak_dependency'] = $this->weak_dependency;
-    if (!C\is_empty($this->message_type)) $s['message_type'] = $this->message_type;
-    if (!C\is_empty($this->enum_type)) $s['enum_type'] = $this->enum_type;
-    if (!C\is_empty($this->service)) $s['service'] = $this->service;
-    if (!C\is_empty($this->extension)) $s['extension'] = $this->extension;
+    if (!C\is_empty($this->message_type)) $s['message_type'] = Vec\map($this->message_type, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->enum_type)) $s['enum_type'] = Vec\map($this->enum_type, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->service)) $s['service'] = Vec\map($this->service, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->extension)) $s['extension'] = Vec\map($this->extension, ($v) ==> $v->getNonDefaultFields());
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
+    if ($this->source_code_info is nonnull) $s['source_code_info'] = $this->source_code_info->getNonDefaultFields();
     if ($this->syntax !== '') $s['syntax'] = $this->syntax;
     return $s;
   }
@@ -475,7 +472,7 @@ class FileDescriptorProto implements \Protobuf\Message {
 type DescriptorProto_ExtensionRangeFields = shape (
   ?'start' => int,
   ?'end' => int,
-  ?'options' => ?\google\protobuf\ExtensionRangeOptionsFields,
+  ?'options' => \google\protobuf\ExtensionRangeOptionsFields,
 );
 class DescriptorProto_ExtensionRange implements \Protobuf\Message {
   public int $start;
@@ -499,7 +496,7 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'end')) $this->end = $s['end'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\ExtensionRangeOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
   }
 
@@ -507,6 +504,7 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
     $s = shape();
     if ($this->start !== 0) $s['start'] = $this->start;
     if ($this->end !== 0) $s['end'] = $this->end;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     return $s;
   }
 
@@ -702,7 +700,7 @@ type DescriptorProtoFields = shape (
   ?'enum_type' => vec<\google\protobuf\EnumDescriptorProtoFields>,
   ?'extension_range' => vec<\google\protobuf\DescriptorProto_ExtensionRangeFields>,
   ?'oneof_decl' => vec<\google\protobuf\OneofDescriptorProtoFields>,
-  ?'options' => ?\google\protobuf\MessageOptionsFields,
+  ?'options' => \google\protobuf\MessageOptionsFields,
   ?'reserved_range' => vec<\google\protobuf\DescriptorProto_ReservedRangeFields>,
   ?'reserved_name' => vec<string>,
 );
@@ -747,36 +745,29 @@ class DescriptorProto implements \Protobuf\Message {
   public function setFields(DescriptorProtoFields $s = shape()): void {
     if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
     if (Shapes::keyExists($s, 'field')) {
-      if ($this->field is null) $this->field = new \google\protobuf\FieldDescriptorProto();
-      $this->field->setFields($s['field'] as nonnull);
+      $this->field = Vec\map($s['field'], ($v) ==> { $o = new \google\protobuf\FieldDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'extension')) {
-      if ($this->extension is null) $this->extension = new \google\protobuf\FieldDescriptorProto();
-      $this->extension->setFields($s['extension'] as nonnull);
+      $this->extension = Vec\map($s['extension'], ($v) ==> { $o = new \google\protobuf\FieldDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'nested_type')) {
-      if ($this->nested_type is null) $this->nested_type = new \google\protobuf\DescriptorProto();
-      $this->nested_type->setFields($s['nested_type'] as nonnull);
+      $this->nested_type = Vec\map($s['nested_type'], ($v) ==> { $o = new \google\protobuf\DescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'enum_type')) {
-      if ($this->enum_type is null) $this->enum_type = new \google\protobuf\EnumDescriptorProto();
-      $this->enum_type->setFields($s['enum_type'] as nonnull);
+      $this->enum_type = Vec\map($s['enum_type'], ($v) ==> { $o = new \google\protobuf\EnumDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'extension_range')) {
-      if ($this->extension_range is null) $this->extension_range = new \google\protobuf\DescriptorProto_ExtensionRange();
-      $this->extension_range->setFields($s['extension_range'] as nonnull);
+      $this->extension_range = Vec\map($s['extension_range'], ($v) ==> { $o = new \google\protobuf\DescriptorProto_ExtensionRange(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'oneof_decl')) {
-      if ($this->oneof_decl is null) $this->oneof_decl = new \google\protobuf\OneofDescriptorProto();
-      $this->oneof_decl->setFields($s['oneof_decl'] as nonnull);
+      $this->oneof_decl = Vec\map($s['oneof_decl'], ($v) ==> { $o = new \google\protobuf\OneofDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\MessageOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'reserved_range')) {
-      if ($this->reserved_range is null) $this->reserved_range = new \google\protobuf\DescriptorProto_ReservedRange();
-      $this->reserved_range->setFields($s['reserved_range'] as nonnull);
+      $this->reserved_range = Vec\map($s['reserved_range'], ($v) ==> { $o = new \google\protobuf\DescriptorProto_ReservedRange(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'reserved_name')) $this->reserved_name = $s['reserved_name'];
   }
@@ -784,13 +775,14 @@ class DescriptorProto implements \Protobuf\Message {
   public function getNonDefaultFields(): DescriptorProtoFields {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
-    if (!C\is_empty($this->field)) $s['field'] = $this->field;
-    if (!C\is_empty($this->extension)) $s['extension'] = $this->extension;
-    if (!C\is_empty($this->nested_type)) $s['nested_type'] = $this->nested_type;
-    if (!C\is_empty($this->enum_type)) $s['enum_type'] = $this->enum_type;
-    if (!C\is_empty($this->extension_range)) $s['extension_range'] = $this->extension_range;
-    if (!C\is_empty($this->oneof_decl)) $s['oneof_decl'] = $this->oneof_decl;
-    if (!C\is_empty($this->reserved_range)) $s['reserved_range'] = $this->reserved_range;
+    if (!C\is_empty($this->field)) $s['field'] = Vec\map($this->field, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->extension)) $s['extension'] = Vec\map($this->extension, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->nested_type)) $s['nested_type'] = Vec\map($this->nested_type, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->enum_type)) $s['enum_type'] = Vec\map($this->enum_type, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->extension_range)) $s['extension_range'] = Vec\map($this->extension_range, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->oneof_decl)) $s['oneof_decl'] = Vec\map($this->oneof_decl, ($v) ==> $v->getNonDefaultFields());
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
+    if (!C\is_empty($this->reserved_range)) $s['reserved_range'] = Vec\map($this->reserved_range, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->reserved_name)) $s['reserved_name'] = $this->reserved_name;
     return $s;
   }
@@ -1062,14 +1054,13 @@ class ExtensionRangeOptions implements \Protobuf\Message {
 
   public function setFields(ExtensionRangeOptionsFields $s = shape()): void {
     if (Shapes::keyExists($s, 'uninterpreted_option')) {
-      if ($this->uninterpreted_option is null) $this->uninterpreted_option = new \google\protobuf\UninterpretedOption();
-      $this->uninterpreted_option->setFields($s['uninterpreted_option'] as nonnull);
+      $this->uninterpreted_option = Vec\map($s['uninterpreted_option'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption(); $o->setFields($v); return $o; });
     }
   }
 
   public function getNonDefaultFields(): ExtensionRangeOptionsFields {
     $s = shape();
-    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = $this->uninterpreted_option;
+    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = Vec\map($this->uninterpreted_option, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -1249,7 +1240,7 @@ type FieldDescriptorProtoFields = shape (
   ?'default_value' => string,
   ?'oneof_index' => int,
   ?'json_name' => string,
-  ?'options' => ?\google\protobuf\FieldOptionsFields,
+  ?'options' => \google\protobuf\FieldOptionsFields,
   ?'proto3_optional' => bool,
 );
 class FieldDescriptorProto implements \Protobuf\Message {
@@ -1305,7 +1296,7 @@ class FieldDescriptorProto implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'json_name')) $this->json_name = $s['json_name'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\FieldOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'proto3_optional')) $this->proto3_optional = $s['proto3_optional'];
   }
@@ -1321,6 +1312,7 @@ class FieldDescriptorProto implements \Protobuf\Message {
     if ($this->default_value !== '') $s['default_value'] = $this->default_value;
     if ($this->oneof_index !== 0) $s['oneof_index'] = $this->oneof_index;
     if ($this->json_name !== '') $s['json_name'] = $this->json_name;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     if ($this->proto3_optional !== false) $s['proto3_optional'] = $this->proto3_optional;
     return $s;
   }
@@ -1511,7 +1503,7 @@ class FieldDescriptorProto implements \Protobuf\Message {
 
 type OneofDescriptorProtoFields = shape (
   ?'name' => string,
-  ?'options' => ?\google\protobuf\OneofOptionsFields,
+  ?'options' => \google\protobuf\OneofOptionsFields,
 );
 class OneofDescriptorProto implements \Protobuf\Message {
   public string $name;
@@ -1531,13 +1523,14 @@ class OneofDescriptorProto implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\OneofOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
   }
 
   public function getNonDefaultFields(): OneofDescriptorProtoFields {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     return $s;
   }
 
@@ -1716,7 +1709,7 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
 type EnumDescriptorProtoFields = shape (
   ?'name' => string,
   ?'value' => vec<\google\protobuf\EnumValueDescriptorProtoFields>,
-  ?'options' => ?\google\protobuf\EnumOptionsFields,
+  ?'options' => \google\protobuf\EnumOptionsFields,
   ?'reserved_range' => vec<\google\protobuf\EnumDescriptorProto_EnumReservedRangeFields>,
   ?'reserved_name' => vec<string>,
 );
@@ -1746,16 +1739,14 @@ class EnumDescriptorProto implements \Protobuf\Message {
   public function setFields(EnumDescriptorProtoFields $s = shape()): void {
     if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
     if (Shapes::keyExists($s, 'value')) {
-      if ($this->value is null) $this->value = new \google\protobuf\EnumValueDescriptorProto();
-      $this->value->setFields($s['value'] as nonnull);
+      $this->value = Vec\map($s['value'], ($v) ==> { $o = new \google\protobuf\EnumValueDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\EnumOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'reserved_range')) {
-      if ($this->reserved_range is null) $this->reserved_range = new \google\protobuf\EnumDescriptorProto_EnumReservedRange();
-      $this->reserved_range->setFields($s['reserved_range'] as nonnull);
+      $this->reserved_range = Vec\map($s['reserved_range'], ($v) ==> { $o = new \google\protobuf\EnumDescriptorProto_EnumReservedRange(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'reserved_name')) $this->reserved_name = $s['reserved_name'];
   }
@@ -1763,8 +1754,9 @@ class EnumDescriptorProto implements \Protobuf\Message {
   public function getNonDefaultFields(): EnumDescriptorProtoFields {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
-    if (!C\is_empty($this->value)) $s['value'] = $this->value;
-    if (!C\is_empty($this->reserved_range)) $s['reserved_range'] = $this->reserved_range;
+    if (!C\is_empty($this->value)) $s['value'] = Vec\map($this->value, ($v) ==> $v->getNonDefaultFields());
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
+    if (!C\is_empty($this->reserved_range)) $s['reserved_range'] = Vec\map($this->reserved_range, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->reserved_name)) $s['reserved_name'] = $this->reserved_name;
     return $s;
   }
@@ -1908,7 +1900,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
 type EnumValueDescriptorProtoFields = shape (
   ?'name' => string,
   ?'number' => int,
-  ?'options' => ?\google\protobuf\EnumValueOptionsFields,
+  ?'options' => \google\protobuf\EnumValueOptionsFields,
 );
 class EnumValueDescriptorProto implements \Protobuf\Message {
   public string $name;
@@ -1932,7 +1924,7 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'number')) $this->number = $s['number'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\EnumValueOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
   }
 
@@ -1940,6 +1932,7 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
     if ($this->number !== 0) $s['number'] = $this->number;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     return $s;
   }
 
@@ -2034,7 +2027,7 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
 type ServiceDescriptorProtoFields = shape (
   ?'name' => string,
   ?'method' => vec<\google\protobuf\MethodDescriptorProtoFields>,
-  ?'options' => ?\google\protobuf\ServiceOptionsFields,
+  ?'options' => \google\protobuf\ServiceOptionsFields,
 );
 class ServiceDescriptorProto implements \Protobuf\Message {
   public string $name;
@@ -2056,19 +2049,19 @@ class ServiceDescriptorProto implements \Protobuf\Message {
   public function setFields(ServiceDescriptorProtoFields $s = shape()): void {
     if (Shapes::keyExists($s, 'name')) $this->name = $s['name'];
     if (Shapes::keyExists($s, 'method')) {
-      if ($this->method is null) $this->method = new \google\protobuf\MethodDescriptorProto();
-      $this->method->setFields($s['method'] as nonnull);
+      $this->method = Vec\map($s['method'], ($v) ==> { $o = new \google\protobuf\MethodDescriptorProto(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\ServiceOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
   }
 
   public function getNonDefaultFields(): ServiceDescriptorProtoFields {
     $s = shape();
     if ($this->name !== '') $s['name'] = $this->name;
-    if (!C\is_empty($this->method)) $s['method'] = $this->method;
+    if (!C\is_empty($this->method)) $s['method'] = Vec\map($this->method, ($v) ==> $v->getNonDefaultFields());
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     return $s;
   }
 
@@ -2175,7 +2168,7 @@ type MethodDescriptorProtoFields = shape (
   ?'name' => string,
   ?'input_type' => string,
   ?'output_type' => string,
-  ?'options' => ?\google\protobuf\MethodOptionsFields,
+  ?'options' => \google\protobuf\MethodOptionsFields,
   ?'client_streaming' => bool,
   ?'server_streaming' => bool,
 );
@@ -2211,7 +2204,7 @@ class MethodDescriptorProto implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'output_type')) $this->output_type = $s['output_type'];
     if (Shapes::keyExists($s, 'options')) {
       if ($this->options is null) $this->options = new \google\protobuf\MethodOptions();
-      $this->options->setFields($s['options'] as nonnull);
+      $this->options->setFields($s['options']);
     }
     if (Shapes::keyExists($s, 'client_streaming')) $this->client_streaming = $s['client_streaming'];
     if (Shapes::keyExists($s, 'server_streaming')) $this->server_streaming = $s['server_streaming'];
@@ -2222,6 +2215,7 @@ class MethodDescriptorProto implements \Protobuf\Message {
     if ($this->name !== '') $s['name'] = $this->name;
     if ($this->input_type !== '') $s['input_type'] = $this->input_type;
     if ($this->output_type !== '') $s['output_type'] = $this->output_type;
+    if ($this->options is nonnull) $s['options'] = $this->options->getNonDefaultFields();
     if ($this->client_streaming !== false) $s['client_streaming'] = $this->client_streaming;
     if ($this->server_streaming !== false) $s['server_streaming'] = $this->server_streaming;
     return $s;
@@ -2495,8 +2489,7 @@ class FileOptions implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'php_metadata_namespace')) $this->php_metadata_namespace = $s['php_metadata_namespace'];
     if (Shapes::keyExists($s, 'ruby_package')) $this->ruby_package = $s['ruby_package'];
     if (Shapes::keyExists($s, 'uninterpreted_option')) {
-      if ($this->uninterpreted_option is null) $this->uninterpreted_option = new \google\protobuf\UninterpretedOption();
-      $this->uninterpreted_option->setFields($s['uninterpreted_option'] as nonnull);
+      $this->uninterpreted_option = Vec\map($s['uninterpreted_option'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption(); $o->setFields($v); return $o; });
     }
   }
 
@@ -2522,7 +2515,7 @@ class FileOptions implements \Protobuf\Message {
     if ($this->php_namespace !== '') $s['php_namespace'] = $this->php_namespace;
     if ($this->php_metadata_namespace !== '') $s['php_metadata_namespace'] = $this->php_metadata_namespace;
     if ($this->ruby_package !== '') $s['ruby_package'] = $this->ruby_package;
-    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = $this->uninterpreted_option;
+    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = Vec\map($this->uninterpreted_option, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -2867,8 +2860,7 @@ class MessageOptions implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'deprecated')) $this->deprecated = $s['deprecated'];
     if (Shapes::keyExists($s, 'map_entry')) $this->map_entry = $s['map_entry'];
     if (Shapes::keyExists($s, 'uninterpreted_option')) {
-      if ($this->uninterpreted_option is null) $this->uninterpreted_option = new \google\protobuf\UninterpretedOption();
-      $this->uninterpreted_option->setFields($s['uninterpreted_option'] as nonnull);
+      $this->uninterpreted_option = Vec\map($s['uninterpreted_option'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption(); $o->setFields($v); return $o; });
     }
   }
 
@@ -2878,7 +2870,7 @@ class MessageOptions implements \Protobuf\Message {
     if ($this->no_standard_descriptor_accessor !== false) $s['no_standard_descriptor_accessor'] = $this->no_standard_descriptor_accessor;
     if ($this->deprecated !== false) $s['deprecated'] = $this->deprecated;
     if ($this->map_entry !== false) $s['map_entry'] = $this->map_entry;
-    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = $this->uninterpreted_option;
+    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = Vec\map($this->uninterpreted_option, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -3097,8 +3089,7 @@ class FieldOptions implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'deprecated')) $this->deprecated = $s['deprecated'];
     if (Shapes::keyExists($s, 'weak')) $this->weak = $s['weak'];
     if (Shapes::keyExists($s, 'uninterpreted_option')) {
-      if ($this->uninterpreted_option is null) $this->uninterpreted_option = new \google\protobuf\UninterpretedOption();
-      $this->uninterpreted_option->setFields($s['uninterpreted_option'] as nonnull);
+      $this->uninterpreted_option = Vec\map($s['uninterpreted_option'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption(); $o->setFields($v); return $o; });
     }
   }
 
@@ -3110,7 +3101,7 @@ class FieldOptions implements \Protobuf\Message {
     if ($this->lazy !== false) $s['lazy'] = $this->lazy;
     if ($this->deprecated !== false) $s['deprecated'] = $this->deprecated;
     if ($this->weak !== false) $s['weak'] = $this->weak;
-    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = $this->uninterpreted_option;
+    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = Vec\map($this->uninterpreted_option, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -3267,14 +3258,13 @@ class OneofOptions implements \Protobuf\Message {
 
   public function setFields(OneofOptionsFields $s = shape()): void {
     if (Shapes::keyExists($s, 'uninterpreted_option')) {
-      if ($this->uninterpreted_option is null) $this->uninterpreted_option = new \google\protobuf\UninterpretedOption();
-      $this->uninterpreted_option->setFields($s['uninterpreted_option'] as nonnull);
+      $this->uninterpreted_option = Vec\map($s['uninterpreted_option'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption(); $o->setFields($v); return $o; });
     }
   }
 
   public function getNonDefaultFields(): OneofOptionsFields {
     $s = shape();
-    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = $this->uninterpreted_option;
+    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = Vec\map($this->uninterpreted_option, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -3369,8 +3359,7 @@ class EnumOptions implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'allow_alias')) $this->allow_alias = $s['allow_alias'];
     if (Shapes::keyExists($s, 'deprecated')) $this->deprecated = $s['deprecated'];
     if (Shapes::keyExists($s, 'uninterpreted_option')) {
-      if ($this->uninterpreted_option is null) $this->uninterpreted_option = new \google\protobuf\UninterpretedOption();
-      $this->uninterpreted_option->setFields($s['uninterpreted_option'] as nonnull);
+      $this->uninterpreted_option = Vec\map($s['uninterpreted_option'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption(); $o->setFields($v); return $o; });
     }
   }
 
@@ -3378,7 +3367,7 @@ class EnumOptions implements \Protobuf\Message {
     $s = shape();
     if ($this->allow_alias !== false) $s['allow_alias'] = $this->allow_alias;
     if ($this->deprecated !== false) $s['deprecated'] = $this->deprecated;
-    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = $this->uninterpreted_option;
+    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = Vec\map($this->uninterpreted_option, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -3492,15 +3481,14 @@ class EnumValueOptions implements \Protobuf\Message {
   public function setFields(EnumValueOptionsFields $s = shape()): void {
     if (Shapes::keyExists($s, 'deprecated')) $this->deprecated = $s['deprecated'];
     if (Shapes::keyExists($s, 'uninterpreted_option')) {
-      if ($this->uninterpreted_option is null) $this->uninterpreted_option = new \google\protobuf\UninterpretedOption();
-      $this->uninterpreted_option->setFields($s['uninterpreted_option'] as nonnull);
+      $this->uninterpreted_option = Vec\map($s['uninterpreted_option'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption(); $o->setFields($v); return $o; });
     }
   }
 
   public function getNonDefaultFields(): EnumValueOptionsFields {
     $s = shape();
     if ($this->deprecated !== false) $s['deprecated'] = $this->deprecated;
-    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = $this->uninterpreted_option;
+    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = Vec\map($this->uninterpreted_option, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -3602,15 +3590,14 @@ class ServiceOptions implements \Protobuf\Message {
   public function setFields(ServiceOptionsFields $s = shape()): void {
     if (Shapes::keyExists($s, 'deprecated')) $this->deprecated = $s['deprecated'];
     if (Shapes::keyExists($s, 'uninterpreted_option')) {
-      if ($this->uninterpreted_option is null) $this->uninterpreted_option = new \google\protobuf\UninterpretedOption();
-      $this->uninterpreted_option->setFields($s['uninterpreted_option'] as nonnull);
+      $this->uninterpreted_option = Vec\map($s['uninterpreted_option'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption(); $o->setFields($v); return $o; });
     }
   }
 
   public function getNonDefaultFields(): ServiceOptionsFields {
     $s = shape();
     if ($this->deprecated !== false) $s['deprecated'] = $this->deprecated;
-    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = $this->uninterpreted_option;
+    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = Vec\map($this->uninterpreted_option, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -3745,8 +3732,7 @@ class MethodOptions implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'deprecated')) $this->deprecated = $s['deprecated'];
     if (Shapes::keyExists($s, 'idempotency_level')) $this->idempotency_level = $s['idempotency_level'];
     if (Shapes::keyExists($s, 'uninterpreted_option')) {
-      if ($this->uninterpreted_option is null) $this->uninterpreted_option = new \google\protobuf\UninterpretedOption();
-      $this->uninterpreted_option->setFields($s['uninterpreted_option'] as nonnull);
+      $this->uninterpreted_option = Vec\map($s['uninterpreted_option'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption(); $o->setFields($v); return $o; });
     }
   }
 
@@ -3754,7 +3740,7 @@ class MethodOptions implements \Protobuf\Message {
     $s = shape();
     if ($this->deprecated !== false) $s['deprecated'] = $this->deprecated;
     if ($this->idempotency_level !== \google\protobuf\MethodOptions_IdempotencyLevel::FromInt(0)) $s['idempotency_level'] = $this->idempotency_level;
-    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = $this->uninterpreted_option;
+    if (!C\is_empty($this->uninterpreted_option)) $s['uninterpreted_option'] = Vec\map($this->uninterpreted_option, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -3983,8 +3969,7 @@ class UninterpretedOption implements \Protobuf\Message {
 
   public function setFields(UninterpretedOptionFields $s = shape()): void {
     if (Shapes::keyExists($s, 'name')) {
-      if ($this->name is null) $this->name = new \google\protobuf\UninterpretedOption_NamePart();
-      $this->name->setFields($s['name'] as nonnull);
+      $this->name = Vec\map($s['name'], ($v) ==> { $o = new \google\protobuf\UninterpretedOption_NamePart(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'identifier_value')) $this->identifier_value = $s['identifier_value'];
     if (Shapes::keyExists($s, 'positive_int_value')) $this->positive_int_value = $s['positive_int_value'];
@@ -3996,7 +3981,7 @@ class UninterpretedOption implements \Protobuf\Message {
 
   public function getNonDefaultFields(): UninterpretedOptionFields {
     $s = shape();
-    if (!C\is_empty($this->name)) $s['name'] = $this->name;
+    if (!C\is_empty($this->name)) $s['name'] = Vec\map($this->name, ($v) ==> $v->getNonDefaultFields());
     if ($this->identifier_value !== '') $s['identifier_value'] = $this->identifier_value;
     if ($this->positive_int_value !== 0) $s['positive_int_value'] = $this->positive_int_value;
     if ($this->negative_int_value !== 0) $s['negative_int_value'] = $this->negative_int_value;
@@ -4331,14 +4316,13 @@ class SourceCodeInfo implements \Protobuf\Message {
 
   public function setFields(SourceCodeInfoFields $s = shape()): void {
     if (Shapes::keyExists($s, 'location')) {
-      if ($this->location is null) $this->location = new \google\protobuf\SourceCodeInfo_Location();
-      $this->location->setFields($s['location'] as nonnull);
+      $this->location = Vec\map($s['location'], ($v) ==> { $o = new \google\protobuf\SourceCodeInfo_Location(); $o->setFields($v); return $o; });
     }
   }
 
   public function getNonDefaultFields(): SourceCodeInfoFields {
     $s = shape();
-    if (!C\is_empty($this->location)) $s['location'] = $this->location;
+    if (!C\is_empty($this->location)) $s['location'] = Vec\map($this->location, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 
@@ -4565,14 +4549,13 @@ class GeneratedCodeInfo implements \Protobuf\Message {
 
   public function setFields(GeneratedCodeInfoFields $s = shape()): void {
     if (Shapes::keyExists($s, 'annotation')) {
-      if ($this->annotation is null) $this->annotation = new \google\protobuf\GeneratedCodeInfo_Annotation();
-      $this->annotation->setFields($s['annotation'] as nonnull);
+      $this->annotation = Vec\map($s['annotation'], ($v) ==> { $o = new \google\protobuf\GeneratedCodeInfo_Annotation(); $o->setFields($v); return $o; });
     }
   }
 
   public function getNonDefaultFields(): GeneratedCodeInfoFields {
     $s = shape();
-    if (!C\is_empty($this->annotation)) $s['annotation'] = $this->annotation;
+    if (!C\is_empty($this->annotation)) $s['annotation'] = Vec\map($this->annotation, ($v) ==> $v->getNonDefaultFields());
     return $s;
   }
 

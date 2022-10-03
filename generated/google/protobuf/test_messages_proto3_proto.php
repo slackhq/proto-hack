@@ -348,7 +348,7 @@ class TestAllTypesProto3_oneof_field_oneof_null_value implements TestAllTypesPro
 
 type TestAllTypesProto3_NestedMessageFields = shape (
   ?'a' => int,
-  ?'corecursive' => ?\protobuf_test_messages\proto3\TestAllTypesProto3Fields,
+  ?'corecursive' => \protobuf_test_messages\proto3\TestAllTypesProto3Fields,
 );
 class TestAllTypesProto3_NestedMessage implements \Protobuf\Message {
   public int $a;
@@ -368,13 +368,14 @@ class TestAllTypesProto3_NestedMessage implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'a')) $this->a = $s['a'];
     if (Shapes::keyExists($s, 'corecursive')) {
       if ($this->corecursive is null) $this->corecursive = new \protobuf_test_messages\proto3\TestAllTypesProto3();
-      $this->corecursive->setFields($s['corecursive'] as nonnull);
+      $this->corecursive->setFields($s['corecursive']);
     }
   }
 
   public function getNonDefaultFields(): TestAllTypesProto3_NestedMessageFields {
     $s = shape();
     if ($this->a !== 0) $s['a'] = $this->a;
+    if ($this->corecursive is nonnull) $s['corecursive'] = $this->corecursive->getNonDefaultFields();
     return $s;
   }
 
@@ -1896,7 +1897,7 @@ class TestAllTypesProto3_MapStringBytesEntry implements \Protobuf\Message {
 
 type TestAllTypesProto3_MapStringNestedMessageEntryFields = shape (
   ?'key' => string,
-  ?'value' => ?\protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessageFields,
+  ?'value' => \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessageFields,
 );
 class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Message {
   public string $key;
@@ -1916,13 +1917,14 @@ class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Messag
     if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
     if (Shapes::keyExists($s, 'value')) {
       if ($this->value is null) $this->value = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
-      $this->value->setFields($s['value'] as nonnull);
+      $this->value->setFields($s['value']);
     }
   }
 
   public function getNonDefaultFields(): TestAllTypesProto3_MapStringNestedMessageEntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
@@ -2004,7 +2006,7 @@ class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Messag
 
 type TestAllTypesProto3_MapStringForeignMessageEntryFields = shape (
   ?'key' => string,
-  ?'value' => ?\protobuf_test_messages\proto3\ForeignMessageFields,
+  ?'value' => \protobuf_test_messages\proto3\ForeignMessageFields,
 );
 class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Message {
   public string $key;
@@ -2024,13 +2026,14 @@ class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Messa
     if (Shapes::keyExists($s, 'key')) $this->key = $s['key'];
     if (Shapes::keyExists($s, 'value')) {
       if ($this->value is null) $this->value = new \protobuf_test_messages\proto3\ForeignMessage();
-      $this->value->setFields($s['value'] as nonnull);
+      $this->value->setFields($s['value']);
     }
   }
 
   public function getNonDefaultFields(): TestAllTypesProto3_MapStringForeignMessageEntryFields {
     $s = shape();
     if ($this->key !== '') $s['key'] = $this->key;
+    if ($this->value is nonnull) $s['value'] = $this->value->getNonDefaultFields();
     return $s;
   }
 
@@ -2318,14 +2321,14 @@ type TestAllTypesProto3Fields = shape (
   ?'optional_bool' => bool,
   ?'optional_string' => string,
   ?'optional_bytes' => string,
-  ?'optional_nested_message' => ?\protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessageFields,
-  ?'optional_foreign_message' => ?\protobuf_test_messages\proto3\ForeignMessageFields,
+  ?'optional_nested_message' => \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessageFields,
+  ?'optional_foreign_message' => \protobuf_test_messages\proto3\ForeignMessageFields,
   ?'optional_nested_enum' => \protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum_enum_t,
   ?'optional_foreign_enum' => \protobuf_test_messages\proto3\ForeignEnum_enum_t,
   ?'optional_aliased_enum' => \protobuf_test_messages\proto3\TestAllTypesProto3_AliasedEnum_enum_t,
   ?'optional_string_piece' => string,
   ?'optional_cord' => string,
-  ?'recursive_message' => ?\protobuf_test_messages\proto3\TestAllTypesProto3Fields,
+  ?'recursive_message' => \protobuf_test_messages\proto3\TestAllTypesProto3Fields,
   ?'repeated_int32' => vec<int>,
   ?'repeated_int64' => vec<int>,
   ?'repeated_uint32' => vec<int>,
@@ -2394,15 +2397,15 @@ type TestAllTypesProto3Fields = shape (
   ?'map_string_foreign_message' => dict<string, \protobuf_test_messages\proto3\ForeignMessageFields>,
   ?'map_string_nested_enum' => dict<string, \protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum_enum_t>,
   ?'map_string_foreign_enum' => dict<string, \protobuf_test_messages\proto3\ForeignEnum_enum_t>,
-  ?'optional_bool_wrapper' => ?\google\protobuf\BoolValueFields,
-  ?'optional_int32_wrapper' => ?\google\protobuf\Int32ValueFields,
-  ?'optional_int64_wrapper' => ?\google\protobuf\Int64ValueFields,
-  ?'optional_uint32_wrapper' => ?\google\protobuf\UInt32ValueFields,
-  ?'optional_uint64_wrapper' => ?\google\protobuf\UInt64ValueFields,
-  ?'optional_float_wrapper' => ?\google\protobuf\FloatValueFields,
-  ?'optional_double_wrapper' => ?\google\protobuf\DoubleValueFields,
-  ?'optional_string_wrapper' => ?\google\protobuf\StringValueFields,
-  ?'optional_bytes_wrapper' => ?\google\protobuf\BytesValueFields,
+  ?'optional_bool_wrapper' => \google\protobuf\BoolValueFields,
+  ?'optional_int32_wrapper' => \google\protobuf\Int32ValueFields,
+  ?'optional_int64_wrapper' => \google\protobuf\Int64ValueFields,
+  ?'optional_uint32_wrapper' => \google\protobuf\UInt32ValueFields,
+  ?'optional_uint64_wrapper' => \google\protobuf\UInt64ValueFields,
+  ?'optional_float_wrapper' => \google\protobuf\FloatValueFields,
+  ?'optional_double_wrapper' => \google\protobuf\DoubleValueFields,
+  ?'optional_string_wrapper' => \google\protobuf\StringValueFields,
+  ?'optional_bytes_wrapper' => \google\protobuf\BytesValueFields,
   ?'repeated_bool_wrapper' => vec<\google\protobuf\BoolValueFields>,
   ?'repeated_int32_wrapper' => vec<\google\protobuf\Int32ValueFields>,
   ?'repeated_int64_wrapper' => vec<\google\protobuf\Int64ValueFields>,
@@ -2412,12 +2415,12 @@ type TestAllTypesProto3Fields = shape (
   ?'repeated_double_wrapper' => vec<\google\protobuf\DoubleValueFields>,
   ?'repeated_string_wrapper' => vec<\google\protobuf\StringValueFields>,
   ?'repeated_bytes_wrapper' => vec<\google\protobuf\BytesValueFields>,
-  ?'optional_duration' => ?\google\protobuf\DurationFields,
-  ?'optional_timestamp' => ?\google\protobuf\TimestampFields,
-  ?'optional_field_mask' => ?\google\protobuf\FieldMaskFields,
-  ?'optional_struct' => ?\google\protobuf\StructFields,
-  ?'optional_any' => ?\google\protobuf\AnyFields,
-  ?'optional_value' => ?\google\protobuf\ValueFields,
+  ?'optional_duration' => \google\protobuf\DurationFields,
+  ?'optional_timestamp' => \google\protobuf\TimestampFields,
+  ?'optional_field_mask' => \google\protobuf\FieldMaskFields,
+  ?'optional_struct' => \google\protobuf\StructFields,
+  ?'optional_any' => \google\protobuf\AnyFields,
+  ?'optional_value' => \google\protobuf\ValueFields,
   ?'optional_null_value' => \google\protobuf\NullValue_enum_t,
   ?'repeated_duration' => vec<\google\protobuf\DurationFields>,
   ?'repeated_timestamp' => vec<\google\protobuf\TimestampFields>,
@@ -2898,11 +2901,11 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'optional_bytes')) $this->optional_bytes = $s['optional_bytes'];
     if (Shapes::keyExists($s, 'optional_nested_message')) {
       if ($this->optional_nested_message is null) $this->optional_nested_message = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
-      $this->optional_nested_message->setFields($s['optional_nested_message'] as nonnull);
+      $this->optional_nested_message->setFields($s['optional_nested_message']);
     }
     if (Shapes::keyExists($s, 'optional_foreign_message')) {
       if ($this->optional_foreign_message is null) $this->optional_foreign_message = new \protobuf_test_messages\proto3\ForeignMessage();
-      $this->optional_foreign_message->setFields($s['optional_foreign_message'] as nonnull);
+      $this->optional_foreign_message->setFields($s['optional_foreign_message']);
     }
     if (Shapes::keyExists($s, 'optional_nested_enum')) $this->optional_nested_enum = $s['optional_nested_enum'];
     if (Shapes::keyExists($s, 'optional_foreign_enum')) $this->optional_foreign_enum = $s['optional_foreign_enum'];
@@ -2911,7 +2914,7 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'optional_cord')) $this->optional_cord = $s['optional_cord'];
     if (Shapes::keyExists($s, 'recursive_message')) {
       if ($this->recursive_message is null) $this->recursive_message = new \protobuf_test_messages\proto3\TestAllTypesProto3();
-      $this->recursive_message->setFields($s['recursive_message'] as nonnull);
+      $this->recursive_message->setFields($s['recursive_message']);
     }
     if (Shapes::keyExists($s, 'repeated_int32')) $this->repeated_int32 = $s['repeated_int32'];
     if (Shapes::keyExists($s, 'repeated_int64')) $this->repeated_int64 = $s['repeated_int64'];
@@ -2929,12 +2932,10 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'repeated_string')) $this->repeated_string = $s['repeated_string'];
     if (Shapes::keyExists($s, 'repeated_bytes')) $this->repeated_bytes = $s['repeated_bytes'];
     if (Shapes::keyExists($s, 'repeated_nested_message')) {
-      if ($this->repeated_nested_message is null) $this->repeated_nested_message = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
-      $this->repeated_nested_message->setFields($s['repeated_nested_message'] as nonnull);
+      $this->repeated_nested_message = Vec\map($s['repeated_nested_message'], ($v) ==> { $o = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_foreign_message')) {
-      if ($this->repeated_foreign_message is null) $this->repeated_foreign_message = new \protobuf_test_messages\proto3\ForeignMessage();
-      $this->repeated_foreign_message->setFields($s['repeated_foreign_message'] as nonnull);
+      $this->repeated_foreign_message = Vec\map($s['repeated_foreign_message'], ($v) ==> { $o = new \protobuf_test_messages\proto3\ForeignMessage(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_nested_enum')) $this->repeated_nested_enum = $s['repeated_nested_enum'];
     if (Shapes::keyExists($s, 'repeated_foreign_enum')) $this->repeated_foreign_enum = $s['repeated_foreign_enum'];
@@ -2989,128 +2990,112 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if (Shapes::keyExists($s, 'map_string_foreign_enum')) $this->map_string_foreign_enum = $s['map_string_foreign_enum'];
     if (Shapes::keyExists($s, 'optional_bool_wrapper')) {
       if ($this->optional_bool_wrapper is null) $this->optional_bool_wrapper = new \google\protobuf\BoolValue();
-      $this->optional_bool_wrapper->setFields($s['optional_bool_wrapper'] as nonnull);
+      $this->optional_bool_wrapper->setFields($s['optional_bool_wrapper']);
     }
     if (Shapes::keyExists($s, 'optional_int32_wrapper')) {
       if ($this->optional_int32_wrapper is null) $this->optional_int32_wrapper = new \google\protobuf\Int32Value();
-      $this->optional_int32_wrapper->setFields($s['optional_int32_wrapper'] as nonnull);
+      $this->optional_int32_wrapper->setFields($s['optional_int32_wrapper']);
     }
     if (Shapes::keyExists($s, 'optional_int64_wrapper')) {
       if ($this->optional_int64_wrapper is null) $this->optional_int64_wrapper = new \google\protobuf\Int64Value();
-      $this->optional_int64_wrapper->setFields($s['optional_int64_wrapper'] as nonnull);
+      $this->optional_int64_wrapper->setFields($s['optional_int64_wrapper']);
     }
     if (Shapes::keyExists($s, 'optional_uint32_wrapper')) {
       if ($this->optional_uint32_wrapper is null) $this->optional_uint32_wrapper = new \google\protobuf\UInt32Value();
-      $this->optional_uint32_wrapper->setFields($s['optional_uint32_wrapper'] as nonnull);
+      $this->optional_uint32_wrapper->setFields($s['optional_uint32_wrapper']);
     }
     if (Shapes::keyExists($s, 'optional_uint64_wrapper')) {
       if ($this->optional_uint64_wrapper is null) $this->optional_uint64_wrapper = new \google\protobuf\UInt64Value();
-      $this->optional_uint64_wrapper->setFields($s['optional_uint64_wrapper'] as nonnull);
+      $this->optional_uint64_wrapper->setFields($s['optional_uint64_wrapper']);
     }
     if (Shapes::keyExists($s, 'optional_float_wrapper')) {
       if ($this->optional_float_wrapper is null) $this->optional_float_wrapper = new \google\protobuf\FloatValue();
-      $this->optional_float_wrapper->setFields($s['optional_float_wrapper'] as nonnull);
+      $this->optional_float_wrapper->setFields($s['optional_float_wrapper']);
     }
     if (Shapes::keyExists($s, 'optional_double_wrapper')) {
       if ($this->optional_double_wrapper is null) $this->optional_double_wrapper = new \google\protobuf\DoubleValue();
-      $this->optional_double_wrapper->setFields($s['optional_double_wrapper'] as nonnull);
+      $this->optional_double_wrapper->setFields($s['optional_double_wrapper']);
     }
     if (Shapes::keyExists($s, 'optional_string_wrapper')) {
       if ($this->optional_string_wrapper is null) $this->optional_string_wrapper = new \google\protobuf\StringValue();
-      $this->optional_string_wrapper->setFields($s['optional_string_wrapper'] as nonnull);
+      $this->optional_string_wrapper->setFields($s['optional_string_wrapper']);
     }
     if (Shapes::keyExists($s, 'optional_bytes_wrapper')) {
       if ($this->optional_bytes_wrapper is null) $this->optional_bytes_wrapper = new \google\protobuf\BytesValue();
-      $this->optional_bytes_wrapper->setFields($s['optional_bytes_wrapper'] as nonnull);
+      $this->optional_bytes_wrapper->setFields($s['optional_bytes_wrapper']);
     }
     if (Shapes::keyExists($s, 'repeated_bool_wrapper')) {
-      if ($this->repeated_bool_wrapper is null) $this->repeated_bool_wrapper = new \google\protobuf\BoolValue();
-      $this->repeated_bool_wrapper->setFields($s['repeated_bool_wrapper'] as nonnull);
+      $this->repeated_bool_wrapper = Vec\map($s['repeated_bool_wrapper'], ($v) ==> { $o = new \google\protobuf\BoolValue(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_int32_wrapper')) {
-      if ($this->repeated_int32_wrapper is null) $this->repeated_int32_wrapper = new \google\protobuf\Int32Value();
-      $this->repeated_int32_wrapper->setFields($s['repeated_int32_wrapper'] as nonnull);
+      $this->repeated_int32_wrapper = Vec\map($s['repeated_int32_wrapper'], ($v) ==> { $o = new \google\protobuf\Int32Value(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_int64_wrapper')) {
-      if ($this->repeated_int64_wrapper is null) $this->repeated_int64_wrapper = new \google\protobuf\Int64Value();
-      $this->repeated_int64_wrapper->setFields($s['repeated_int64_wrapper'] as nonnull);
+      $this->repeated_int64_wrapper = Vec\map($s['repeated_int64_wrapper'], ($v) ==> { $o = new \google\protobuf\Int64Value(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_uint32_wrapper')) {
-      if ($this->repeated_uint32_wrapper is null) $this->repeated_uint32_wrapper = new \google\protobuf\UInt32Value();
-      $this->repeated_uint32_wrapper->setFields($s['repeated_uint32_wrapper'] as nonnull);
+      $this->repeated_uint32_wrapper = Vec\map($s['repeated_uint32_wrapper'], ($v) ==> { $o = new \google\protobuf\UInt32Value(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_uint64_wrapper')) {
-      if ($this->repeated_uint64_wrapper is null) $this->repeated_uint64_wrapper = new \google\protobuf\UInt64Value();
-      $this->repeated_uint64_wrapper->setFields($s['repeated_uint64_wrapper'] as nonnull);
+      $this->repeated_uint64_wrapper = Vec\map($s['repeated_uint64_wrapper'], ($v) ==> { $o = new \google\protobuf\UInt64Value(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_float_wrapper')) {
-      if ($this->repeated_float_wrapper is null) $this->repeated_float_wrapper = new \google\protobuf\FloatValue();
-      $this->repeated_float_wrapper->setFields($s['repeated_float_wrapper'] as nonnull);
+      $this->repeated_float_wrapper = Vec\map($s['repeated_float_wrapper'], ($v) ==> { $o = new \google\protobuf\FloatValue(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_double_wrapper')) {
-      if ($this->repeated_double_wrapper is null) $this->repeated_double_wrapper = new \google\protobuf\DoubleValue();
-      $this->repeated_double_wrapper->setFields($s['repeated_double_wrapper'] as nonnull);
+      $this->repeated_double_wrapper = Vec\map($s['repeated_double_wrapper'], ($v) ==> { $o = new \google\protobuf\DoubleValue(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_string_wrapper')) {
-      if ($this->repeated_string_wrapper is null) $this->repeated_string_wrapper = new \google\protobuf\StringValue();
-      $this->repeated_string_wrapper->setFields($s['repeated_string_wrapper'] as nonnull);
+      $this->repeated_string_wrapper = Vec\map($s['repeated_string_wrapper'], ($v) ==> { $o = new \google\protobuf\StringValue(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_bytes_wrapper')) {
-      if ($this->repeated_bytes_wrapper is null) $this->repeated_bytes_wrapper = new \google\protobuf\BytesValue();
-      $this->repeated_bytes_wrapper->setFields($s['repeated_bytes_wrapper'] as nonnull);
+      $this->repeated_bytes_wrapper = Vec\map($s['repeated_bytes_wrapper'], ($v) ==> { $o = new \google\protobuf\BytesValue(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'optional_duration')) {
       if ($this->optional_duration is null) $this->optional_duration = new \google\protobuf\Duration();
-      $this->optional_duration->setFields($s['optional_duration'] as nonnull);
+      $this->optional_duration->setFields($s['optional_duration']);
     }
     if (Shapes::keyExists($s, 'optional_timestamp')) {
       if ($this->optional_timestamp is null) $this->optional_timestamp = new \google\protobuf\Timestamp();
-      $this->optional_timestamp->setFields($s['optional_timestamp'] as nonnull);
+      $this->optional_timestamp->setFields($s['optional_timestamp']);
     }
     if (Shapes::keyExists($s, 'optional_field_mask')) {
       if ($this->optional_field_mask is null) $this->optional_field_mask = new \google\protobuf\FieldMask();
-      $this->optional_field_mask->setFields($s['optional_field_mask'] as nonnull);
+      $this->optional_field_mask->setFields($s['optional_field_mask']);
     }
     if (Shapes::keyExists($s, 'optional_struct')) {
       if ($this->optional_struct is null) $this->optional_struct = new \google\protobuf\Struct();
-      $this->optional_struct->setFields($s['optional_struct'] as nonnull);
+      $this->optional_struct->setFields($s['optional_struct']);
     }
     if (Shapes::keyExists($s, 'optional_any')) {
       if ($this->optional_any is null) $this->optional_any = new \google\protobuf\Any();
-      $this->optional_any->setFields($s['optional_any'] as nonnull);
+      $this->optional_any->setFields($s['optional_any']);
     }
     if (Shapes::keyExists($s, 'optional_value')) {
       if ($this->optional_value is null) $this->optional_value = new \google\protobuf\Value();
-      $this->optional_value->setFields($s['optional_value'] as nonnull);
+      $this->optional_value->setFields($s['optional_value']);
     }
     if (Shapes::keyExists($s, 'optional_null_value')) $this->optional_null_value = $s['optional_null_value'];
     if (Shapes::keyExists($s, 'repeated_duration')) {
-      if ($this->repeated_duration is null) $this->repeated_duration = new \google\protobuf\Duration();
-      $this->repeated_duration->setFields($s['repeated_duration'] as nonnull);
+      $this->repeated_duration = Vec\map($s['repeated_duration'], ($v) ==> { $o = new \google\protobuf\Duration(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_timestamp')) {
-      if ($this->repeated_timestamp is null) $this->repeated_timestamp = new \google\protobuf\Timestamp();
-      $this->repeated_timestamp->setFields($s['repeated_timestamp'] as nonnull);
+      $this->repeated_timestamp = Vec\map($s['repeated_timestamp'], ($v) ==> { $o = new \google\protobuf\Timestamp(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_fieldmask')) {
-      if ($this->repeated_fieldmask is null) $this->repeated_fieldmask = new \google\protobuf\FieldMask();
-      $this->repeated_fieldmask->setFields($s['repeated_fieldmask'] as nonnull);
+      $this->repeated_fieldmask = Vec\map($s['repeated_fieldmask'], ($v) ==> { $o = new \google\protobuf\FieldMask(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_struct')) {
-      if ($this->repeated_struct is null) $this->repeated_struct = new \google\protobuf\Struct();
-      $this->repeated_struct->setFields($s['repeated_struct'] as nonnull);
+      $this->repeated_struct = Vec\map($s['repeated_struct'], ($v) ==> { $o = new \google\protobuf\Struct(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_any')) {
-      if ($this->repeated_any is null) $this->repeated_any = new \google\protobuf\Any();
-      $this->repeated_any->setFields($s['repeated_any'] as nonnull);
+      $this->repeated_any = Vec\map($s['repeated_any'], ($v) ==> { $o = new \google\protobuf\Any(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_value')) {
-      if ($this->repeated_value is null) $this->repeated_value = new \google\protobuf\Value();
-      $this->repeated_value->setFields($s['repeated_value'] as nonnull);
+      $this->repeated_value = Vec\map($s['repeated_value'], ($v) ==> { $o = new \google\protobuf\Value(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'repeated_list_value')) {
-      if ($this->repeated_list_value is null) $this->repeated_list_value = new \google\protobuf\ListValue();
-      $this->repeated_list_value->setFields($s['repeated_list_value'] as nonnull);
+      $this->repeated_list_value = Vec\map($s['repeated_list_value'], ($v) ==> { $o = new \google\protobuf\ListValue(); $o->setFields($v); return $o; });
     }
     if (Shapes::keyExists($s, 'fieldname1')) $this->fieldname1 = $s['fieldname1'];
     if (Shapes::keyExists($s, 'field_name2')) $this->field_name2 = $s['field_name2'];
@@ -3150,11 +3135,14 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if ($this->optional_bool !== false) $s['optional_bool'] = $this->optional_bool;
     if ($this->optional_string !== '') $s['optional_string'] = $this->optional_string;
     if ($this->optional_bytes !== '') $s['optional_bytes'] = $this->optional_bytes;
+    if ($this->optional_nested_message is nonnull) $s['optional_nested_message'] = $this->optional_nested_message->getNonDefaultFields();
+    if ($this->optional_foreign_message is nonnull) $s['optional_foreign_message'] = $this->optional_foreign_message->getNonDefaultFields();
     if ($this->optional_nested_enum !== \protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum::FromInt(0)) $s['optional_nested_enum'] = $this->optional_nested_enum;
     if ($this->optional_foreign_enum !== \protobuf_test_messages\proto3\ForeignEnum::FromInt(0)) $s['optional_foreign_enum'] = $this->optional_foreign_enum;
     if ($this->optional_aliased_enum !== \protobuf_test_messages\proto3\TestAllTypesProto3_AliasedEnum::FromInt(0)) $s['optional_aliased_enum'] = $this->optional_aliased_enum;
     if ($this->optional_string_piece !== '') $s['optional_string_piece'] = $this->optional_string_piece;
     if ($this->optional_cord !== '') $s['optional_cord'] = $this->optional_cord;
+    if ($this->recursive_message is nonnull) $s['recursive_message'] = $this->recursive_message->getNonDefaultFields();
     if (!C\is_empty($this->repeated_int32)) $s['repeated_int32'] = $this->repeated_int32;
     if (!C\is_empty($this->repeated_int64)) $s['repeated_int64'] = $this->repeated_int64;
     if (!C\is_empty($this->repeated_uint32)) $s['repeated_uint32'] = $this->repeated_uint32;
@@ -3170,8 +3158,8 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if (!C\is_empty($this->repeated_bool)) $s['repeated_bool'] = $this->repeated_bool;
     if (!C\is_empty($this->repeated_string)) $s['repeated_string'] = $this->repeated_string;
     if (!C\is_empty($this->repeated_bytes)) $s['repeated_bytes'] = $this->repeated_bytes;
-    if (!C\is_empty($this->repeated_nested_message)) $s['repeated_nested_message'] = $this->repeated_nested_message;
-    if (!C\is_empty($this->repeated_foreign_message)) $s['repeated_foreign_message'] = $this->repeated_foreign_message;
+    if (!C\is_empty($this->repeated_nested_message)) $s['repeated_nested_message'] = Vec\map($this->repeated_nested_message, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_foreign_message)) $s['repeated_foreign_message'] = Vec\map($this->repeated_foreign_message, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->repeated_nested_enum)) $s['repeated_nested_enum'] = $this->repeated_nested_enum;
     if (!C\is_empty($this->repeated_foreign_enum)) $s['repeated_foreign_enum'] = $this->repeated_foreign_enum;
     if (!C\is_empty($this->repeated_string_piece)) $s['repeated_string_piece'] = $this->repeated_string_piece;
@@ -3223,23 +3211,38 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     if (!C\is_empty($this->map_string_foreign_message)) $s['map_string_foreign_message'] = Dict\map($this->map_string_foreign_message, ($v) ==> $v->getNonDefaultFields());
     if (!C\is_empty($this->map_string_nested_enum)) $s['map_string_nested_enum'] = $this->map_string_nested_enum;
     if (!C\is_empty($this->map_string_foreign_enum)) $s['map_string_foreign_enum'] = $this->map_string_foreign_enum;
-    if (!C\is_empty($this->repeated_bool_wrapper)) $s['repeated_bool_wrapper'] = $this->repeated_bool_wrapper;
-    if (!C\is_empty($this->repeated_int32_wrapper)) $s['repeated_int32_wrapper'] = $this->repeated_int32_wrapper;
-    if (!C\is_empty($this->repeated_int64_wrapper)) $s['repeated_int64_wrapper'] = $this->repeated_int64_wrapper;
-    if (!C\is_empty($this->repeated_uint32_wrapper)) $s['repeated_uint32_wrapper'] = $this->repeated_uint32_wrapper;
-    if (!C\is_empty($this->repeated_uint64_wrapper)) $s['repeated_uint64_wrapper'] = $this->repeated_uint64_wrapper;
-    if (!C\is_empty($this->repeated_float_wrapper)) $s['repeated_float_wrapper'] = $this->repeated_float_wrapper;
-    if (!C\is_empty($this->repeated_double_wrapper)) $s['repeated_double_wrapper'] = $this->repeated_double_wrapper;
-    if (!C\is_empty($this->repeated_string_wrapper)) $s['repeated_string_wrapper'] = $this->repeated_string_wrapper;
-    if (!C\is_empty($this->repeated_bytes_wrapper)) $s['repeated_bytes_wrapper'] = $this->repeated_bytes_wrapper;
+    if ($this->optional_bool_wrapper is nonnull) $s['optional_bool_wrapper'] = $this->optional_bool_wrapper->getNonDefaultFields();
+    if ($this->optional_int32_wrapper is nonnull) $s['optional_int32_wrapper'] = $this->optional_int32_wrapper->getNonDefaultFields();
+    if ($this->optional_int64_wrapper is nonnull) $s['optional_int64_wrapper'] = $this->optional_int64_wrapper->getNonDefaultFields();
+    if ($this->optional_uint32_wrapper is nonnull) $s['optional_uint32_wrapper'] = $this->optional_uint32_wrapper->getNonDefaultFields();
+    if ($this->optional_uint64_wrapper is nonnull) $s['optional_uint64_wrapper'] = $this->optional_uint64_wrapper->getNonDefaultFields();
+    if ($this->optional_float_wrapper is nonnull) $s['optional_float_wrapper'] = $this->optional_float_wrapper->getNonDefaultFields();
+    if ($this->optional_double_wrapper is nonnull) $s['optional_double_wrapper'] = $this->optional_double_wrapper->getNonDefaultFields();
+    if ($this->optional_string_wrapper is nonnull) $s['optional_string_wrapper'] = $this->optional_string_wrapper->getNonDefaultFields();
+    if ($this->optional_bytes_wrapper is nonnull) $s['optional_bytes_wrapper'] = $this->optional_bytes_wrapper->getNonDefaultFields();
+    if (!C\is_empty($this->repeated_bool_wrapper)) $s['repeated_bool_wrapper'] = Vec\map($this->repeated_bool_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_int32_wrapper)) $s['repeated_int32_wrapper'] = Vec\map($this->repeated_int32_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_int64_wrapper)) $s['repeated_int64_wrapper'] = Vec\map($this->repeated_int64_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_uint32_wrapper)) $s['repeated_uint32_wrapper'] = Vec\map($this->repeated_uint32_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_uint64_wrapper)) $s['repeated_uint64_wrapper'] = Vec\map($this->repeated_uint64_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_float_wrapper)) $s['repeated_float_wrapper'] = Vec\map($this->repeated_float_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_double_wrapper)) $s['repeated_double_wrapper'] = Vec\map($this->repeated_double_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_string_wrapper)) $s['repeated_string_wrapper'] = Vec\map($this->repeated_string_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_bytes_wrapper)) $s['repeated_bytes_wrapper'] = Vec\map($this->repeated_bytes_wrapper, ($v) ==> $v->getNonDefaultFields());
+    if ($this->optional_duration is nonnull) $s['optional_duration'] = $this->optional_duration->getNonDefaultFields();
+    if ($this->optional_timestamp is nonnull) $s['optional_timestamp'] = $this->optional_timestamp->getNonDefaultFields();
+    if ($this->optional_field_mask is nonnull) $s['optional_field_mask'] = $this->optional_field_mask->getNonDefaultFields();
+    if ($this->optional_struct is nonnull) $s['optional_struct'] = $this->optional_struct->getNonDefaultFields();
+    if ($this->optional_any is nonnull) $s['optional_any'] = $this->optional_any->getNonDefaultFields();
+    if ($this->optional_value is nonnull) $s['optional_value'] = $this->optional_value->getNonDefaultFields();
     if ($this->optional_null_value !== \google\protobuf\NullValue::FromInt(0)) $s['optional_null_value'] = $this->optional_null_value;
-    if (!C\is_empty($this->repeated_duration)) $s['repeated_duration'] = $this->repeated_duration;
-    if (!C\is_empty($this->repeated_timestamp)) $s['repeated_timestamp'] = $this->repeated_timestamp;
-    if (!C\is_empty($this->repeated_fieldmask)) $s['repeated_fieldmask'] = $this->repeated_fieldmask;
-    if (!C\is_empty($this->repeated_struct)) $s['repeated_struct'] = $this->repeated_struct;
-    if (!C\is_empty($this->repeated_any)) $s['repeated_any'] = $this->repeated_any;
-    if (!C\is_empty($this->repeated_value)) $s['repeated_value'] = $this->repeated_value;
-    if (!C\is_empty($this->repeated_list_value)) $s['repeated_list_value'] = $this->repeated_list_value;
+    if (!C\is_empty($this->repeated_duration)) $s['repeated_duration'] = Vec\map($this->repeated_duration, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_timestamp)) $s['repeated_timestamp'] = Vec\map($this->repeated_timestamp, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_fieldmask)) $s['repeated_fieldmask'] = Vec\map($this->repeated_fieldmask, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_struct)) $s['repeated_struct'] = Vec\map($this->repeated_struct, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_any)) $s['repeated_any'] = Vec\map($this->repeated_any, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_value)) $s['repeated_value'] = Vec\map($this->repeated_value, ($v) ==> $v->getNonDefaultFields());
+    if (!C\is_empty($this->repeated_list_value)) $s['repeated_list_value'] = Vec\map($this->repeated_list_value, ($v) ==> $v->getNonDefaultFields());
     if ($this->fieldname1 !== 0) $s['fieldname1'] = $this->fieldname1;
     if ($this->field_name2 !== 0) $s['field_name2'] = $this->field_name2;
     if ($this->_field_name3 !== 0) $s['_field_name3'] = $this->_field_name3;
