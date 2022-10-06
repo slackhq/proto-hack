@@ -7,6 +7,13 @@ Hacklang generator for protobuf
   - golang toolchain
 - hhvm
 
+# How to use the plugin locally
+Run `bazel build protoc-gen-hack` to build the plugin binary; Then run
+
+```
+protoc --proto_path=/path/to/proto/folder --plugin=/path/to/protoc-gen-hack --hack_out=plugin=grpc:/path/to/output/folder <proto/files>
+```
+
 # Usage
 `protoc --hack_out=./gen-src example.proto`
 
