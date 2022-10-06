@@ -124,7 +124,7 @@ func gen(req *ppb.CodeGeneratorRequest) *ppb.CodeGeneratorResponse {
 	return resp
 }
 
-func writeHeader(w *writer, fdp *desc.FileDescriptorProto, rootNs *Namespace) (*Namespace) {
+func writeHeader(w *writer, fdp *desc.FileDescriptorProto, rootNs *Namespace) *Namespace {
 	packageParts := strings.Split(fdp.GetPackage(), ".")
 	ns := rootNs.FindFullyQualifiedNamespace("." + fdp.GetPackage())
 	if ns == nil {
@@ -132,7 +132,6 @@ func writeHeader(w *writer, fdp *desc.FileDescriptorProto, rootNs *Namespace) (*
 	}
 
 	// File header.
-	w.p("<?hh // strict")
 	if fdp.GetPackage() != "" {
 		w.p("namespace %s;", strings.Join(packageParts, "\\"))
 	}
@@ -144,10 +143,10 @@ func writeHeader(w *writer, fdp *desc.FileDescriptorProto, rootNs *Namespace) (*
 	return ns
 }
 
-func createFile(name *string, fdp *desc.FileDescriptorProto) (*ppb.CodeGeneratorResponse_File) {
+func createFile(name *string, fdp *desc.FileDescriptorProto) *ppb.CodeGeneratorResponse_File {
 	f := &ppb.CodeGeneratorResponse_File{}
 	fext := filepath.Ext(fdp.GetName())
-	fname := strings.TrimSuffix(fdp.GetName(), fext) + *name + "_proto.php"
+	fname := strings.TrimSuffix(fdp.GetName(), fext) + "_" + strings.ToLower(*name) + "_proto.hack"
 	f.Name = proto.String(fname)
 	return f
 }
@@ -189,11 +188,17 @@ func writeFiles(fdp *desc.FileDescriptorProto, rootNs *Namespace, genService, al
 	}
 
 	// Write services.
-	//if genService {
-	//	for _, sdp := range fdp.Service {
-	//		writeService(w, sdp, fdp.GetPackage(), ns)
-	//	}
-	//}
+	if genService {
+		for _, sdp := range fdp.Service {
+			f := createFile(sdp.Name, fdp)
+			b := &bytes.Buffer{}
+			w := &writer{b, 0}
+			ns := writeHeader(w, fdp, rootNs)
+			writeService(w, sdp, fdp.GetPackage(), ns)
+			f.Content = proto.String(b.String())
+			resp.File = append(resp.File, f)
+		}
+	}
 
 	// Write file descriptor.
 	dsn := "Descriptor"
