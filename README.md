@@ -14,6 +14,12 @@ Run `bazel build protoc-gen-hack` to build the plugin binary; Then run
 protoc --proto_path=/path/to/proto/folder --plugin=/path/to/protoc-gen-hack --hack_out=plugin=grpc:/path/to/output/folder <proto/files>
 ```
 
+To generate multiple files per proto based on top level entities, please add the following flag
+
+```
+--hack_out=plugin=grpc,file_per_entity:/path/to/output
+```
+
 # Usage
 `protoc --hack_out=./gen-src example.proto`
 
