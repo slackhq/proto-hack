@@ -478,7 +478,6 @@ Required.Proto3.JsonInput.FieldMask.JsonOutput
 Required.Proto3.JsonInput.FieldMask.ProtobufOutput
 Required.Proto3.JsonInput.FloatFieldTooLarge
 Required.Proto3.JsonInput.FloatFieldTooSmall
-Required.Proto3.JsonInput.Int32FieldNegativeWithLeadingZero
 Required.Proto3.JsonInput.OneofFieldDuplicate
 Required.Proto3.JsonInput.RejectTopLevelNull
 Required.Proto3.JsonInput.TimestampLeap.JsonOutput
