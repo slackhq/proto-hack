@@ -216,26 +216,6 @@ func writeEntity(name *string, fdp *desc.FileDescriptorProto, rootNs *Namespace,
 	resp.File = append(resp.File, f)
 }
 
-func fdpToPhpString(fdp *desc.FileDescriptorProto) string {
-	bfdp, err := proto.Marshal(fdp)
-	if err != nil {
-		panic(err)
-	}
-	var b bytes.Buffer
-	gz, err := zlib.NewWriterLevel(&b, flate.BestCompression)
-	if err != nil {
-		panic(err)
-	}
-	if _, err = gz.Write(bfdp); err != nil {
-		panic(err)
-	}
-	if err = gz.Close(); err != nil {
-		panic(err)
-	}
-	str := base64.RawStdEncoding.EncodeToString(b.Bytes())
-	return str
-}
-
 // Write everything in a proto file to a generated .php file.
 func writeFile(syn syntax, w *writer, fdp *desc.FileDescriptorProto, rootNs *Namespace, genService, allowProto2 bool) {
 	packageParts := strings.Split(fdp.GetPackage(), ".")
@@ -310,6 +290,26 @@ func writeFileDescriptor(w *writer, fdp *desc.FileDescriptorProto) {
 	w.p("return (string)\\gzuncompress(\\base64_decode(self::RAW));")
 	w.p("}")
 	w.p("}")
+}
+
+func fdpToPhpString(fdp *desc.FileDescriptorProto) string {
+	bfdp, err := proto.Marshal(fdp)
+	if err != nil {
+		panic(err)
+	}
+	var b bytes.Buffer
+	gz, err := zlib.NewWriterLevel(&b, flate.BestCompression)
+	if err != nil {
+		panic(err)
+	}
+	if _, err = gz.Write(bfdp); err != nil {
+		panic(err)
+	}
+	if err = gz.Close(); err != nil {
+		panic(err)
+	}
+	str := base64.RawStdEncoding.EncodeToString(b.Bytes())
+	return str
 }
 
 func toPhpName(ns, name string) (string, string) {
