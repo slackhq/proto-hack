@@ -2,8 +2,8 @@
 namespace conformance;
 
 
-# https://github.com/google/protobuf/blob/master/conformance/conformance_test_runner.cc
-# https://github.com/google/protobuf/blob/master/conformance/conformance.proto
+// https://github.com/google/protobuf/blob/master/conformance/conformance_test_runner.cc
+// https://github.com/google/protobuf/blob/master/conformance/conformance.proto
 
 <<__EntryPoint>>
 function main(): void {
@@ -33,7 +33,7 @@ function main(): void {
   foreach ($av as $arg) {
     $argv[] = (string)$arg;
   }
-  # throw new \Exception(\print_r($argv, true));
+  // throw new \Exception(\print_r($argv, true));
 
   if (\count($argv) > 1 && $argv[1] != "conformance_hhvm_harness.sh") {
     echo "oneoff test mode\n";
@@ -96,8 +96,8 @@ function main(): void {
 }
 
 function p(string $s): void {
-  # Uncomment for debug output.
-  # \fwrite(\STDERR, 'conformance.php: '.$s."\n");
+  // Uncomment for debug output.
+  // \fwrite(\STDERR, 'conformance.php: '.$s."\n");
 }
 
 function conformancePipe(): void {
