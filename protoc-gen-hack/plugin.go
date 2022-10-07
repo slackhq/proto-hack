@@ -139,7 +139,6 @@ func gen(req *ppb.CodeGeneratorRequest) *ppb.CodeGeneratorResponse {
 			writeFiles(syn, fdp, rootns, genService, allowProto2, resp)
 		} else {
 			f := &ppb.CodeGeneratorResponse_File{}
-
 			fext := filepath.Ext(fdp.GetName())
 			fname := strings.TrimSuffix(fdp.GetName(), fext) + "_proto.php"
 			f.Name = proto.String(fname)
@@ -154,6 +153,7 @@ func gen(req *ppb.CodeGeneratorRequest) *ppb.CodeGeneratorResponse {
 	return resp
 }
 
+// For each proto file, it generates multiple .hack files based on how many top level entities the proto file has.
 func writeFiles(syn syntax, fdp *desc.FileDescriptorProto, rootNs *Namespace, genService, allowProto2 bool, resp *ppb.CodeGeneratorResponse) {
 	// Top level enums.
 	for _, edp := range fdp.EnumType {
@@ -181,40 +181,7 @@ func writeFiles(syn syntax, fdp *desc.FileDescriptorProto, rootNs *Namespace, ge
 	// Write file descriptor.
 	dsn := "Descriptor"
 	writeEntity(&dsn, fdp, rootNs, resp, func(w *writer, _ *Namespace) {
-		w.ln()
-		fdClassName := strings.Replace(fdp.GetName(), "/", "_", -1)
-		fdClassName = strings.Replace(fdClassName, ".", "__", -1)
-		fdClassName = specialPrefix + "FileDescriptor_" + fdClassName
-		w.p("class %s implements %s\\FileDescriptor {", fdClassName, libNsInternal)
-		w.p("const string NAME = '%s';", fdp.GetName())
-
-		// First clear out things we don't need.
-		fdp.SourceCodeInfo = nil
-
-		linelength := 70
-		raw := fdpToPhpString(fdp)
-		w.p("const string RAW =")
-		for i := 0; i < len(raw); i += linelength {
-			prefix := "."
-			if i == 0 {
-				prefix = ""
-			}
-			suffix := ""
-			end := i + linelength
-			if end >= len(raw) {
-				end = len(raw)
-				suffix = ";"
-			}
-			w.p("%s'%s'%s", prefix, raw[i:end], suffix)
-		}
-		w.p("public function Name(): string {")
-		w.p("return self::NAME;")
-		w.p("}")
-		w.ln()
-		w.p("public function FileDescriptorProtoBytes(): string {")
-		w.p("return (string)\\gzuncompress(\\base64_decode(self::RAW));")
-		w.p("}")
-		w.p("}")
+		writeFileDescriptor(w, fdp)
 	})
 }
 
@@ -269,6 +236,7 @@ func fdpToPhpString(fdp *desc.FileDescriptorProto) string {
 	return str
 }
 
+// Write everything in a proto file to a generated .php file.
 func writeFile(syn syntax, w *writer, fdp *desc.FileDescriptorProto, rootNs *Namespace, genService, allowProto2 bool) {
 	packageParts := strings.Split(fdp.GetPackage(), ".")
 	ns := rootNs.FindFullyQualifiedNamespace("." + fdp.GetPackage())
@@ -304,6 +272,10 @@ func writeFile(syn syntax, w *writer, fdp *desc.FileDescriptorProto, rootNs *Nam
 	}
 
 	// Write file descriptor.
+	writeFileDescriptor(w, fdp)
+}
+
+func writeFileDescriptor(w *writer, fdp *desc.FileDescriptorProto) {
 	w.ln()
 	fdClassName := strings.Replace(fdp.GetName(), "/", "_", -1)
 	fdClassName = strings.Replace(fdClassName, ".", "__", -1)
