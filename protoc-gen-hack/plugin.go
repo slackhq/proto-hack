@@ -266,22 +266,8 @@ func writeFileDescriptor(w *writer, fdp *desc.FileDescriptorProto) {
 	// First clear out things we don't need.
 	fdp.SourceCodeInfo = nil
 
-	linelength := 70
 	raw := fdpToPhpString(fdp)
-	w.p("const string RAW =")
-	for i := 0; i < len(raw); i += linelength {
-		prefix := "."
-		if i == 0 {
-			prefix = ""
-		}
-		suffix := ""
-		end := i + linelength
-		if end >= len(raw) {
-			end = len(raw)
-			suffix = ";"
-		}
-		w.p("%s'%s'%s", prefix, raw[i:end], suffix)
-	}
+	w.p("const string RAW = '%s';", raw)
 	w.p("public function Name(): string {")
 	w.p("return self::NAME;")
 	w.p("}")
