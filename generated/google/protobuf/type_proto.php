@@ -882,6 +882,6 @@ class XXX_FileDescriptor_google_protobuf_type__proto implements \Protobuf\Intern
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/type_file_descriptor.pb.bin'));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/type_file_descriptor.pb.bin.gz'));
   }
 }

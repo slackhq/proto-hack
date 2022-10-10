@@ -79,6 +79,6 @@ class XXX_FileDescriptor_google_protobuf_field_mask__proto implements \Protobuf\
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/field_mask_file_descriptor.pb.bin'));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/field_mask_file_descriptor.pb.bin.gz'));
   }
 }

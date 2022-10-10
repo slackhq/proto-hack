@@ -241,6 +241,6 @@ class XXX_FileDescriptor_test_example3__proto implements \Protobuf\Internal\File
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/example3_file_descriptor.pb.bin'));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/example3_file_descriptor.pb.bin.gz'));
   }
 }

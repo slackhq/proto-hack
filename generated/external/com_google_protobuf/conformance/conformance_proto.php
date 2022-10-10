@@ -794,6 +794,6 @@ class XXX_FileDescriptor_external_com_google_protobuf_conformance_conformance__p
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/conformance_file_descriptor.pb.bin'));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/conformance_file_descriptor.pb.bin.gz'));
   }
 }

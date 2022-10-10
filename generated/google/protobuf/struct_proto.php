@@ -541,6 +541,6 @@ class XXX_FileDescriptor_google_protobuf_struct__proto implements \Protobuf\Inte
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/struct_file_descriptor.pb.bin'));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/struct_file_descriptor.pb.bin.gz'));
   }
 }

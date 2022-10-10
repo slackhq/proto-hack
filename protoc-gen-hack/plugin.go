@@ -187,7 +187,7 @@ func writeFiles(syn syntax, fdp *desc.FileDescriptorProto, rootNs *Namespace, ge
 
 func binaryFileDescriptorPath(fdp *desc.FileDescriptorProto) string {
 	fext := filepath.Ext(fdp.GetName())
-	return strings.TrimSuffix(fdp.GetName(), fext) + "_file_descriptor.pb.bin"
+	return strings.TrimSuffix(fdp.GetName(), fext) + "_file_descriptor.pb.bin.gz"
 }
 
 func writeBinaryFileDescriptor(fdp *desc.FileDescriptorProto, resp *ppb.CodeGeneratorResponse) {
@@ -213,6 +213,8 @@ func writeBinaryFileDescriptor(fdp *desc.FileDescriptorProto, resp *ppb.CodeGene
 		panic(err)
 	}
 
+	// The protoc compiler will complain that this contains invalid UTF-8 data,
+	// but we will ignore that for now.
 	f.Content = proto.String(b.String())
 	resp.File = append(resp.File, f)
 }
