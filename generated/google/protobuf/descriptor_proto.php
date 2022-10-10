@@ -3898,62 +3898,11 @@ class GeneratedCodeInfo implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_descriptor__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/descriptor.proto';
-  const string RAW =
-  'eNrEWVuP28YVDnVb6UirnZ3d2PTm4rVy8dpJ5MC3OJsirVaiN3J3JZXSNhegIGbJkUSbIh'
-  .'mSsr1BURjoUx/7WhR96EuA/oACfWv/QIH8g6It0P6EPhYzQ1KkLvEmQJKn3fnmO2fOHH4z'
-  .'c2YEuyPHGVn0hus5gXM6Hd4wqK97phs4Xp1jeEMw6hGjdgyb902LtmJinwb4HuSGpkVlaT'
-  .'e7V775en3OqJ626DFY5Ra1f+dga0kvxpCzyYR5lPZKKv8fy7DmEv0RGVE5w+GoiV8FMKhL'
-  .'bYPa+pmc3c3uldQEgt+CTXd6apm6lqDBbnYvryLR0ZqRr8LGE0oeJallTq0yOEFsQmVCfZ'
-  .'+MqBacuVTO8dnvLsx+fubl0Gpw5lLcgBK1pxPhIb8if4o9ncx7KTKz0MWaT73Hpk7lAndw'
-  .'dcFBX/TP+4jscBNK9GlAbd90bHmNO3ljyVekljHvYmaH78Ka4wamY/tycVfaK998eakQuo'
-  .'KjRmTcBuQ7U0+nmu4YVDPtoSOXuIPLixPhxKZj0LY9dNSqn2rjC1Dwz+yAPJUrXCFhq/aX'
-  .'AmycR2IfQH7IZilnvkkOhE06iYVvmcQGlG3qB9QQisieU1MgjBYllftWkvoENuKQNI/Yo0'
-  .'ibN54XSV2J7FRmplZpqo1bAI5NnaFmUN2Siyuy1GWUhSw5AtUt/P5MamsrlHIsFtmC2k6g'
-  .'6lGme2qEMyvxIOrPnZkamomJrXvJJn4NYkDjsgK+C1UisEMmdOcLqKbTg7ch7wfEC7gK86'
-  .'poYARZaht8l8ur7F/8k9mEs3zCby5+0ZTn+XnvvAfrqQmcd+jaL+HFpa7xJ7A9tU07oJ7r'
-  .'UaZYMZT8n7UVmjtJsoUXdWu6CF4vFf+7hp49e/YsU/tbAbaXrZmly/cCFOzp5JR6PEl5NW'
-  .'zhBuQtckotObcr7VVvvnWuVVk/YiaqsMQfQi7copmH6+fzwNaSyu3wS1Bif4U2CjzmIgOY'
-  .'LvAOFPkyMWh0tMVtJiyDDsnUCrTHxJpSLviSWgnBnzMMX4ayWFWmbdCnfPfMq2KhtRnChn'
-  .'/oO3YkTT4EA/jw781v3K8sn97CWroKG5xxK/z0xJI3d6W9oloVcDdEa3/OQI5vLBtQHnza'
-  .'U7RW9+TgSEESrgJw4P5RtzFAmbjd7gzu3kbZ2OBEALkk4dZNlMcIKsJB+xOldfc2KqSRWz'
-  .'fRGl6HEkcOut0jVIx99gdqu3OISrHPQ7V70kMQezhW+v3GoYLKMePg04HSR5VUWLduovV4'
-  .'CKVzcoyqeBPWxRBREBtz0N3bCM0CEV42U8Dd2wjXmpDnMsQYqkeNA+VI6/YG7W6ncYSkGa'
-  .'YqPztpq0oLZZJYT2kMlBbK1nTYXrahLl1CCS1kVmiB+5rXQu1fGdhacqgsHeTHkBdaFsfs'
-  .'taWnE1f2wlHL7ZKlRnZFqcFcLAj2Fwubvzgf757nfOTYNzsE8ksOgQ9gc8HRuTfjX0sgr0'
-  .'rOc7bETGpL/GA+g1dWf4SFb/2lBBeWl5RLY/gQChMajJ2orHpzyWHNuuc/dmiVPO2zq+pC'
-  .'Ec1CpL/JwItLnS8N9BUA03angSidxE5c4gjfvNguOw3i/izvBwFxwr1ZoDke6KsrZrogzH'
-  .'cB6ZZJ7UDzA4+SiWmP+FFT3M8PieVTdUN096NeZsEF5CUsCikL0R1b1H5bgnKiAMdXoPKQ'
-  .'PCZadKkSmSgzrBderN6FbU5xpgH1NN0ivs+TVuRUzPq6rKsZ9eA7sMUtJlMrMF2Lauya5/'
-  .'MjJ45skzGOQwKLyMcteIWbjahNPRJQjX4+JZavEdvQxsQfy9vMwUFGltRLjHgY8hROa9jG'
-  .'R8Qf4324wL34gWfaI00fU/2RNg2G9+SXkuPzCPuc02SUk2B4D/ehwj7GxPyCakPH42dodc'
-  .'nWlMhgvRsaHDsG3c/3e4rSUsuRl/uOxwQ1cuIEl4WgRk6U3juwpetizqauhZcxX0apZOn6'
-  .'oSCEGvfx+/DiLFlJw82FWc6b3oEt92zREKdGdM/mzd6DbXfsLtpdT9phd+zOG77Bb+Ye1U'
-  .'lADflikp7owHVAuq5Rm5xaVCMetYkvX+bkXOBNqVrVdYV3Nngfvg6bzulDXShScz06NJ/K'
-  .'r/P0brAOrsceh/E1QLo/Jp7Lt2TfJTqV3xBUgXcimK0I/4k5DCKPV8WK4FjobQ8Qy0Rq4D'
-  .'1Oq7pjNznua7DOmLNBr4nCzR0nRrwNFxhpQgNikIAk2G9zNkv7cdiZitObnp7FwnpHxMmw'
-  .'SFrfWXFe24dKUve4BEL5SGJFULPbYuXLZwrKsDLqqD1QNPWkM2gfKyibKOwf5Ipvoqu1rz'
-  .'JQTd/U8I/gYvSs4tNAe2J6fEFOiDgcY/1sh6w+DT42PbbcJiTAR3DZdjQ/ILZBPEObPWhp'
-  .'RNep7zviIIy9vGw7/ZA8OyEaIXVOvtlV8n0JShPiatQOvDNenxfV4oS4Cmt/L9ekB7liEZ'
-  .'Ue5IolBLV/ZqGSrNfZ9UfnJ5bE97TXvra6rzfZUbZfEMWxKixZGcHERkUxUlTDFj6EwkOf'
-  .'+y5w369/ve8Hfe689KCvdbrqceNIDc3xJchZ5Iuz9KHHofN+hEuQe0LJo/RRw6HvcDHcgD'
-  .'zPFwYIM4ZewEXINbsqWxAIKgLVem2lqaBM7Q4URBLYYonTgF4Im6EPKeo9OT5QVJRJf+oc'
-  .'ytd8qCTr8O/nMv5XCcqJupoVRMSynCcasUzih9IADjUYct5P9z0tkTwq1P4gAZovbOfClH'
-  .'7IMGu/l6Carmbnwrvyg4b3jwysp2rY80b3OWyaBp24TkBt/Uyz6GNqyTW+adz4+iq53p7Z'
-  .'HTGz/a12SznudQdKp/mpdtL5aaf7cUdF5hztO1z2PUDzQeGLsCws9ALego1OV+u3W4qm3L'
-  .'+vNAd98e4RswepBV77XRa2lkSCG+GNRVyi3jlP9HVWM/SIF4QXnGvAsmQH5tCkXvieJK4x'
-  .'GzNcPCm9Ddh1fDMwH1PNtKPHJ3atyako6mnbQcy26YjMsdlmnlVR1BOzr0DFcKas1hM8dn'
-  .'ZIallgMSWs4mevXhW1LDBBuQobZDTymPPIkbiXVGOYE3ceQDHKAzuqWSY0V1y2M3sltWhH'
-  .'nVegYvra7BE/s5vZK6pl048fQGtfZqCa/hECt6BoOTrh0hK/gO0953eL+lHIV2PLnb9LUI'
-  .'xgfAFyLgnG3F3+IIMklbcZ7rvE5hIIcdZm39WixOCXHmcyoXbgR981xJshjN+CzcAjppXi'
-  .'5jgXRR0xeR8uRX4NGhB9TI2ZUYE/blwMCa2wP7KtfSXBZnRNM+JkHQMQ23aCZLoWpbxgV2'
-  .'/ERmrCwc4EYNazMm2XoRz+wsR/phQXexAQu8/hbcif0pFph+/GohE9v+Ti55eDX8GW7kzm'
-  .'wz1Ac48L/kfSZ++EpJFjEXtUd7zR7GdWVvH4iR9b3dP/SdIfM9nD3sGfMjuHwrAXJUOlQ4'
-  .'vqbIL/DwAA//9Nomx0';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/descriptor_file_descriptor_proto.bin'));
   }
 }

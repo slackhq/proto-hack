@@ -536,20 +536,11 @@ class ListValue implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_struct__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/struct.proto';
-  const string RAW =
-  'eNp0ksGL00AUxjvJNpgXWZcRtKyioXsJIgnUi1gvBtYtGEqMtoKX0qRpCJ3OlGRG6cl/w7'
-  .'NHj/51HmVmklRaest77/d9M9/LwNOCsYLkwa5inKViHdS8Ehn3VY0f6KnfToc/EVifFIHH'
-  .'YK3LnKzqAXJNzxnd+Eewr0H/vaJuKa/2SSO5/gjOf218BeYm3w+Qizw7kZ/4JfS/LYnIB4'
-  .'aLPGf06MR8LqeJht4Yr9HwjwF91cRjACoIWWgDaXo5uj4xmApCFD/pJTZtC3wD96nYpnm1'
-  .'OJyPJr3E0d0OqnlV0qKBTHlxCemuhp4DpIy117hwkXdPHiV7GnirXETGG6Svoj4+s8fGXm'
-  .'S8S0nKutVaSnuaMipr3qUkbRFacLEp6Wo4BrsjsA+WMmv/6LmlN9SLJ2B3S8SXANNZFC3m'
-  .'76LZ7VUv/AEPM7Y9dggdHSaWdYy+Bs28YGRJC59VxeEl8v0ur4MNZd9p8yp36V+EfhnmXR'
-  .'z+Np7daWncXu5LTsgHSX+WwtRSRq/+BQAA///HtOy4';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/struct_file_descriptor_proto.bin'));
   }
 }

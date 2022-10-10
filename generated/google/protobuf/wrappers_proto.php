@@ -484,17 +484,11 @@ class BytesValue implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_wrappers__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/wrappers.proto';
-  const string RAW =
-  'eNrikkvPz0/PSdUvKMovyU8qTdMvL0osKEgtKtYDiwjxQ+T1YPJKylzcLvmlSTmpYYk5pa'
-  .'lCIlysZSCGBKMCowZjEISjpMTF5ZaTn1iCRQ0TkhrPvBIzEyxqmGFqlLm4Q3EpYkE1yNgI'
-  .'ixpWNIOwKuKFKVLk4nTKz8/BooQDyZzgkqLMvHQsijiRHORUWZJajEUND1SNUzMjl3Byfq'
-  .'4eWvA68YZDwz8AJBLAGGUIVZGen5OYl66XX5SOiKuSyoLUYv3svPzyPHi8FST9YGRcxMTs'
-  .'HuC0iknOHaI5AKpDLzw1J8cbpD4EpDWJDWyUMSAAAP//WWSbuw';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/wrappers_file_descriptor_proto.bin'));
   }
 }
