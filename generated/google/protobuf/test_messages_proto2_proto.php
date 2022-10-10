@@ -4901,63 +4901,11 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_test_messages_proto2__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/test_messages_proto2.proto';
-  const string RAW =
-  'eNq0WtlyG8cVRWNIAWwCJNgi5RYdl1vUNpJjigTHI0pxbIsiIWohpQylLHIsBAKHLJQADI'
-  .'NFy0tclcpDKnlxnH1zll/IY34gSn4kW+UlD1kqVUr1Ot09IykEGFUJIO6cOefentsH3ZiB'
-  .'Z3ejaLcZntvrRL3ofn/nXC/s9qqtsNut7YbdKguX59kbek2CqgaIHy3PfXwdottht3ep2b'
-  .'z9ZC/s3mJhdBJORHu9RtSuNauNdm+pjAEB7mhQlNGrNGjDfA9nCXAdA+Z76DScVLA+p3MI'
-  .'cIuBOvsOiyaAvodHCHBHTKDF2OWMowS4UzFwK8nY5YyHCHCRCfQ9dAaWFHCn8TjcXirjHA'
-  .'FuLlAEFR5OQn0P5wlwD1lQ30NvwKlYXtKOEeBOBopjS8RTwL6HIQFuyQb7njH0O82o1sPj'
-  .'BLjZeOgrNGjUvx317zdDXCDABXH9qyyKjkN1ZvV+FDVxkQA3HxRkcCWKmuZo9jqN9i6eIM'
-  .'Ad00aTRY3s7j/phV08SYBbiLNboUH0CL6iYO2w2wu3ZYNiRIA7Xn53/oXtO59s3flNxrPB'
-  .'gcGM5DfCqAVxPHpRJ2zstpXyYaa89BLlCj9LEHLt4IgafOMoasNpu86w3W/hGQLcifLbgx'
-  .'a51u63AmRWSGNoG84kymOCR5jgwv9WG6UShR22CmMqvqbCu6G61wjrIca0J1ay+Wx8Hu+L'
-  .'W/QwOq21Wj3qbOOjAg/idrscdbbRPTjVCev9TrfxMFSX51V2eRb3PWZBSXHJy3ISTnTCvb'
-  .'BGrwc3kdeJQ11ORpXL6TDfw4Q41OU0GPckBRMud4w41OVkOHY5A+h7eI441OV0oMUoXO44'
-  .'cajLyfBWklG43AniUJfTgdzlFFDa0UniUJeTcc3lTKjv4VPEoS5nQLnLxfKS9jRxqMupBD'
-  .'SXs8C+h13iUJczwdzl4iSYy50hDnU5lYJ0OQUTLneWONTlZDh2OQVkLvcGcajLyaB0uThD'
-  .'7nKfJg51OZWfcrmYjbncm8ShLqfopMspmOVyC8Q5EJeT/AmXi0fPcrlFpjyYy6nBT7icXS'
-  .'cznSXiDO9yZoXS5RLlMUGPCQ7gclZh0uWsbhAu59Oe4C5n9oVyOXUec7nzAg/idmMudxIW'
-  .'9mr1B8qDrlMPWsmWQDDO49KFNJjv4RvUgywY84yigAkP2qAexHDifOVCOtD38Cb1IBtoMA'
-  .'oPukk9SAdu2YzCg25RD7KBzIUmBFCaxeeoBzGkoIhdyID6Hg6oByWgzIUmpbyk3aIexLCC'
-  .'RXMhE+x7+Db1oCSYuZAceu5Bd6gH6UMvXUjWLzzo89SD9PqVC4nzuAd9gXoQg0EeZi7Uhk'
-  .'iA9Ln0xeHnElMqcW5tNp2BE/220YhfEo2YCYryCG9FC+p7+K5oRhPKL4qCioZ8XzRkJlAs'
-  .'oiVtsO/hL4umtMAWs2jMD0RjauCtJLNoznuiOS2w76E3YUmBZSdVRYNmAkUkWzQB9z38Fd'
-  .'GkNtz30Dk4Faci6WuiUTOB4lKtmjzB9/B90ayJE/j0ihNiDVsXDatdHt6y+riIpt0WTauN'
-  .'i2jb01CdzRs3FI2bCQryAGvdDpxWQL15dw6keTMBkuxa+zbhZKu2xztX9O8y+4pb3b/cRm'
-  .'2PNTp7WWv3Ok+CYkuPaWq+J6bAheHUfI+9GGoihjpwiqrx+SOn0UWmVxlIj883/soVaTl6'
-  .'VNf0PTkbPzOkpu/xV1NTRqUmn81yUr89hCaf/VtWnXpU1/Q96Q2fHVLT97asOvUoegwPU0'
-  .'0xwZXHvMNU1wdSFWYk3rguLcyMG8q+p+zq3WGVfU+8Wcoqjr4GZ9g4y6KV9b3HtK8NNtaC'
-  .'RL5zdVqifcTUp1da1n5paH3fk++2fnzE9CfuyivD+hPzcMufuK9HsBSrCWO/zOTWBpfjXw'
-  .'Ncb6JlBNEOpBmwrwX+3bDK1FYGUqNfIvQ/lxpvxRE1XflCXOzO1oaZroyCv2rTVYvKwRSa'
-  .'fKNXGWIwOS3bG8aDqQXRNwE8qilae8YrTHpjCGljl8hTONJKPYi+DeCsloq9i1xnuWwOkY'
-  .'u5h+TJvNJKP4o+hEeS48KWFleHmcVa3XQtoc1i6wj6OoCvpAwHS+EaS+H68GMR5zDdSjmE'
-  .'jsNC1A6jHbkSiAhwi+uZYJxFxfd3F05zkNU9ewfyu+p6JkCM3uwWlZmYmF8lwB1TmYnpdA'
-  .'zyj2ImdQhwC+uZALIgnwCvQygg1Eq6BLj59UwwxhHUBowh8D3cI8AdMYbA92Ihbrd9Atys'
-  .'EuI+qXiERz4kwAWKR3jbBzIbdpkfDf+braqFXc7rcGS71qvhp4AAF5b9/TOv1nq1gJHQkd'
-  .'tphM3tdq0VLuLvOOyujRZCBI6zT1X6sYw/1hGbNISOwUI1hizh7wpIRUKW0BwscgSDeFX8'
-  .'PZuGjT77tEAhb+Hvc4QeQ8clzQLj8fEPDBDl8VVF9NN5/ENb6DwFqNSW8Y/sbJfjkunHC/'
-  .'jHNsUFNAcLFYVYXMA/EXkoksUFhrm6dmO1unlpY21xEf9UYmiQx2IMG+sy/pmBYTF0Ak5U'
-  .'tfFdXMI/T6gtcVQlRnn4kwTKiweQg97Cv9AHkIG0UebV+fiXCZBP9bSczler+FcJ1HmK0n'
-  .'JarlbxrxNZLc92YNG0hQIENXEDEdTQFhyvR+q3eHbHcKDf83WW2fcgSu7aUAk6D8InQpr+'
-  .'iabh6MNas89lRwP+4WJ2GcQM+k5MZ3BSGBydYQVOp+2tdI5iCkcxncPYK+kcIykcI0mOxN'
-  .'5H55hK4ZhK5zD2MjoHSuFAOscqPJK+M9FZciksueewmLsMneVQCsshnaUC8fP2CzrPZArP'
-  .'5PN4rHW/zlNK4Smldpu+in9Zv2Z1hkvwcMrC/GUUQKd4B5bs1bZ+fj7l/HxKk9graJ1jLI'
-  .'VjLFmGvSR+GUVBp/gWgK++YG2bwnVH5zqA+y9aMh/CT71obZuSzFUzmYFuyWgJfAPwFk1b'
-  .'1KaoB7r6sHdptDSewKPPXdempFEx09j/vRtN+gYcoSsi+r2/24n6YhuMf8/nBGQx/jPeHC'
-  .'xwhFhJ/4F7ND+NW/jsMTglxnor7F2OOp2w3jubz4+Unj179ix3MZsHs/+mDWhj1h73wna3'
-  .'EbUXabndXoff5g7on+XfATgjaqp2w141lGB0eYD9gy2N//Xbe6yXNg6ALK4jONxSB1V09h'
-  .'8vLL5Mv/wb7JGX0QA0yk//v4V/9Jv/gIOvvJxa+dwFCLWtYQ46lZs3Sxn6x8qloAT4H3dL'
-  .'WXr9N9eusIZh/8DZ0fzj0lOwUlQ7FLp8unYo/8dc6aPNuRNwOm2W06Gsy3VUfe4TB87caT'
-  .'9oR4/atyO9HnQq8fTWn3Jpj2+5ycd5/pxLfZ7nfThh7SP/khvcrYptY3nYiJ8HYRMP/zXH'
-  .'dkIv+/Eotfj5m4LqCqUKTGZ0wn7K6W+5lMecTiWeC/l7LuXBkNnXYNFQMxe6ZytwKuFTaB'
-  .'KOV24Ga1evbFZ5u2gB3jZG4G4pe/EunFTThOeD9r9cxo9ZWhOKiZWwcg669ag1zx8ofDHp'
-  .'OvgnAP8NAAD//7nXCFQ';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/test_messages_proto2_file_descriptor.pb.bin.gz'));
   }
 }

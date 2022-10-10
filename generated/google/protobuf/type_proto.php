@@ -877,28 +877,11 @@ class Option implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_type__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/type.proto';
-  const string RAW =
-  'eNqkVd2O2kYUjo3x4sPCTiZR4mykFNFeoEg1KqxWvTWLl1pLbHcwTbY3yAteRNaMEbbbRX'
-  .'2GvkQve92H6CP1rtWMwZifSmlz5/Od73znZ45n4HwahtPAby6WYRzeJffNeLXwNW7hs9Sn'
-  .'bXznr/bJHl2l3vOv9l1RmCzH/mgc0th/jFNW/VcRJHe18DEGiXpzXxVqQkMh/BtrIN/P/G'
-  .'ASqWKt0Ci3Xmh7+bVr5iZrFn4Bckj98D5SC7VCQyFrC38DJ+EinoU0UiUu9PJAyOZ+suFh'
-  .'A6q79arFmtAot94cRA447SplkUqUN3ET5GhFY+9RlWtCo3ok8YC7yZpW/0OGIm8KN0F6mN'
-  .'EJH0i19fp469rNjE4IJ+IulMfecjKjXjCLV6rI4+r/Ene1ZZJ8GJshTeZ3/lIt1IRGkayt'
-  .'7Hyk3Pm8ghJbjlGyDHh/Cjlh9nAZ4C+gzIc/mtGJ/6iecC3gkMkQlmfhjR/8iVqqCY0SWV'
-  .'v5s1I+8axeg/IxCumI1we8jhIDLFbjl1CZ+PdeEsSjn7wg8dUyJ5yuwR8YVv9TBIlNEiM4'
-  .'dW8dYzS0biz7vYWe4DMoc6RrDzt9Awm4CsCB676tu0jMbNNyLy9QIQsYpoCUJ7RbqJjluD'
-  .'Y/GN3LCyTvIu0WOsEVUDjSse0+KmWaA5eYVg8pmWaP2EMHQabwzhgM9J6Byhmjc+saA3S6'
-  .'U1a7hSpZCsMavkNV/BQqaYpNEWd70OUFQttCUpWnO8DlBcL1GMq53cIv4dmVTrqmpfdN9z'
-  .'Y3VxWe5x2245q2pfeRsO8hxvdDkxhdJB56HEN3jS4q1P8WQDJoMj96jXwLik+TeXr86U1y'
-  .'frBULJovA9mS88tY+N8Xh/R5F0fx0y6Oj6BkLRydwvbHFnd+7P/eY/07kFPoaKK3UNyMmj'
-  .'X+/EBOpyuSUt5qIKd9sGUb3Fqu/mHkENu1W+jJPtRGQucXeDYO5/uKHYU9IQ6zHOHHr9fe'
-  .'aRh4dKqFy+nuWxY1H2j4M+Xfi7u/BOE3sdBzOr+Lb3ppoLMp9L0fBDeMy+SjO5nLtP8JAA'
-  .'D//7RnFH0';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/type_file_descriptor.pb.bin.gz'));
   }
 }

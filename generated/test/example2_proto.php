@@ -169,15 +169,11 @@ class refexample3 implements \Protobuf\Message {
 
 class XXX_FileDescriptor_test_example2__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'test/example2.proto';
-  const string RAW =
-  'eNriEi5JLS7RT61IzC3ISTXSKyjKL8kXYk/LrNJLSqySQpE1hsgqyXFxwNQLCXGxVOXnpk'
-  .'swKjBqsAaB2UraXNxFqWkwTUIyXKxppXnZlWA13EZsem4gXhBEUIufi83RNa8010iIlYsx'
-  .'SoAhiQ1siTEgAAD//x4gLAg';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/example2_file_descriptor.pb.bin.gz'));
   }
 }

@@ -236,15 +236,11 @@ class Funky implements \Protobuf\Message {
 
 class XXX_FileDescriptor_test_example3__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'test/example3.proto';
-  const string RAW =
-  'eNriEi5JLS7RT61IzC3ISTXWKyjKL8lXkuBic8nPy06tFOLjYsrIlGBUYNTgDGLKyFRK52'
-  .'J1K83LrhRS5WLLBSsBS3Ib8eqBxfV8wYJBUEkhWS7WlHyQKiawKnY9iLlBEFEpCS42X6wW'
-  .'JbGBXWIMCAAA//+51Cre';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/example3_file_descriptor.pb.bin.gz'));
   }
 }

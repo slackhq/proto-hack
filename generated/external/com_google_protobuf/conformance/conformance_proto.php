@@ -789,25 +789,11 @@ class JspbEncodingConfig implements \Protobuf\Message {
 
 class XXX_FileDescriptor_external_com_google_protobuf_conformance_conformance__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'external/com_google_protobuf/conformance/conformance.proto';
-  const string RAW =
-  'eNqslM9u2koUxjEQ/hxIYk0SxbmbEO4fcVOJVOmm6qISpJCQqjYyRmlXIwMDcgIz7sxYjf'
-  .'sSfbE+T9eVZzAxahZddOfzfb8zZ/D5MLwhj5Jw6i8vpmyFF4wtlgSHnEk2ieYXU0bnjK98'
-  .'OiXZ57YCUC0jNf8D6PvBMuJkRCSyoDzXlWU0Cq2qm5bNHwVAV099LvkcESHRCzDTqTj04y'
-  .'XzZ5bRMFr1m5y7nzpDbaC/oX4vGN2A+YbRqt7k3FqibkHhZAOVn6BwkoEkeZQbqJJCiZpC'
-  .'DhxzfU0ywyySYSSxur+0Cg2jtXd53M6+nLuAk76y3aNNn6PatIzOoL4iQvgLgmUcEquYTH'
-  .'Vra82LQ4Lewq4kQuKpL8mC8djaUZNOtiZ5RMirNeDWZaZCIzhSv57QKZsFdIFZKANGhVVq'
-  .'GK3a5enWObcinPTWYLKbYOEe3Gc0R/eil3AY8oBKHNEHyr5QPA/IciasasNoVVykvLG2+s'
-  .'rpVqG8frXN73k42Fq8CBkVBJ1BLfS5IJhwzrhaerIBUGIv0dD/sC8ID/xl8DXFSmtsb2No'
-  .'9F/Y5RGVwSoF02zU17LGnotb4XfjVnwubn9BWTwEYUhmalWJnwp/LordCpQ4EdFSNm1Av6'
-  .'4NvYaTSBCspvmc+zH2aZyG1VBrOooESTo7id2hsc7k+RDgKbhoH2pjezTsXQ36g947M4fq'
-  .'UBm6jud0x33TQBUo3o4c28zrp2HXLCQtXu+jh/uO+6HjmcXzbwbUswlFh2BmDsVeb+SZua'
-  .'SvO7A77ictGGgXqsnhusyjf6ChysG17bg9PLbf286djYcddzSwrzVV0E3Dri6LyajMZbS6'
-  .'0z2D0ylbtfVXrp2uOftXmJSU+upnAAAA//+w3JXY';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/conformance_file_descriptor.pb.bin.gz'));
   }
 }

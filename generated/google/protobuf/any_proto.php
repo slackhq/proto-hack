@@ -87,16 +87,11 @@ class Any implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_any__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/any.proto';
-  const string RAW =
-  'eNrikkzPz0/PSdUvKMovyU8qTdNPzKvUA3OE+CFSejApJTMuZse8SiFJLo6SyoLU+NKiHA'
-  .'lGBUYNziB2ED+0KEdIhIu1LDGnNFWCSYFRgycIwnEq4xJOzs/VQzPOicMxrzIAxAlgjNKB'
-  .'Sqbn5yTmpevlF6UjXAQyvFg/Oy+/PA/kuoKkRUzM7gFOq5jk3CGaAqAq9cJTc3K8QepCQF'
-  .'qS2MBGGAMCAAD//2RfTVk';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/any_file_descriptor.pb.bin.gz'));
   }
 }

@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"compress/flate"
 	"compress/zlib"
-	"encoding/base64"
 	"flag"
 	"fmt"
 	"io"
@@ -149,6 +148,7 @@ func gen(req *ppb.CodeGeneratorRequest) *ppb.CodeGeneratorResponse {
 			f.Content = proto.String(b.String())
 			resp.File = append(resp.File, f)
 		}
+		writeBinaryFileDescriptor(fdp, resp)
 	}
 	return resp
 }
@@ -185,12 +185,46 @@ func writeFiles(syn syntax, fdp *desc.FileDescriptorProto, rootNs *Namespace, ge
 	})
 }
 
+func binaryFileDescriptorPath(fdp *desc.FileDescriptorProto) string {
+	fext := filepath.Ext(fdp.GetName())
+	return strings.TrimSuffix(fdp.GetName(), fext) + "_file_descriptor.pb.bin.gz"
+}
+
+func writeBinaryFileDescriptor(fdp *desc.FileDescriptorProto, resp *ppb.CodeGeneratorResponse) {
+	f := &ppb.CodeGeneratorResponse_File{}
+	f.Name = proto.String(binaryFileDescriptorPath(fdp))
+
+	// First clear out things we don't need that cause non-determinism.
+	fdp.SourceCodeInfo = nil
+
+	bfdp, err := proto.Marshal(fdp)
+	if err != nil {
+		panic(err)
+	}
+	var b bytes.Buffer
+	gz, err := zlib.NewWriterLevel(&b, flate.BestCompression)
+	if err != nil {
+		panic(err)
+	}
+	if _, err = gz.Write(bfdp); err != nil {
+		panic(err)
+	}
+	if err = gz.Close(); err != nil {
+		panic(err)
+	}
+
+	// The protoc compiler will complain that this contains invalid UTF-8 data,
+	// but we will ignore that for now.
+	f.Content = proto.String(b.String())
+	resp.File = append(resp.File, f)
+}
+
 type FileWriter func(*writer, *Namespace)
 
 func writeEntity(name *string, fdp *desc.FileDescriptorProto, rootNs *Namespace, resp *ppb.CodeGeneratorResponse, output FileWriter) {
 	f := &ppb.CodeGeneratorResponse_File{}
 	fext := filepath.Ext(fdp.GetName())
-	fname := strings.TrimSuffix(fdp.GetName(), fext) + "_" + strings.ToLower(*name) + "_proto.hack"
+	fname := strings.TrimSuffix(fdp.GetName(), fext) + "_" + strings.ToLower(*name) + ".hack"
 	f.Name = proto.String(fname)
 	b := &bytes.Buffer{}
 	w := &writer{b, 0}
@@ -262,54 +296,14 @@ func writeFileDescriptor(w *writer, fdp *desc.FileDescriptorProto) {
 	fdClassName = specialPrefix + "FileDescriptor_" + fdClassName
 	w.p("class %s implements %s\\FileDescriptor {", fdClassName, libNsInternal)
 	w.p("const string NAME = '%s';", fdp.GetName())
-
-	// First clear out things we don't need.
-	fdp.SourceCodeInfo = nil
-
-	linelength := 70
-	raw := fdpToPhpString(fdp)
-	w.p("const string RAW =")
-	for i := 0; i < len(raw); i += linelength {
-		prefix := "."
-		if i == 0 {
-			prefix = ""
-		}
-		suffix := ""
-		end := i + linelength
-		if end >= len(raw) {
-			end = len(raw)
-			suffix = ";"
-		}
-		w.p("%s'%s'%s", prefix, raw[i:end], suffix)
-	}
 	w.p("public function Name(): string {")
 	w.p("return self::NAME;")
 	w.p("}")
 	w.ln()
 	w.p("public function FileDescriptorProtoBytes(): string {")
-	w.p("return (string)\\gzuncompress(\\base64_decode(self::RAW));")
+	w.p("return (string)\\gzuncompress(\\file_get_contents(\\realpath(\\dirname(__FILE__)) . '/%s'));", filepath.Base(binaryFileDescriptorPath(fdp)))
 	w.p("}")
 	w.p("}")
-}
-
-func fdpToPhpString(fdp *desc.FileDescriptorProto) string {
-	bfdp, err := proto.Marshal(fdp)
-	if err != nil {
-		panic(err)
-	}
-	var b bytes.Buffer
-	gz, err := zlib.NewWriterLevel(&b, flate.BestCompression)
-	if err != nil {
-		panic(err)
-	}
-	if _, err = gz.Write(bfdp); err != nil {
-		panic(err)
-	}
-	if err = gz.Close(); err != nil {
-		panic(err)
-	}
-	str := base64.RawStdEncoding.EncodeToString(b.Bytes())
-	return str
 }
 
 func toPhpName(ns, name string) (string, string) {

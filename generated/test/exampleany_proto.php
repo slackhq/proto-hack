@@ -81,14 +81,11 @@ class AnyTest implements \Protobuf\Message {
 
 class XXX_FileDescriptor_test_exampleany__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'test/exampleany.proto';
-  const string RAW =
-  'eNriEi1JLS7RT61IzC3ISU3Mq9QrKMovyZeSTM/PT89J1QfzkkrT9OFSSoZc7I55lSGpxS'
-  .'VCalzMiXmVEowKjBrcRiJ6ED16MD16jnmVQSAFSWxgIWNAAAAA///5tiRG';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/exampleany_file_descriptor.pb.bin.gz'));
   }
 }

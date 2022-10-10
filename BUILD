@@ -37,7 +37,10 @@ GEN_PHP = glob(["generated/**/*.php"])
 
 ALL_PHP += GEN_PHP
 
-GEN_PB_BIN = glob(["generated/**/*.pb.bin"])
+GEN_PB_BIN = glob([
+    "generated/**/*.pb.bin",
+    "generated/**/*.pb.bin.gz",
+])
 
 ALL_GEN = GEN_PHP + GEN_PB_BIN
 

@@ -75,16 +75,11 @@ class Duration implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_duration__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/duration.proto';
-  const string RAW =
-  'eNrikkvPz0/PSdUvKMovyU8qTdNPKS1KLMnMz9MDiwjxQ+T1YPJKVlwcLlAlQhJc7MWpyf'
-  .'l5KcUSjAqMGsxBMK6QCBdrXmJefrEEkwKjBmsQhOPUzMglnJyfq4dmphMvzMQAkEgAY5Qh'
-  .'VEV6fk5iXrpeflE6woEllQWpxfrZefnleXDHFiT9YGRcxMTsHuC0iknOHaI5AKpDLzw1J8'
-  .'cbpD4EpDWJDWyUMSAAAP//Ui9WWw';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/duration_file_descriptor.pb.bin.gz'));
   }
 }

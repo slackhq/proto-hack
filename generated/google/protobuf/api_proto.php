@@ -451,21 +451,11 @@ class Mixin implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_api__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/api.proto';
-  const string RAW =
-  'eNqUk82O0zAUhZWkTQeP6ICRwHQxikYsIn4SMTzBFKFZIESUgpDYVGkxwSLxNbYztK/Dki'
-  .'VvwJshO3F/0iLBztfnu6f3HjfoYQlQVjQVEjQsms9pIVhiC3zWSomTJo/6rIJGLul8CVzT'
-  .'lW7ByaRP6bXoTC5++yi4EgxjNOBFTYkXefGt3J7xczSqqf4CnxTxoyA+vXyQ9AZI3lg9d5'
-  .'xpAaEZcEWCv7S8tXruOEzQ6IZKxYCTgf1xV+JXaLy/DxlGXnx6eX7gObPYy5bKb6vdEico'
-  .'rNmKcUVCO9L9wy2MnHcUTlGo1lwXKzKKvHh8ZIWZlfMOu/jlo7AN4miMMboj6beGKj03wc'
-  .'8bWRHf6uPu/t1a0Peywk/QXUcqLWlRM16SIPLik9xZzNw9fmxgJYAruvVtEzxzgjN+hvCG'
-  .'3ToPrfPGZWu984rhP77if4eWoqGN/WhkGA0kgO5isufpDbq3hLpvOz25EiwzReZ9fNqJJV'
-  .'QFLxOQ5f5/XqVfOXzn5osSix9+cJ1Nf/rn121T5gb9QKvqteFMemoRWosXfwIAAP//NWss'
-  .'Mw';
   public function Name(): string {
     return self::NAME;
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\base64_decode(self::RAW));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/api_file_descriptor.pb.bin.gz'));
   }
 }
