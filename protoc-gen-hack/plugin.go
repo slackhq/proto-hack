@@ -187,7 +187,7 @@ func writeFiles(syn syntax, fdp *desc.FileDescriptorProto, rootNs *Namespace, ge
 
 func binaryFileDescriptorPath(fdp *desc.FileDescriptorProto) string {
 	fext := filepath.Ext(fdp.GetName())
-	return strings.TrimSuffix(fdp.GetName(), fext) + "_file_descriptor_proto.bin"
+	return strings.TrimSuffix(fdp.GetName(), fext) + "_file_descriptor.pb.bin"
 }
 
 func writeBinaryFileDescriptor(fdp *desc.FileDescriptorProto, resp *ppb.CodeGeneratorResponse) {

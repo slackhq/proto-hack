@@ -77,6 +77,6 @@ class XXX_FileDescriptor_google_protobuf_source_context__proto implements \Proto
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/source_context_file_descriptor_proto.bin'));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/source_context_file_descriptor.pb.bin'));
   }
 }

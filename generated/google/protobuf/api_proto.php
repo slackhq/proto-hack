@@ -456,6 +456,6 @@ class XXX_FileDescriptor_google_protobuf_api__proto implements \Protobuf\Interna
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/api_file_descriptor_proto.bin'));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/api_file_descriptor.pb.bin'));
   }
 }

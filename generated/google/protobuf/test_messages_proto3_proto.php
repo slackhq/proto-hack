@@ -5301,6 +5301,6 @@ class XXX_FileDescriptor_google_protobuf_test_messages_proto3__proto implements 
   }
 
   public function FileDescriptorProtoBytes(): string {
-    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/test_messages_proto3_file_descriptor_proto.bin'));
+    return (string)\gzuncompress(\file_get_contents(\realpath(\dirname(__FILE__)) . '/test_messages_proto3_file_descriptor.pb.bin'));
   }
 }
