@@ -75,11 +75,7 @@ class Duration implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_duration__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/duration.proto';
-  const string RAW =
-  'eNrikkvPz0/PSdUvKMovyU8qTdNPKS1KLMnMz9MDiwjxQ+T1YPJKVlwcLlAlQhJc7MWpyf'
-  .'l5KcUSjAqMGsxBMK6QCBdrXmJefrEEkwKjBmsQhOPUzMglnJyfq4dmphMvzMQAkEgAY5Qh'
-  .'VEV6fk5iXrpeflE6woEllQWpxfrZefnleXDHFiT9YGRcxMTsHuC0iknOHaI5AKpDLzw1J8'
-  .'cbpD4EpDWJDWyUMSAAAP//Ui9WWw';
+  const string RAW = 'eNrikkvPz0/PSdUvKMovyU8qTdNPKS1KLMnMz9MDiwjxQ+T1YPJKVlwcLlAlQhJc7MWpyfl5KcUSjAqMGsxBMK6QCBdrXmJefrEEkwKjBmsQhOPUzMglnJyfq4dmphMvzMQAkEgAY5QhVEV6fk5iXrpeflE6woEllQWpxfrZefnleXDHFiT9YGRcxMTsHuC0iknOHaI5AKpDLzw1J8cbpD4EpDWJDWyUMSAAAP//Ui9WWw';
   public function Name(): string {
     return self::NAME;
   }

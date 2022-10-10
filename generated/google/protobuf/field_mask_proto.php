@@ -74,11 +74,7 @@ class FieldMask implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_field_mask__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/field_mask.proto';
-  const string RAW =
-  'eNriUkjPz0/PSdUvKMovyU8qTdNPy0zNSYnPTSzO1gOLCfFDVOjBVCgpcnG6gRT5JhZnC4'
-  .'lwsRYklmQUSzAqMGtwBkE4Tq2MXMLJ+bl6aFqd+OAaA0BCAYxRRlAl6fk5iXnpevlF6Qin'
-  .'lFQWpBbrZ+fll+dBnAVyVUHSD0bGRUzM7gFOq5jk3CG6A6Ba9MJTc3K8QRpCQHqT2MBmGQ'
-  .'MCAAD//6M3UMA';
+  const string RAW = 'eNriUkjPz0/PSdUvKMovyU8qTdNPy0zNSYnPTSzO1gOLCfFDVOjBVCgpcnG6gRT5JhZnC4lwsRYklmQUSzAqMGtwBkE4Tq2MXMLJ+bl6aFqd+OAaA0BCAYxRRlAl6fk5iXnpevlF6QinlFQWpBbrZ+fll+dBnAVyVUHSD0bGRUzM7gFOq5jk3CG6A6Ba9MJTc3K8QRpCQHqT2MBmGQMCAAD//6M3UMA';
   public function Name(): string {
     return self::NAME;
   }

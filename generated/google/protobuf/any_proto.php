@@ -87,11 +87,7 @@ class Any implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_any__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/any.proto';
-  const string RAW =
-  'eNrikkzPz0/PSdUvKMovyU8qTdNPzKvUA3OE+CFSejApJTMuZse8SiFJLo6SyoLU+NKiHA'
-  .'lGBUYNziB2ED+0KEdIhIu1LDGnNFWCSYFRgycIwnEq4xJOzs/VQzPOicMxrzIAxAlgjNKB'
-  .'Sqbn5yTmpevlF6UjXAQyvFg/Oy+/PA/kuoKkRUzM7gFOq5jk3CGaAqAq9cJTc3K8QepCQF'
-  .'qS2MBGGAMCAAD//2RfTVk';
+  const string RAW = 'eNrikkzPz0/PSdUvKMovyU8qTdNPzKvUA3OE+CFSejApJTMuZse8SiFJLo6SyoLU+NKiHAlGBUYNziB2ED+0KEdIhIu1LDGnNFWCSYFRgycIwnEq4xJOzs/VQzPOicMxrzIAxAlgjNKBSqbn5yTmpevlF6UjXAQyvFg/Oy+/PA/kuoKkRUzM7gFOq5jk3CGaAqAq9cJTc3K8QepCQFqS2MBGGAMCAAD//2RfTVk';
   public function Name(): string {
     return self::NAME;
   }

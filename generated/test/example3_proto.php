@@ -236,10 +236,7 @@ class Funky implements \Protobuf\Message {
 
 class XXX_FileDescriptor_test_example3__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'test/example3.proto';
-  const string RAW =
-  'eNriEi5JLS7RT61IzC3ISTXWKyjKL8lXkuBic8nPy06tFOLjYsrIlGBUYNTgDGLKyFRK52'
-  .'J1K83LrhRS5WLLBSsBS3Ib8eqBxfV8wYJBUEkhWS7WlHyQKiawKnY9iLlBEFEpCS42X6wW'
-  .'JbGBXWIMCAAA//+51Cre';
+  const string RAW = 'eNriEi5JLS7RT61IzC3ISTXWKyjKL8lXkuBic8nPy06tFOLjYsrIlGBUYNTgDGLKyFRK52J1K83LrhRS5WLLBSsBS3Ib8eqBxfV8wYJBUEkhWS7WlHyQKiawKnY9iLlBEFEpCS42X6wWJbGBXWIMCAAA//+51Cre';
   public function Name(): string {
     return self::NAME;
   }

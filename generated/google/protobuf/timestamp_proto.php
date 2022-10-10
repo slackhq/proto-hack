@@ -87,11 +87,7 @@ class Timestamp implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_timestamp__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/timestamp.proto';
-  const string RAW =
-  'eNrikk/Pz0/PSdUvKMovyU8qTdMvycxNLS5JzC3QAwsJ8UMU6MEUKFlzcYbA1AhJcLEXpy'
-  .'bn56UUSzAqMGowB8G4QiJcrHmJefnFEkwKjBqsQRCOUysjl3Byfq4emqFOfHAjA0BCAYxR'
-  .'RlAl6fk5iXnpevlF6UhurCxILdbPzssvz0O4tyDpByPjIiZm9wCnVUxy7hDdAVAteuGpOT'
-  .'neIA0hIL1JbGCzjAEBAAD//+SpWBo';
+  const string RAW = 'eNrikk/Pz0/PSdUvKMovyU8qTdMvycxNLS5JzC3QAwsJ8UMU6MEUKFlzcYbA1AhJcLEXpybn56UUSzAqMGowB8G4QiJcrHmJefnFEkwKjBqsQRCOUysjl3Byfq4emqFOfHAjA0BCAYxRRlAl6fk5iXnpevlF6UhurCxILdbPzssvz0O4tyDpByPjIiZm9wCnVUxy7hDdAVAteuGpOTneIA0hIL1JbGCzjAEBAAD//+SpWBo';
   public function Name(): string {
     return self::NAME;
   }

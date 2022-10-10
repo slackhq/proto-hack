@@ -81,9 +81,7 @@ class AnyTest implements \Protobuf\Message {
 
 class XXX_FileDescriptor_test_exampleany__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'test/exampleany.proto';
-  const string RAW =
-  'eNriEi1JLS7RT61IzC3ISU3Mq9QrKMovyZeSTM/PT89J1QfzkkrT9OFSSoZc7I55lSGpxS'
-  .'VCalzMiXmVEowKjBrcRiJ6ED16MD16jnmVQSAFSWxgIWNAAAAA///5tiRG';
+  const string RAW = 'eNriEi1JLS7RT61IzC3ISU3Mq9QrKMovyZeSTM/PT89J1QfzkkrT9OFSSoZc7I55lSGpxSVCalzMiXmVEowKjBrcRiJ6ED16MD16jnmVQSAFSWxgIWNAAAAA///5tiRG';
   public function Name(): string {
     return self::NAME;
   }

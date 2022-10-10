@@ -501,17 +501,7 @@ class CodeGeneratorResponse implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_compiler_plugin__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/compiler/plugin.proto';
-  const string RAW =
-  'eNp0k8Fu00wQgH//Sak8rRp3KWCVHkIEIhxwpcKBa1sSqFQl0SqAxMVy7bFZ5Ows6zWC9+'
-  .'BFeDTeAHm9TlEgN883s6uZbz3wpCAqSjxVmgzd1PlpSislStSnqqwLISObYGFbFnVlUVd2'
-  .'PNy8IMMq1UIZ0m31KIXd96grQZIdwc4q+Uw69IbeeIe3gaVCkg7/d7QJGqoSk34Key21Ab'
-  .'sPd6o6z8W3sD/0xj530eiXB0eXlOEblKgTQ5rjlxorw8YQ5KLE2FBctDkMvWFv7PODhi/J'
-  .'nUB2Ar5KdLJCg20rPr8F7BLAjhM3p8LBsDfeO3scbWqZihJfrwUsGsx9m20y7BqCTlz8tX'
-  .'Vix9s7exRtMxw5eXzQEQdGP3pwb2PmSpGssHGHWjvPPm8D9hxYVStF2mAW55iYWmNlJ+3z'
-  .'w3Vm6hLsLfT/mPXl9gb/2YNVwe0Nxz896Nv5GfRlskLXlv1mT2EgZIXaCJKxIiGNk3+wxo'
-  .'uGshB2U5IGpQkHtqALGYe73dtmcUoZxkLmFAbW7OivxrsXz5rGr2RO/LDYRKNXsOtMsAD2'
-  .'p5Pz5Ts+iWfz2ST4jz2EBx1Z8Ply/iKeL5ZX89n5deBdfICTlFZbdV3sL+xm2Z+j+vjM1R'
-  .'VUJrKISBe3q2S+K6zcIqqb3wEAAP//QnIxIw';
+  const string RAW = 'eNp0k8Fu00wQgH//Sak8rRp3KWCVHkIEIhxwpcKBa1sSqFQl0SqAxMVy7bFZ5Ows6zWC9+BFeDTeAHm9TlEgN883s6uZbz3wpCAqSjxVmgzd1PlpSislStSnqqwLISObYGFbFnVlUVd2PNy8IMMq1UIZ0m31KIXd96grQZIdwc4q+Uw69IbeeIe3gaVCkg7/d7QJGqoSk34Key21AbsPd6o6z8W3sD/0xj530eiXB0eXlOEblKgTQ5rjlxorw8YQ5KLE2FBctDkMvWFv7PODhi/JnUB2Ar5KdLJCg20rPr8F7BLAjhM3p8LBsDfeO3scbWqZihJfrwUsGsx9m20y7BqCTlz8tXVix9s7exRtMxw5eXzQEQdGP3pwb2PmSpGssHGHWjvPPm8D9hxYVStF2mAW55iYWmNlJ+3zw3Vm6hLsLfT/mPXl9gb/2YNVwe0Nxz896Nv5GfRlskLXlv1mT2EgZIXaCJKxIiGNk3+wxouGshB2U5IGpQkHtqALGYe73dtmcUoZxkLmFAbW7OivxrsXz5rGr2RO/LDYRKNXsOtMsAD2p5Pz5Ts+iWfz2ST4jz2EBx1Z8Ply/iKeL5ZX89n5deBdfICTlFZbdV3sL+xm2Z+j+vjM1RVUJrKISBe3q2S+K6zcIqqb3wEAAP//QnIxIw';
   public function Name(): string {
     return self::NAME;
   }

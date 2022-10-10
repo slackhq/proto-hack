@@ -57,10 +57,7 @@ class pb_Empty implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_empty__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/empty.proto';
-  const string RAW =
-  'eNrikk7Pz0/PSdUvKMovyU8qTdNPzS0oqdQDc4X4IZJ6MEkldi5WV5C8Uy2XcHJ+rh6avB'
-  .'MXWDYAxA1gjIJJp+fnJOal6+UXpSOsKaksSC3Wz87LL8+DWFmQ9IORcRETs3uA0yomOXeI'
-  .'zgCocr3w1Jwcb5DiEJC+JDawOcaAAAAA//+Nd0Uw';
+  const string RAW = 'eNrikk7Pz0/PSdUvKMovyU8qTdNPzS0oqdQDc4X4IZJ6MEkldi5WV5C8Uy2XcHJ+rh6avBMXWDYAxA1gjIJJp+fnJOal6+UXpSOsKaksSC3Wz87LL8+DWFmQ9IORcRETs3uA0yomOXeIzgCocr3w1Jwcb5DiEJC+JDawOcaAAAAA//+Nd0Uw';
   public function Name(): string {
     return self::NAME;
   }

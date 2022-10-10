@@ -72,11 +72,7 @@ class SourceContext implements \Protobuf\Message {
 
 class XXX_FileDescriptor_google_protobuf_source_context__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/source_context.proto';
-  const string RAW =
-  'eNriUknPz0/PSdUvKMovyU8qTdMvzi8tSk6NT87PK0mtKNEDiwvxQ1TpwVQp6XDxBoMVOk'
-  .'PUCUlzcaZl5qTG5yXmpkowKjBqcAZxgAT8EnNTnboYuYST83P10ExxEkIxIwAkHMAYZQZV'
-  .'lp6fk5iXrpdflI5wXUllQWqxfnZefnke1KVQhxYkLWJidg9wWsUk5w7RHgDVoxeempPjDd'
-  .'IRAtKcxAY2zBgQAAD//3SoWgs';
+  const string RAW = 'eNriUknPz0/PSdUvKMovyU8qTdMvzi8tSk6NT87PK0mtKNEDiwvxQ1TpwVQp6XDxBoMVOkPUCUlzcaZl5qTG5yXmpkowKjBqcAZxgAT8EnNTnboYuYST83P10ExxEkIxIwAkHMAYZQZVlp6fk5iXrpdflI5wXUllQWqxfnZefnke1KVQhxYkLWJidg9wWsUk5w7RHgDVoxeempPjDdIRAtKcxAY2zBgQAAD//3SoWgs';
   public function Name(): string {
     return self::NAME;
   }

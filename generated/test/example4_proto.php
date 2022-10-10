@@ -246,11 +246,7 @@ function RegisterAndServer(\Grpc\Server $server, AndServer $service): void {
 
 class XXX_FileDescriptor_test_example4__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'test/example4.proto';
-  const string RAW =
-  'eNriEi5JLS7RT61IzC3ISTXRKyjKL8mXkk7Pz0/PSdUH85JK0/RTcwtKKiGSStJcrM45ic'
-  .'XFQkJcLHmJuakSjAqMGpxBYLaSJhenZ15JalFaYnKqkAwXazJIJVgFtxGbHlhfEERQSY6L'
-  .'wy+/BKdRRgZczI55KUKaXKwlGUX55UJQ7VJiehDX6cFcp+cKcp0SQxIbWMQYEAAA//9WMz'
-  .'4i';
+  const string RAW = 'eNriEi5JLS7RT61IzC3ISTXRKyjKL8mXkk7Pz0/PSdUH85JK0/RTcwtKKiGSStJcrM45icXFQkJcLHmJuakSjAqMGpxBYLaSJhenZ15JalFaYnKqkAwXazJIJVgFtxGbHlhfEERQSY6Lwy+/BKdRRgZczI55KUKaXKwlGUX55UJQ7VJiehDX6cFcp+cKcp0SQxIbWMQYEAAA//9WMz4i';
   public function Name(): string {
     return self::NAME;
   }

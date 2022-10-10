@@ -1010,20 +1010,7 @@ function RegisterExampleServiceServer(\Grpc\Server $server, ExampleServiceServer
 
 class XXX_FileDescriptor_test_example1__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'test/example1.proto';
-  const string RAW =
-  'eNpsVF1P2zAUrVv6kctX8VjlZYhZ1SQMD+niVh2atgcYSEh72OTxB5zhomptXKUpo/yj/c'
-  .'spdpyE0af4nHvOrX17bHiVqmU6UI9yvpipMFgkOtW4PdE6iGTiv7nX+n6mBoaOVpOBjNdW'
-  .'4z8zckv2+9BxDO5BS07jdMgJoog1RY76f71CFGICbXmnV9FMGRUSDhr7ZKZlSuoUsbrIUa'
-  .'Vto9rW8eMR2aKINUSOzC+srKFJEdsVDhaV8Yi0KGJbwkFTWVpPmyJ2IBwsKuMR6VDEsHAQ'
-  .'+9CRk+mjuhty4lHE2qLAZW08IkARa4kC4yPw5NIZtyli+6IkKtXxiOxQxLqiJPAhNGWk9Y'
-  .'zsUsQ6wgK7xzSZxvdkjyLmCQfNjKJ1qpZknyK2I3KET6AlVbyah+SQIrbH94M8AMHFdUaL'
-  .'vIw/5EJOXhshKYRFgoyD5w6OT6FtV5z0XO/pUxDJJ6d0dXwMMJfxOt/6MW0wT1SYbBYZst'
-  .'N/RxusIUoCn4MnXfYIo4htc//l7pxClGIcAhSAk1NjPfjfykVF9MwyJGfOkh9sg2WIB7Al'
-  .'53JBhrTBtvnbDYOby8V1nCZrYYSYQzP7cjIyjqPNDm4tVpqNUK9SPdHJnUpIaC5ChcFH0N'
-  .'E6H/DnLBs3NVEwuAdNradxSr5kN+umJizEZ9CUsYzX5Ic56GFgX4XAvQrBRZztIJP47ysv'
-  .'QCWI6FkQ/Y/gFcfFXWj8Vutcki2zXD/I2UqZq+8JCz7Vz5H/DaA89QbnSdW58T8pm/V70L'
-  .'IZxE1AX7u17HPVhcsOtKSOlZ6cOUWYlS6s4rJb51ewd20b/lTJw/SXwhw632N1q2//aPwi'
-  .'PKH/Mk/9WtQyAxz+CwAA//+zp37q';
+  const string RAW = 'eNpsVF1P2zAUrVv6kctX8VjlZYhZ1SQMD+niVh2atgcYSEh72OTxB5zhomptXKUpo/yj/cspdpyE0af4nHvOrX17bHiVqmU6UI9yvpipMFgkOtW4PdE6iGTiv7nX+n6mBoaOVpOBjNdW4z8zckv2+9BxDO5BS07jdMgJoog1RY76f71CFGICbXmnV9FMGRUSDhr7ZKZlSuoUsbrIUaVto9rW8eMR2aKINUSOzC+srKFJEdsVDhaV8Yi0KGJbwkFTWVpPmyJ2IBwsKuMR6VDEsHAQ+9CRk+mjuhty4lHE2qLAZW08IkARa4kC4yPw5NIZtyli+6IkKtXxiOxQxLqiJPAhNGWk9YzsUsQ6wgK7xzSZxvdkjyLmCQfNjKJ1qpZknyK2I3KET6AlVbyah+SQIrbH94M8AMHFdUaLvIw/5EJOXhshKYRFgoyD5w6OT6FtV5z0XO/pUxDJJ6d0dXwMMJfxOt/6MW0wT1SYbBYZstN/RxusIUoCn4MnXfYIo4htc//l7pxClGIcAhSAk1NjPfjfykVF9MwyJGfOkh9sg2WIB7Al53JBhrTBtvnbDYOby8V1nCZrYYSYQzP7cjIyjqPNDm4tVpqNUK9SPdHJnUpIaC5ChcFH0NE6H/DnLBs3NVEwuAdNradxSr5kN+umJizEZ9CUsYzX5Ic56GFgX4XAvQrBRZztIJP47ysvQCWI6FkQ/Y/gFcfFXWj8Vutcki2zXD/I2UqZq+8JCz7Vz5H/DaA89QbnSdW58T8pm/V70LIZxE1AX7u17HPVhcsOtKSOlZ6cOUWYlS6s4rJb51ewd20b/lTJw/SXwhw632N1q2//aPwiPKH/Mk/9WtQyAxz+CwAA//+zp37q';
   public function Name(): string {
     return self::NAME;
   }
