@@ -2523,21 +2523,21 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->map_string_nested_enum = $s['map_string_nested_enum'] ?? dict[];
     $this->map_string_foreign_enum = $s['map_string_foreign_enum'] ?? dict[];
     $this->data = $s['data'] ?? null;
-    $this->default_int32 = $s['default_int32'] ?? 0;
-    $this->default_int64 = $s['default_int64'] ?? 0;
-    $this->default_uint32 = $s['default_uint32'] ?? 0;
-    $this->default_uint64 = $s['default_uint64'] ?? 0;
-    $this->default_sint32 = $s['default_sint32'] ?? 0;
-    $this->default_sint64 = $s['default_sint64'] ?? 0;
-    $this->default_fixed32 = $s['default_fixed32'] ?? 0;
-    $this->default_fixed64 = $s['default_fixed64'] ?? 0;
-    $this->default_sfixed32 = $s['default_sfixed32'] ?? 0;
-    $this->default_sfixed64 = $s['default_sfixed64'] ?? 0;
-    $this->default_float = $s['default_float'] ?? 0.0;
-    $this->default_double = $s['default_double'] ?? 0.0;
-    $this->default_bool = $s['default_bool'] ?? false;
-    $this->default_string = $s['default_string'] ?? '';
-    $this->default_bytes = $s['default_bytes'] ?? '';
+    $this->default_int32 = $s['default_int32'] ?? -123456789;
+    $this->default_int64 = $s['default_int64'] ?? -9123456789123456789;
+    $this->default_uint32 = $s['default_uint32'] ?? 2123456789;
+    $this->default_uint64 = $s['default_uint64'] ?? -8323287284586094827;
+    $this->default_sint32 = $s['default_sint32'] ?? -123456789;
+    $this->default_sint64 = $s['default_sint64'] ?? -9123456789123456789;
+    $this->default_fixed32 = $s['default_fixed32'] ?? 2123456789;
+    $this->default_fixed64 = $s['default_fixed64'] ?? -8323287284586094827;
+    $this->default_sfixed32 = $s['default_sfixed32'] ?? -123456789;
+    $this->default_sfixed64 = $s['default_sfixed64'] ?? -9123456789123456789;
+    $this->default_float = $s['default_float'] ?? 9e+09;
+    $this->default_double = $s['default_double'] ?? 7e+22;
+    $this->default_bool = $s['default_bool'] ?? true;
+    $this->default_string = $s['default_string'] ?? 'Rosebud';
+    $this->default_bytes = $s['default_bytes'] ?? \stripcslashes('joshua');
     $this->fieldname1 = $s['fieldname1'] ?? 0;
     $this->field_name2 = $s['field_name2'] ?? 0;
     $this->_field_name3 = $s['_field_name3'] ?? 0;
@@ -3788,63 +3788,63 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $msg->WriteTo($nested);
       $e->writeEncoder($nested, 201);
     }
-    if ($this->default_int32 !== 0) {
+    if ($this->default_int32 !== -123456789) {
       $e->writeTag(241, 0);
       $e->writeVarint($this->default_int32);
     }
-    if ($this->default_int64 !== 0) {
+    if ($this->default_int64 !== -9123456789123456789) {
       $e->writeTag(242, 0);
       $e->writeVarint($this->default_int64);
     }
-    if ($this->default_uint32 !== 0) {
+    if ($this->default_uint32 !== 2123456789) {
       $e->writeTag(243, 0);
       $e->writeVarint($this->default_uint32);
     }
-    if ($this->default_uint64 !== 0) {
+    if ($this->default_uint64 !== -8323287284586094827) {
       $e->writeTag(244, 0);
       $e->writeVarint($this->default_uint64);
     }
-    if ($this->default_sint32 !== 0) {
+    if ($this->default_sint32 !== -123456789) {
       $e->writeTag(245, 0);
       $e->writeVarintZigZag32($this->default_sint32);
     }
-    if ($this->default_sint64 !== 0) {
+    if ($this->default_sint64 !== -9123456789123456789) {
       $e->writeTag(246, 0);
       $e->writeVarintZigZag64($this->default_sint64);
     }
-    if ($this->default_fixed32 !== 0) {
+    if ($this->default_fixed32 !== 2123456789) {
       $e->writeTag(247, 5);
       $e->writeLittleEndianInt32Unsigned($this->default_fixed32);
     }
-    if ($this->default_fixed64 !== 0) {
+    if ($this->default_fixed64 !== -8323287284586094827) {
       $e->writeTag(248, 1);
       $e->writeLittleEndianInt64($this->default_fixed64);
     }
-    if ($this->default_sfixed32 !== 0) {
+    if ($this->default_sfixed32 !== -123456789) {
       $e->writeTag(249, 5);
       $e->writeLittleEndianInt32Signed($this->default_sfixed32);
     }
-    if ($this->default_sfixed64 !== 0) {
+    if ($this->default_sfixed64 !== -9123456789123456789) {
       $e->writeTag(250, 1);
       $e->writeLittleEndianInt64($this->default_sfixed64);
     }
-    if ($this->default_float !== 0.0) {
+    if ($this->default_float !== 9e+09) {
       $e->writeTag(251, 5);
       $e->writeFloat($this->default_float);
     }
-    if ($this->default_double !== 0.0) {
+    if ($this->default_double !== 7e+22) {
       $e->writeTag(252, 1);
       $e->writeDouble($this->default_double);
     }
-    if ($this->default_bool !== false) {
+    if ($this->default_bool !== true) {
       $e->writeTag(253, 0);
       $e->writeBool($this->default_bool);
     }
-    if ($this->default_string !== '') {
+    if ($this->default_string !== 'Rosebud') {
       $e->writeTag(254, 2);
       $e->writeString($this->default_string);
     }
-    if ($this->default_bytes !== '') {
+    if ($this->default_bytes !== \stripcslashes('joshua')) {
       $e->writeTag(255, 2);
       $e->writeString($this->default_bytes);
     }

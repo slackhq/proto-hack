@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/golang/protobuf/proto"
@@ -402,6 +403,26 @@ func (f field) phpType() string {
 }
 
 func (f field) defaultValue() string {
+	if dv := f.fd.GetDefaultValue(); dv != "" {
+		// proto2 custom default.
+		switch t := f.fd.GetType(); t {
+		case desc.FieldDescriptorProto_TYPE_FIXED64, desc.FieldDescriptorProto_TYPE_UINT64:
+			u64, err := strconv.ParseUint(dv, 10, 64)
+			if err != nil {
+				panic(fmt.Errorf("failed to parse custom default uint64 value: %v", err))
+			}
+			return strconv.FormatInt(int64(u64), 10)
+		case desc.FieldDescriptorProto_TYPE_STRING:
+			return "'" + strings.Replace(dv, "'", "\\'", -1) + "'"
+		case desc.FieldDescriptorProto_TYPE_BYTES:
+			// TODO, is this correct?
+			return "\\stripcslashes('" + dv + "')"
+		case desc.FieldDescriptorProto_TYPE_ENUM:
+			return f.typePhpNs + "\\" + f.typePhpName + "::" + dv
+		}
+		return dv
+	}
+
 	if f.isMap {
 		return "dict[]"
 	}

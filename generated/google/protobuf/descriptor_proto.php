@@ -2050,14 +2050,14 @@ class FileOptions implements \Protobuf\Message {
     $this->java_multiple_files = $s['java_multiple_files'] ?? false;
     $this->java_generate_equals_and_hash = $s['java_generate_equals_and_hash'] ?? false;
     $this->java_string_check_utf8 = $s['java_string_check_utf8'] ?? false;
-    $this->optimize_for = $s['optimize_for'] ?? \google\protobuf\FileOptions_OptimizeMode::FromInt(0);
+    $this->optimize_for = $s['optimize_for'] ?? \google\protobuf\FileOptions_OptimizeMode::SPEED;
     $this->go_package = $s['go_package'] ?? '';
     $this->cc_generic_services = $s['cc_generic_services'] ?? false;
     $this->java_generic_services = $s['java_generic_services'] ?? false;
     $this->py_generic_services = $s['py_generic_services'] ?? false;
     $this->php_generic_services = $s['php_generic_services'] ?? false;
     $this->deprecated = $s['deprecated'] ?? false;
-    $this->cc_enable_arenas = $s['cc_enable_arenas'] ?? false;
+    $this->cc_enable_arenas = $s['cc_enable_arenas'] ?? true;
     $this->objc_class_prefix = $s['objc_class_prefix'] ?? '';
     $this->csharp_namespace = $s['csharp_namespace'] ?? '';
     $this->swift_prefix = $s['swift_prefix'] ?? '';
@@ -2158,7 +2158,7 @@ class FileOptions implements \Protobuf\Message {
       $e->writeTag(8, 2);
       $e->writeString($this->java_outer_classname);
     }
-    if ($this->optimize_for !== \google\protobuf\FileOptions_OptimizeMode::FromInt(0)) {
+    if ($this->optimize_for !== \google\protobuf\FileOptions_OptimizeMode::SPEED) {
       $e->writeTag(9, 0);
       $e->writeVarint($this->optimize_for);
     }
@@ -2194,7 +2194,7 @@ class FileOptions implements \Protobuf\Message {
       $e->writeTag(27, 0);
       $e->writeBool($this->java_string_check_utf8);
     }
-    if ($this->cc_enable_arenas !== false) {
+    if ($this->cc_enable_arenas !== true) {
       $e->writeTag(31, 0);
       $e->writeBool($this->cc_enable_arenas);
     }
@@ -2587,9 +2587,9 @@ class FieldOptions implements \Protobuf\Message {
     ?'weak' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
-    $this->ctype = $s['ctype'] ?? \google\protobuf\FieldOptions_CType::FromInt(0);
+    $this->ctype = $s['ctype'] ?? \google\protobuf\FieldOptions_CType::STRING;
     $this->packed = $s['packed'] ?? false;
-    $this->jstype = $s['jstype'] ?? \google\protobuf\FieldOptions_JSType::FromInt(0);
+    $this->jstype = $s['jstype'] ?? \google\protobuf\FieldOptions_JSType::JS_NORMAL;
     $this->lazy = $s['lazy'] ?? false;
     $this->unverified_lazy = $s['unverified_lazy'] ?? false;
     $this->deprecated = $s['deprecated'] ?? false;
@@ -2640,7 +2640,7 @@ class FieldOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->ctype !== \google\protobuf\FieldOptions_CType::FromInt(0)) {
+    if ($this->ctype !== \google\protobuf\FieldOptions_CType::STRING) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->ctype);
     }
@@ -2656,7 +2656,7 @@ class FieldOptions implements \Protobuf\Message {
       $e->writeTag(5, 0);
       $e->writeBool($this->lazy);
     }
-    if ($this->jstype !== \google\protobuf\FieldOptions_JSType::FromInt(0)) {
+    if ($this->jstype !== \google\protobuf\FieldOptions_JSType::JS_NORMAL) {
       $e->writeTag(6, 0);
       $e->writeVarint($this->jstype);
     }
@@ -3151,7 +3151,7 @@ class MethodOptions implements \Protobuf\Message {
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
     $this->deprecated = $s['deprecated'] ?? false;
-    $this->idempotency_level = $s['idempotency_level'] ?? \google\protobuf\MethodOptions_IdempotencyLevel::FromInt(0);
+    $this->idempotency_level = $s['idempotency_level'] ?? \google\protobuf\MethodOptions_IdempotencyLevel::IDEMPOTENCY_UNKNOWN;
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
   }
@@ -3187,7 +3187,7 @@ class MethodOptions implements \Protobuf\Message {
       $e->writeTag(33, 0);
       $e->writeBool($this->deprecated);
     }
-    if ($this->idempotency_level !== \google\protobuf\MethodOptions_IdempotencyLevel::FromInt(0)) {
+    if ($this->idempotency_level !== \google\protobuf\MethodOptions_IdempotencyLevel::IDEMPOTENCY_UNKNOWN) {
       $e->writeTag(34, 0);
       $e->writeVarint($this->idempotency_level);
     }

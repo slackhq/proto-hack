@@ -22,7 +22,7 @@ PBV = "3.20.3"
 
 http_archive(
     name = "com_google_protobuf",
-    # sha256 = "",
+    sha256 = "04e1ed9664d1325b43723b6a62a4a41bf6b2b90ac72b5daee288365aad0ea47d",
     strip_prefix = "protobuf-" + PBV,
     urls = ["https://github.com/protocolbuffers/protobuf/archive/v" + PBV + ".zip"],
 )
