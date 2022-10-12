@@ -523,11 +523,13 @@ var isPackable = map[desc.FieldDescriptorProto_Type]bool{
 }
 
 func (f *field) isPacked() bool {
+	if f.fd.Options != nil && f.fd.Options.Packed != nil {
+		return *f.fd.Options.Packed
+	}
 	if f.syn == SyntaxProto3 {
-		// TODO: technically you can disable packing?
 		return isPackable[f.fd.GetType()]
 	}
-	return f.fd.GetOptions().GetPacked()
+	return false
 }
 
 func (f *field) writeDecoder(w *writer, dec, wt string) {
