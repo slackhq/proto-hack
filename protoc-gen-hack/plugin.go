@@ -404,6 +404,7 @@ func (f field) phpType() string {
 
 func (f field) defaultValue() string {
 	if f.syn == SyntaxProto2 {
+		// custom default value.
 		if dv := f.fd.GetDefaultValue(); dv != "" {
 			// proto2 custom default.
 			switch t := f.fd.GetType(); t {
@@ -416,12 +417,20 @@ func (f field) defaultValue() string {
 			case desc.FieldDescriptorProto_TYPE_STRING:
 				return "'" + strings.Replace(dv, "'", "\\'", -1) + "'"
 			case desc.FieldDescriptorProto_TYPE_BYTES:
-				// TODO, is this correct?
+				// TODO, is this correct unescaping for C escaped values?
 				return "\\stripcslashes('" + dv + "')"
 			case desc.FieldDescriptorProto_TYPE_ENUM:
 				return f.typePhpNs + "\\" + f.typePhpName + "::" + dv
 			}
 			return dv
+		}
+		// unlike proto3, this is the first declared value in the protobuf.
+		if !f.isRepeated() && f.fd.GetType() == desc.FieldDescriptorProto_TYPE_ENUM {
+			ed, ok := f.typeDescriptor.(*desc.EnumDescriptorProto)
+			if !ok {
+				panic("unable to convert field type descriptor to enum descriptor")
+			}
+			return f.typePhpNs + "\\" + f.typePhpName + "::" + ed.GetValue()[0].GetName()
 		}
 	}
 

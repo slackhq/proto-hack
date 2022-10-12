@@ -1767,7 +1767,7 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
     ?'value' => \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t,
   ) $s = shape()) {
     $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt(0);
+    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO;
     $this->XXX_unrecognized = '';
   }
 
@@ -1797,7 +1797,7 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
-    if ($this->value !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt(0)) {
+    if ($this->value !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -1847,7 +1847,7 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
     ?'value' => \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t,
   ) $s = shape()) {
     $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt(0);
+    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO;
     $this->XXX_unrecognized = '';
   }
 
@@ -1877,7 +1877,7 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
-    if ($this->value !== \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt(0)) {
+    if ($this->value !== \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -2449,8 +2449,8 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->optional_bytes = $s['optional_bytes'] ?? '';
     $this->optional_nested_message = $s['optional_nested_message'] ?? null;
     $this->optional_foreign_message = $s['optional_foreign_message'] ?? null;
-    $this->optional_nested_enum = $s['optional_nested_enum'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt(0);
-    $this->optional_foreign_enum = $s['optional_foreign_enum'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt(0);
+    $this->optional_nested_enum = $s['optional_nested_enum'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO;
+    $this->optional_foreign_enum = $s['optional_foreign_enum'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO;
     $this->optional_string_piece = $s['optional_string_piece'] ?? '';
     $this->optional_cord = $s['optional_cord'] ?? '';
     $this->recursive_message = $s['recursive_message'] ?? null;
@@ -3396,11 +3396,11 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $msg->WriteTo($nested);
       $e->writeEncoder($nested, 19);
     }
-    if ($this->optional_nested_enum !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt(0)) {
+    if ($this->optional_nested_enum !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO) {
       $e->writeTag(21, 0);
       $e->writeVarint($this->optional_nested_enum);
     }
-    if ($this->optional_foreign_enum !== \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt(0)) {
+    if ($this->optional_foreign_enum !== \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO) {
       $e->writeTag(22, 0);
       $e->writeVarint($this->optional_foreign_enum);
     }

@@ -1074,8 +1074,8 @@ class FieldDescriptorProto implements \Protobuf\Message {
   ) $s = shape()) {
     $this->name = $s['name'] ?? '';
     $this->number = $s['number'] ?? 0;
-    $this->label = $s['label'] ?? \google\protobuf\FieldDescriptorProto_Label::FromInt(0);
-    $this->type = $s['type'] ?? \google\protobuf\FieldDescriptorProto_Type::FromInt(0);
+    $this->label = $s['label'] ?? \google\protobuf\FieldDescriptorProto_Label::LABEL_OPTIONAL;
+    $this->type = $s['type'] ?? \google\protobuf\FieldDescriptorProto_Type::TYPE_DOUBLE;
     $this->type_name = $s['type_name'] ?? '';
     $this->extendee = $s['extendee'] ?? '';
     $this->default_value = $s['default_value'] ?? '';
@@ -1148,11 +1148,11 @@ class FieldDescriptorProto implements \Protobuf\Message {
       $e->writeTag(3, 0);
       $e->writeVarint($this->number);
     }
-    if ($this->label !== \google\protobuf\FieldDescriptorProto_Label::FromInt(0)) {
+    if ($this->label !== \google\protobuf\FieldDescriptorProto_Label::LABEL_OPTIONAL) {
       $e->writeTag(4, 0);
       $e->writeVarint($this->label);
     }
-    if ($this->type !== \google\protobuf\FieldDescriptorProto_Type::FromInt(0)) {
+    if ($this->type !== \google\protobuf\FieldDescriptorProto_Type::TYPE_DOUBLE) {
       $e->writeTag(5, 0);
       $e->writeVarint($this->type);
     }
