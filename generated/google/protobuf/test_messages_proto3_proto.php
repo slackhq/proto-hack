@@ -3041,9 +3041,13 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_uint32($d->readVarint32());
           break;
         case 112:
-          $obj = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
-          $obj->MergeFrom($d->readDecoder());
-          $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_nested_message($obj);
+          if ($this->oneof_field->WhichOneof() == TestAllTypesProto3_oneof_field_oneof_t::oneof_nested_message) {
+            ($this->oneof_field as TestAllTypesProto3_oneof_field_oneof_nested_message)->oneof_nested_message->MergeFrom($d->readDecoder());
+          } else {
+            $obj = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+            $obj->MergeFrom($d->readDecoder());
+            $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_nested_message($obj);
+          }
           break;
         case 113:
           $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_string($d->readString());

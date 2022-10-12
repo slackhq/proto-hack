@@ -556,11 +556,13 @@ func (f *field) writeDecoder(w *writer, dec, wt string) {
 			w.p("$this->%s []= $obj;", f.varName())
 		} else {
 			if f.isOneofMember() {
-				// TODO: Subtle: technically this doesn't merge, it overwrites! Maybe consider
-				// fixing this.
+				w.p("if ($this->%s->WhichOneof() == %s::%s) {", f.oneof.name, f.oneof.enumTypeName, f.fd.GetName())
+				w.p("($this->%s as %s)->%s->MergeFrom(%s->readDecoder());", f.oneof.name, f.oneof.classNameForField(f), f.varName(), dec)
+				w.p("} else {")
 				w.p("$obj = new %s();", f.phpType())
 				w.p("$obj->MergeFrom(%s->readDecoder());", dec)
 				w.p("$this->%s = new %s($obj);", f.oneof.name, f.oneof.classNameForField(f))
+				w.p("}")
 			} else {
 				w.p("if ($this->%s == null) $this->%s = new %s();", f.varName(), f.varName(), f.phpType())
 				w.p("$this->%s->MergeFrom(%s->readDecoder());", f.varName(), dec)

@@ -383,14 +383,22 @@ class Value implements \Protobuf\Message {
           $this->kind = new Value_kind_bool_value($d->readBool());
           break;
         case 5:
-          $obj = new \google\protobuf\Struct();
-          $obj->MergeFrom($d->readDecoder());
-          $this->kind = new Value_kind_struct_value($obj);
+          if ($this->kind->WhichOneof() == Value_kind_oneof_t::struct_value) {
+            ($this->kind as Value_kind_struct_value)->struct_value->MergeFrom($d->readDecoder());
+          } else {
+            $obj = new \google\protobuf\Struct();
+            $obj->MergeFrom($d->readDecoder());
+            $this->kind = new Value_kind_struct_value($obj);
+          }
           break;
         case 6:
-          $obj = new \google\protobuf\ListValue();
-          $obj->MergeFrom($d->readDecoder());
-          $this->kind = new Value_kind_list_value($obj);
+          if ($this->kind->WhichOneof() == Value_kind_oneof_t::list_value) {
+            ($this->kind as Value_kind_list_value)->list_value->MergeFrom($d->readDecoder());
+          } else {
+            $obj = new \google\protobuf\ListValue();
+            $obj->MergeFrom($d->readDecoder());
+            $this->kind = new Value_kind_list_value($obj);
+          }
           break;
         default:
           $d->skip($fn, $wt);
