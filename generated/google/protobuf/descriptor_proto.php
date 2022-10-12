@@ -1074,8 +1074,8 @@ class FieldDescriptorProto implements \Protobuf\Message {
   ) $s = shape()) {
     $this->name = $s['name'] ?? '';
     $this->number = $s['number'] ?? 0;
-    $this->label = $s['label'] ?? \google\protobuf\FieldDescriptorProto_Label::FromInt(0);
-    $this->type = $s['type'] ?? \google\protobuf\FieldDescriptorProto_Type::FromInt(0);
+    $this->label = $s['label'] ?? \google\protobuf\FieldDescriptorProto_Label::LABEL_OPTIONAL;
+    $this->type = $s['type'] ?? \google\protobuf\FieldDescriptorProto_Type::TYPE_DOUBLE;
     $this->type_name = $s['type_name'] ?? '';
     $this->extendee = $s['extendee'] ?? '';
     $this->default_value = $s['default_value'] ?? '';
@@ -1148,11 +1148,11 @@ class FieldDescriptorProto implements \Protobuf\Message {
       $e->writeTag(3, 0);
       $e->writeVarint($this->number);
     }
-    if ($this->label !== \google\protobuf\FieldDescriptorProto_Label::FromInt(0)) {
+    if ($this->label !== \google\protobuf\FieldDescriptorProto_Label::LABEL_OPTIONAL) {
       $e->writeTag(4, 0);
       $e->writeVarint($this->label);
     }
-    if ($this->type !== \google\protobuf\FieldDescriptorProto_Type::FromInt(0)) {
+    if ($this->type !== \google\protobuf\FieldDescriptorProto_Type::TYPE_DOUBLE) {
       $e->writeTag(5, 0);
       $e->writeVarint($this->type);
     }
@@ -2050,14 +2050,14 @@ class FileOptions implements \Protobuf\Message {
     $this->java_multiple_files = $s['java_multiple_files'] ?? false;
     $this->java_generate_equals_and_hash = $s['java_generate_equals_and_hash'] ?? false;
     $this->java_string_check_utf8 = $s['java_string_check_utf8'] ?? false;
-    $this->optimize_for = $s['optimize_for'] ?? \google\protobuf\FileOptions_OptimizeMode::FromInt(0);
+    $this->optimize_for = $s['optimize_for'] ?? \google\protobuf\FileOptions_OptimizeMode::SPEED;
     $this->go_package = $s['go_package'] ?? '';
     $this->cc_generic_services = $s['cc_generic_services'] ?? false;
     $this->java_generic_services = $s['java_generic_services'] ?? false;
     $this->py_generic_services = $s['py_generic_services'] ?? false;
     $this->php_generic_services = $s['php_generic_services'] ?? false;
     $this->deprecated = $s['deprecated'] ?? false;
-    $this->cc_enable_arenas = $s['cc_enable_arenas'] ?? false;
+    $this->cc_enable_arenas = $s['cc_enable_arenas'] ?? true;
     $this->objc_class_prefix = $s['objc_class_prefix'] ?? '';
     $this->csharp_namespace = $s['csharp_namespace'] ?? '';
     $this->swift_prefix = $s['swift_prefix'] ?? '';
@@ -2158,7 +2158,7 @@ class FileOptions implements \Protobuf\Message {
       $e->writeTag(8, 2);
       $e->writeString($this->java_outer_classname);
     }
-    if ($this->optimize_for !== \google\protobuf\FileOptions_OptimizeMode::FromInt(0)) {
+    if ($this->optimize_for !== \google\protobuf\FileOptions_OptimizeMode::SPEED) {
       $e->writeTag(9, 0);
       $e->writeVarint($this->optimize_for);
     }
@@ -2194,7 +2194,7 @@ class FileOptions implements \Protobuf\Message {
       $e->writeTag(27, 0);
       $e->writeBool($this->java_string_check_utf8);
     }
-    if ($this->cc_enable_arenas !== false) {
+    if ($this->cc_enable_arenas !== true) {
       $e->writeTag(31, 0);
       $e->writeBool($this->cc_enable_arenas);
     }
@@ -2571,6 +2571,7 @@ class FieldOptions implements \Protobuf\Message {
   public bool $packed;
   public \google\protobuf\FieldOptions_JSType_enum_t $jstype;
   public bool $lazy;
+  public bool $unverified_lazy;
   public bool $deprecated;
   public bool $weak;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
@@ -2581,14 +2582,16 @@ class FieldOptions implements \Protobuf\Message {
     ?'packed' => bool,
     ?'jstype' => \google\protobuf\FieldOptions_JSType_enum_t,
     ?'lazy' => bool,
+    ?'unverified_lazy' => bool,
     ?'deprecated' => bool,
     ?'weak' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
-    $this->ctype = $s['ctype'] ?? \google\protobuf\FieldOptions_CType::FromInt(0);
+    $this->ctype = $s['ctype'] ?? \google\protobuf\FieldOptions_CType::STRING;
     $this->packed = $s['packed'] ?? false;
-    $this->jstype = $s['jstype'] ?? \google\protobuf\FieldOptions_JSType::FromInt(0);
+    $this->jstype = $s['jstype'] ?? \google\protobuf\FieldOptions_JSType::JS_NORMAL;
     $this->lazy = $s['lazy'] ?? false;
+    $this->unverified_lazy = $s['unverified_lazy'] ?? false;
     $this->deprecated = $s['deprecated'] ?? false;
     $this->weak = $s['weak'] ?? false;
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
@@ -2621,6 +2624,9 @@ class FieldOptions implements \Protobuf\Message {
         case 10:
           $this->weak = $d->readBool();
           break;
+        case 15:
+          $this->unverified_lazy = $d->readBool();
+          break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
           $obj->MergeFrom($d->readDecoder());
@@ -2634,7 +2640,7 @@ class FieldOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->ctype !== \google\protobuf\FieldOptions_CType::FromInt(0)) {
+    if ($this->ctype !== \google\protobuf\FieldOptions_CType::STRING) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->ctype);
     }
@@ -2650,13 +2656,17 @@ class FieldOptions implements \Protobuf\Message {
       $e->writeTag(5, 0);
       $e->writeBool($this->lazy);
     }
-    if ($this->jstype !== \google\protobuf\FieldOptions_JSType::FromInt(0)) {
+    if ($this->jstype !== \google\protobuf\FieldOptions_JSType::JS_NORMAL) {
       $e->writeTag(6, 0);
       $e->writeVarint($this->jstype);
     }
     if ($this->weak !== false) {
       $e->writeTag(10, 0);
       $e->writeBool($this->weak);
+    }
+    if ($this->unverified_lazy !== false) {
+      $e->writeTag(15, 0);
+      $e->writeBool($this->unverified_lazy);
     }
     foreach ($this->uninterpreted_option as $msg) {
       $nested = new \Protobuf\Internal\Encoder();
@@ -2673,6 +2683,7 @@ class FieldOptions implements \Protobuf\Message {
     $e->writeBool('lazy', 'lazy', $this->lazy, false);
     $e->writeEnum('jstype', 'jstype', \google\protobuf\FieldOptions_JSType::ToStringDict(), $this->jstype, false);
     $e->writeBool('weak', 'weak', $this->weak, false);
+    $e->writeBool('unverified_lazy', 'unverifiedLazy', $this->unverified_lazy, false);
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -2699,6 +2710,9 @@ class FieldOptions implements \Protobuf\Message {
         case 'weak':
           $this->weak = \Protobuf\Internal\JsonDecoder::readBool($v);
           break;
+        case 'unverified_lazy': case 'unverifiedLazy':
+          $this->unverified_lazy = \Protobuf\Internal\JsonDecoder::readBool($v);
+          break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
             $obj = new \google\protobuf\UninterpretedOption();
@@ -2722,6 +2736,7 @@ class FieldOptions implements \Protobuf\Message {
     $this->lazy = $o->lazy;
     $this->jstype = $o->jstype;
     $this->weak = $o->weak;
+    $this->unverified_lazy = $o->unverified_lazy;
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
@@ -3136,7 +3151,7 @@ class MethodOptions implements \Protobuf\Message {
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
     $this->deprecated = $s['deprecated'] ?? false;
-    $this->idempotency_level = $s['idempotency_level'] ?? \google\protobuf\MethodOptions_IdempotencyLevel::FromInt(0);
+    $this->idempotency_level = $s['idempotency_level'] ?? \google\protobuf\MethodOptions_IdempotencyLevel::IDEMPOTENCY_UNKNOWN;
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
   }
@@ -3172,7 +3187,7 @@ class MethodOptions implements \Protobuf\Message {
       $e->writeTag(33, 0);
       $e->writeBool($this->deprecated);
     }
-    if ($this->idempotency_level !== \google\protobuf\MethodOptions_IdempotencyLevel::FromInt(0)) {
+    if ($this->idempotency_level !== \google\protobuf\MethodOptions_IdempotencyLevel::IDEMPOTENCY_UNKNOWN) {
       $e->writeTag(34, 0);
       $e->writeVarint($this->idempotency_level);
     }
@@ -3544,16 +3559,20 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->path as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->path) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->path as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 1);
     }
-    $e->writeEncoder($packed, 1);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->span as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->span) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->span as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 2);
     }
-    $e->writeEncoder($packed, 2);
     if ($this->leading_comments !== '') {
       $e->writeTag(3, 2);
       $e->writeString($this->leading_comments);
@@ -3754,11 +3773,13 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->path as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->path) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->path as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 1);
     }
-    $e->writeEncoder($packed, 1);
     if ($this->source_file !== '') {
       $e->writeTag(2, 2);
       $e->writeString($this->source_file);

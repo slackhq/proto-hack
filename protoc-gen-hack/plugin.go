@@ -10,6 +10,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/golang/protobuf/proto"
@@ -402,6 +403,37 @@ func (f field) phpType() string {
 }
 
 func (f field) defaultValue() string {
+	if f.syn == SyntaxProto2 {
+		// custom default value.
+		if dv := f.fd.GetDefaultValue(); dv != "" {
+			// proto2 custom default.
+			switch t := f.fd.GetType(); t {
+			case desc.FieldDescriptorProto_TYPE_FIXED64, desc.FieldDescriptorProto_TYPE_UINT64:
+				u64, err := strconv.ParseUint(dv, 10, 64)
+				if err != nil {
+					panic(fmt.Errorf("failed to parse custom default uint64 value: %v", err))
+				}
+				return strconv.FormatInt(int64(u64), 10)
+			case desc.FieldDescriptorProto_TYPE_STRING:
+				return "'" + strings.Replace(dv, "'", "\\'", -1) + "'"
+			case desc.FieldDescriptorProto_TYPE_BYTES:
+				// TODO, is this correct unescaping for C escaped values?
+				return "\\stripcslashes('" + dv + "')"
+			case desc.FieldDescriptorProto_TYPE_ENUM:
+				return f.typePhpNs + "\\" + f.typePhpName + "::" + dv
+			}
+			return dv
+		}
+		// unlike proto3, this is the first declared value in the protobuf.
+		if !f.isRepeated() && f.fd.GetType() == desc.FieldDescriptorProto_TYPE_ENUM {
+			ed, ok := f.typeDescriptor.(*desc.EnumDescriptorProto)
+			if !ok {
+				panic("unable to convert field type descriptor to enum descriptor")
+			}
+			return f.typePhpNs + "\\" + f.typePhpName + "::" + ed.GetValue()[0].GetName()
+		}
+	}
+
 	if f.isMap {
 		return "dict[]"
 	}
@@ -491,11 +523,13 @@ var isPackable = map[desc.FieldDescriptorProto_Type]bool{
 }
 
 func (f *field) isPacked() bool {
+	if f.fd.Options != nil && f.fd.Options.Packed != nil {
+		return *f.fd.Options.Packed
+	}
 	if f.syn == SyntaxProto3 {
-		// TODO: technically you can disable packing?
 		return isPackable[f.fd.GetType()]
 	}
-	return f.fd.GetOptions().GetPacked()
+	return false
 }
 
 func (f *field) writeDecoder(w *writer, dec, wt string) {
@@ -522,11 +556,13 @@ func (f *field) writeDecoder(w *writer, dec, wt string) {
 			w.p("$this->%s []= $obj;", f.varName())
 		} else {
 			if f.isOneofMember() {
-				// TODO: Subtle: technically this doesn't merge, it overwrites! Maybe consider
-				// fixing this.
+				w.p("if ($this->%s->WhichOneof() == %s::%s) {", f.oneof.name, f.oneof.enumTypeName, f.fd.GetName())
+				w.p("($this->%s as %s)->%s->MergeFrom(%s->readDecoder());", f.oneof.name, f.oneof.classNameForField(f), f.varName(), dec)
+				w.p("} else {")
 				w.p("$obj = new %s();", f.phpType())
 				w.p("$obj->MergeFrom(%s->readDecoder());", dec)
 				w.p("$this->%s = new %s($obj);", f.oneof.name, f.oneof.classNameForField(f))
+				w.p("}")
 			} else {
 				w.p("if ($this->%s == null) $this->%s = new %s();", f.varName(), f.varName(), f.phpType())
 				w.p("$this->%s->MergeFrom(%s->readDecoder());", f.varName(), dec)
@@ -699,6 +735,7 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 	repeatWriter := strings.Replace(writer, "$this->"+f.varName(), "$elem", 1)
 	if f.isPacked() {
 		// Heh, kinda hacky.
+		w.p("if (\\count($this->%s) > 0) {", f.varName())
 		packedWriter := strings.Replace(repeatWriter, enc, "$packed", 1)
 		w.p("$packed = new %s\\Encoder();", libNsInternal)
 		w.p("foreach ($this->%s as $elem) {", f.varName())
@@ -706,6 +743,7 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 		w.p("%s;", packedWriter)
 		w.p("}")
 		w.p("%s->writeEncoder($packed, %d);", enc, f.fd.GetNumber())
+		w.p("}")
 	} else {
 		w.p("foreach ($this->%s as $elem) {", f.varName())
 		w.p(tagWriter)

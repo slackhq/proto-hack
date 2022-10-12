@@ -1767,7 +1767,7 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
     ?'value' => \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t,
   ) $s = shape()) {
     $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt(0);
+    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO;
     $this->XXX_unrecognized = '';
   }
 
@@ -1797,7 +1797,7 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
-    if ($this->value !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt(0)) {
+    if ($this->value !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -1847,7 +1847,7 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
     ?'value' => \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t,
   ) $s = shape()) {
     $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt(0);
+    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO;
     $this->XXX_unrecognized = '';
   }
 
@@ -1877,7 +1877,7 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
-    if ($this->value !== \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt(0)) {
+    if ($this->value !== \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -2269,6 +2269,21 @@ class TestAllTypesProto2 implements \Protobuf\Message {
   public dict<string, \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t> $map_string_nested_enum;
   public dict<string, \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t> $map_string_foreign_enum;
   public ?\protobuf_test_messages\proto2\TestAllTypesProto2_Data $data;
+  public int $default_int32;
+  public int $default_int64;
+  public int $default_uint32;
+  public int $default_uint64;
+  public int $default_sint32;
+  public int $default_sint64;
+  public int $default_fixed32;
+  public int $default_fixed64;
+  public int $default_sfixed32;
+  public int $default_sfixed64;
+  public float $default_float;
+  public float $default_double;
+  public bool $default_bool;
+  public string $default_string;
+  public string $default_bytes;
   public int $fieldname1;
   public int $field_name2;
   public int $_field_name3;
@@ -2382,6 +2397,21 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     ?'map_string_nested_enum' => dict<string, \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t>,
     ?'map_string_foreign_enum' => dict<string, \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t>,
     ?'data' => ?\protobuf_test_messages\proto2\TestAllTypesProto2_Data,
+    ?'default_int32' => int,
+    ?'default_int64' => int,
+    ?'default_uint32' => int,
+    ?'default_uint64' => int,
+    ?'default_sint32' => int,
+    ?'default_sint64' => int,
+    ?'default_fixed32' => int,
+    ?'default_fixed64' => int,
+    ?'default_sfixed32' => int,
+    ?'default_sfixed64' => int,
+    ?'default_float' => float,
+    ?'default_double' => float,
+    ?'default_bool' => bool,
+    ?'default_string' => string,
+    ?'default_bytes' => string,
     ?'fieldname1' => int,
     ?'field_name2' => int,
     ?'_field_name3' => int,
@@ -2419,8 +2449,8 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->optional_bytes = $s['optional_bytes'] ?? '';
     $this->optional_nested_message = $s['optional_nested_message'] ?? null;
     $this->optional_foreign_message = $s['optional_foreign_message'] ?? null;
-    $this->optional_nested_enum = $s['optional_nested_enum'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt(0);
-    $this->optional_foreign_enum = $s['optional_foreign_enum'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt(0);
+    $this->optional_nested_enum = $s['optional_nested_enum'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO;
+    $this->optional_foreign_enum = $s['optional_foreign_enum'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO;
     $this->optional_string_piece = $s['optional_string_piece'] ?? '';
     $this->optional_cord = $s['optional_cord'] ?? '';
     $this->recursive_message = $s['recursive_message'] ?? null;
@@ -2493,6 +2523,21 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->map_string_nested_enum = $s['map_string_nested_enum'] ?? dict[];
     $this->map_string_foreign_enum = $s['map_string_foreign_enum'] ?? dict[];
     $this->data = $s['data'] ?? null;
+    $this->default_int32 = $s['default_int32'] ?? -123456789;
+    $this->default_int64 = $s['default_int64'] ?? -9123456789123456789;
+    $this->default_uint32 = $s['default_uint32'] ?? 2123456789;
+    $this->default_uint64 = $s['default_uint64'] ?? -8323287284586094827;
+    $this->default_sint32 = $s['default_sint32'] ?? -123456789;
+    $this->default_sint64 = $s['default_sint64'] ?? -9123456789123456789;
+    $this->default_fixed32 = $s['default_fixed32'] ?? 2123456789;
+    $this->default_fixed64 = $s['default_fixed64'] ?? -8323287284586094827;
+    $this->default_sfixed32 = $s['default_sfixed32'] ?? -123456789;
+    $this->default_sfixed64 = $s['default_sfixed64'] ?? -9123456789123456789;
+    $this->default_float = $s['default_float'] ?? 9e+09;
+    $this->default_double = $s['default_double'] ?? 7e+22;
+    $this->default_bool = $s['default_bool'] ?? true;
+    $this->default_string = $s['default_string'] ?? 'Rosebud';
+    $this->default_bytes = $s['default_bytes'] ?? \stripcslashes('joshua');
     $this->fieldname1 = $s['fieldname1'] ?? 0;
     $this->field_name2 = $s['field_name2'] ?? 0;
     $this->_field_name3 = $s['_field_name3'] ?? 0;
@@ -3143,9 +3188,13 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           $this->oneof_field = new TestAllTypesProto2_oneof_field_oneof_uint32($d->readVarint32());
           break;
         case 112:
-          $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
-          $obj->MergeFrom($d->readDecoder());
-          $this->oneof_field = new TestAllTypesProto2_oneof_field_oneof_nested_message($obj);
+          if ($this->oneof_field->WhichOneof() == TestAllTypesProto2_oneof_field_oneof_t::oneof_nested_message) {
+            ($this->oneof_field as TestAllTypesProto2_oneof_field_oneof_nested_message)->oneof_nested_message->MergeFrom($d->readDecoder());
+          } else {
+            $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+            $obj->MergeFrom($d->readDecoder());
+            $this->oneof_field = new TestAllTypesProto2_oneof_field_oneof_nested_message($obj);
+          }
           break;
         case 113:
           $this->oneof_field = new TestAllTypesProto2_oneof_field_oneof_string($d->readString());
@@ -3171,6 +3220,51 @@ class TestAllTypesProto2 implements \Protobuf\Message {
         case 201:
           if ($this->data == null) $this->data = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
           $this->data->MergeFrom($d->readDecoder());
+          break;
+        case 241:
+          $this->default_int32 = $d->readVarint32Signed();
+          break;
+        case 242:
+          $this->default_int64 = $d->readVarint();
+          break;
+        case 243:
+          $this->default_uint32 = $d->readVarint32();
+          break;
+        case 244:
+          $this->default_uint64 = $d->readVarint();
+          break;
+        case 245:
+          $this->default_sint32 = $d->readVarintZigZag32();
+          break;
+        case 246:
+          $this->default_sint64 = $d->readVarintZigZag64();
+          break;
+        case 247:
+          $this->default_fixed32 = $d->readLittleEndianInt32Unsigned();
+          break;
+        case 248:
+          $this->default_fixed64 = $d->readLittleEndianInt64();
+          break;
+        case 249:
+          $this->default_sfixed32 = $d->readLittleEndianInt32Signed();
+          break;
+        case 250:
+          $this->default_sfixed64 = $d->readLittleEndianInt64();
+          break;
+        case 251:
+          $this->default_float = $d->readFloat();
+          break;
+        case 252:
+          $this->default_double = $d->readDouble();
+          break;
+        case 253:
+          $this->default_bool = $d->readBool();
+          break;
+        case 254:
+          $this->default_string = $d->readString();
+          break;
+        case 255:
+          $this->default_bytes = $d->readString();
           break;
         case 401:
           $this->fieldname1 = $d->readVarint32Signed();
@@ -3306,11 +3400,11 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $msg->WriteTo($nested);
       $e->writeEncoder($nested, 19);
     }
-    if ($this->optional_nested_enum !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt(0)) {
+    if ($this->optional_nested_enum !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO) {
       $e->writeTag(21, 0);
       $e->writeVarint($this->optional_nested_enum);
     }
-    if ($this->optional_foreign_enum !== \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt(0)) {
+    if ($this->optional_foreign_enum !== \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO) {
       $e->writeTag(22, 0);
       $e->writeVarint($this->optional_foreign_enum);
     }
@@ -3566,76 +3660,104 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 74);
     }
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_int32 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_int32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_int32 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 75);
     }
-    $e->writeEncoder($packed, 75);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_int64 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_int64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_int64 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 76);
     }
-    $e->writeEncoder($packed, 76);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_uint32 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_uint32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_uint32 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 77);
     }
-    $e->writeEncoder($packed, 77);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_uint64 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_uint64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_uint64 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 78);
     }
-    $e->writeEncoder($packed, 78);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_sint32 as $elem) {
-      $packed->writeVarintZigZag32($elem);
+    if (\count($this->packed_sint32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_sint32 as $elem) {
+        $packed->writeVarintZigZag32($elem);
+      }
+      $e->writeEncoder($packed, 79);
     }
-    $e->writeEncoder($packed, 79);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_sint64 as $elem) {
-      $packed->writeVarintZigZag64($elem);
+    if (\count($this->packed_sint64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_sint64 as $elem) {
+        $packed->writeVarintZigZag64($elem);
+      }
+      $e->writeEncoder($packed, 80);
     }
-    $e->writeEncoder($packed, 80);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_fixed32 as $elem) {
-      $packed->writeLittleEndianInt32Unsigned($elem);
+    if (\count($this->packed_fixed32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_fixed32 as $elem) {
+        $packed->writeLittleEndianInt32Unsigned($elem);
+      }
+      $e->writeEncoder($packed, 81);
     }
-    $e->writeEncoder($packed, 81);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_fixed64 as $elem) {
-      $packed->writeLittleEndianInt64($elem);
+    if (\count($this->packed_fixed64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_fixed64 as $elem) {
+        $packed->writeLittleEndianInt64($elem);
+      }
+      $e->writeEncoder($packed, 82);
     }
-    $e->writeEncoder($packed, 82);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_sfixed32 as $elem) {
-      $packed->writeLittleEndianInt32Signed($elem);
+    if (\count($this->packed_sfixed32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_sfixed32 as $elem) {
+        $packed->writeLittleEndianInt32Signed($elem);
+      }
+      $e->writeEncoder($packed, 83);
     }
-    $e->writeEncoder($packed, 83);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_sfixed64 as $elem) {
-      $packed->writeLittleEndianInt64($elem);
+    if (\count($this->packed_sfixed64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_sfixed64 as $elem) {
+        $packed->writeLittleEndianInt64($elem);
+      }
+      $e->writeEncoder($packed, 84);
     }
-    $e->writeEncoder($packed, 84);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_float as $elem) {
-      $packed->writeFloat($elem);
+    if (\count($this->packed_float) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_float as $elem) {
+        $packed->writeFloat($elem);
+      }
+      $e->writeEncoder($packed, 85);
     }
-    $e->writeEncoder($packed, 85);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_double as $elem) {
-      $packed->writeDouble($elem);
+    if (\count($this->packed_double) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_double as $elem) {
+        $packed->writeDouble($elem);
+      }
+      $e->writeEncoder($packed, 86);
     }
-    $e->writeEncoder($packed, 86);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_bool as $elem) {
-      $packed->writeBool($elem);
+    if (\count($this->packed_bool) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_bool as $elem) {
+        $packed->writeBool($elem);
+      }
+      $e->writeEncoder($packed, 87);
     }
-    $e->writeEncoder($packed, 87);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_nested_enum as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_nested_enum) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_nested_enum as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 88);
     }
-    $e->writeEncoder($packed, 88);
     foreach ($this->unpacked_int32 as $elem) {
       $e->writeTag(89, 0);
       $e->writeVarint($elem);
@@ -3697,6 +3819,66 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $nested = new \Protobuf\Internal\Encoder();
       $msg->WriteTo($nested);
       $e->writeEncoder($nested, 201);
+    }
+    if ($this->default_int32 !== -123456789) {
+      $e->writeTag(241, 0);
+      $e->writeVarint($this->default_int32);
+    }
+    if ($this->default_int64 !== -9123456789123456789) {
+      $e->writeTag(242, 0);
+      $e->writeVarint($this->default_int64);
+    }
+    if ($this->default_uint32 !== 2123456789) {
+      $e->writeTag(243, 0);
+      $e->writeVarint($this->default_uint32);
+    }
+    if ($this->default_uint64 !== -8323287284586094827) {
+      $e->writeTag(244, 0);
+      $e->writeVarint($this->default_uint64);
+    }
+    if ($this->default_sint32 !== -123456789) {
+      $e->writeTag(245, 0);
+      $e->writeVarintZigZag32($this->default_sint32);
+    }
+    if ($this->default_sint64 !== -9123456789123456789) {
+      $e->writeTag(246, 0);
+      $e->writeVarintZigZag64($this->default_sint64);
+    }
+    if ($this->default_fixed32 !== 2123456789) {
+      $e->writeTag(247, 5);
+      $e->writeLittleEndianInt32Unsigned($this->default_fixed32);
+    }
+    if ($this->default_fixed64 !== -8323287284586094827) {
+      $e->writeTag(248, 1);
+      $e->writeLittleEndianInt64($this->default_fixed64);
+    }
+    if ($this->default_sfixed32 !== -123456789) {
+      $e->writeTag(249, 5);
+      $e->writeLittleEndianInt32Signed($this->default_sfixed32);
+    }
+    if ($this->default_sfixed64 !== -9123456789123456789) {
+      $e->writeTag(250, 1);
+      $e->writeLittleEndianInt64($this->default_sfixed64);
+    }
+    if ($this->default_float !== 9e+09) {
+      $e->writeTag(251, 5);
+      $e->writeFloat($this->default_float);
+    }
+    if ($this->default_double !== 7e+22) {
+      $e->writeTag(252, 1);
+      $e->writeDouble($this->default_double);
+    }
+    if ($this->default_bool !== true) {
+      $e->writeTag(253, 0);
+      $e->writeBool($this->default_bool);
+    }
+    if ($this->default_string !== 'Rosebud') {
+      $e->writeTag(254, 2);
+      $e->writeString($this->default_string);
+    }
+    if ($this->default_bytes !== \stripcslashes('joshua')) {
+      $e->writeTag(255, 2);
+      $e->writeString($this->default_bytes);
     }
     if ($this->fieldname1 !== 0) {
       $e->writeTag(401, 0);
@@ -3866,6 +4048,21 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $e->writePrimitiveList('unpacked_bool', 'unpackedBool', $this->unpacked_bool);
     $e->writeEnumList('unpacked_nested_enum', 'unpackedNestedEnum', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->unpacked_nested_enum);
     $e->writeMessage('data', 'data', $this->data, false);
+    $e->writeInt32('default_int32', 'defaultInt32', $this->default_int32, false);
+    $e->writeInt64Signed('default_int64', 'defaultInt64', $this->default_int64, false);
+    $e->writeInt32('default_uint32', 'defaultUint32', $this->default_uint32, false);
+    $e->writeInt64Unsigned('default_uint64', 'defaultUint64', $this->default_uint64, false);
+    $e->writeInt32('default_sint32', 'defaultSint32', $this->default_sint32, false);
+    $e->writeInt64Signed('default_sint64', 'defaultSint64', $this->default_sint64, false);
+    $e->writeInt32('default_fixed32', 'defaultFixed32', $this->default_fixed32, false);
+    $e->writeInt64Unsigned('default_fixed64', 'defaultFixed64', $this->default_fixed64, false);
+    $e->writeInt32('default_sfixed32', 'defaultSfixed32', $this->default_sfixed32, false);
+    $e->writeInt64Signed('default_sfixed64', 'defaultSfixed64', $this->default_sfixed64, false);
+    $e->writeFloat('default_float', 'defaultFloat', $this->default_float, false);
+    $e->writeFloat('default_double', 'defaultDouble', $this->default_double, false);
+    $e->writeBool('default_bool', 'defaultBool', $this->default_bool, false);
+    $e->writeString('default_string', 'defaultString', $this->default_string, false);
+    $e->writeBytes('default_bytes', 'defaultBytes', $this->default_bytes, false);
     $e->writeInt32('fieldname1', 'fieldname1', $this->fieldname1, false);
     $e->writeInt32('field_name2', 'fieldName2', $this->field_name2, false);
     $e->writeInt32('_field_name3', 'FieldName3', $this->_field_name3, false);
@@ -4384,6 +4581,51 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           if ($this->data == null) $this->data = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
           $this->data->MergeJsonFrom($v);
           break;
+        case 'default_int32': case 'defaultInt32':
+          $this->default_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'default_int64': case 'defaultInt64':
+          $this->default_int64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          break;
+        case 'default_uint32': case 'defaultUint32':
+          $this->default_uint32 = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          break;
+        case 'default_uint64': case 'defaultUint64':
+          $this->default_uint64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          break;
+        case 'default_sint32': case 'defaultSint32':
+          $this->default_sint32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'default_sint64': case 'defaultSint64':
+          $this->default_sint64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          break;
+        case 'default_fixed32': case 'defaultFixed32':
+          $this->default_fixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'default_fixed64': case 'defaultFixed64':
+          $this->default_fixed64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          break;
+        case 'default_sfixed32': case 'defaultSfixed32':
+          $this->default_sfixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'default_sfixed64': case 'defaultSfixed64':
+          $this->default_sfixed64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          break;
+        case 'default_float': case 'defaultFloat':
+          $this->default_float = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          break;
+        case 'default_double': case 'defaultDouble':
+          $this->default_double = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          break;
+        case 'default_bool': case 'defaultBool':
+          $this->default_bool = \Protobuf\Internal\JsonDecoder::readBool($v);
+          break;
+        case 'default_string': case 'defaultString':
+          $this->default_string = \Protobuf\Internal\JsonDecoder::readString($v);
+          break;
+        case 'default_bytes': case 'defaultBytes':
+          $this->default_bytes = \Protobuf\Internal\JsonDecoder::readBytes($v);
+          break;
         case 'fieldname1':
           $this->fieldname1 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
           break;
@@ -4575,6 +4817,21 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $nv->CopyFrom($tmp);
       $this->data = $nv;
     }
+    $this->default_int32 = $o->default_int32;
+    $this->default_int64 = $o->default_int64;
+    $this->default_uint32 = $o->default_uint32;
+    $this->default_uint64 = $o->default_uint64;
+    $this->default_sint32 = $o->default_sint32;
+    $this->default_sint64 = $o->default_sint64;
+    $this->default_fixed32 = $o->default_fixed32;
+    $this->default_fixed64 = $o->default_fixed64;
+    $this->default_sfixed32 = $o->default_sfixed32;
+    $this->default_sfixed64 = $o->default_sfixed64;
+    $this->default_float = $o->default_float;
+    $this->default_double = $o->default_double;
+    $this->default_bool = $o->default_bool;
+    $this->default_string = $o->default_string;
+    $this->default_bytes = $o->default_bytes;
     $this->fieldname1 = $o->fieldname1;
     $this->field_name2 = $o->field_name2;
     $this->_field_name3 = $o->_field_name3;
@@ -4893,6 +5150,196 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
     }
     $this->optional_bool = $o->optional_bool;
     $this->repeated_int32 = $o->repeated_int32;
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class NullHypothesisProto2 implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.NullHypothesisProto2";
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is NullHypothesisProto2)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+newtype EnumOnlyProto2_Bool_enum_t as int = int;
+abstract class EnumOnlyProto2_Bool {
+  const EnumOnlyProto2_Bool_enum_t kFalse = 0;
+  const EnumOnlyProto2_Bool_enum_t kTrue = 1;
+  private static dict<int, string> $itos = dict[
+    0 => 'kFalse',
+    1 => 'kTrue',
+  ];
+  public static function ToStringDict(): dict<int, string> {
+    return self::$itos;
+  }
+  private static dict<string, int> $stoi = dict[
+    'kFalse' => 0,
+    'kTrue' => 1,
+  ];
+  public static function FromMixed(mixed $m): EnumOnlyProto2_Bool_enum_t {
+    if ($m is string) return idx(self::$stoi, $m, \is_numeric($m) ? ((int) $m) : 0);
+    if ($m is int) return $m;
+    return 0;
+  }
+  public static function FromInt(int $i): EnumOnlyProto2_Bool_enum_t {
+    return $i;
+  }
+}
+
+class EnumOnlyProto2 implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.EnumOnlyProto2";
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is EnumOnlyProto2)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class OneStringProto2 implements \Protobuf\Message {
+  public string $data;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'data' => string,
+  ) $s = shape()) {
+    $this->data = $s['data'] ?? '';
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.OneStringProto2";
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 1:
+          $this->data = $d->readString();
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->data !== '') {
+      $e->writeTag(1, 2);
+      $e->writeString($this->data);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeString('data', 'data', $this->data, false);
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'data':
+          $this->data = \Protobuf\Internal\JsonDecoder::readString($v);
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is OneStringProto2)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->data = $o->data;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
