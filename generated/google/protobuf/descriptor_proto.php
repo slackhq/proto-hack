@@ -3559,16 +3559,20 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->path as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->path) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->path as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 1);
     }
-    $e->writeEncoder($packed, 1);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->span as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->span) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->span as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 2);
     }
-    $e->writeEncoder($packed, 2);
     if ($this->leading_comments !== '') {
       $e->writeTag(3, 2);
       $e->writeString($this->leading_comments);
@@ -3769,11 +3773,13 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->path as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->path) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->path as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 1);
     }
-    $e->writeEncoder($packed, 1);
     if ($this->source_file !== '') {
       $e->writeTag(2, 2);
       $e->writeString($this->source_file);

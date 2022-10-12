@@ -707,11 +707,13 @@ class example1 implements \Protobuf\Message {
       $e->writeTag(30, 2);
       $e->writeString($elem);
     }
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->manyint64 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->manyint64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->manyint64 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 31);
     }
-    $e->writeEncoder($packed, 31);
     $msg = $this->aexample2;
     if ($msg != null) {
       $nested = new \Protobuf\Internal\Encoder();

@@ -731,6 +731,7 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 	repeatWriter := strings.Replace(writer, "$this->"+f.varName(), "$elem", 1)
 	if f.isPacked() {
 		// Heh, kinda hacky.
+		w.p("if (\\count($this->%s) > 0) {", f.varName())
 		packedWriter := strings.Replace(repeatWriter, enc, "$packed", 1)
 		w.p("$packed = new %s\\Encoder();", libNsInternal)
 		w.p("foreach ($this->%s as $elem) {", f.varName())
@@ -738,6 +739,7 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 		w.p("%s;", packedWriter)
 		w.p("}")
 		w.p("%s->writeEncoder($packed, %d);", enc, f.fd.GetNumber())
+		w.p("}")
 	} else {
 		w.p("foreach ($this->%s as $elem) {", f.varName())
 		w.p(tagWriter)

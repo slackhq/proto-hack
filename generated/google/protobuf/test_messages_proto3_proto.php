@@ -3372,71 +3372,97 @@ class TestAllTypesProto3 implements \Protobuf\Message {
       $msg->WriteTo($nested);
       $e->writeEncoder($nested, 27);
     }
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_int32 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->repeated_int32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_int32 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 31);
     }
-    $e->writeEncoder($packed, 31);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_int64 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->repeated_int64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_int64 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 32);
     }
-    $e->writeEncoder($packed, 32);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_uint32 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->repeated_uint32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_uint32 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 33);
     }
-    $e->writeEncoder($packed, 33);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_uint64 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->repeated_uint64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_uint64 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 34);
     }
-    $e->writeEncoder($packed, 34);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_sint32 as $elem) {
-      $packed->writeVarintZigZag32($elem);
+    if (\count($this->repeated_sint32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_sint32 as $elem) {
+        $packed->writeVarintZigZag32($elem);
+      }
+      $e->writeEncoder($packed, 35);
     }
-    $e->writeEncoder($packed, 35);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_sint64 as $elem) {
-      $packed->writeVarintZigZag64($elem);
+    if (\count($this->repeated_sint64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_sint64 as $elem) {
+        $packed->writeVarintZigZag64($elem);
+      }
+      $e->writeEncoder($packed, 36);
     }
-    $e->writeEncoder($packed, 36);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_fixed32 as $elem) {
-      $packed->writeLittleEndianInt32Unsigned($elem);
+    if (\count($this->repeated_fixed32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_fixed32 as $elem) {
+        $packed->writeLittleEndianInt32Unsigned($elem);
+      }
+      $e->writeEncoder($packed, 37);
     }
-    $e->writeEncoder($packed, 37);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_fixed64 as $elem) {
-      $packed->writeLittleEndianInt64($elem);
+    if (\count($this->repeated_fixed64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_fixed64 as $elem) {
+        $packed->writeLittleEndianInt64($elem);
+      }
+      $e->writeEncoder($packed, 38);
     }
-    $e->writeEncoder($packed, 38);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_sfixed32 as $elem) {
-      $packed->writeLittleEndianInt32Signed($elem);
+    if (\count($this->repeated_sfixed32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_sfixed32 as $elem) {
+        $packed->writeLittleEndianInt32Signed($elem);
+      }
+      $e->writeEncoder($packed, 39);
     }
-    $e->writeEncoder($packed, 39);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_sfixed64 as $elem) {
-      $packed->writeLittleEndianInt64($elem);
+    if (\count($this->repeated_sfixed64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_sfixed64 as $elem) {
+        $packed->writeLittleEndianInt64($elem);
+      }
+      $e->writeEncoder($packed, 40);
     }
-    $e->writeEncoder($packed, 40);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_float as $elem) {
-      $packed->writeFloat($elem);
+    if (\count($this->repeated_float) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_float as $elem) {
+        $packed->writeFloat($elem);
+      }
+      $e->writeEncoder($packed, 41);
     }
-    $e->writeEncoder($packed, 41);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_double as $elem) {
-      $packed->writeDouble($elem);
+    if (\count($this->repeated_double) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_double as $elem) {
+        $packed->writeDouble($elem);
+      }
+      $e->writeEncoder($packed, 42);
     }
-    $e->writeEncoder($packed, 42);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_bool as $elem) {
-      $packed->writeBool($elem);
+    if (\count($this->repeated_bool) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_bool as $elem) {
+        $packed->writeBool($elem);
+      }
+      $e->writeEncoder($packed, 43);
     }
-    $e->writeEncoder($packed, 43);
     foreach ($this->repeated_string as $elem) {
       $e->writeTag(44, 2);
       $e->writeString($elem);
@@ -3455,16 +3481,20 @@ class TestAllTypesProto3 implements \Protobuf\Message {
       $msg->WriteTo($nested);
       $e->writeEncoder($nested, 49);
     }
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_nested_enum as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->repeated_nested_enum) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_nested_enum as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 51);
     }
-    $e->writeEncoder($packed, 51);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->repeated_foreign_enum as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->repeated_foreign_enum) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->repeated_foreign_enum as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 52);
     }
-    $e->writeEncoder($packed, 52);
     foreach ($this->repeated_string_piece as $elem) {
       $e->writeTag(54, 2);
       $e->writeString($elem);
@@ -3625,146 +3655,202 @@ class TestAllTypesProto3 implements \Protobuf\Message {
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 74);
     }
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_int32 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_int32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_int32 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 75);
     }
-    $e->writeEncoder($packed, 75);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_int64 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_int64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_int64 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 76);
     }
-    $e->writeEncoder($packed, 76);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_uint32 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_uint32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_uint32 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 77);
     }
-    $e->writeEncoder($packed, 77);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_uint64 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_uint64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_uint64 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 78);
     }
-    $e->writeEncoder($packed, 78);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_sint32 as $elem) {
-      $packed->writeVarintZigZag32($elem);
+    if (\count($this->packed_sint32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_sint32 as $elem) {
+        $packed->writeVarintZigZag32($elem);
+      }
+      $e->writeEncoder($packed, 79);
     }
-    $e->writeEncoder($packed, 79);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_sint64 as $elem) {
-      $packed->writeVarintZigZag64($elem);
+    if (\count($this->packed_sint64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_sint64 as $elem) {
+        $packed->writeVarintZigZag64($elem);
+      }
+      $e->writeEncoder($packed, 80);
     }
-    $e->writeEncoder($packed, 80);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_fixed32 as $elem) {
-      $packed->writeLittleEndianInt32Unsigned($elem);
+    if (\count($this->packed_fixed32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_fixed32 as $elem) {
+        $packed->writeLittleEndianInt32Unsigned($elem);
+      }
+      $e->writeEncoder($packed, 81);
     }
-    $e->writeEncoder($packed, 81);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_fixed64 as $elem) {
-      $packed->writeLittleEndianInt64($elem);
+    if (\count($this->packed_fixed64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_fixed64 as $elem) {
+        $packed->writeLittleEndianInt64($elem);
+      }
+      $e->writeEncoder($packed, 82);
     }
-    $e->writeEncoder($packed, 82);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_sfixed32 as $elem) {
-      $packed->writeLittleEndianInt32Signed($elem);
+    if (\count($this->packed_sfixed32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_sfixed32 as $elem) {
+        $packed->writeLittleEndianInt32Signed($elem);
+      }
+      $e->writeEncoder($packed, 83);
     }
-    $e->writeEncoder($packed, 83);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_sfixed64 as $elem) {
-      $packed->writeLittleEndianInt64($elem);
+    if (\count($this->packed_sfixed64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_sfixed64 as $elem) {
+        $packed->writeLittleEndianInt64($elem);
+      }
+      $e->writeEncoder($packed, 84);
     }
-    $e->writeEncoder($packed, 84);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_float as $elem) {
-      $packed->writeFloat($elem);
+    if (\count($this->packed_float) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_float as $elem) {
+        $packed->writeFloat($elem);
+      }
+      $e->writeEncoder($packed, 85);
     }
-    $e->writeEncoder($packed, 85);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_double as $elem) {
-      $packed->writeDouble($elem);
+    if (\count($this->packed_double) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_double as $elem) {
+        $packed->writeDouble($elem);
+      }
+      $e->writeEncoder($packed, 86);
     }
-    $e->writeEncoder($packed, 86);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_bool as $elem) {
-      $packed->writeBool($elem);
+    if (\count($this->packed_bool) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_bool as $elem) {
+        $packed->writeBool($elem);
+      }
+      $e->writeEncoder($packed, 87);
     }
-    $e->writeEncoder($packed, 87);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->packed_nested_enum as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->packed_nested_enum) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->packed_nested_enum as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 88);
     }
-    $e->writeEncoder($packed, 88);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_int32 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->unpacked_int32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_int32 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 89);
     }
-    $e->writeEncoder($packed, 89);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_int64 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->unpacked_int64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_int64 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 90);
     }
-    $e->writeEncoder($packed, 90);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_uint32 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->unpacked_uint32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_uint32 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 91);
     }
-    $e->writeEncoder($packed, 91);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_uint64 as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->unpacked_uint64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_uint64 as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 92);
     }
-    $e->writeEncoder($packed, 92);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_sint32 as $elem) {
-      $packed->writeVarintZigZag32($elem);
+    if (\count($this->unpacked_sint32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_sint32 as $elem) {
+        $packed->writeVarintZigZag32($elem);
+      }
+      $e->writeEncoder($packed, 93);
     }
-    $e->writeEncoder($packed, 93);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_sint64 as $elem) {
-      $packed->writeVarintZigZag64($elem);
+    if (\count($this->unpacked_sint64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_sint64 as $elem) {
+        $packed->writeVarintZigZag64($elem);
+      }
+      $e->writeEncoder($packed, 94);
     }
-    $e->writeEncoder($packed, 94);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_fixed32 as $elem) {
-      $packed->writeLittleEndianInt32Unsigned($elem);
+    if (\count($this->unpacked_fixed32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_fixed32 as $elem) {
+        $packed->writeLittleEndianInt32Unsigned($elem);
+      }
+      $e->writeEncoder($packed, 95);
     }
-    $e->writeEncoder($packed, 95);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_fixed64 as $elem) {
-      $packed->writeLittleEndianInt64($elem);
+    if (\count($this->unpacked_fixed64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_fixed64 as $elem) {
+        $packed->writeLittleEndianInt64($elem);
+      }
+      $e->writeEncoder($packed, 96);
     }
-    $e->writeEncoder($packed, 96);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_sfixed32 as $elem) {
-      $packed->writeLittleEndianInt32Signed($elem);
+    if (\count($this->unpacked_sfixed32) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_sfixed32 as $elem) {
+        $packed->writeLittleEndianInt32Signed($elem);
+      }
+      $e->writeEncoder($packed, 97);
     }
-    $e->writeEncoder($packed, 97);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_sfixed64 as $elem) {
-      $packed->writeLittleEndianInt64($elem);
+    if (\count($this->unpacked_sfixed64) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_sfixed64 as $elem) {
+        $packed->writeLittleEndianInt64($elem);
+      }
+      $e->writeEncoder($packed, 98);
     }
-    $e->writeEncoder($packed, 98);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_float as $elem) {
-      $packed->writeFloat($elem);
+    if (\count($this->unpacked_float) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_float as $elem) {
+        $packed->writeFloat($elem);
+      }
+      $e->writeEncoder($packed, 99);
     }
-    $e->writeEncoder($packed, 99);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_double as $elem) {
-      $packed->writeDouble($elem);
+    if (\count($this->unpacked_double) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_double as $elem) {
+        $packed->writeDouble($elem);
+      }
+      $e->writeEncoder($packed, 100);
     }
-    $e->writeEncoder($packed, 100);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_bool as $elem) {
-      $packed->writeBool($elem);
+    if (\count($this->unpacked_bool) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_bool as $elem) {
+        $packed->writeBool($elem);
+      }
+      $e->writeEncoder($packed, 101);
     }
-    $e->writeEncoder($packed, 101);
-    $packed = new \Protobuf\Internal\Encoder();
-    foreach ($this->unpacked_nested_enum as $elem) {
-      $packed->writeVarint($elem);
+    if (\count($this->unpacked_nested_enum) > 0) {
+      $packed = new \Protobuf\Internal\Encoder();
+      foreach ($this->unpacked_nested_enum as $elem) {
+        $packed->writeVarint($elem);
+      }
+      $e->writeEncoder($packed, 102);
     }
-    $e->writeEncoder($packed, 102);
     $msg = $this->optional_bool_wrapper;
     if ($msg != null) {
       $nested = new \Protobuf\Internal\Encoder();
