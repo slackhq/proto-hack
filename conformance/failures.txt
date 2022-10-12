@@ -505,3 +505,5 @@ Required.Proto3.ProtobufInput.ValidDataScalar.ENUM[5].JsonOutput
 Required.Proto3.ProtobufInput.ValidDataScalar.MESSAGE[0].JsonOutput
 Required.TimestampProtoInputTooLarge.JsonOutput
 Required.TimestampProtoInputTooSmall.JsonOutput
+Required.Proto3.JsonInput.OneofFieldNullSecond.JsonOutput
+Required.Proto3.JsonInput.OneofFieldNullSecond.ProtobufOutput

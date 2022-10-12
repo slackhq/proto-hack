@@ -5293,6 +5293,131 @@ class ForeignMessage implements \Protobuf\Message {
   }
 }
 
+class NullHypothesisProto3 implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto3.NullHypothesisProto3";
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is NullHypothesisProto3)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+newtype EnumOnlyProto3_Bool_enum_t as int = int;
+abstract class EnumOnlyProto3_Bool {
+  const EnumOnlyProto3_Bool_enum_t kFalse = 0;
+  const EnumOnlyProto3_Bool_enum_t kTrue = 1;
+  private static dict<int, string> $itos = dict[
+    0 => 'kFalse',
+    1 => 'kTrue',
+  ];
+  public static function ToStringDict(): dict<int, string> {
+    return self::$itos;
+  }
+  private static dict<string, int> $stoi = dict[
+    'kFalse' => 0,
+    'kTrue' => 1,
+  ];
+  public static function FromMixed(mixed $m): EnumOnlyProto3_Bool_enum_t {
+    if ($m is string) return idx(self::$stoi, $m, \is_numeric($m) ? ((int) $m) : 0);
+    if ($m is int) return $m;
+    return 0;
+  }
+  public static function FromInt(int $i): EnumOnlyProto3_Bool_enum_t {
+    return $i;
+  }
+}
+
+class EnumOnlyProto3 implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto3.EnumOnlyProto3";
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is EnumOnlyProto3)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
 
 class XXX_FileDescriptor_google_protobuf_test_messages_proto3__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/test_messages_proto3.proto';

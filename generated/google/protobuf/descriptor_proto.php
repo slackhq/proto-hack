@@ -2571,6 +2571,7 @@ class FieldOptions implements \Protobuf\Message {
   public bool $packed;
   public \google\protobuf\FieldOptions_JSType_enum_t $jstype;
   public bool $lazy;
+  public bool $unverified_lazy;
   public bool $deprecated;
   public bool $weak;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
@@ -2581,6 +2582,7 @@ class FieldOptions implements \Protobuf\Message {
     ?'packed' => bool,
     ?'jstype' => \google\protobuf\FieldOptions_JSType_enum_t,
     ?'lazy' => bool,
+    ?'unverified_lazy' => bool,
     ?'deprecated' => bool,
     ?'weak' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
@@ -2589,6 +2591,7 @@ class FieldOptions implements \Protobuf\Message {
     $this->packed = $s['packed'] ?? false;
     $this->jstype = $s['jstype'] ?? \google\protobuf\FieldOptions_JSType::FromInt(0);
     $this->lazy = $s['lazy'] ?? false;
+    $this->unverified_lazy = $s['unverified_lazy'] ?? false;
     $this->deprecated = $s['deprecated'] ?? false;
     $this->weak = $s['weak'] ?? false;
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
@@ -2620,6 +2623,9 @@ class FieldOptions implements \Protobuf\Message {
           break;
         case 10:
           $this->weak = $d->readBool();
+          break;
+        case 15:
+          $this->unverified_lazy = $d->readBool();
           break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
@@ -2658,6 +2664,10 @@ class FieldOptions implements \Protobuf\Message {
       $e->writeTag(10, 0);
       $e->writeBool($this->weak);
     }
+    if ($this->unverified_lazy !== false) {
+      $e->writeTag(15, 0);
+      $e->writeBool($this->unverified_lazy);
+    }
     foreach ($this->uninterpreted_option as $msg) {
       $nested = new \Protobuf\Internal\Encoder();
       $msg->WriteTo($nested);
@@ -2673,6 +2683,7 @@ class FieldOptions implements \Protobuf\Message {
     $e->writeBool('lazy', 'lazy', $this->lazy, false);
     $e->writeEnum('jstype', 'jstype', \google\protobuf\FieldOptions_JSType::ToStringDict(), $this->jstype, false);
     $e->writeBool('weak', 'weak', $this->weak, false);
+    $e->writeBool('unverified_lazy', 'unverifiedLazy', $this->unverified_lazy, false);
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -2699,6 +2710,9 @@ class FieldOptions implements \Protobuf\Message {
         case 'weak':
           $this->weak = \Protobuf\Internal\JsonDecoder::readBool($v);
           break;
+        case 'unverified_lazy': case 'unverifiedLazy':
+          $this->unverified_lazy = \Protobuf\Internal\JsonDecoder::readBool($v);
+          break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
             $obj = new \google\protobuf\UninterpretedOption();
@@ -2722,6 +2736,7 @@ class FieldOptions implements \Protobuf\Message {
     $this->lazy = $o->lazy;
     $this->jstype = $o->jstype;
     $this->weak = $o->weak;
+    $this->unverified_lazy = $o->unverified_lazy;
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
