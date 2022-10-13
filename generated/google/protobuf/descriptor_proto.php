@@ -2512,11 +2512,11 @@ class MessageOptions implements \Protobuf\Message {
 
 newtype FieldOptions_CType_enum_t as int = int;
 abstract class FieldOptions_CType {
-  const FieldOptions_CType_enum_t pb_STRING = 0;
+  const FieldOptions_CType_enum_t STRING = 0;
   const FieldOptions_CType_enum_t CORD = 1;
   const FieldOptions_CType_enum_t STRING_PIECE = 2;
   private static dict<int, string> $itos = dict[
-    0 => 'pb_STRING',
+    0 => 'STRING',
     1 => 'CORD',
     2 => 'STRING_PIECE',
   ];
@@ -2524,7 +2524,7 @@ abstract class FieldOptions_CType {
     return self::$itos;
   }
   private static dict<string, int> $stoi = dict[
-    'pb_STRING' => 0,
+    'STRING' => 0,
     'CORD' => 1,
     'STRING_PIECE' => 2,
   ];

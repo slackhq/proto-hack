@@ -1105,13 +1105,13 @@ func writeEnum(w *writer, ed *desc.EnumDescriptorProto, prefixNames []string) {
 	w.p("newtype %s as int = int;", typename)
 	w.p("abstract class %s {", name)
 	for _, v := range ed.Value {
-		w.p("const %s %s = %d;", typename, escapeReservedName(*v.Name), *v.Number)
+		w.p("const %s %s = %d;", typename, v.GetName(), *v.Number)
 	}
 
 	w.p("private static dict<int, string> $itos = dict[")
 	w.i++
 	for _, v := range ed.Value {
-		w.p("%d => '%s',", v.GetNumber(), escapeReservedName(v.GetName()))
+		w.p("%d => '%s',", v.GetNumber(), v.GetName())
 	}
 	w.i--
 	w.p("];")
@@ -1123,7 +1123,7 @@ func writeEnum(w *writer, ed *desc.EnumDescriptorProto, prefixNames []string) {
 	w.p("private static dict<string, int> $stoi = dict[")
 	w.i++
 	for _, v := range ed.Value {
-		w.p("'%s' => %d,", escapeReservedName(v.GetName()), v.GetNumber())
+		w.p("'%s' => %d,", v.GetName(), v.GetNumber())
 	}
 	w.i--
 	w.p("];")
