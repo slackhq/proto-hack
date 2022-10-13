@@ -37,7 +37,7 @@ var (
 		"AsyncKeyedIterator", "AsyncGenerator", "Generator", "FormatString", "BuiltinEnum", "Throwable", "DateTime",
 		"stdClass", "DateTimeImmutable", "Stringish", "XHPChild", "IMemoizeParam", "typename", "IDisposable",
 		"IAsyncDisposable", "ImmVector", "Set", "ImmSet", "ImmMap", "Pair", "ConstVector", "Collection", "ConstMap",
-		"ConstCollection", "Attribute", "ClassAttribute", "EnumAttribute", "TypeAliasAttribute", "FunctionAttribute", "MethodAttribute",
+		"ConstCollection", "Class", "CLASS", "ClassAttribute", "EnumAttribute", "TypeAliasAttribute", "FunctionAttribute", "MethodAttribute",
 		"InstancePropertyAttribute", "StaticPropertyAttribute", "ParameterAttribute", "TypeParameterAttribute", "FileAttribute",
 		"TypeConstantAttribute", "Function", "tuple", "echo", "assert", "fun", "invariant", "invariant_violation", "inst_meth", "class_meth",
 		"meth_caller", "varray_or_darray", "callable", "object", "dynamic", "this", "mixed", "resource", "null", "namespace"}
@@ -1113,13 +1113,13 @@ func writeEnum(w *writer, ed *desc.EnumDescriptorProto, prefixNames []string) {
 	w.p("newtype %s as int = int;", typename)
 	w.p("abstract class %s {", name)
 	for _, v := range ed.Value {
-		w.p("const %s %s = %d;", typename, *v.Name, *v.Number)
+		w.p("const %s %s = %d;", typename, escapeReservedName(*v.Name), *v.Number)
 	}
 
 	w.p("private static dict<int, string> $itos = dict[")
 	w.i++
 	for _, v := range ed.Value {
-		w.p("%d => '%s',", v.GetNumber(), v.GetName())
+		w.p("%d => '%s',", v.GetNumber(), escapeReservedName(v.GetName()))
 	}
 	w.i--
 	w.p("];")
@@ -1131,7 +1131,7 @@ func writeEnum(w *writer, ed *desc.EnumDescriptorProto, prefixNames []string) {
 	w.p("private static dict<string, int> $stoi = dict[")
 	w.i++
 	for _, v := range ed.Value {
-		w.p("'%s' => %d,", v.GetName(), v.GetNumber())
+		w.p("'%s' => %d,", escapeReservedName(v.GetName()), v.GetNumber())
 	}
 	w.i--
 	w.p("];")
