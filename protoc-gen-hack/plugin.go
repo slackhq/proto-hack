@@ -37,7 +37,7 @@ var (
 		"AsyncKeyedIterator", "AsyncGenerator", "Generator", "FormatString", "BuiltinEnum", "Throwable", "DateTime",
 		"stdClass", "DateTimeImmutable", "Stringish", "XHPChild", "IMemoizeParam", "typename", "IDisposable",
 		"IAsyncDisposable", "ImmVector", "Set", "ImmSet", "ImmMap", "Pair", "ConstVector", "Collection", "ConstMap",
-		"ConstCollection", "Class", "CLASS", "ClassAttribute", "EnumAttribute", "TypeAliasAttribute", "FunctionAttribute", "MethodAttribute",
+		"ConstCollection", "Class", "ClassAttribute", "EnumAttribute", "TypeAliasAttribute", "FunctionAttribute", "MethodAttribute",
 		"InstancePropertyAttribute", "StaticPropertyAttribute", "ParameterAttribute", "TypeParameterAttribute", "FileAttribute",
 		"TypeConstantAttribute", "Function", "tuple", "echo", "assert", "fun", "invariant", "invariant_violation", "inst_meth", "class_meth",
 		"meth_caller", "varray_or_darray", "callable", "object", "dynamic", "this", "mixed", "resource", "null", "namespace"}
@@ -328,6 +328,13 @@ func escapeReservedName(name string) string {
 	return name
 }
 
+func escapeReservedConstantName(name string) string {
+	if strings.ToLower(name) == "class" {
+		return "pb_" + name
+	}
+	return name
+}
+
 type field struct {
 	fd                     *desc.FieldDescriptorProto
 	typePhpNs, typePhpName string
@@ -433,7 +440,7 @@ func (f field) defaultValue() string {
 			if !ok {
 				panic("unable to convert field type descriptor to enum descriptor")
 			}
-			return f.typePhpNs + "\\" + f.typePhpName + "::" + ed.GetValue()[0].GetName()
+			return f.typePhpNs + "\\" + f.typePhpName + "::" + escapeReservedConstantName(ed.GetValue()[0].GetName())
 		}
 	}
 
@@ -1105,7 +1112,7 @@ func writeEnum(w *writer, ed *desc.EnumDescriptorProto, prefixNames []string) {
 	w.p("newtype %s as int = int;", typename)
 	w.p("abstract class %s {", name)
 	for _, v := range ed.Value {
-		w.p("const %s %s = %d;", typename, v.GetName(), *v.Number)
+		w.p("const %s %s = %d;", typename, escapeReservedConstantName(v.GetName()), *v.Number)
 	}
 
 	w.p("private static dict<int, string> $itos = dict[")
