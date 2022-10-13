@@ -2533,8 +2533,8 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->default_fixed64 = $s['default_fixed64'] ?? -8323287284586094827;
     $this->default_sfixed32 = $s['default_sfixed32'] ?? -123456789;
     $this->default_sfixed64 = $s['default_sfixed64'] ?? -9123456789123456789;
-    $this->default_float = $s['default_float'] ?? 9e+09;
-    $this->default_double = $s['default_double'] ?? 7e+22;
+    $this->default_float = $s['default_float'] ?? (float)9e+09;
+    $this->default_double = $s['default_double'] ?? (float)7e+22;
     $this->default_bool = $s['default_bool'] ?? true;
     $this->default_string = $s['default_string'] ?? 'Rosebud';
     $this->default_bytes = $s['default_bytes'] ?? \stripcslashes('joshua');
@@ -3860,11 +3860,11 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $e->writeTag(250, 1);
       $e->writeLittleEndianInt64($this->default_sfixed64);
     }
-    if ($this->default_float !== 9e+09) {
+    if ($this->default_float !== (float)9e+09) {
       $e->writeTag(251, 5);
       $e->writeFloat($this->default_float);
     }
-    if ($this->default_double !== 7e+22) {
+    if ($this->default_double !== (float)7e+22) {
       $e->writeTag(252, 1);
       $e->writeDouble($this->default_double);
     }
