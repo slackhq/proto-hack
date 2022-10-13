@@ -37,9 +37,9 @@ var (
 		"AsyncKeyedIterator", "AsyncGenerator", "Generator", "FormatString", "BuiltinEnum", "Throwable", "DateTime",
 		"stdClass", "DateTimeImmutable", "Stringish", "XHPChild", "IMemoizeParam", "typename", "IDisposable",
 		"IAsyncDisposable", "ImmVector", "Set", "ImmSet", "ImmMap", "Pair", "ConstVector", "Collection", "ConstMap",
-		"ConstCollection", "ClassAttribute", "EnumAttribute", "TypeAliasAttribute", "FunctionAttribute", "MethodAttribute",
+		"ConstCollection", "Attribute", "ClassAttribute", "EnumAttribute", "TypeAliasAttribute", "FunctionAttribute", "MethodAttribute",
 		"InstancePropertyAttribute", "StaticPropertyAttribute", "ParameterAttribute", "TypeParameterAttribute", "FileAttribute",
-		"TypeConstantAttribute", "tuple", "echo", "assert", "fun", "invariant", "invariant_violation", "inst_meth", "class_meth",
+		"TypeConstantAttribute", "Function", "tuple", "echo", "assert", "fun", "invariant", "invariant_violation", "inst_meth", "class_meth",
 		"meth_caller", "varray_or_darray", "callable", "object", "dynamic", "this", "mixed", "resource", "null", "namespace"}
 )
 
@@ -414,6 +414,17 @@ func (f field) defaultValue() string {
 					panic(fmt.Errorf("failed to parse custom default uint64 value: %v", err))
 				}
 				return strconv.FormatInt(int64(u64), 10)
+			case desc.FieldDescriptorProto_TYPE_DOUBLE, desc.FieldDescriptorProto_TYPE_FLOAT:
+				// Force converting int-like values to float formatted values: 1 -> 1.0
+				f64, err := strconv.ParseFloat(dv, 32)
+				if err != nil {
+					panic(fmt.Errorf("failed to parse custom default float/double value: %v", err))
+				}
+				fs := strconv.FormatFloat(f64, 'f', -1, 32)
+				if !strings.Contains(fs, ".") {
+					fs += ".0"
+				}
+				return fs
 			case desc.FieldDescriptorProto_TYPE_STRING:
 				return "'" + strings.Replace(dv, "'", "\\'", -1) + "'"
 			case desc.FieldDescriptorProto_TYPE_BYTES:
