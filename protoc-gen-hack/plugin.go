@@ -430,7 +430,7 @@ func (f field) defaultValue() string {
 				// TODO, is this correct unescaping for C escaped values?
 				return "\\stripcslashes('" + dv + "')"
 			case desc.FieldDescriptorProto_TYPE_ENUM:
-				return f.typePhpNs + "\\" + f.typePhpName + "::" + dv
+				return f.typePhpNs + "\\" + f.typePhpName + "::" + escapeReservedConstantName(dv)
 			}
 			return dv
 		}
