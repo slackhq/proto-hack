@@ -1,7 +1,20 @@
 load("@io_bazel_rules_go//go:def.bzl", "go_binary")
+load("@io_bazel_rules_go//proto:def.bzl", "go_proto_library")
 load(":hh.bzl", "hh_client_test", "hh_test")
 
 package(default_visibility = ["//visibility:private"])
+
+proto_library(
+    name = "opt_proto",
+    srcs = ["opt/proto_hack_options.proto"],
+    deps = ["@com_google_protobuf//:descriptor_proto"],
+)
+
+go_proto_library(
+    name = "opt_go_proto",
+    importpath = "github.com/slackhq/proto-hack/opt",
+    protos = [":opt_proto"],
+)
 
 go_binary(
     name = "protoc-gen-hack",
@@ -13,6 +26,7 @@ go_binary(
     visibility = ["//visibility:public"],
     x_defs = {"version": "8.0.0"},
     deps = [
+        ":opt_go_proto",
         "@com_github_golang_protobuf//proto:go_default_library",
         "@com_github_golang_protobuf//protoc-gen-go/descriptor:go_default_library",
         "@com_github_golang_protobuf//protoc-gen-go/plugin:go_default_library",
@@ -55,6 +69,7 @@ sh_library(
         "@com_google_protobuf//:protoc",
         "//:protoc-gen-hack",
     ] + glob([
+        "opt/*.proto",
         "test/*.proto",
         "test/*.pb.txt",
     ]) + ALL_GEN,
