@@ -1,8 +1,10 @@
 syntax = "proto3";
 
 import "test/example3.proto";
+import "opt/proto_hack_options.proto";
 
 package fiz.baz;
+option (hack_namespace) = "fizzy\\bazzy";
 
 message example2 {
   int32 zomg = 1;
