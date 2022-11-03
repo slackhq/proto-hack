@@ -59,6 +59,15 @@ class Type implements \Protobuf\Message {
     return "google.protobuf.Type";
   }
 
+  public static function ParseFrom(string $input): ?Type {
+    $msg = new Type();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -352,6 +361,15 @@ class Field implements \Protobuf\Message {
     return "google.protobuf.Field";
   }
 
+  public static function ParseFrom(string $input): ?Field {
+    $msg = new Field();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -548,6 +566,15 @@ class pb_Enum implements \Protobuf\Message {
     return "google.protobuf.Enum";
   }
 
+  public static function ParseFrom(string $input): ?pb_Enum {
+    $msg = new pb_Enum();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -699,6 +726,15 @@ class EnumValue implements \Protobuf\Message {
     return "google.protobuf.EnumValue";
   }
 
+  public static function ParseFrom(string $input): ?EnumValue {
+    $msg = new EnumValue();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -800,6 +836,15 @@ class Option implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.Option";
+  }
+
+  public static function ParseFrom(string $input): ?Option {
+    $msg = new Option();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

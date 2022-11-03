@@ -19,6 +19,15 @@ class SourceContext implements \Protobuf\Message {
     return "google.protobuf.SourceContext";
   }
 
+  public static function ParseFrom(string $input): ?SourceContext {
+    $msg = new SourceContext();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();

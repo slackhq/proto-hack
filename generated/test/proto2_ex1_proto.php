@@ -65,6 +65,15 @@ class example1 implements \Protobuf\Message {
     return "bing.bong.example1";
   }
 
+  public static function ParseFrom(string $input): ?example1 {
+    $msg = new example1();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();

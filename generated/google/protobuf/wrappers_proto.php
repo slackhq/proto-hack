@@ -19,6 +19,15 @@ class DoubleValue implements \Protobuf\Message {
     return "google.protobuf.DoubleValue";
   }
 
+  public static function ParseFrom(string $input): ?DoubleValue {
+    $msg = new DoubleValue();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -70,6 +79,15 @@ class FloatValue implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.FloatValue";
+  }
+
+  public static function ParseFrom(string $input): ?FloatValue {
+    $msg = new FloatValue();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -125,6 +143,15 @@ class Int64Value implements \Protobuf\Message {
     return "google.protobuf.Int64Value";
   }
 
+  public static function ParseFrom(string $input): ?Int64Value {
+    $msg = new Int64Value();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -176,6 +203,15 @@ class UInt64Value implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.UInt64Value";
+  }
+
+  public static function ParseFrom(string $input): ?UInt64Value {
+    $msg = new UInt64Value();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -231,6 +267,15 @@ class Int32Value implements \Protobuf\Message {
     return "google.protobuf.Int32Value";
   }
 
+  public static function ParseFrom(string $input): ?Int32Value {
+    $msg = new Int32Value();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -282,6 +327,15 @@ class UInt32Value implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.UInt32Value";
+  }
+
+  public static function ParseFrom(string $input): ?UInt32Value {
+    $msg = new UInt32Value();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -337,6 +391,15 @@ class BoolValue implements \Protobuf\Message {
     return "google.protobuf.BoolValue";
   }
 
+  public static function ParseFrom(string $input): ?BoolValue {
+    $msg = new BoolValue();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -390,6 +453,15 @@ class StringValue implements \Protobuf\Message {
     return "google.protobuf.StringValue";
   }
 
+  public static function ParseFrom(string $input): ?StringValue {
+    $msg = new StringValue();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -441,6 +513,15 @@ class BytesValue implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.BytesValue";
+  }
+
+  public static function ParseFrom(string $input): ?BytesValue {
+    $msg = new BytesValue();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

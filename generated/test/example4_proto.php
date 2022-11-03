@@ -18,6 +18,15 @@ class pb_Class implements \Protobuf\Message {
     return "Class";
   }
 
+  public static function ParseFrom(string $input): ?pb_Class {
+    $msg = new pb_Class();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -81,6 +90,15 @@ class pb_Interface implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "Interface";
+  }
+
+  public static function ParseFrom(string $input): ?pb_Interface {
+    $msg = new pb_Interface();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -156,6 +174,15 @@ class NotClass implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "NotClass";
+  }
+
+  public static function ParseFrom(string $input): ?NotClass {
+    $msg = new NotClass();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

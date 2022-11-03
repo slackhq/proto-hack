@@ -16,6 +16,15 @@ class pb_Empty implements \Protobuf\Message {
     return "google.protobuf.Empty";
   }
 
+  public static function ParseFrom(string $input): ?pb_Empty {
+    $msg = new pb_Empty();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();

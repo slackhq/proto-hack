@@ -90,6 +90,15 @@ class FailureSet implements \Protobuf\Message {
     return "conformance.FailureSet";
   }
 
+  public static function ParseFrom(string $input): ?FailureSet {
+    $msg = new FailureSet();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -281,6 +290,15 @@ class ConformanceRequest implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "conformance.ConformanceRequest";
+  }
+
+  public static function ParseFrom(string $input): ?ConformanceRequest {
+    $msg = new ConformanceRequest();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -632,6 +650,15 @@ class ConformanceResponse implements \Protobuf\Message {
     return "conformance.ConformanceResponse";
   }
 
+  public static function ParseFrom(string $input): ?ConformanceResponse {
+    $msg = new ConformanceResponse();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -734,6 +761,15 @@ class JspbEncodingConfig implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "conformance.JspbEncodingConfig";
+  }
+
+  public static function ParseFrom(string $input): ?JspbEncodingConfig {
+    $msg = new JspbEncodingConfig();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

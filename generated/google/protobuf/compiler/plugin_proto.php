@@ -28,6 +28,15 @@ class Version implements \Protobuf\Message {
     return "google.protobuf.compiler.Version";
   }
 
+  public static function ParseFrom(string $input): ?Version {
+    $msg = new Version();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -136,6 +145,15 @@ class CodeGeneratorRequest implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.compiler.CodeGeneratorRequest";
+  }
+
+  public static function ParseFrom(string $input): ?CodeGeneratorRequest {
+    $msg = new CodeGeneratorRequest();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -296,6 +314,15 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
     return "google.protobuf.compiler.CodeGeneratorResponse.File";
   }
 
+  public static function ParseFrom(string $input): ?CodeGeneratorResponse_File {
+    $msg = new CodeGeneratorResponse_File();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -411,6 +438,15 @@ class CodeGeneratorResponse implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.compiler.CodeGeneratorResponse";
+  }
+
+  public static function ParseFrom(string $input): ?CodeGeneratorResponse {
+    $msg = new CodeGeneratorResponse();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

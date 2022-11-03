@@ -37,6 +37,15 @@ class Api implements \Protobuf\Message {
     return "google.protobuf.Api";
   }
 
+  public static function ParseFrom(string $input): ?Api {
+    $msg = new Api();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -235,6 +244,15 @@ class Method implements \Protobuf\Message {
     return "google.protobuf.Method";
   }
 
+  public static function ParseFrom(string $input): ?Method {
+    $msg = new Method();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -384,6 +402,15 @@ class Mixin implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.Mixin";
+  }
+
+  public static function ParseFrom(string $input): ?Mixin {
+    $msg = new Mixin();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

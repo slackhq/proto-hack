@@ -44,6 +44,15 @@ class example2 implements \Protobuf\Message {
     return "foo.bar.example2";
   }
 
+  public static function ParseFrom(string $input): ?example2 {
+    $msg = new example2();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -201,6 +210,15 @@ class example1_example2 implements \Protobuf\Message {
     return "foo.bar.example1.example2";
   }
 
+  public static function ParseFrom(string $input): ?example1_example2 {
+    $msg = new example1_example2();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -267,6 +285,15 @@ class example1_AmapEntry implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "foo.bar.example1.AmapEntry";
+  }
+
+  public static function ParseFrom(string $input): ?example1_AmapEntry {
+    $msg = new example1_AmapEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -347,6 +374,15 @@ class example1_Amap2Entry implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "foo.bar.example1.Amap2Entry";
+  }
+
+  public static function ParseFrom(string $input): ?example1_Amap2Entry {
+    $msg = new example1_Amap2Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -515,6 +551,15 @@ class example1 implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "foo.bar.example1";
+  }
+
+  public static function ParseFrom(string $input): ?example1 {
+    $msg = new example1();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
