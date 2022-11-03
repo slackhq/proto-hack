@@ -44,6 +44,15 @@ class Struct_FieldsEntry implements \Protobuf\Message {
     return "google.protobuf.Struct.FieldsEntry";
   }
 
+  public static function ParseFrom(string $input): ?Struct_FieldsEntry {
+    $msg = new Struct_FieldsEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -128,6 +137,15 @@ class Struct implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.Struct";
+  }
+
+  public static function ParseFrom(string $input): ?Struct {
+    $msg = new Struct();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -366,6 +384,15 @@ class Value implements \Protobuf\Message {
     return "google.protobuf.Value";
   }
 
+  public static function ParseFrom(string $input): ?Value {
+    $msg = new Value();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -482,6 +509,15 @@ class ListValue implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.ListValue";
+  }
+
+  public static function ParseFrom(string $input): ?ListValue {
+    $msg = new ListValue();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

@@ -42,6 +42,15 @@ class example2 implements \Protobuf\Message {
     return "fiz.baz.example2";
   }
 
+  public static function ParseFrom(string $input): ?example2 {
+    $msg = new example2();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -105,6 +114,15 @@ class refexample3 implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "fiz.baz.refexample3";
+  }
+
+  public static function ParseFrom(string $input): ?refexample3 {
+    $msg = new refexample3();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

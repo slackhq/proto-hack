@@ -364,6 +364,15 @@ class TestAllTypesProto3_NestedMessage implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.NestedMessage";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_NestedMessage {
+    $msg = new TestAllTypesProto3_NestedMessage();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -454,6 +463,15 @@ class TestAllTypesProto3_MapInt32Int32Entry implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapInt32Int32Entry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapInt32Int32Entry {
+    $msg = new TestAllTypesProto3_MapInt32Int32Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -532,6 +550,15 @@ class TestAllTypesProto3_MapInt64Int64Entry implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapInt64Int64Entry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapInt64Int64Entry {
+    $msg = new TestAllTypesProto3_MapInt64Int64Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -614,6 +641,15 @@ class TestAllTypesProto3_MapUint32Uint32Entry implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapUint32Uint32Entry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapUint32Uint32Entry {
+    $msg = new TestAllTypesProto3_MapUint32Uint32Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -692,6 +728,15 @@ class TestAllTypesProto3_MapUint64Uint64Entry implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapUint64Uint64Entry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapUint64Uint64Entry {
+    $msg = new TestAllTypesProto3_MapUint64Uint64Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -774,6 +819,15 @@ class TestAllTypesProto3_MapSint32Sint32Entry implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapSint32Sint32Entry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapSint32Sint32Entry {
+    $msg = new TestAllTypesProto3_MapSint32Sint32Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -852,6 +906,15 @@ class TestAllTypesProto3_MapSint64Sint64Entry implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapSint64Sint64Entry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapSint64Sint64Entry {
+    $msg = new TestAllTypesProto3_MapSint64Sint64Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -934,6 +997,15 @@ class TestAllTypesProto3_MapFixed32Fixed32Entry implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapFixed32Fixed32Entry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapFixed32Fixed32Entry {
+    $msg = new TestAllTypesProto3_MapFixed32Fixed32Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1012,6 +1084,15 @@ class TestAllTypesProto3_MapFixed64Fixed64Entry implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapFixed64Fixed64Entry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapFixed64Fixed64Entry {
+    $msg = new TestAllTypesProto3_MapFixed64Fixed64Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -1094,6 +1175,15 @@ class TestAllTypesProto3_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapSfixed32Sfixed32Entry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapSfixed32Sfixed32Entry {
+    $msg = new TestAllTypesProto3_MapSfixed32Sfixed32Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1172,6 +1262,15 @@ class TestAllTypesProto3_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapSfixed64Sfixed64Entry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapSfixed64Sfixed64Entry {
+    $msg = new TestAllTypesProto3_MapSfixed64Sfixed64Entry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -1254,6 +1353,15 @@ class TestAllTypesProto3_MapInt32FloatEntry implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapInt32FloatEntry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapInt32FloatEntry {
+    $msg = new TestAllTypesProto3_MapInt32FloatEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1332,6 +1440,15 @@ class TestAllTypesProto3_MapInt32DoubleEntry implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapInt32DoubleEntry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapInt32DoubleEntry {
+    $msg = new TestAllTypesProto3_MapInt32DoubleEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -1414,6 +1531,15 @@ class TestAllTypesProto3_MapBoolBoolEntry implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapBoolBoolEntry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapBoolBoolEntry {
+    $msg = new TestAllTypesProto3_MapBoolBoolEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1492,6 +1618,15 @@ class TestAllTypesProto3_MapStringStringEntry implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapStringStringEntry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapStringStringEntry {
+    $msg = new TestAllTypesProto3_MapStringStringEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -1574,6 +1709,15 @@ class TestAllTypesProto3_MapStringBytesEntry implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapStringBytesEntry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapStringBytesEntry {
+    $msg = new TestAllTypesProto3_MapStringBytesEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1652,6 +1796,15 @@ class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Messag
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapStringNestedMessageEntry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapStringNestedMessageEntry {
+    $msg = new TestAllTypesProto3_MapStringNestedMessageEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -1744,6 +1897,15 @@ class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Messa
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapStringForeignMessageEntry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapStringForeignMessageEntry {
+    $msg = new TestAllTypesProto3_MapStringForeignMessageEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1834,6 +1996,15 @@ class TestAllTypesProto3_MapStringNestedEnumEntry implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapStringNestedEnumEntry";
   }
 
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapStringNestedEnumEntry {
+    $msg = new TestAllTypesProto3_MapStringNestedEnumEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1912,6 +2083,15 @@ class TestAllTypesProto3_MapStringForeignEnumEntry implements \Protobuf\Message 
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3.MapStringForeignEnumEntry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3_MapStringForeignEnumEntry {
+    $msg = new TestAllTypesProto3_MapStringForeignEnumEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -2412,6 +2592,15 @@ class TestAllTypesProto3 implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.TestAllTypesProto3";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto3 {
+    $msg = new TestAllTypesProto3();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -5291,6 +5480,15 @@ class ForeignMessage implements \Protobuf\Message {
     return "protobuf_test_messages.proto3.ForeignMessage";
   }
 
+  public static function ParseFrom(string $input): ?ForeignMessage {
+    $msg = new ForeignMessage();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -5351,6 +5549,15 @@ class NullHypothesisProto3 implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.NullHypothesisProto3";
+  }
+
+  public static function ParseFrom(string $input): ?NullHypothesisProto3 {
+    $msg = new NullHypothesisProto3();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -5426,6 +5633,15 @@ class EnumOnlyProto3 implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "protobuf_test_messages.proto3.EnumOnlyProto3";
+  }
+
+  public static function ParseFrom(string $input): ?EnumOnlyProto3 {
+    $msg = new EnumOnlyProto3();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

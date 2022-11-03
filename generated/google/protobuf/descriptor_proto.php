@@ -19,6 +19,15 @@ class FileDescriptorSet implements \Protobuf\Message {
     return "google.protobuf.FileDescriptorSet";
   }
 
+  public static function ParseFrom(string $input): ?FileDescriptorSet {
+    $msg = new FileDescriptorSet();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -126,6 +135,15 @@ class FileDescriptorProto implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.FileDescriptorProto";
+  }
+
+  public static function ParseFrom(string $input): ?FileDescriptorProto {
+    $msg = new FileDescriptorProto();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -415,6 +433,15 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
     return "google.protobuf.DescriptorProto.ExtensionRange";
   }
 
+  public static function ParseFrom(string $input): ?DescriptorProto_ExtensionRange {
+    $msg = new DescriptorProto_ExtensionRange();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -515,6 +542,15 @@ class DescriptorProto_ReservedRange implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.DescriptorProto.ReservedRange";
+  }
+
+  public static function ParseFrom(string $input): ?DescriptorProto_ReservedRange {
+    $msg = new DescriptorProto_ReservedRange();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -619,6 +655,15 @@ class DescriptorProto implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.DescriptorProto";
+  }
+
+  public static function ParseFrom(string $input): ?DescriptorProto {
+    $msg = new DescriptorProto();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -883,6 +928,15 @@ class ExtensionRangeOptions implements \Protobuf\Message {
     return "google.protobuf.ExtensionRangeOptions";
   }
 
+  public static function ParseFrom(string $input): ?ExtensionRangeOptions {
+    $msg = new ExtensionRangeOptions();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1090,6 +1144,15 @@ class FieldDescriptorProto implements \Protobuf\Message {
     return "google.protobuf.FieldDescriptorProto";
   }
 
+  public static function ParseFrom(string $input): ?FieldDescriptorProto {
+    $msg = new FieldDescriptorProto();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1288,6 +1351,15 @@ class OneofDescriptorProto implements \Protobuf\Message {
     return "google.protobuf.OneofDescriptorProto";
   }
 
+  public static function ParseFrom(string $input): ?OneofDescriptorProto {
+    $msg = new OneofDescriptorProto();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1378,6 +1450,15 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
     return "google.protobuf.EnumDescriptorProto.EnumReservedRange";
   }
 
+  public static function ParseFrom(string $input): ?EnumDescriptorProto_EnumReservedRange {
+    $msg = new EnumDescriptorProto_EnumReservedRange();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1465,6 +1546,15 @@ class EnumDescriptorProto implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.EnumDescriptorProto";
+  }
+
+  public static function ParseFrom(string $input): ?EnumDescriptorProto {
+    $msg = new EnumDescriptorProto();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -1620,6 +1710,15 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
     return "google.protobuf.EnumValueDescriptorProto";
   }
 
+  public static function ParseFrom(string $input): ?EnumValueDescriptorProto {
+    $msg = new EnumValueDescriptorProto();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -1723,6 +1822,15 @@ class ServiceDescriptorProto implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.ServiceDescriptorProto";
+  }
+
+  public static function ParseFrom(string $input): ?ServiceDescriptorProto {
+    $msg = new ServiceDescriptorProto();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -1848,6 +1956,15 @@ class MethodDescriptorProto implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.MethodDescriptorProto";
+  }
+
+  public static function ParseFrom(string $input): ?MethodDescriptorProto {
+    $msg = new MethodDescriptorProto();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -2071,6 +2188,15 @@ class FileOptions implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.FileOptions";
+  }
+
+  public static function ParseFrom(string $input): ?FileOptions {
+    $msg = new FileOptions();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -2401,6 +2527,15 @@ class MessageOptions implements \Protobuf\Message {
     return "google.protobuf.MessageOptions";
   }
 
+  public static function ParseFrom(string $input): ?MessageOptions {
+    $msg = new MessageOptions();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -2602,6 +2737,15 @@ class FieldOptions implements \Protobuf\Message {
     return "google.protobuf.FieldOptions";
   }
 
+  public static function ParseFrom(string $input): ?FieldOptions {
+    $msg = new FieldOptions();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -2762,6 +2906,15 @@ class OneofOptions implements \Protobuf\Message {
     return "google.protobuf.OneofOptions";
   }
 
+  public static function ParseFrom(string $input): ?OneofOptions {
+    $msg = new OneofOptions();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -2842,6 +2995,15 @@ class EnumOptions implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.EnumOptions";
+  }
+
+  public static function ParseFrom(string $input): ?EnumOptions {
+    $msg = new EnumOptions();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -2947,6 +3109,15 @@ class EnumValueOptions implements \Protobuf\Message {
     return "google.protobuf.EnumValueOptions";
   }
 
+  public static function ParseFrom(string $input): ?EnumValueOptions {
+    $msg = new EnumValueOptions();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -3036,6 +3207,15 @@ class ServiceOptions implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.ServiceOptions";
+  }
+
+  public static function ParseFrom(string $input): ?ServiceOptions {
+    $msg = new ServiceOptions();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -3160,6 +3340,15 @@ class MethodOptions implements \Protobuf\Message {
     return "google.protobuf.MethodOptions";
   }
 
+  public static function ParseFrom(string $input): ?MethodOptions {
+    $msg = new MethodOptions();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -3263,6 +3452,15 @@ class UninterpretedOption_NamePart implements \Protobuf\Message {
     return "google.protobuf.UninterpretedOption.NamePart";
   }
 
+  public static function ParseFrom(string $input): ?UninterpretedOption_NamePart {
+    $msg = new UninterpretedOption_NamePart();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -3356,6 +3554,15 @@ class UninterpretedOption implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.UninterpretedOption";
+  }
+
+  public static function ParseFrom(string $input): ?UninterpretedOption {
+    $msg = new UninterpretedOption();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -3518,6 +3725,15 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
     return "google.protobuf.SourceCodeInfo.Location";
   }
 
+  public static function ParseFrom(string $input): ?SourceCodeInfo_Location {
+    $msg = new SourceCodeInfo_Location();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -3657,6 +3873,15 @@ class SourceCodeInfo implements \Protobuf\Message {
     return "google.protobuf.SourceCodeInfo";
   }
 
+  public static function ParseFrom(string $input): ?SourceCodeInfo {
+    $msg = new SourceCodeInfo();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -3740,6 +3965,15 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.GeneratedCodeInfo.Annotation";
+  }
+
+  public static function ParseFrom(string $input): ?GeneratedCodeInfo_Annotation {
+    $msg = new GeneratedCodeInfo_Annotation();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -3853,6 +4087,15 @@ class GeneratedCodeInfo implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "google.protobuf.GeneratedCodeInfo";
+  }
+
+  public static function ParseFrom(string $input): ?GeneratedCodeInfo {
+    $msg = new GeneratedCodeInfo();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

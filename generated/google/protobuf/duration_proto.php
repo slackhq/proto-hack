@@ -22,6 +22,15 @@ class Duration implements \Protobuf\Message {
     return "google.protobuf.Duration";
   }
 
+  public static function ParseFrom(string $input): ?Duration {
+    $msg = new Duration();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();

@@ -18,6 +18,15 @@ class Donkey implements \Protobuf\Message {
     return "Donkey";
   }
 
+  public static function ParseFrom(string $input): ?Donkey {
+    $msg = new Donkey();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
@@ -81,6 +90,15 @@ class Funky_Monkey implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "Funky.Monkey";
+  }
+
+  public static function ParseFrom(string $input): ?Funky_Monkey {
+    $msg = new Funky_Monkey();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
@@ -149,6 +167,15 @@ class Funky implements \Protobuf\Message {
 
   public function MessageName(): string {
     return "Funky";
+  }
+
+  public static function ParseFrom(string $input): ?Funky {
+    $msg = new Funky();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
   }
 
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {

@@ -18,6 +18,15 @@ class AnyTest implements \Protobuf\Message {
     return "AnyTest";
   }
 
+  public static function ParseFrom(string $input): ?AnyTest {
+    $msg = new AnyTest();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();

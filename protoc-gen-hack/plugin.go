@@ -1411,6 +1411,17 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 	w.p("}")
 	w.ln()
 
+	// helper: Create instantiated message from input bytes
+	w.p("public static function ParseFrom(string $input): ?%s {", name)
+	w.p("$msg = new %s();", name)
+	w.p("$e = \\Protobuf\\Unmarshal($input, $msg);")
+	w.p("if (!$e->Ok()) {")
+	w.p("return null;")
+	w.p("}")
+	w.p("return $msg;")
+	w.p("}")
+	w.ln()
+
 	// Now sort the fields by number.
 	sort.Slice(fields, func(i, j int) bool {
 		return fields[i].fd.GetNumber() < fields[j].fd.GetNumber()

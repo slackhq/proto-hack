@@ -19,6 +19,15 @@ class FieldMask implements \Protobuf\Message {
     return "google.protobuf.FieldMask";
   }
 
+  public static function ParseFrom(string $input): ?FieldMask {
+    $msg = new FieldMask();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
   public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
