@@ -133,7 +133,10 @@ hh_client_test(
 filegroup(
     name = "hack_library",
     srcs = LIB_PHP + glob(
-        include = ["generated/google/protobuf/**/*.php"],
+        include = [
+            "generated/google/protobuf/**/*.php",
+            "generated/google/protobuf/**/*.pb.bin.gz",
+        ],
         exclude = ["**/*test_messages*"],
     ),
     visibility = ["//visibility:public"],
