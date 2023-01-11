@@ -99,7 +99,7 @@ class Type implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -410,7 +410,7 @@ class Field implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -603,7 +603,7 @@ class pb_Enum implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -754,7 +754,7 @@ class EnumValue implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -862,7 +862,7 @@ class Option implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {

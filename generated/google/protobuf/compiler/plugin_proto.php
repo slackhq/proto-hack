@@ -57,7 +57,7 @@ class Version implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -179,7 +179,7 @@ class CodeGeneratorRequest implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -344,7 +344,7 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -468,7 +468,7 @@ class CodeGeneratorResponse implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {

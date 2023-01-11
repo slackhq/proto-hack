@@ -1448,7 +1448,7 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 	w.i--
 	w.p("}") // switch
 	w.p("}") // while
-	w.p("$this->%sunrecognized = $d->skippedRaw();", specialPrefix)
+	w.p("$this->%sunrecognized .= $d->skippedRaw();", specialPrefix)
 	w.p("}") // function MergeFrom
 	w.ln()
 
