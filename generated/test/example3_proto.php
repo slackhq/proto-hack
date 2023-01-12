@@ -75,6 +75,17 @@ class Donkey implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Donkey)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->hi !== '') {
+      $this->hi = $o->hi;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class Funky_Monkey implements \Protobuf\Message {
@@ -147,6 +158,17 @@ class Funky_Monkey implements \Protobuf\Message {
     }
     $this->hi = $o->hi;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Funky_Monkey)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->hi !== '') {
+      $this->hi = $o->hi;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -256,6 +278,30 @@ class Funky implements \Protobuf\Message {
       $this->dokey = $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Funky)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->monkey !== null) {
+      if ($this->monkey !== null) {
+        $this->monkey->MergeMessageFrom($o->monkey);
+      } else {
+        $this->monkey = new \Funky_Monkey();
+        $this->monkey->CopyFrom($o);
+      }
+    }
+    if ($o->dokey !== null) {
+      if ($this->dokey !== null) {
+        $this->dokey->MergeMessageFrom($o->dokey);
+      } else {
+        $this->dokey = new \Donkey();
+        $this->dokey->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

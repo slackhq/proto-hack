@@ -820,6 +820,53 @@ func (f field) writeCopy(w *writer, c string) {
 	}
 }
 
+func (f field) writeMerge(w *writer, o string) {
+	if f.isMap {
+		_, vv := f.mapFields()
+		if vv.isMessageOrGroup() {
+			w.p("foreach (%s->%s as $k => $v) {", o, f.varName())
+			w.p("$vc = new %s();", vv.phpType())
+			w.p("$vc->CopyFrom($v);")
+			w.p("$this->%s[$k] = $vc;", f.varName())
+			w.p("}")
+			return
+		}
+		w.p("foreach (%s->%s as $k => $v) {", o, f.varName())
+		w.p("$this->%s[$k] = $v;", f.varName())
+		w.p("}")
+		return
+	}
+	if f.isRepeated() {
+		if f.isMessageOrGroup() {
+			w.p("foreach (%s->%s as $v) {", o, f.varName())
+			w.p("$vc = new %s();", f.phpType())
+			w.p("$vc->CopyFrom($v);")
+			w.p("$this->%s []= $vc;", f.varName())
+			w.p("}")
+			return
+		}
+		w.p("foreach (%s->%s as $v) {", o, f.varName())
+		w.p("$this->%s []= $v;", f.varName())
+		w.p("}")
+		return
+	}
+	if f.isMessageOrGroup() {
+		w.p("if (%s->%s !== null) {", o, f.varName())
+		w.p("if ($this->%s !== null) {", f.varName())
+		w.p("$this->%s->MergeMessageFrom(%s->%s);", f.varName(), o, f.varName())
+		w.p("} else {")
+		w.p("$this->%s = new %s();", f.varName(), f.phpType())
+		w.p("$this->%s->CopyFrom(%s);", f.varName(), o)
+		w.p("}")
+		w.p("}")
+		return
+	}
+
+	w.p("if (%s->%s !== %s) {", o, f.varName(), f.defaultValue())
+	w.p("$this->%s = %s->%s;", f.varName(), o, f.varName())
+	w.p("}")
+}
+
 // https://github.com/google/protobuf/blob/master/src/google/protobuf/struct.proto
 // https://github.com/google/protobuf/blob/master/src/google/protobuf/wrappers.proto
 func customWriteJson(w *writer, fqn, v string) bool {
@@ -1527,6 +1574,27 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 		w.p("$this->%s = $o->%s->Copy();", oo.name, oo.name)
 	}
 	w.p("$this->%sunrecognized = $o->%sunrecognized;", specialPrefix, specialPrefix)
+	w.p("return \\Errors\\Ok();")
+	w.p("}")
+	w.ln()
+
+	// MergeMessageFrom function
+	w.p("public function MergeMessageFrom(%s\\Message $o): \\Errors\\Error {", libNs)
+	w.p("if (!($o is %s)) {", name)
+	w.p("return \\Errors\\Errorf('MergeMessageFrom failed: incorrect type received: %%s', $o->MessageName());")
+	w.p("}")
+	for _, f := range fields {
+		if f.isOneofMember() {
+			continue
+		}
+		f.writeMerge(w, "$o")
+	}
+	for _, oo := range oneofs {
+		w.p("if ($o->%s->WhichOneof() !== %s::%s) {", oo.name, oo.enumTypeName, notsetEnum)
+		w.p("$this->%s = $o->%s->Copy();", oo.name, oo.name)
+		w.p("}")
+	}
+	w.p("$this->%sunrecognized .= $o->%sunrecognized;", specialPrefix, specialPrefix)
 	w.p("return \\Errors\\Ok();")
 	w.p("}")
 

@@ -121,6 +121,26 @@ class Version implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Version)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->major !== 0) {
+      $this->major = $o->major;
+    }
+    if ($o->minor !== 0) {
+      $this->minor = $o->minor;
+    }
+    if ($o->patch !== 0) {
+      $this->patch = $o->patch;
+    }
+    if ($o->suffix !== '') {
+      $this->suffix = $o->suffix;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class CodeGeneratorRequest implements \Protobuf\Message {
@@ -261,6 +281,33 @@ class CodeGeneratorRequest implements \Protobuf\Message {
       $this->proto_file []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is CodeGeneratorRequest)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->file_to_generate as $v) {
+      $this->file_to_generate []= $v;
+    }
+    if ($o->parameter !== '') {
+      $this->parameter = $o->parameter;
+    }
+    if ($o->compiler_version !== null) {
+      if ($this->compiler_version !== null) {
+        $this->compiler_version->MergeMessageFrom($o->compiler_version);
+      } else {
+        $this->compiler_version = new \google\protobuf\compiler\Version();
+        $this->compiler_version->CopyFrom($o);
+      }
+    }
+    foreach ($o->proto_file as $v) {
+      $vc = new \google\protobuf\FileDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->proto_file []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -417,6 +464,31 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is CodeGeneratorResponse_File)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->insertion_point !== '') {
+      $this->insertion_point = $o->insertion_point;
+    }
+    if ($o->content !== '') {
+      $this->content = $o->content;
+    }
+    if ($o->generated_code_info !== null) {
+      if ($this->generated_code_info !== null) {
+        $this->generated_code_info->MergeMessageFrom($o->generated_code_info);
+      } else {
+        $this->generated_code_info = new \google\protobuf\GeneratedCodeInfo();
+        $this->generated_code_info->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class CodeGeneratorResponse implements \Protobuf\Message {
@@ -530,6 +602,25 @@ class CodeGeneratorResponse implements \Protobuf\Message {
       $this->file []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is CodeGeneratorResponse)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->error !== '') {
+      $this->error = $o->error;
+    }
+    if ($o->supported_features !== 0) {
+      $this->supported_features = $o->supported_features;
+    }
+    foreach ($o->file as $v) {
+      $vc = new \google\protobuf\compiler\CodeGeneratorResponse_File();
+      $vc->CopyFrom($v);
+      $this->file []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

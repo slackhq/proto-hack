@@ -209,6 +209,46 @@ class Api implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Api)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    foreach ($o->methods as $v) {
+      $vc = new \google\protobuf\Method();
+      $vc->CopyFrom($v);
+      $this->methods []= $vc;
+    }
+    foreach ($o->options as $v) {
+      $vc = new \google\protobuf\Option();
+      $vc->CopyFrom($v);
+      $this->options []= $vc;
+    }
+    if ($o->version !== '') {
+      $this->version = $o->version;
+    }
+    if ($o->source_context !== null) {
+      if ($this->source_context !== null) {
+        $this->source_context->MergeMessageFrom($o->source_context);
+      } else {
+        $this->source_context = new \google\protobuf\SourceContext();
+        $this->source_context->CopyFrom($o);
+      }
+    }
+    foreach ($o->mixins as $v) {
+      $vc = new \google\protobuf\Mixin();
+      $vc->CopyFrom($v);
+      $this->mixins []= $vc;
+    }
+    if ($o->syntax !== \google\protobuf\Syntax::FromInt(0)) {
+      $this->syntax = $o->syntax;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class Method implements \Protobuf\Message {
@@ -384,6 +424,37 @@ class Method implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Method)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->request_type_url !== '') {
+      $this->request_type_url = $o->request_type_url;
+    }
+    if ($o->request_streaming !== false) {
+      $this->request_streaming = $o->request_streaming;
+    }
+    if ($o->response_type_url !== '') {
+      $this->response_type_url = $o->response_type_url;
+    }
+    if ($o->response_streaming !== false) {
+      $this->response_streaming = $o->response_streaming;
+    }
+    foreach ($o->options as $v) {
+      $vc = new \google\protobuf\Option();
+      $vc->CopyFrom($v);
+      $this->options []= $vc;
+    }
+    if ($o->syntax !== \google\protobuf\Syntax::FromInt(0)) {
+      $this->syntax = $o->syntax;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class Mixin implements \Protobuf\Message {
@@ -471,6 +542,20 @@ class Mixin implements \Protobuf\Message {
     $this->name = $o->name;
     $this->root = $o->root;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Mixin)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->root !== '') {
+      $this->root = $o->root;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

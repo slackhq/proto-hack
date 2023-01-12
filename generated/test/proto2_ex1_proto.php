@@ -194,6 +194,35 @@ class example1 implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is example1)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->enum_default !== \bing\bong\AEnum1::A) {
+      $this->enum_default = $o->enum_default;
+    }
+    if ($o->enum_custom !== \bing\bong\AEnum1::pb_CLASS) {
+      $this->enum_custom = $o->enum_custom;
+    }
+    if ($o->adouble !== (float)3) {
+      $this->adouble = $o->adouble;
+    }
+    if ($o->afloat !== (float)4.5) {
+      $this->afloat = $o->afloat;
+    }
+    if ($o->abool !== true) {
+      $this->abool = $o->abool;
+    }
+    if ($o->astring !== 'custom!') {
+      $this->astring = $o->astring;
+    }
+    if ($o->abytes !== \stripcslashes('foo')) {
+      $this->abytes = $o->abytes;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 

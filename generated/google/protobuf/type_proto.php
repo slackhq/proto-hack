@@ -210,6 +210,41 @@ class Type implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Type)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    foreach ($o->fields as $v) {
+      $vc = new \google\protobuf\Field();
+      $vc->CopyFrom($v);
+      $this->fields []= $vc;
+    }
+    foreach ($o->oneofs as $v) {
+      $this->oneofs []= $v;
+    }
+    foreach ($o->options as $v) {
+      $vc = new \google\protobuf\Option();
+      $vc->CopyFrom($v);
+      $this->options []= $vc;
+    }
+    if ($o->source_context !== null) {
+      if ($this->source_context !== null) {
+        $this->source_context->MergeMessageFrom($o->source_context);
+      } else {
+        $this->source_context = new \google\protobuf\SourceContext();
+        $this->source_context->CopyFrom($o);
+      }
+    }
+    if ($o->syntax !== \google\protobuf\Syntax::FromInt(0)) {
+      $this->syntax = $o->syntax;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 newtype Field_Kind_enum_t as int = int;
@@ -537,6 +572,46 @@ class Field implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Field)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->kind !== \google\protobuf\Field_Kind::FromInt(0)) {
+      $this->kind = $o->kind;
+    }
+    if ($o->cardinality !== \google\protobuf\Field_Cardinality::FromInt(0)) {
+      $this->cardinality = $o->cardinality;
+    }
+    if ($o->number !== 0) {
+      $this->number = $o->number;
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->type_url !== '') {
+      $this->type_url = $o->type_url;
+    }
+    if ($o->oneof_index !== 0) {
+      $this->oneof_index = $o->oneof_index;
+    }
+    if ($o->packed !== false) {
+      $this->packed = $o->packed;
+    }
+    foreach ($o->options as $v) {
+      $vc = new \google\protobuf\Option();
+      $vc->CopyFrom($v);
+      $this->options []= $vc;
+    }
+    if ($o->json_name !== '') {
+      $this->json_name = $o->json_name;
+    }
+    if ($o->default_value !== '') {
+      $this->default_value = $o->default_value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class pb_Enum implements \Protobuf\Message {
@@ -703,6 +778,38 @@ class pb_Enum implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is pb_Enum)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    foreach ($o->enumvalue as $v) {
+      $vc = new \google\protobuf\EnumValue();
+      $vc->CopyFrom($v);
+      $this->enumvalue []= $vc;
+    }
+    foreach ($o->options as $v) {
+      $vc = new \google\protobuf\Option();
+      $vc->CopyFrom($v);
+      $this->options []= $vc;
+    }
+    if ($o->source_context !== null) {
+      if ($this->source_context !== null) {
+        $this->source_context->MergeMessageFrom($o->source_context);
+      } else {
+        $this->source_context = new \google\protobuf\SourceContext();
+        $this->source_context->CopyFrom($o);
+      }
+    }
+    if ($o->syntax !== \google\protobuf\Syntax::FromInt(0)) {
+      $this->syntax = $o->syntax;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class EnumValue implements \Protobuf\Message {
@@ -818,6 +925,25 @@ class EnumValue implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is EnumValue)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->number !== 0) {
+      $this->number = $o->number;
+    }
+    foreach ($o->options as $v) {
+      $vc = new \google\protobuf\Option();
+      $vc->CopyFrom($v);
+      $this->options []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class Option implements \Protobuf\Message {
@@ -915,6 +1041,25 @@ class Option implements \Protobuf\Message {
       $this->value = $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Option)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->value !== null) {
+      if ($this->value !== null) {
+        $this->value->MergeMessageFrom($o->value);
+      } else {
+        $this->value = new \google\protobuf\Any();
+        $this->value->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

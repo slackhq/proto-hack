@@ -149,6 +149,17 @@ class FailureSet implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is FailureSet)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->failure as $v) {
+      $this->failure []= $v;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 enum ConformanceRequest_payload_oneof_t: int {
@@ -432,6 +443,37 @@ class ConformanceRequest implements \Protobuf\Message {
     $this->print_unknown_fields = $o->print_unknown_fields;
     $this->payload = $o->payload->Copy();
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is ConformanceRequest)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->requested_output_format !== \conformance\WireFormat::FromInt(0)) {
+      $this->requested_output_format = $o->requested_output_format;
+    }
+    if ($o->message_type !== '') {
+      $this->message_type = $o->message_type;
+    }
+    if ($o->test_category !== \conformance\TestCategory::FromInt(0)) {
+      $this->test_category = $o->test_category;
+    }
+    if ($o->jspb_encoding_options !== null) {
+      if ($this->jspb_encoding_options !== null) {
+        $this->jspb_encoding_options->MergeMessageFrom($o->jspb_encoding_options);
+      } else {
+        $this->jspb_encoding_options = new \conformance\JspbEncodingConfig();
+        $this->jspb_encoding_options->CopyFrom($o);
+      }
+    }
+    if ($o->print_unknown_fields !== false) {
+      $this->print_unknown_fields = $o->print_unknown_fields;
+    }
+    if ($o->payload->WhichOneof() !== ConformanceRequest_payload_oneof_t::NOT_SET) {
+      $this->payload = $o->payload->Copy();
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -746,6 +788,17 @@ class ConformanceResponse implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is ConformanceResponse)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->result->WhichOneof() !== ConformanceResponse_result_oneof_t::NOT_SET) {
+      $this->result = $o->result->Copy();
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class JspbEncodingConfig implements \Protobuf\Message {
@@ -818,6 +871,17 @@ class JspbEncodingConfig implements \Protobuf\Message {
     }
     $this->use_jspb_array_any_format = $o->use_jspb_array_any_format;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is JspbEncodingConfig)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->use_jspb_array_any_format !== false) {
+      $this->use_jspb_array_any_format = $o->use_jspb_array_any_format;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

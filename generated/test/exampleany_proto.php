@@ -85,6 +85,22 @@ class AnyTest implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is AnyTest)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->any !== null) {
+      if ($this->any !== null) {
+        $this->any->MergeMessageFrom($o->any);
+      } else {
+        $this->any = new \google\protobuf\Any();
+        $this->any->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 
