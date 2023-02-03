@@ -354,11 +354,19 @@ namespace Protobuf\Internal {
     }
 
     public function writeFloat(float $f): void {
-      $this->buf .= \pack('f', $f);
+      // TODO: Compute the position before growing the string.
+      // Unfortunately this crashes on HHVM 4.153.1 (but not on HHVM 4.164.0).
+      $this->buf .= "\x0\x0\x0\x0";
+      $pos = \strlen($this->buf) - 4;
+      /*HH_FIXME[4107]*//*HH_FIXME[2049]*/\HH\set_bytes_float32($this->buf, $pos, $f);
     }
 
     public function writeDouble(float $d): void {
-      $this->buf .= \pack('d', $d);
+      // TODO: Compute the position before growing the string.
+      // Unfortunately this crashes on HHVM 4.153.1 (but not on HHVM 4.164.0).
+      $this->buf .= "\x0\x0\x0\x0\x0\x0\x0\x0";
+      $pos = \strlen($this->buf) - 8;
+      /*HH_FIXME[4107]*//*HH_FIXME[2049]*/\HH\set_bytes_float64($this->buf, $pos, $d);
     }
 
     public function writeRaw(string $s): void {
