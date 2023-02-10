@@ -250,17 +250,44 @@ function testLoopbackService(): void {
   }
 }
 
-function bench(): void {
+function stddev(vec<float> $values, float $avg) {
+  $std = 0.;
+  foreach ($values as $value) {
+    $d = $value - $avg;
+    $std += $d * $d;
+  }
+  return \HH\Lib\Math\Sqrt($std / \HH\Lib\C\count($values));
+}
+
+function bench(int $runs): void {
   $raw = file_get_contents('generated/test/example1.pb.bin');
   $iter = 100000;
-  while (true) {
+
+  echo "Running benchmark {$runs} times\n";
+  // We ignore the warm-up run as it would skew the data.
+  echo "But first, let's warm up HHVM to ensure consistent measures\n";
+  for ($i = 0; $i < $iter; $i++) {
+    $message = new foo\bar\example1();
+    check(Protobuf\Unmarshal($raw, $message));
+    Protobuf\Marshal($message);
+  }
+
+  $durations = vec[];
+  for ($j = 0; $j < $runs; $j++) {
     $duration = clock_gettime_ns(CLOCK_REALTIME);
     for ($i = 0; $i < $iter; $i++) {
       $message = new foo\bar\example1();
       check(Protobuf\Unmarshal($raw, $message));
       Protobuf\Marshal($message);
     }
-    $duration = (clock_gettime_ns(CLOCK_REALTIME) - $duration) / 1000000000;
-    echo "$iter iterations in $duration (s)\n";
+    $duration = (clock_gettime_ns(CLOCK_REALTIME) - $duration) / 1000000;
+    echo "$iter iterations in $duration (ms)\n";
+    $durations[] = $duration;
   }
+  $avg = \HH\Lib\Math\mean($durations);
+  $std = stddev($durations, $avg);
+  echo "----------------\n";
+  echo "Average $avg (ms)\n";
+  echo "Stddev $std (ms)\n";
+  echo "----------------\n";
 }
