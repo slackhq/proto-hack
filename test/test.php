@@ -19,7 +19,14 @@ function main(): void {
 
   $argv = HH\global_get('argv') as KeyedContainer<_, _>;
   if (count($argv) > 1 && $argv[1] == 'bench') {
-    bench();
+    $runs = 10000;
+    if (count($argv) > 2) {
+      $arg_runs = (int)$argv[2];
+      if ($arg_runs >= 0) {
+        $runs = $arg_runs;
+      }
+    }
+    bench($runs);
     exit(1);
   }
 
