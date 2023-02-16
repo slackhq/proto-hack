@@ -250,13 +250,13 @@ function testLoopbackService(): void {
   }
 }
 
-function stddev(vec<float> $values, float $avg) {
+function stddev(vec<num> $values, float $avg): float {
   $std = 0.;
   foreach ($values as $value) {
     $d = $value - $avg;
     $std += $d * $d;
   }
-  return \HH\Lib\Math\Sqrt($std / \HH\Lib\C\count($values));
+  return \HH\Lib\Math\sqrt($std / \HH\Lib\C\count($values));
 }
 
 function bench(int $runs): void {
@@ -284,10 +284,13 @@ function bench(int $runs): void {
     echo "$iter iterations in $duration (ms)\n";
     $durations[] = $duration;
   }
-  $avg = \HH\Lib\Math\mean($durations);
-  $std = stddev($durations, $avg);
-  echo "----------------\n";
-  echo "Average $avg (ms)\n";
-  echo "Stddev $std (ms)\n";
-  echo "----------------\n";
+
+  if (!\HH\Lib\C\is_empty($durations)) {
+    $avg = \HH\Lib\Math\mean($durations) as nonnull;
+    $std = stddev($durations, $avg);
+    echo "----------------\n";
+    echo "Average $avg (ms)\n";
+    echo "Stddev $std (ms)\n";
+    echo "----------------\n";
+  }
 }
