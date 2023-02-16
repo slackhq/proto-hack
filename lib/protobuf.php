@@ -99,7 +99,7 @@ namespace Protobuf\Internal {
         "unsupported PHP_INT_SIZE size: ".\PHP_INT_SIZE,
       );
     }
-    $end = \unpack('l', \chr(0x70).\chr(0x10).\chr(0xF0).\chr(0x00))[1];
+    $end = \unpack('l', "\x70\x10\xF0\x00")[1];
     if ($end !== 15732848) {
       throw new \ProtobufException(
         "unsupported endianess (is this machine little endian?): ".$end,
@@ -350,7 +350,7 @@ namespace Protobuf\Internal {
     }
 
     public function writeBool(bool $b): void {
-      $this->buf .= $b ? \chr(0x01) : \chr(0x00);
+      $this->buf .= $b ? "\x1" : "\x0";
     }
 
     public function writeFloat(float $f): void {
