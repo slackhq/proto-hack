@@ -82,7 +82,7 @@ namespace Protobuf {
       return $b ? self::TRUE : self::FALSE;
     }
     public static function ToBool(Internal\bool_map_key_t $b): bool {
-      return $b == self::TRUE ? true : false;
+      return $b === self::TRUE;
     }
   }
 }
