@@ -62,7 +62,7 @@ class example2 implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -97,6 +97,17 @@ class example2 implements \Protobuf\Message {
     }
     $this->zomg = $o->zomg;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is example2)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->zomg !== 0) {
+      $this->zomg = $o->zomg;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -137,7 +148,7 @@ class refexample3 implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -181,6 +192,22 @@ class refexample3 implements \Protobuf\Message {
       $this->funky = $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is refexample3)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->funky !== null) {
+      if ($this->funky !== null) {
+        $this->funky->MergeMessageFrom($o->funky);
+      } else {
+        $this->funky = new \Funky();
+        $this->funky->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

@@ -41,7 +41,7 @@ class FileDescriptorSet implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -85,6 +85,19 @@ class FileDescriptorSet implements \Protobuf\Message {
       $this->file []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is FileDescriptorSet)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->file as $v) {
+      $vc = new \google\protobuf\FileDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->file []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -214,7 +227,7 @@ class FileDescriptorProto implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -410,6 +423,68 @@ class FileDescriptorProto implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is FileDescriptorProto)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->package !== '') {
+      $this->package = $o->package;
+    }
+    foreach ($o->dependency as $v) {
+      $this->dependency []= $v;
+    }
+    foreach ($o->message_type as $v) {
+      $vc = new \google\protobuf\DescriptorProto();
+      $vc->CopyFrom($v);
+      $this->message_type []= $vc;
+    }
+    foreach ($o->enum_type as $v) {
+      $vc = new \google\protobuf\EnumDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->enum_type []= $vc;
+    }
+    foreach ($o->service as $v) {
+      $vc = new \google\protobuf\ServiceDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->service []= $vc;
+    }
+    foreach ($o->extension as $v) {
+      $vc = new \google\protobuf\FieldDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->extension []= $vc;
+    }
+    if ($o->options !== null) {
+      if ($this->options !== null) {
+        $this->options->MergeMessageFrom($o->options);
+      } else {
+        $this->options = new \google\protobuf\FileOptions();
+        $this->options->CopyFrom($o);
+      }
+    }
+    if ($o->source_code_info !== null) {
+      if ($this->source_code_info !== null) {
+        $this->source_code_info->MergeMessageFrom($o->source_code_info);
+      } else {
+        $this->source_code_info = new \google\protobuf\SourceCodeInfo();
+        $this->source_code_info->CopyFrom($o);
+      }
+    }
+    foreach ($o->public_dependency as $v) {
+      $this->public_dependency []= $v;
+    }
+    foreach ($o->weak_dependency as $v) {
+      $this->weak_dependency []= $v;
+    }
+    if ($o->syntax !== '') {
+      $this->syntax = $o->syntax;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class DescriptorProto_ExtensionRange implements \Protobuf\Message {
@@ -460,7 +535,7 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -524,6 +599,28 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is DescriptorProto_ExtensionRange)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->start !== 0) {
+      $this->start = $o->start;
+    }
+    if ($o->end !== 0) {
+      $this->end = $o->end;
+    }
+    if ($o->options !== null) {
+      if ($this->options !== null) {
+        $this->options->MergeMessageFrom($o->options);
+      } else {
+        $this->options = new \google\protobuf\ExtensionRangeOptions();
+        $this->options->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class DescriptorProto_ReservedRange implements \Protobuf\Message {
@@ -567,7 +664,7 @@ class DescriptorProto_ReservedRange implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -611,6 +708,20 @@ class DescriptorProto_ReservedRange implements \Protobuf\Message {
     $this->start = $o->start;
     $this->end = $o->end;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is DescriptorProto_ReservedRange)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->start !== 0) {
+      $this->start = $o->start;
+    }
+    if ($o->end !== 0) {
+      $this->end = $o->end;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -719,7 +830,7 @@ class DescriptorProto implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -911,6 +1022,63 @@ class DescriptorProto implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is DescriptorProto)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    foreach ($o->field as $v) {
+      $vc = new \google\protobuf\FieldDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->field []= $vc;
+    }
+    foreach ($o->nested_type as $v) {
+      $vc = new \google\protobuf\DescriptorProto();
+      $vc->CopyFrom($v);
+      $this->nested_type []= $vc;
+    }
+    foreach ($o->enum_type as $v) {
+      $vc = new \google\protobuf\EnumDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->enum_type []= $vc;
+    }
+    foreach ($o->extension_range as $v) {
+      $vc = new \google\protobuf\DescriptorProto_ExtensionRange();
+      $vc->CopyFrom($v);
+      $this->extension_range []= $vc;
+    }
+    foreach ($o->extension as $v) {
+      $vc = new \google\protobuf\FieldDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->extension []= $vc;
+    }
+    if ($o->options !== null) {
+      if ($this->options !== null) {
+        $this->options->MergeMessageFrom($o->options);
+      } else {
+        $this->options = new \google\protobuf\MessageOptions();
+        $this->options->CopyFrom($o);
+      }
+    }
+    foreach ($o->oneof_decl as $v) {
+      $vc = new \google\protobuf\OneofDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->oneof_decl []= $vc;
+    }
+    foreach ($o->reserved_range as $v) {
+      $vc = new \google\protobuf\DescriptorProto_ReservedRange();
+      $vc->CopyFrom($v);
+      $this->reserved_range []= $vc;
+    }
+    foreach ($o->reserved_name as $v) {
+      $this->reserved_name []= $v;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class ExtensionRangeOptions implements \Protobuf\Message {
@@ -950,7 +1118,7 @@ class ExtensionRangeOptions implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -994,6 +1162,19 @@ class ExtensionRangeOptions implements \Protobuf\Message {
       $this->uninterpreted_option []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is ExtensionRangeOptions)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->uninterpreted_option as $v) {
+      $vc = new \google\protobuf\UninterpretedOption();
+      $vc->CopyFrom($v);
+      $this->uninterpreted_option []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -1195,7 +1376,7 @@ class FieldDescriptorProto implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1331,6 +1512,52 @@ class FieldDescriptorProto implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is FieldDescriptorProto)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->extendee !== '') {
+      $this->extendee = $o->extendee;
+    }
+    if ($o->number !== 0) {
+      $this->number = $o->number;
+    }
+    if ($o->label !== \google\protobuf\FieldDescriptorProto_Label::LABEL_OPTIONAL) {
+      $this->label = $o->label;
+    }
+    if ($o->type !== \google\protobuf\FieldDescriptorProto_Type::TYPE_DOUBLE) {
+      $this->type = $o->type;
+    }
+    if ($o->type_name !== '') {
+      $this->type_name = $o->type_name;
+    }
+    if ($o->default_value !== '') {
+      $this->default_value = $o->default_value;
+    }
+    if ($o->options !== null) {
+      if ($this->options !== null) {
+        $this->options->MergeMessageFrom($o->options);
+      } else {
+        $this->options = new \google\protobuf\FieldOptions();
+        $this->options->CopyFrom($o);
+      }
+    }
+    if ($o->oneof_index !== 0) {
+      $this->oneof_index = $o->oneof_index;
+    }
+    if ($o->json_name !== '') {
+      $this->json_name = $o->json_name;
+    }
+    if ($o->proto3_optional !== false) {
+      $this->proto3_optional = $o->proto3_optional;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class OneofDescriptorProto implements \Protobuf\Message {
@@ -1375,7 +1602,7 @@ class OneofDescriptorProto implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1430,6 +1657,25 @@ class OneofDescriptorProto implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is OneofDescriptorProto)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->options !== null) {
+      if ($this->options !== null) {
+        $this->options->MergeMessageFrom($o->options);
+      } else {
+        $this->options = new \google\protobuf\OneofOptions();
+        $this->options->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
@@ -1473,7 +1719,7 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1517,6 +1763,20 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
     $this->start = $o->start;
     $this->end = $o->end;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is EnumDescriptorProto_EnumReservedRange)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->start !== 0) {
+      $this->start = $o->start;
+    }
+    if ($o->end !== 0) {
+      $this->end = $o->end;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -1585,7 +1845,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1687,6 +1947,38 @@ class EnumDescriptorProto implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is EnumDescriptorProto)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    foreach ($o->value as $v) {
+      $vc = new \google\protobuf\EnumValueDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->value []= $vc;
+    }
+    if ($o->options !== null) {
+      if ($this->options !== null) {
+        $this->options->MergeMessageFrom($o->options);
+      } else {
+        $this->options = new \google\protobuf\EnumOptions();
+        $this->options->CopyFrom($o);
+      }
+    }
+    foreach ($o->reserved_range as $v) {
+      $vc = new \google\protobuf\EnumDescriptorProto_EnumReservedRange();
+      $vc->CopyFrom($v);
+      $this->reserved_range []= $vc;
+    }
+    foreach ($o->reserved_name as $v) {
+      $this->reserved_name []= $v;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class EnumValueDescriptorProto implements \Protobuf\Message {
@@ -1737,7 +2029,7 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1801,6 +2093,28 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is EnumValueDescriptorProto)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->number !== 0) {
+      $this->number = $o->number;
+    }
+    if ($o->options !== null) {
+      if ($this->options !== null) {
+        $this->options->MergeMessageFrom($o->options);
+      } else {
+        $this->options = new \google\protobuf\EnumValueOptions();
+        $this->options->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class ServiceDescriptorProto implements \Protobuf\Message {
@@ -1853,7 +2167,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1926,6 +2240,30 @@ class ServiceDescriptorProto implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is ServiceDescriptorProto)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    foreach ($o->method as $v) {
+      $vc = new \google\protobuf\MethodDescriptorProto();
+      $vc->CopyFrom($v);
+      $this->method []= $vc;
+    }
+    if ($o->options !== null) {
+      if ($this->options !== null) {
+        $this->options->MergeMessageFrom($o->options);
+      } else {
+        $this->options = new \google\protobuf\ServiceOptions();
+        $this->options->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class MethodDescriptorProto implements \Protobuf\Message {
@@ -1994,7 +2332,7 @@ class MethodDescriptorProto implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -2083,6 +2421,37 @@ class MethodDescriptorProto implements \Protobuf\Message {
     $this->client_streaming = $o->client_streaming;
     $this->server_streaming = $o->server_streaming;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is MethodDescriptorProto)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    if ($o->input_type !== '') {
+      $this->input_type = $o->input_type;
+    }
+    if ($o->output_type !== '') {
+      $this->output_type = $o->output_type;
+    }
+    if ($o->options !== null) {
+      if ($this->options !== null) {
+        $this->options->MergeMessageFrom($o->options);
+      } else {
+        $this->options = new \google\protobuf\MethodOptions();
+        $this->options->CopyFrom($o);
+      }
+    }
+    if ($o->client_streaming !== false) {
+      $this->client_streaming = $o->client_streaming;
+    }
+    if ($o->server_streaming !== false) {
+      $this->server_streaming = $o->server_streaming;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -2272,7 +2641,7 @@ class FileOptions implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -2498,6 +2867,79 @@ class FileOptions implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is FileOptions)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->java_package !== '') {
+      $this->java_package = $o->java_package;
+    }
+    if ($o->java_outer_classname !== '') {
+      $this->java_outer_classname = $o->java_outer_classname;
+    }
+    if ($o->optimize_for !== \google\protobuf\FileOptions_OptimizeMode::SPEED) {
+      $this->optimize_for = $o->optimize_for;
+    }
+    if ($o->java_multiple_files !== false) {
+      $this->java_multiple_files = $o->java_multiple_files;
+    }
+    if ($o->go_package !== '') {
+      $this->go_package = $o->go_package;
+    }
+    if ($o->cc_generic_services !== false) {
+      $this->cc_generic_services = $o->cc_generic_services;
+    }
+    if ($o->java_generic_services !== false) {
+      $this->java_generic_services = $o->java_generic_services;
+    }
+    if ($o->py_generic_services !== false) {
+      $this->py_generic_services = $o->py_generic_services;
+    }
+    if ($o->java_generate_equals_and_hash !== false) {
+      $this->java_generate_equals_and_hash = $o->java_generate_equals_and_hash;
+    }
+    if ($o->deprecated !== false) {
+      $this->deprecated = $o->deprecated;
+    }
+    if ($o->java_string_check_utf8 !== false) {
+      $this->java_string_check_utf8 = $o->java_string_check_utf8;
+    }
+    if ($o->cc_enable_arenas !== true) {
+      $this->cc_enable_arenas = $o->cc_enable_arenas;
+    }
+    if ($o->objc_class_prefix !== '') {
+      $this->objc_class_prefix = $o->objc_class_prefix;
+    }
+    if ($o->csharp_namespace !== '') {
+      $this->csharp_namespace = $o->csharp_namespace;
+    }
+    if ($o->swift_prefix !== '') {
+      $this->swift_prefix = $o->swift_prefix;
+    }
+    if ($o->php_class_prefix !== '') {
+      $this->php_class_prefix = $o->php_class_prefix;
+    }
+    if ($o->php_namespace !== '') {
+      $this->php_namespace = $o->php_namespace;
+    }
+    if ($o->php_generic_services !== false) {
+      $this->php_generic_services = $o->php_generic_services;
+    }
+    if ($o->php_metadata_namespace !== '') {
+      $this->php_metadata_namespace = $o->php_metadata_namespace;
+    }
+    if ($o->ruby_package !== '') {
+      $this->ruby_package = $o->ruby_package;
+    }
+    foreach ($o->uninterpreted_option as $v) {
+      $vc = new \google\protobuf\UninterpretedOption();
+      $vc->CopyFrom($v);
+      $this->uninterpreted_option []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class MessageOptions implements \Protobuf\Message {
@@ -2561,7 +3003,7 @@ class MessageOptions implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -2641,6 +3083,31 @@ class MessageOptions implements \Protobuf\Message {
       $this->uninterpreted_option []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is MessageOptions)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->message_set_wire_format !== false) {
+      $this->message_set_wire_format = $o->message_set_wire_format;
+    }
+    if ($o->no_standard_descriptor_accessor !== false) {
+      $this->no_standard_descriptor_accessor = $o->no_standard_descriptor_accessor;
+    }
+    if ($o->deprecated !== false) {
+      $this->deprecated = $o->deprecated;
+    }
+    if ($o->map_entry !== false) {
+      $this->map_entry = $o->map_entry;
+    }
+    foreach ($o->uninterpreted_option as $v) {
+      $vc = new \google\protobuf\UninterpretedOption();
+      $vc->CopyFrom($v);
+      $this->uninterpreted_option []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -2780,7 +3247,7 @@ class FieldOptions implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -2889,6 +3356,40 @@ class FieldOptions implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is FieldOptions)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->ctype !== \google\protobuf\FieldOptions_CType::STRING) {
+      $this->ctype = $o->ctype;
+    }
+    if ($o->packed !== false) {
+      $this->packed = $o->packed;
+    }
+    if ($o->deprecated !== false) {
+      $this->deprecated = $o->deprecated;
+    }
+    if ($o->lazy !== false) {
+      $this->lazy = $o->lazy;
+    }
+    if ($o->jstype !== \google\protobuf\FieldOptions_JSType::JS_NORMAL) {
+      $this->jstype = $o->jstype;
+    }
+    if ($o->weak !== false) {
+      $this->weak = $o->weak;
+    }
+    if ($o->unverified_lazy !== false) {
+      $this->unverified_lazy = $o->unverified_lazy;
+    }
+    foreach ($o->uninterpreted_option as $v) {
+      $vc = new \google\protobuf\UninterpretedOption();
+      $vc->CopyFrom($v);
+      $this->uninterpreted_option []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class OneofOptions implements \Protobuf\Message {
@@ -2928,7 +3429,7 @@ class OneofOptions implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -2972,6 +3473,19 @@ class OneofOptions implements \Protobuf\Message {
       $this->uninterpreted_option []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is OneofOptions)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->uninterpreted_option as $v) {
+      $vc = new \google\protobuf\UninterpretedOption();
+      $vc->CopyFrom($v);
+      $this->uninterpreted_option []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -3025,7 +3539,7 @@ class EnumOptions implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -3089,6 +3603,25 @@ class EnumOptions implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is EnumOptions)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->allow_alias !== false) {
+      $this->allow_alias = $o->allow_alias;
+    }
+    if ($o->deprecated !== false) {
+      $this->deprecated = $o->deprecated;
+    }
+    foreach ($o->uninterpreted_option as $v) {
+      $vc = new \google\protobuf\UninterpretedOption();
+      $vc->CopyFrom($v);
+      $this->uninterpreted_option []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class EnumValueOptions implements \Protobuf\Message {
@@ -3134,7 +3667,7 @@ class EnumValueOptions implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -3189,6 +3722,22 @@ class EnumValueOptions implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is EnumValueOptions)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->deprecated !== false) {
+      $this->deprecated = $o->deprecated;
+    }
+    foreach ($o->uninterpreted_option as $v) {
+      $vc = new \google\protobuf\UninterpretedOption();
+      $vc->CopyFrom($v);
+      $this->uninterpreted_option []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class ServiceOptions implements \Protobuf\Message {
@@ -3234,7 +3783,7 @@ class ServiceOptions implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -3287,6 +3836,22 @@ class ServiceOptions implements \Protobuf\Message {
       $this->uninterpreted_option []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is ServiceOptions)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->deprecated !== false) {
+      $this->deprecated = $o->deprecated;
+    }
+    foreach ($o->uninterpreted_option as $v) {
+      $vc = new \google\protobuf\UninterpretedOption();
+      $vc->CopyFrom($v);
+      $this->uninterpreted_option []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -3368,7 +3933,7 @@ class MethodOptions implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -3432,6 +3997,25 @@ class MethodOptions implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is MethodOptions)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->deprecated !== false) {
+      $this->deprecated = $o->deprecated;
+    }
+    if ($o->idempotency_level !== \google\protobuf\MethodOptions_IdempotencyLevel::IDEMPOTENCY_UNKNOWN) {
+      $this->idempotency_level = $o->idempotency_level;
+    }
+    foreach ($o->uninterpreted_option as $v) {
+      $vc = new \google\protobuf\UninterpretedOption();
+      $vc->CopyFrom($v);
+      $this->uninterpreted_option []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class UninterpretedOption_NamePart implements \Protobuf\Message {
@@ -3475,7 +4059,7 @@ class UninterpretedOption_NamePart implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -3519,6 +4103,20 @@ class UninterpretedOption_NamePart implements \Protobuf\Message {
     $this->name_part = $o->name_part;
     $this->is_extension = $o->is_extension;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is UninterpretedOption_NamePart)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name_part !== '') {
+      $this->name_part = $o->name_part;
+    }
+    if ($o->is_extension !== false) {
+      $this->is_extension = $o->is_extension;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -3596,7 +4194,7 @@ class UninterpretedOption implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -3696,6 +4294,37 @@ class UninterpretedOption implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is UninterpretedOption)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->name as $v) {
+      $vc = new \google\protobuf\UninterpretedOption_NamePart();
+      $vc->CopyFrom($v);
+      $this->name []= $vc;
+    }
+    if ($o->identifier_value !== '') {
+      $this->identifier_value = $o->identifier_value;
+    }
+    if ($o->positive_int_value !== 0) {
+      $this->positive_int_value = $o->positive_int_value;
+    }
+    if ($o->negative_int_value !== 0) {
+      $this->negative_int_value = $o->negative_int_value;
+    }
+    if ($o->double_value !== 0.0) {
+      $this->double_value = $o->double_value;
+    }
+    if ($o->string_value !== '') {
+      $this->string_value = $o->string_value;
+    }
+    if ($o->aggregate_value !== '') {
+      $this->aggregate_value = $o->aggregate_value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class SourceCodeInfo_Location implements \Protobuf\Message {
@@ -3771,7 +4400,7 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -3856,6 +4485,29 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is SourceCodeInfo_Location)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->path as $v) {
+      $this->path []= $v;
+    }
+    foreach ($o->span as $v) {
+      $this->span []= $v;
+    }
+    if ($o->leading_comments !== '') {
+      $this->leading_comments = $o->leading_comments;
+    }
+    if ($o->trailing_comments !== '') {
+      $this->trailing_comments = $o->trailing_comments;
+    }
+    foreach ($o->leading_detached_comments as $v) {
+      $this->leading_detached_comments []= $v;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class SourceCodeInfo implements \Protobuf\Message {
@@ -3895,7 +4547,7 @@ class SourceCodeInfo implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -3939,6 +4591,19 @@ class SourceCodeInfo implements \Protobuf\Message {
       $this->location []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is SourceCodeInfo)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->location as $v) {
+      $vc = new \google\protobuf\SourceCodeInfo_Location();
+      $vc->CopyFrom($v);
+      $this->location []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -4003,7 +4668,7 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -4072,6 +4737,26 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is GeneratedCodeInfo_Annotation)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->path as $v) {
+      $this->path []= $v;
+    }
+    if ($o->source_file !== '') {
+      $this->source_file = $o->source_file;
+    }
+    if ($o->begin !== 0) {
+      $this->begin = $o->begin;
+    }
+    if ($o->end !== 0) {
+      $this->end = $o->end;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class GeneratedCodeInfo implements \Protobuf\Message {
@@ -4111,7 +4796,7 @@ class GeneratedCodeInfo implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -4155,6 +4840,19 @@ class GeneratedCodeInfo implements \Protobuf\Message {
       $this->annotation []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is GeneratedCodeInfo)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->annotation as $v) {
+      $vc = new \google\protobuf\GeneratedCodeInfo_Annotation();
+      $vc->CopyFrom($v);
+      $this->annotation []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

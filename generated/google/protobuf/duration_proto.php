@@ -45,7 +45,7 @@ class Duration implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -77,6 +77,20 @@ class Duration implements \Protobuf\Message {
     $this->seconds = $o->seconds;
     $this->nanos = $o->nanos;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Duration)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->seconds !== 0) {
+      $this->seconds = $o->seconds;
+    }
+    if ($o->nanos !== 0) {
+      $this->nanos = $o->nanos;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
