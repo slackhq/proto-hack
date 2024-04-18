@@ -30,19 +30,25 @@ PROTOC=`readlink $PROTOC`
 echo protoc path: $PROTOC
 $PROTOC --version
 
+# For some reason, test_messages_proto{2,3}.proto are in virtual_imports,
+# despite an explicit dependency on those in the BUILD file :'-(
+# TODO: We should figure out a better way of handling this.
+cp external/com_google_protobuf/_virtual_imports/test_messages_proto2_proto/google/protobuf/test_messages_proto2.proto external/com_google_protobuf/src/google/protobuf/test_messages_proto2.proto
+cp external/com_google_protobuf/_virtual_imports/test_messages_proto3_proto/google/protobuf/test_messages_proto3.proto external/com_google_protobuf/src/google/protobuf/test_messages_proto3.proto
+
 PBS=`find . -name '*.proto' | grep -v _virtual_imports`
+
+ARGS="-I external/com_google_protobuf/src -I ./"
 
 echo
 echo generating hacklang...
 for SRC in $PBS
 do
   echo source: $SRC
-  ARGS="-I external/com_google_protobuf/src -I ./"
   $PROTOC $ARGS --plugin=$GENHACK --hack_out="plugin=grpc,allow_proto2_dangerous:$TMP" --experimental_allow_proto3_optional $SRC
   echo
 done
 
-ARGS="-I external/com_google_protobuf/src -I ./"
 $PROTOC $ARGS --encode=foo.bar.example1  ./test/example1.proto < ./test/example1.pb.txt > $TMP/test/example1.pb.bin
 $PROTOC $ARGS --encode=baz.optional_proto3  ./test/optional_proto3.proto < ./test/empty_optional_proto3.pb.txt > $TMP/test/empty_optional_proto3.pb.bin
 $PROTOC $ARGS --encode=baz.optional_proto3  ./test/optional_proto3.proto < ./test/default_optional_proto3.pb.txt > $TMP/test/default_optional_proto3.pb.bin
