@@ -1,4 +1,4 @@
-name: Ubuntu 18.04 Tests
+name: Ubuntu Tests
 
 on:
   push:
@@ -13,30 +13,11 @@ concurrency:
 
 jobs:
   ubuntu_ci:
-    runs-on: ubuntu-18.04
+    runs-on: 'ubuntu-latest'
     steps:
-      - name: Adding HHVM repo
-        run: |
-          curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x058341c68fc8de6017d775a1b4112585d386eb94" | gpg --dearmor > hhvm-archive-keyring.gpg
-          sudo mv hhvm-archive-keyring.gpg /usr/share/keyrings
-          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/hhvm-archive-keyring.gpg] https://dl.hhvm.com/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/hhvm.list
-      - name: Adding Bazel repo
-        run: |
-          curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor >bazel-archive-keyring.gpg
-          sudo mv bazel-archive-keyring.gpg /usr/share/keyrings
-          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/bazel-archive-keyring.gpg] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
-      - name: Installing deps
-        run: |
-          sudo apt update
-          sudo apt install hhvm bazel
       - name: Checking out
         uses: actions/checkout@v3
-      - name: Running the type checker
-        run: hh_client .
+      - name: Building image
+        run: docker build -t hhvm-test -f ci/Dockerfile .
       - name: Running tests
-        # TODO: Replace those with //... once //:typechecker_test is fixed.
-        run: |
-          bazel test //:gen_test
-          bazel test //:library_test
-          bazel test //:integration_test
-          bazel test //:conformance_test
+        run: docker run -v .:/source -w /source hhvm-test:latest ci/run_tests.sh
