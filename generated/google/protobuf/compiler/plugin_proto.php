@@ -167,7 +167,9 @@ class CodeGeneratorRequest implements \Protobuf\Message {
           $this->parameter = $d->readString();
           break;
         case 3:
-          if ($this->compiler_version == null) $this->compiler_version = new \google\protobuf\compiler\Version();
+          if ($this->compiler_version is null) {
+            $this->compiler_version = new \google\protobuf\compiler\Version();
+          }
           $this->compiler_version->MergeFrom($d->readDecoder());
           break;
         case 15:
@@ -226,8 +228,10 @@ class CodeGeneratorRequest implements \Protobuf\Message {
           $this->parameter = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'compiler_version': case 'compilerVersion':
-          if ($v === null) break;
-          if ($this->compiler_version == null) $this->compiler_version = new \google\protobuf\compiler\Version();
+          if ($v is null) break;
+          if ($this->compiler_version is null) {
+            $this->compiler_version = new \google\protobuf\compiler\Version();
+          }
           $this->compiler_version->MergeJsonFrom($v);
           break;
         case 'proto_file': case 'protoFile':
@@ -250,7 +254,7 @@ class CodeGeneratorRequest implements \Protobuf\Message {
     $this->file_to_generate = $o->file_to_generate;
     $this->parameter = $o->parameter;
     $tmp = $o->compiler_version;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\compiler\Version();
       $nv->CopyFrom($tmp);
       $this->compiler_version = $nv;
@@ -337,7 +341,9 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
           $this->content = $d->readString();
           break;
         case 16:
-          if ($this->generated_code_info == null) $this->generated_code_info = new \google\protobuf\GeneratedCodeInfo();
+          if ($this->generated_code_info is null) {
+            $this->generated_code_info = new \google\protobuf\GeneratedCodeInfo();
+          }
           $this->generated_code_info->MergeFrom($d->readDecoder());
           break;
         default:
@@ -391,8 +397,10 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
           $this->content = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'generated_code_info': case 'generatedCodeInfo':
-          if ($v === null) break;
-          if ($this->generated_code_info == null) $this->generated_code_info = new \google\protobuf\GeneratedCodeInfo();
+          if ($v is null) break;
+          if ($this->generated_code_info is null) {
+            $this->generated_code_info = new \google\protobuf\GeneratedCodeInfo();
+          }
           $this->generated_code_info->MergeJsonFrom($v);
           break;
         default:
@@ -409,7 +417,7 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
     $this->insertion_point = $o->insertion_point;
     $this->content = $o->content;
     $tmp = $o->generated_code_info;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\GeneratedCodeInfo();
       $nv->CopyFrom($tmp);
       $this->generated_code_info = $nv;

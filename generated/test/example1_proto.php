@@ -393,7 +393,9 @@ class example1_Amap2Entry implements \Protobuf\Message {
           $this->key = $d->readString();
           break;
         case 2:
-          if ($this->value == null) $this->value = new \fiz\baz\example2();
+          if ($this->value is null) {
+            $this->value = new \fiz\baz\example2();
+          }
           $this->value->MergeFrom($d->readDecoder());
           break;
         default:
@@ -431,8 +433,10 @@ class example1_Amap2Entry implements \Protobuf\Message {
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'value':
-          if ($v === null) break;
-          if ($this->value == null) $this->value = new \fiz\baz\example2();
+          if ($v is null) break;
+          if ($this->value is null) {
+            $this->value = new \fiz\baz\example2();
+          }
           $this->value->MergeJsonFrom($v);
           break;
         default:
@@ -447,7 +451,7 @@ class example1_Amap2Entry implements \Protobuf\Message {
     }
     $this->key = $o->key;
     $tmp = $o->value;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \fiz\baz\example2();
       $nv->CopyFrom($tmp);
       $this->value = $nv;
@@ -634,15 +638,21 @@ class example1 implements \Protobuf\Message {
           }
           break;
         case 40:
-          if ($this->aexample2 == null) $this->aexample2 = new \foo\bar\example1_example2();
+          if ($this->aexample2 is null) {
+            $this->aexample2 = new \foo\bar\example1_example2();
+          }
           $this->aexample2->MergeFrom($d->readDecoder());
           break;
         case 41:
-          if ($this->aexample22 == null) $this->aexample22 = new \foo\bar\example2();
+          if ($this->aexample22 is null) {
+            $this->aexample22 = new \foo\bar\example2();
+          }
           $this->aexample22->MergeFrom($d->readDecoder());
           break;
         case 42:
-          if ($this->aexample23 == null) $this->aexample23 = new \fiz\baz\example2();
+          if ($this->aexample23 is null) {
+            $this->aexample23 = new \fiz\baz\example2();
+          }
           $this->aexample23->MergeFrom($d->readDecoder());
           break;
         case 49:
@@ -665,7 +675,9 @@ class example1 implements \Protobuf\Message {
           $this->aoneof = new example1_aoneof_ooint($d->readVarint32Signed());
           break;
         case 80:
-          if ($this->anany == null) $this->anany = new \google\protobuf\Any();
+          if ($this->anany is null) {
+            $this->anany = new \google\protobuf\Any();
+          }
           $this->anany->MergeFrom($d->readDecoder());
           break;
         default:
@@ -908,18 +920,24 @@ class example1 implements \Protobuf\Message {
           }
           break;
         case 'aexample2':
-          if ($v === null) break;
-          if ($this->aexample2 == null) $this->aexample2 = new \foo\bar\example1_example2();
+          if ($v is null) break;
+          if ($this->aexample2 is null) {
+            $this->aexample2 = new \foo\bar\example1_example2();
+          }
           $this->aexample2->MergeJsonFrom($v);
           break;
         case 'aexample22':
-          if ($v === null) break;
-          if ($this->aexample22 == null) $this->aexample22 = new \foo\bar\example2();
+          if ($v is null) break;
+          if ($this->aexample22 is null) {
+            $this->aexample22 = new \foo\bar\example2();
+          }
           $this->aexample22->MergeJsonFrom($v);
           break;
         case 'aexample23':
-          if ($v === null) break;
-          if ($this->aexample23 == null) $this->aexample23 = new \fiz\baz\example2();
+          if ($v is null) break;
+          if ($this->aexample23 is null) {
+            $this->aexample23 = new \fiz\baz\example2();
+          }
           $this->aexample23->MergeJsonFrom($v);
           break;
         case 'outoforder':
@@ -948,8 +966,10 @@ class example1 implements \Protobuf\Message {
           $this->aoneof = new example1_aoneof_ooint(\Protobuf\Internal\JsonDecoder::readInt32Signed($v));
           break;
         case 'anany':
-          if ($v === null) break;
-          if ($this->anany == null) $this->anany = new \google\protobuf\Any();
+          if ($v is null) break;
+          if ($this->anany is null) {
+            $this->anany = new \google\protobuf\Any();
+          }
           $this->anany->MergeJsonFrom($v);
           break;
         default:
@@ -983,19 +1003,19 @@ class example1 implements \Protobuf\Message {
     $this->manystring = $o->manystring;
     $this->manyint64 = $o->manyint64;
     $tmp = $o->aexample2;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \foo\bar\example1_example2();
       $nv->CopyFrom($tmp);
       $this->aexample2 = $nv;
     }
     $tmp = $o->aexample22;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \foo\bar\example2();
       $nv->CopyFrom($tmp);
       $this->aexample22 = $nv;
     }
     $tmp = $o->aexample23;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \fiz\baz\example2();
       $nv->CopyFrom($tmp);
       $this->aexample23 = $nv;
@@ -1008,7 +1028,7 @@ class example1 implements \Protobuf\Message {
       $this->amap2[$k] = $nv;
     }
     $tmp = $o->anany;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Any();
       $nv->CopyFrom($tmp);
       $this->anany = $nv;

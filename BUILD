@@ -89,7 +89,7 @@ hh_test(
     hh_args = "lib_test/test.php",
 )
 
-INTEGRATION_PHP = glob(["test/**/*.php"])
+INTEGRATION_PHP = glob(["test/**/*.php", "test/**/*.pb.json"])
 
 ALL_PHP += INTEGRATION_PHP
 

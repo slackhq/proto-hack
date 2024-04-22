@@ -1,0 +1,15 @@
+adouble: 3.14
+aint64: 1234
+abool: true
+astring: "string"
+abytes: "bytes"
+
+anenum: D
+
+amsg {
+  astring: "inner_string"
+}
+
+anany {
+  value: "any_bytes"
+}

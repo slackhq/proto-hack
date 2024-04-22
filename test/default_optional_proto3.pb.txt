@@ -1,0 +1,13 @@
+adouble: 0.0
+aint64: 0
+abool: false
+astring: ""
+abytes: ""
+
+anenum: C
+
+amsg {
+}
+
+anany {
+}

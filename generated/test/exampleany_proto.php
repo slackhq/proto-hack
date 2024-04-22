@@ -32,7 +32,9 @@ class AnyTest implements \Protobuf\Message {
       list($fn, $wt) = $d->readTag();
       switch ($fn) {
         case 1:
-          if ($this->any == null) $this->any = new \google\protobuf\Any();
+          if ($this->any is null) {
+            $this->any = new \google\protobuf\Any();
+          }
           $this->any->MergeFrom($d->readDecoder());
           break;
         default:
@@ -62,8 +64,10 @@ class AnyTest implements \Protobuf\Message {
     foreach ($d as $k => $v) {
       switch ($k) {
         case 'any':
-          if ($v === null) break;
-          if ($this->any == null) $this->any = new \google\protobuf\Any();
+          if ($v is null) break;
+          if ($this->any is null) {
+            $this->any = new \google\protobuf\Any();
+          }
           $this->any->MergeJsonFrom($v);
           break;
         default:
@@ -77,7 +81,7 @@ class AnyTest implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     $tmp = $o->any;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Any();
       $nv->CopyFrom($tmp);
       $this->any = $nv;

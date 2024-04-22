@@ -106,7 +106,9 @@ class pb_Interface implements \Protobuf\Message {
       list($fn, $wt) = $d->readTag();
       switch ($fn) {
         case 1:
-          if ($this->class == null) $this->class = new \pb_Class();
+          if ($this->class is null) {
+            $this->class = new \pb_Class();
+          }
           $this->class->MergeFrom($d->readDecoder());
           break;
         default:
@@ -136,8 +138,10 @@ class pb_Interface implements \Protobuf\Message {
     foreach ($d as $k => $v) {
       switch ($k) {
         case 'class':
-          if ($v === null) break;
-          if ($this->class == null) $this->class = new \pb_Class();
+          if ($v is null) break;
+          if ($this->class is null) {
+            $this->class = new \pb_Class();
+          }
           $this->class->MergeJsonFrom($v);
           break;
         default:
@@ -151,7 +155,7 @@ class pb_Interface implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     $tmp = $o->class;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \pb_Class();
       $nv->CopyFrom($tmp);
       $this->class = $nv;

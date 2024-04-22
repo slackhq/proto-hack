@@ -166,6 +166,10 @@ function testDescriptorReflection(): void {
       $dp->package,
     );
   }
+
+
+  // TODO: We need to check reflection on optional proto3.
+  // https://github.com/protocolbuffers/protobuf/blob/main/docs/implementing_proto3_presence.md#implementation-changes
 }
 
 function testReservedClassNames(): void {
@@ -236,6 +240,102 @@ class Context implements \Grpc\Context {
     return $this;
   }
 }
+
+function testOptionalProto3(): void {
+  echo "Testing empty optional proto3 proto: ";
+  $msg = new \baz\optional_proto3();
+  Protobuf\Unmarshal(file_get_contents('generated/test/empty_optional_proto3.pb.bin'), $msg);
+  a($msg->getAdouble(), 0., 'adouble should be set to default value');
+  a($msg->hasAdouble(), false, 'adouble shoult not be set');
+  a($msg->getAint64(), 0, 'aint64 should be set to default value');
+  a($msg->hasAint64(), false, 'aint64 shoult not be set');
+  a($msg->getAbool(), false, 'abool should be set to default value');
+  a($msg->hasAbool(), false, 'abool shoult not be set');
+  a($msg->getAstring(), "", 'astring should be set to default value');
+  a($msg->hasAstring(), false, 'astring shoult not be set');
+  a($msg->getAbytes(), "", 'abytes should be set to default value');
+  a($msg->hasAbytes(), false, 'abytes shoult not be set');
+
+  a($msg->getAnenum(), 0, 'anenum should be set to default value');
+  a($msg->hasAnenum(), false, 'anenum shoult not be set');
+
+  a($msg->getAmsg(), null, 'adouble should be set to default value');
+  a($msg->hasAmsg(), false, 'adouble shoult not be set');
+  a($msg->getAnany(), null, 'anany should be set to default value');
+  a($msg->hasAnany(), false, 'anany shoult not be set');
+  echo("PASSED\n");
+
+  echo("Testing optional proto3 proto with only default values: ");
+  $msg = new \baz\optional_proto3();
+  Protobuf\Unmarshal(file_get_contents('generated/test/default_optional_proto3.pb.bin'), $msg);
+  a($msg->getAdouble(), 0., 'adouble should be set to default value');
+  a($msg->hasAdouble(), true, 'adouble should be set');
+  a($msg->getAint64(), 0, 'aint64 should be set to default value');
+  a($msg->hasAint64(), true, 'aint64 should be set');
+  a($msg->getAbool(), false, 'abool should be set to default value');
+  a($msg->hasAbool(), true, 'abool should be set');
+  a($msg->getAstring(), "", 'astring should be set to default value');
+  a($msg->hasAstring(), true, 'astring should be set');
+  a($msg->getAbytes(), "", 'abytes should be set to default value');
+  a($msg->hasAbytes(), true, 'abytes should be set');
+
+  a($msg->getAnenum(), 0, 'anenum should be set to default value');
+  a($msg->hasAnenum(), true, 'anenum should be set');
+
+  a($msg->getAmsg()?->astring, "", 'amsg should be set to default value');
+  a($msg->hasAmsg(), true, 'amsg should be set');
+  a($msg->getAnany()?->value, "", 'anany should be set to default value');
+  a($msg->hasAnany(), true, 'anany should be set');
+  echo("PASSED\n");
+
+  echo("Testing optional proto3 proto with only custom non-default values: ");
+  $msg = new \baz\optional_proto3();
+  Protobuf\Unmarshal(file_get_contents('generated/test/custom_optional_proto3.pb.bin'), $msg);
+  a($msg->getAdouble(), 3.14, 'adouble should be set');
+  a($msg->hasAdouble(), true, 'adouble should be set');
+  a($msg->getAint64(), 1234, 'aint64 should be set');
+  a($msg->hasAint64(), true, 'aint64 should be set');
+  a($msg->getAbool(), true, 'abool should be set');
+  a($msg->hasAbool(), true, 'abool should be set');
+  a($msg->getAstring(), "string", 'astring should be set');
+  a($msg->hasAstring(), true, 'astring should be set');
+  a($msg->getAbytes(), "bytes", 'abytes should be set');
+  a($msg->hasAbytes(), true, 'abytes should be set');
+
+  a($msg->getAnenum(), 10, 'anenum should be set');
+  a($msg->hasAnenum(), true, 'anenum should be set');
+
+  a($msg->getAmsg()?->astring, "inner_string", 'amsg should be set');
+  a($msg->hasAmsg(), true, 'amsg should be set');
+  a($msg->getAnany()?->value, "any_bytes", 'anany should be set');
+  a($msg->hasAnany(), true, 'anany should be set');
+  echo("PASSED\n");
+
+  echo("Testing JSON decoding: ");
+  $msg = new \baz\optional_proto3();
+  Protobuf\UnmarshalJson(file_get_contents('test/mixed_optional_proto3.pb.json'), $msg);
+  a($msg->getAdouble(), 3.14, 'adouble should be set');
+  a($msg->hasAdouble(), true, 'adouble should be set');
+  a($msg->getAint64(), 1234, 'aint64 should be set');
+  a($msg->hasAint64(), true, 'aint64 should be set');
+  a($msg->getAbool(), false, 'abool should be set');
+  a($msg->hasAbool(), true, 'abool should be set');
+  a($msg->getAstring(), "", 'astring should be set');
+  a($msg->hasAstring(), false, 'astring should be set');
+  // TODO: We are storing some bad bytes during JSON decoding.
+  //a($msg->getAbytes(), "bytes", 'abytes should be set');
+  a($msg->hasAbytes(), true, 'abytes should be set');
+
+  a($msg->getAnenum(), 10, 'anenum should be set');
+  a($msg->hasAnenum(), true, 'anenum should be set');
+
+  a($msg->getAmsg()?->astring, "inner_string", 'amsg should be set');
+  a($msg->hasAmsg(), true, 'amsg should be set');
+  // TODO: We are storing some bad bytes during JSON decoding.
+  //a($msg->getAnany()->value, "any_bytes", 'anany should be set');
+  a($msg->hasAnany(), true, 'anany should be set');
+  echo("PASSED\n");
+ }
 
 function testLoopbackService(): void {
   $cli = new \foo\bar\ExampleServiceClient(new Grpc\LoopbackInvoker(

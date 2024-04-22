@@ -130,7 +130,9 @@ class refexample3 implements \Protobuf\Message {
       list($fn, $wt) = $d->readTag();
       switch ($fn) {
         case 1:
-          if ($this->funky == null) $this->funky = new \Funky();
+          if ($this->funky is null) {
+            $this->funky = new \Funky();
+          }
           $this->funky->MergeFrom($d->readDecoder());
           break;
         default:
@@ -160,8 +162,10 @@ class refexample3 implements \Protobuf\Message {
     foreach ($d as $k => $v) {
       switch ($k) {
         case 'funky':
-          if ($v === null) break;
-          if ($this->funky == null) $this->funky = new \Funky();
+          if ($v is null) break;
+          if ($this->funky is null) {
+            $this->funky = new \Funky();
+          }
           $this->funky->MergeJsonFrom($v);
           break;
         default:
@@ -175,7 +179,7 @@ class refexample3 implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     $tmp = $o->funky;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \Funky();
       $nv->CopyFrom($tmp);
       $this->funky = $nv;

@@ -321,7 +321,9 @@ class ConformanceRequest implements \Protobuf\Message {
           $this->test_category = \conformance\TestCategory::FromInt($d->readVarint());
           break;
         case 6:
-          if ($this->jspb_encoding_options == null) $this->jspb_encoding_options = new \conformance\JspbEncodingConfig();
+          if ($this->jspb_encoding_options is null) {
+            $this->jspb_encoding_options = new \conformance\JspbEncodingConfig();
+          }
           $this->jspb_encoding_options->MergeFrom($d->readDecoder());
           break;
         case 7:
@@ -397,8 +399,10 @@ class ConformanceRequest implements \Protobuf\Message {
           $this->test_category = \conformance\TestCategory::FromMixed($v);
           break;
         case 'jspb_encoding_options': case 'jspbEncodingOptions':
-          if ($v === null) break;
-          if ($this->jspb_encoding_options == null) $this->jspb_encoding_options = new \conformance\JspbEncodingConfig();
+          if ($v is null) break;
+          if ($this->jspb_encoding_options is null) {
+            $this->jspb_encoding_options = new \conformance\JspbEncodingConfig();
+          }
           $this->jspb_encoding_options->MergeJsonFrom($v);
           break;
         case 'jspb_payload': case 'jspbPayload':
@@ -424,7 +428,7 @@ class ConformanceRequest implements \Protobuf\Message {
     $this->message_type = $o->message_type;
     $this->test_category = $o->test_category;
     $tmp = $o->jspb_encoding_options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \conformance\JspbEncodingConfig();
       $nv->CopyFrom($tmp);
       $this->jspb_encoding_options = $nv;

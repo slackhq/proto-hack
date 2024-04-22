@@ -67,7 +67,9 @@ class Api implements \Protobuf\Message {
           $this->version = $d->readString();
           break;
         case 5:
-          if ($this->source_context == null) $this->source_context = new \google\protobuf\SourceContext();
+          if ($this->source_context is null) {
+            $this->source_context = new \google\protobuf\SourceContext();
+          }
           $this->source_context->MergeFrom($d->readDecoder());
           break;
         case 6:
@@ -158,8 +160,10 @@ class Api implements \Protobuf\Message {
           $this->version = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'source_context': case 'sourceContext':
-          if ($v === null) break;
-          if ($this->source_context == null) $this->source_context = new \google\protobuf\SourceContext();
+          if ($v is null) break;
+          if ($this->source_context is null) {
+            $this->source_context = new \google\protobuf\SourceContext();
+          }
           $this->source_context->MergeJsonFrom($v);
           break;
         case 'mixins':
@@ -195,7 +199,7 @@ class Api implements \Protobuf\Message {
     }
     $this->version = $o->version;
     $tmp = $o->source_context;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\SourceContext();
       $nv->CopyFrom($tmp);
       $this->source_context = $nv;
