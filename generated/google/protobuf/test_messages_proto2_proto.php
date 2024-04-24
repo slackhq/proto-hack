@@ -322,7 +322,9 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
           $this->a = $d->readVarint32Signed();
           break;
         case 2:
-          if ($this->corecursive == null) $this->corecursive = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+          if ($this->corecursive is null) {
+            $this->corecursive = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+          }
           $this->corecursive->MergeFrom($d->readDecoder());
           break;
         default:
@@ -360,8 +362,10 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
           $this->a = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
           break;
         case 'corecursive':
-          if ($v === null) break;
-          if ($this->corecursive == null) $this->corecursive = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+          if ($v is null) break;
+          if ($this->corecursive is null) {
+            $this->corecursive = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+          }
           $this->corecursive->MergeJsonFrom($v);
           break;
         default:
@@ -376,7 +380,7 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
     }
     $this->a = $o->a;
     $tmp = $o->corecursive;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2();
       $nv->CopyFrom($tmp);
       $this->corecursive = $nv;
@@ -1756,7 +1760,9 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
           $this->key = $d->readString();
           break;
         case 2:
-          if ($this->value == null) $this->value = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          }
           $this->value->MergeFrom($d->readDecoder());
           break;
         default:
@@ -1794,8 +1800,10 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'value':
-          if ($v === null) break;
-          if ($this->value == null) $this->value = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          if ($v is null) break;
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          }
           $this->value->MergeJsonFrom($v);
           break;
         default:
@@ -1810,7 +1818,7 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
     }
     $this->key = $o->key;
     $tmp = $o->value;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
       $nv->CopyFrom($tmp);
       $this->value = $nv;
@@ -1855,7 +1863,9 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
           $this->key = $d->readString();
           break;
         case 2:
-          if ($this->value == null) $this->value = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          }
           $this->value->MergeFrom($d->readDecoder());
           break;
         default:
@@ -1893,8 +1903,10 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'value':
-          if ($v === null) break;
-          if ($this->value == null) $this->value = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          if ($v is null) break;
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          }
           $this->value->MergeJsonFrom($v);
           break;
         default:
@@ -1909,7 +1921,7 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
     }
     $this->key = $o->key;
     $tmp = $o->value;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\ForeignMessageProto2();
       $nv->CopyFrom($tmp);
       $this->value = $nv;
@@ -2839,11 +2851,15 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           $this->optional_bytes = $d->readString();
           break;
         case 18:
-          if ($this->optional_nested_message == null) $this->optional_nested_message = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          if ($this->optional_nested_message is null) {
+            $this->optional_nested_message = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          }
           $this->optional_nested_message->MergeFrom($d->readDecoder());
           break;
         case 19:
-          if ($this->optional_foreign_message == null) $this->optional_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          if ($this->optional_foreign_message is null) {
+            $this->optional_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          }
           $this->optional_foreign_message->MergeFrom($d->readDecoder());
           break;
         case 21:
@@ -2859,7 +2875,9 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           $this->optional_cord = $d->readString();
           break;
         case 27:
-          if ($this->recursive_message == null) $this->recursive_message = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+          if ($this->recursive_message is null) {
+            $this->recursive_message = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+          }
           $this->recursive_message->MergeFrom($d->readDecoder());
           break;
         case 31:
@@ -3443,7 +3461,9 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           $this->oneof_field = new TestAllTypesProto2_oneof_field_oneof_enum(\protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt($d->readVarint()));
           break;
         case 201:
-          if ($this->data == null) $this->data = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
+          if ($this->data is null) {
+            $this->data = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
+          }
           $this->data->MergeFrom($d->readDecoder());
           break;
         case 241:
@@ -4360,13 +4380,17 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           $this->optional_bytes = \Protobuf\Internal\JsonDecoder::readBytes($v);
           break;
         case 'optional_nested_message': case 'optionalNestedMessage':
-          if ($v === null) break;
-          if ($this->optional_nested_message == null) $this->optional_nested_message = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          if ($v is null) break;
+          if ($this->optional_nested_message is null) {
+            $this->optional_nested_message = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          }
           $this->optional_nested_message->MergeJsonFrom($v);
           break;
         case 'optional_foreign_message': case 'optionalForeignMessage':
-          if ($v === null) break;
-          if ($this->optional_foreign_message == null) $this->optional_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          if ($v is null) break;
+          if ($this->optional_foreign_message is null) {
+            $this->optional_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          }
           $this->optional_foreign_message->MergeJsonFrom($v);
           break;
         case 'optional_nested_enum': case 'optionalNestedEnum':
@@ -4382,8 +4406,10 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           $this->optional_cord = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'recursive_message': case 'recursiveMessage':
-          if ($v === null) break;
-          if ($this->recursive_message == null) $this->recursive_message = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+          if ($v is null) break;
+          if ($this->recursive_message is null) {
+            $this->recursive_message = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+          }
           $this->recursive_message->MergeJsonFrom($v);
           break;
         case 'repeated_int32': case 'repeatedInt32':
@@ -4802,8 +4828,10 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           $this->oneof_field = new TestAllTypesProto2_oneof_field_oneof_enum(\protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromMixed($v));
           break;
         case 'data':
-          if ($v === null) break;
-          if ($this->data == null) $this->data = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
+          if ($v is null) break;
+          if ($this->data is null) {
+            $this->data = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
+          }
           $this->data->MergeJsonFrom($v);
           break;
         case 'default_int32': case 'defaultInt32':
@@ -4931,13 +4959,13 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->optional_string = $o->optional_string;
     $this->optional_bytes = $o->optional_bytes;
     $tmp = $o->optional_nested_message;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
       $nv->CopyFrom($tmp);
       $this->optional_nested_message = $nv;
     }
     $tmp = $o->optional_foreign_message;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\ForeignMessageProto2();
       $nv->CopyFrom($tmp);
       $this->optional_foreign_message = $nv;
@@ -4947,7 +4975,7 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->optional_string_piece = $o->optional_string_piece;
     $this->optional_cord = $o->optional_cord;
     $tmp = $o->recursive_message;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2();
       $nv->CopyFrom($tmp);
       $this->recursive_message = $nv;
@@ -5037,7 +5065,7 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->unpacked_bool = $o->unpacked_bool;
     $this->unpacked_nested_enum = $o->unpacked_nested_enum;
     $tmp = $o->data;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
       $nv->CopyFrom($tmp);
       $this->data = $nv;
@@ -5279,11 +5307,15 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
           $this->optional_string = $d->readString();
           break;
         case 1003:
-          if ($this->nested_message == null) $this->nested_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          if ($this->nested_message is null) {
+            $this->nested_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          }
           $this->nested_message->MergeFrom($d->readDecoder());
           break;
         case 1004:
-          if ($this->optionalgroup == null) $this->optionalgroup = new \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup();
+          if ($this->optionalgroup is null) {
+            $this->optionalgroup = new \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup();
+          }
           $this->optionalgroup->MergeFrom($d->readDecoder());
           break;
         case 1006:
@@ -5359,13 +5391,17 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
           $this->optional_string = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'nested_message': case 'nestedMessage':
-          if ($v === null) break;
-          if ($this->nested_message == null) $this->nested_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          if ($v is null) break;
+          if ($this->nested_message is null) {
+            $this->nested_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          }
           $this->nested_message->MergeJsonFrom($v);
           break;
         case 'optionalgroup':
-          if ($v === null) break;
-          if ($this->optionalgroup == null) $this->optionalgroup = new \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup();
+          if ($v is null) break;
+          if ($this->optionalgroup is null) {
+            $this->optionalgroup = new \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup();
+          }
           $this->optionalgroup->MergeJsonFrom($v);
           break;
         case 'optional_bool': case 'optionalBool':
@@ -5389,13 +5425,13 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
     $this->optional_int32 = $o->optional_int32;
     $this->optional_string = $o->optional_string;
     $tmp = $o->nested_message;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\ForeignMessageProto2();
       $nv->CopyFrom($tmp);
       $this->nested_message = $nv;
     }
     $tmp = $o->optionalgroup;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup();
       $nv->CopyFrom($tmp);
       $this->optionalgroup = $nv;

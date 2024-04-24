@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package baz;
+
+import "google/protobuf/any.proto";
+
+message optional_proto3 {
+  // Scalars.
+  optional double adouble = 1;
+  optional int64 aint64 = 2;
+  optional bool abool = 3;
+  optional string astring = 4;
+  optional bytes abytes = 5;
+
+  // Enums
+  enum InnerEnum {
+    C = 0;
+    D = 10;
+  }
+  optional InnerEnum anenum = 6;
+
+  // Nested Message.
+  message InnerMsg {
+    string astring = 1;
+  }
+  optional InnerMsg amsg = 7;
+
+  optional google.protobuf.Any anany = 8;
+}

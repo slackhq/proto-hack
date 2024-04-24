@@ -180,11 +180,15 @@ class FileDescriptorProto implements \Protobuf\Message {
           $this->extension []= $obj;
           break;
         case 8:
-          if ($this->options == null) $this->options = new \google\protobuf\FileOptions();
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\FileOptions();
+          }
           $this->options->MergeFrom($d->readDecoder());
           break;
         case 9:
-          if ($this->source_code_info == null) $this->source_code_info = new \google\protobuf\SourceCodeInfo();
+          if ($this->source_code_info is null) {
+            $this->source_code_info = new \google\protobuf\SourceCodeInfo();
+          }
           $this->source_code_info->MergeFrom($d->readDecoder());
           break;
         case 10:
@@ -337,13 +341,17 @@ class FileDescriptorProto implements \Protobuf\Message {
           }
           break;
         case 'options':
-          if ($v === null) break;
-          if ($this->options == null) $this->options = new \google\protobuf\FileOptions();
+          if ($v is null) break;
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\FileOptions();
+          }
           $this->options->MergeJsonFrom($v);
           break;
         case 'source_code_info': case 'sourceCodeInfo':
-          if ($v === null) break;
-          if ($this->source_code_info == null) $this->source_code_info = new \google\protobuf\SourceCodeInfo();
+          if ($v is null) break;
+          if ($this->source_code_info is null) {
+            $this->source_code_info = new \google\protobuf\SourceCodeInfo();
+          }
           $this->source_code_info->MergeJsonFrom($v);
           break;
         case 'public_dependency': case 'publicDependency':
@@ -393,13 +401,13 @@ class FileDescriptorProto implements \Protobuf\Message {
       $this->extension []= $nv;
     }
     $tmp = $o->options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\FileOptions();
       $nv->CopyFrom($tmp);
       $this->options = $nv;
     }
     $tmp = $o->source_code_info;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\SourceCodeInfo();
       $nv->CopyFrom($tmp);
       $this->source_code_info = $nv;
@@ -453,7 +461,9 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
           $this->end = $d->readVarint32Signed();
           break;
         case 3:
-          if ($this->options == null) $this->options = new \google\protobuf\ExtensionRangeOptions();
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\ExtensionRangeOptions();
+          }
           $this->options->MergeFrom($d->readDecoder());
           break;
         default:
@@ -499,8 +509,10 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
           $this->end = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
           break;
         case 'options':
-          if ($v === null) break;
-          if ($this->options == null) $this->options = new \google\protobuf\ExtensionRangeOptions();
+          if ($v is null) break;
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\ExtensionRangeOptions();
+          }
           $this->options->MergeJsonFrom($v);
           break;
         default:
@@ -516,7 +528,7 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
     $this->start = $o->start;
     $this->end = $o->end;
     $tmp = $o->options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\ExtensionRangeOptions();
       $nv->CopyFrom($tmp);
       $this->options = $nv;
@@ -699,7 +711,9 @@ class DescriptorProto implements \Protobuf\Message {
           $this->extension []= $obj;
           break;
         case 7:
-          if ($this->options == null) $this->options = new \google\protobuf\MessageOptions();
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\MessageOptions();
+          }
           $this->options->MergeFrom($d->readDecoder());
           break;
         case 8:
@@ -832,8 +846,10 @@ class DescriptorProto implements \Protobuf\Message {
           }
           break;
         case 'options':
-          if ($v === null) break;
-          if ($this->options == null) $this->options = new \google\protobuf\MessageOptions();
+          if ($v is null) break;
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\MessageOptions();
+          }
           $this->options->MergeJsonFrom($v);
           break;
         case 'oneof_decl': case 'oneofDecl':
@@ -892,7 +908,7 @@ class DescriptorProto implements \Protobuf\Message {
       $this->extension []= $nv;
     }
     $tmp = $o->options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\MessageOptions();
       $nv->CopyFrom($tmp);
       $this->options = $nv;
@@ -1179,7 +1195,9 @@ class FieldDescriptorProto implements \Protobuf\Message {
           $this->default_value = $d->readString();
           break;
         case 8:
-          if ($this->options == null) $this->options = new \google\protobuf\FieldOptions();
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\FieldOptions();
+          }
           $this->options->MergeFrom($d->readDecoder());
           break;
         case 9:
@@ -1289,8 +1307,10 @@ class FieldDescriptorProto implements \Protobuf\Message {
           $this->default_value = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'options':
-          if ($v === null) break;
-          if ($this->options == null) $this->options = new \google\protobuf\FieldOptions();
+          if ($v is null) break;
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\FieldOptions();
+          }
           $this->options->MergeJsonFrom($v);
           break;
         case 'oneof_index': case 'oneofIndex':
@@ -1320,7 +1340,7 @@ class FieldDescriptorProto implements \Protobuf\Message {
     $this->type_name = $o->type_name;
     $this->default_value = $o->default_value;
     $tmp = $o->options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\FieldOptions();
       $nv->CopyFrom($tmp);
       $this->options = $nv;
@@ -1368,7 +1388,9 @@ class OneofDescriptorProto implements \Protobuf\Message {
           $this->name = $d->readString();
           break;
         case 2:
-          if ($this->options == null) $this->options = new \google\protobuf\OneofOptions();
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\OneofOptions();
+          }
           $this->options->MergeFrom($d->readDecoder());
           break;
         default:
@@ -1406,8 +1428,10 @@ class OneofDescriptorProto implements \Protobuf\Message {
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'options':
-          if ($v === null) break;
-          if ($this->options == null) $this->options = new \google\protobuf\OneofOptions();
+          if ($v is null) break;
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\OneofOptions();
+          }
           $this->options->MergeJsonFrom($v);
           break;
         default:
@@ -1422,7 +1446,7 @@ class OneofDescriptorProto implements \Protobuf\Message {
     }
     $this->name = $o->name;
     $tmp = $o->options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\OneofOptions();
       $nv->CopyFrom($tmp);
       $this->options = $nv;
@@ -1570,7 +1594,9 @@ class EnumDescriptorProto implements \Protobuf\Message {
           $this->value []= $obj;
           break;
         case 3:
-          if ($this->options == null) $this->options = new \google\protobuf\EnumOptions();
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\EnumOptions();
+          }
           $this->options->MergeFrom($d->readDecoder());
           break;
         case 4:
@@ -1640,8 +1666,10 @@ class EnumDescriptorProto implements \Protobuf\Message {
           }
           break;
         case 'options':
-          if ($v === null) break;
-          if ($this->options == null) $this->options = new \google\protobuf\EnumOptions();
+          if ($v is null) break;
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\EnumOptions();
+          }
           $this->options->MergeJsonFrom($v);
           break;
         case 'reserved_range': case 'reservedRange':
@@ -1673,7 +1701,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
       $this->value []= $nv;
     }
     $tmp = $o->options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\EnumOptions();
       $nv->CopyFrom($tmp);
       $this->options = $nv;
@@ -1730,7 +1758,9 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
           $this->number = $d->readVarint32Signed();
           break;
         case 3:
-          if ($this->options == null) $this->options = new \google\protobuf\EnumValueOptions();
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\EnumValueOptions();
+          }
           $this->options->MergeFrom($d->readDecoder());
           break;
         default:
@@ -1776,8 +1806,10 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
           $this->number = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
           break;
         case 'options':
-          if ($v === null) break;
-          if ($this->options == null) $this->options = new \google\protobuf\EnumValueOptions();
+          if ($v is null) break;
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\EnumValueOptions();
+          }
           $this->options->MergeJsonFrom($v);
           break;
         default:
@@ -1793,7 +1825,7 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
     $this->name = $o->name;
     $this->number = $o->number;
     $tmp = $o->options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\EnumValueOptions();
       $nv->CopyFrom($tmp);
       $this->options = $nv;
@@ -1846,7 +1878,9 @@ class ServiceDescriptorProto implements \Protobuf\Message {
           $this->method []= $obj;
           break;
         case 3:
-          if ($this->options == null) $this->options = new \google\protobuf\ServiceOptions();
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\ServiceOptions();
+          }
           $this->options->MergeFrom($d->readDecoder());
           break;
         default:
@@ -1897,8 +1931,10 @@ class ServiceDescriptorProto implements \Protobuf\Message {
           }
           break;
         case 'options':
-          if ($v === null) break;
-          if ($this->options == null) $this->options = new \google\protobuf\ServiceOptions();
+          if ($v is null) break;
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\ServiceOptions();
+          }
           $this->options->MergeJsonFrom($v);
           break;
         default:
@@ -1918,7 +1954,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
       $this->method []= $nv;
     }
     $tmp = $o->options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\ServiceOptions();
       $nv->CopyFrom($tmp);
       $this->options = $nv;
@@ -1981,7 +2017,9 @@ class MethodDescriptorProto implements \Protobuf\Message {
           $this->output_type = $d->readString();
           break;
         case 4:
-          if ($this->options == null) $this->options = new \google\protobuf\MethodOptions();
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\MethodOptions();
+          }
           $this->options->MergeFrom($d->readDecoder());
           break;
         case 5:
@@ -2051,8 +2089,10 @@ class MethodDescriptorProto implements \Protobuf\Message {
           $this->output_type = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'options':
-          if ($v === null) break;
-          if ($this->options == null) $this->options = new \google\protobuf\MethodOptions();
+          if ($v is null) break;
+          if ($this->options is null) {
+            $this->options = new \google\protobuf\MethodOptions();
+          }
           $this->options->MergeJsonFrom($v);
           break;
         case 'client_streaming': case 'clientStreaming':
@@ -2075,7 +2115,7 @@ class MethodDescriptorProto implements \Protobuf\Message {
     $this->input_type = $o->input_type;
     $this->output_type = $o->output_type;
     $tmp = $o->options;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\MethodOptions();
       $nv->CopyFrom($tmp);
       $this->options = $nv;
