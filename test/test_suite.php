@@ -335,7 +335,43 @@ function testOptionalProto3(): void {
   //a($msg->getAnany()->value, "any_bytes", 'anany should be set');
   a($msg->hasAnany(), true, 'anany should be set');
   echo("PASSED\n");
- }
+
+  echo("Testing manual manipulation of protos:");
+  // For a few fields, we set it to the default value then a custom one.
+  $msg = new \baz\optional_proto3();
+  a($msg->hasAdouble(), false, 'adouble should not be set');
+  a($msg->getAdouble(), 0., 'adouble should be set to default value');
+  $msg->setAdouble(0.);
+  a($msg->getAdouble(), 0., 'adouble should be set');
+  a($msg->hasAdouble(), true, 'adouble should be set');
+  $msg = new \baz\optional_proto3();
+  $msg->setAdouble(6.29);
+  a($msg->getAdouble(), 6.29, 'adouble should be set');
+  a($msg->hasAdouble(), true, 'adouble should be set');
+
+  a($msg->hasAstring(), false, 'astring should not be set');
+  a($msg->getAstring(), "", 'astring should not be set');
+  $msg->setAstring("");
+  a($msg->hasAstring(), true, 'astring should be set');
+  a($msg->getAstring(), "", 'astring should be set');
+  $msg = new \baz\optional_proto3();
+  $msg->setAstring("string_string");
+  a($msg->hasAstring(), true, 'astring should be set');
+  a($msg->getAstring(), "string_string", 'astring should be set');
+
+  a($msg->hasAmsg(), false, 'amsg should not be set');
+  a($msg->getAmsg(), null, 'amsg should be set to default value');
+  $msg->setAmsg(null);
+  a($msg->hasAmsg(), true, 'amsg should be set');
+  a($msg->getAmsg(), null, 'amsg should be set');
+  $msg = new \baz\optional_proto3();
+  $inner_msg = new \baz\optional_proto3_InnerMsg();
+  $inner_msg->astring = 'inner_string';
+  $msg->setAmsg($inner_msg);
+  a($msg->hasAmsg(), true, 'amsg should be set');
+  a($msg->getAmsg()?->astring, 'inner_string', 'amsg should be set');
+  echo("PASSED\n");
+}
 
 function testLoopbackService(): void {
   $cli = new \foo\bar\ExampleServiceClient(new Grpc\LoopbackInvoker(
