@@ -1,0 +1,2 @@
+*.pb.bin -diff
+*.pb.bin.gz -diff
