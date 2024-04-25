@@ -61,7 +61,9 @@ class Struct_FieldsEntry implements \Protobuf\Message {
           $this->key = $d->readString();
           break;
         case 2:
-          if ($this->value == null) $this->value = new \google\protobuf\Value();
+          if ($this->value is null) {
+            $this->value = new \google\protobuf\Value();
+          }
           $this->value->MergeFrom($d->readDecoder());
           break;
         default:
@@ -99,7 +101,9 @@ class Struct_FieldsEntry implements \Protobuf\Message {
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'value':
-          if ($this->value == null) $this->value = new \google\protobuf\Value();
+          if ($this->value is null) {
+            $this->value = new \google\protobuf\Value();
+          }
           $this->value->MergeJsonFrom($v);
           break;
         default:
@@ -114,7 +118,7 @@ class Struct_FieldsEntry implements \Protobuf\Message {
     }
     $this->key = $o->key;
     $tmp = $o->value;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Value();
       $nv->CopyFrom($tmp);
       $this->value = $nv;

@@ -38,12 +38,15 @@ for SRC in $PBS
 do
   echo source: $SRC
   ARGS="-I external/com_google_protobuf/src -I ./"
-  $PROTOC $ARGS --plugin=$GENHACK --hack_out="plugin=grpc,allow_proto2_dangerous:$TMP" $SRC
+  $PROTOC $ARGS --plugin=$GENHACK --hack_out="plugin=grpc,allow_proto2_dangerous:$TMP" --experimental_allow_proto3_optional $SRC
   echo
 done
 
 ARGS="-I external/com_google_protobuf/src -I ./"
 $PROTOC $ARGS --encode=foo.bar.example1  ./test/example1.proto < ./test/example1.pb.txt > $TMP/test/example1.pb.bin
+$PROTOC $ARGS --encode=baz.optional_proto3  ./test/optional_proto3.proto < ./test/empty_optional_proto3.pb.txt > $TMP/test/empty_optional_proto3.pb.bin
+$PROTOC $ARGS --encode=baz.optional_proto3  ./test/optional_proto3.proto < ./test/default_optional_proto3.pb.txt > $TMP/test/default_optional_proto3.pb.bin
+$PROTOC $ARGS --encode=baz.optional_proto3  ./test/optional_proto3.proto < ./test/custom_optional_proto3.pb.txt > $TMP/test/custom_optional_proto3.pb.bin
 
 if [ $# -gt 0 ]; then
   # Comparison mode; see if there are diffs, if none, exit 0.

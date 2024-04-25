@@ -87,6 +87,8 @@ const (
 
 func gen(req *ppb.CodeGeneratorRequest) *ppb.CodeGeneratorResponse {
 	resp := &ppb.CodeGeneratorResponse{}
+	features := uint64(ppb.CodeGeneratorResponse_FEATURE_PROTO3_OPTIONAL)
+	resp.SupportedFeatures = &features
 	fileToGenerate := map[string]bool{}
 	for _, f := range req.FileToGenerate {
 		fileToGenerate[f] = true
@@ -598,7 +600,12 @@ func (f *field) writeDecoder(w *writer, dec, wt string) {
 				w.p("$this->%s = new %s($obj);", f.oneof.name, f.oneof.classNameForField(f))
 				w.p("}")
 			} else {
-				w.p("if ($this->%s == null) $this->%s = new %s();", f.varName(), f.varName(), f.phpType())
+				w.p("if ($this->%s is null) {", f.varName())
+				w.p("$this->%s = new %s();", f.varName(), f.phpType())
+				if f.isProto3Optional() {
+					w.p("$this->was_%s_set = true;", f.varName())
+				}
+				w.p("}")
 				w.p("$this->%s->MergeFrom(%s->readDecoder());", f.varName(), dec)
 			}
 		}
@@ -646,6 +653,9 @@ func (f *field) writeDecoder(w *writer, dec, wt string) {
 	}
 	if !f.isRepeated() {
 		w.p("$this->%s = %s;", f.varName(), reader)
+		if f.isProto3Optional() {
+			w.p("$this->was_%s_set = true;", f.varName())
+		}
 		return
 	}
 	// Repeated
@@ -744,9 +754,15 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 			w.p("$msg = $this->%s;", f.varName())
 			w.p("if ($msg != null) {")
 		}
+		if f.isProto3Optional() {
+			w.p("if ($this->was_%s_set) {", f.varName())
+		}
 		w.p("$nested = new %s\\Encoder();", libNsInternal)
 		w.p("$msg->WriteTo($nested);")
 		w.p("%s->writeEncoder($nested, %d);", enc, f.fd.GetNumber())
+		if f.isProto3Optional() {
+			w.p("}")
+		}
 		w.p("}")
 		return
 	}
@@ -754,12 +770,14 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 	tagWriter, writer := f.primitiveWriters(enc)
 
 	if !f.isRepeated() {
-		if !alwaysEmitDefaultValue {
+		if f.isProto3Optional() {
+			w.p("if ($this->was_%s_set) {", f.varName())
+		} else if !alwaysEmitDefaultValue {
 			w.p("if ($this->%s !== %s) {", f.varName(), f.defaultValue())
 		}
 		w.p(tagWriter)
 		w.p("%s;", writer)
-		if !alwaysEmitDefaultValue {
+		if f.isProto3Optional() || !alwaysEmitDefaultValue {
 			w.p("}")
 		}
 		return
@@ -812,13 +830,27 @@ func (f field) writeCopy(w *writer, c string) {
 
 	if f.isMessageOrGroup() {
 		w.p("$tmp = %s->%s;", c, f.varName())
-		w.p("if ($tmp !== null) {")
+		w.p("if ($tmp is nonnull) {")
 		w.p("$nv = new %s();", f.phpType())
 		w.p("$nv->CopyFrom($tmp);")
-		w.p("$this->%s = $nv;", f.varName())
+		if f.isProto3Optional() {
+			camelCaseName := camelCase(f.varName())
+			w.p("$this->set%s($nv);", camelCaseName)
+			w.p("} else if (%s->has%s()) {", c, camelCaseName)
+			w.p("$this->set%s(null);", camelCaseName)
+		} else {
+			w.p("$this->%s = $nv;", f.varName())
+		}
 		w.p("}")
 	} else {
+		if f.isProto3Optional() {
+			camelCaseName := camelCase(f.varName())
+			w.p("if (%s->has%s()) {", c, camelCaseName)
+		}
 		w.p("$this->%s = %s->%s;", f.varName(), c, f.varName())
+		if f.isProto3Optional() {
+			w.p("}")
+		}
 	}
 }
 
@@ -1010,6 +1042,9 @@ func (f *field) writeJsonDecoder(w *writer, v string) {
 			w.p("$this->%s[%s] = $obj;", f.fd.GetName(), kjr)
 		} else {
 			w.p("$this->%s[%s] = %s;", f.fd.GetName(), kjr, vv.jsonReader("$v"))
+			if f.isProto3Optional() {
+				w.p("$this->was_%s_set = true;", f.fd.GetName())
+			}
 		}
 		w.p("}")
 		w.p("}")
@@ -1031,9 +1066,14 @@ func (f *field) writeJsonDecoder(w *writer, v string) {
 				w.p("$this->%s = new %s($obj);", f.oneof.name, f.oneof.classNameForField(f))
 			} else {
 				if f.typeFqProtoName != ".google.protobuf.Value" { // A special little snow flake!
-					w.p("if ($v === null) break;")
+					w.p("if ($v is null) break;")
 				}
-				w.p("if ($this->%s == null) $this->%s = new %s();", f.varName(), f.varName(), f.phpType())
+				w.p("if ($this->%s is null) {", f.varName())
+				w.p("$this->%s = new %s();", f.varName(), f.phpType())
+				if f.isProto3Optional() {
+					w.p("$this->was_%s_set = true;", f.varName())
+				}
+				w.p("}")
 				w.p("$this->%s->MergeJsonFrom(%s);", f.varName(), v)
 			}
 		}
@@ -1050,6 +1090,9 @@ func (f *field) writeJsonDecoder(w *writer, v string) {
 			w.p("$this->%s = new %s(%s);", f.oneof.name, f.oneof.classNameForField(f), f.jsonReader(v))
 		} else {
 			w.p("$this->%s = %s;", f.varName(), f.jsonReader(v))
+			if f.isProto3Optional() {
+				w.p("$this->was_%s_set = true;", f.varName())
+			}
 		}
 	}
 }
@@ -1117,16 +1160,30 @@ func (f field) writeJsonEncoder(w *writer, enc string, forceEmitDefault bool) {
 		emitDefault = ""
 	}
 
+	if f.isProto3Optional() {
+		camelCaseName := camelCase(f.fd.GetName())
+		w.p("if ($this->has%s()) {", camelCaseName)
+	}
 	if writer == "Enum" {
 		itos := f.typePhpNs + "\\" + f.typePhpName + "::ToStringDict()"
 		w.p("%s->writeEnum%s('%s', '%s', %s, $this->%s%s);", enc, repeated, f.fd.GetName(), f.fd.GetJsonName(), itos, f.varName(), emitDefault)
 	} else {
 		w.p("%s->write%s%s('%s', '%s', $this->%s%s);", enc, writer, repeated, f.fd.GetName(), f.fd.GetJsonName(), f.varName(), emitDefault)
 	}
+	if f.isProto3Optional() {
+		w.p("}")
+	}
 }
 
-func (f field) isOneofMember() bool {
-	return f.fd.OneofIndex != nil
+func (f *field) isOneofMember() bool {
+	// optional fields in proto3 are turned into a synthetic oneoff.
+	// https://github.com/protocolbuffers/protobuf/blob/main/docs/implementing_proto3_presence.md#updating-a-code-generator
+	// We should not process them as oneoff but as their underlying type.
+	return f.fd.OneofIndex != nil && !f.isProto3Optional()
+}
+
+func (f *field) isProto3Optional() bool {
+	return f.fd.Proto3Optional != nil && *f.fd.Proto3Optional
 }
 
 // writeEnum writes an enumeration type and constants definitions.
@@ -1303,6 +1360,16 @@ func isWrapperType(fqn string) bool {
 	return false
 }
 
+func camelCase(in string) string {
+	words := strings.Split(in, "_")
+	camelCaseName := ""
+	for _, word := range words {
+		camelCaseName += strings.ToUpper(word[:1])
+		camelCaseName += word[1:]
+	}
+	return camelCaseName
+}
+
 // https://github.com/golang/protobuf/blob/master/protoc-gen-go/descriptor/descriptor.pb.go
 func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixNames []string, syn syntax) {
 	nextNames := append(prefixNames, dp.GetName())
@@ -1334,6 +1401,12 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 	// Write oneof types.
 	oneofs := []*oneof{}
 	for i, od := range dp.OneofDecl {
+		// Synthetic one-off for optional in proto3 starts with an underscore.
+		// TODO: This may clash with legitimate names starting with an underscore.
+		// But this seems like a theoretical issue right now.
+		if od.GetName()[0] == '_' {
+			continue
+		}
 		oneofName := strings.Join(append(nextNames, od.GetName()), "_")
 		oo := &oneof{
 			descriptor:    od,
@@ -1369,7 +1442,15 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 			continue
 		}
 		// w.p("// field %s = %d", f.fd.GetName(), f.fd.GetNumber())
-		w.p("public %s $%s;", f.labeledType(), f.varName())
+		if f.isProto3Optional() {
+			// To keep the presence bit in sync, we must switch to
+			// an explicit setter and make those fields private.
+			// TODO: We should make all usage go through getters/setters.
+			w.p("private %s $%s;", f.labeledType(), f.varName())
+			w.p("private bool $was_%s_set;", f.varName())
+		} else {
+			w.p("public %s $%s;", f.labeledType(), f.varName())
+		}
 	}
 	for _, oo := range oneofs {
 		w.p("public %s $%s;", oo.interfaceName, oo.name)
@@ -1395,7 +1476,18 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 		if f.isOneofMember() {
 			continue
 		}
-		w.p("$this->%s = $s['%s'] ?? %s;", f.varName(), f.varName(), f.defaultValue())
+		if f.isProto3Optional() {
+			varName := f.varName()
+			w.p("if (Shapes::keyExists($s, '%s')) {", varName)
+			w.p("$this->%s = $s['%s'];", varName, varName)
+			w.p("$this->was_%s_set = true;", varName)
+			w.p("} else {")
+			w.p("$this->%s = %s;", varName, f.defaultValue())
+			w.p("$this->was_%s_set = false;", varName)
+			w.p("}")
+		} else {
+			w.p("$this->%s = $s['%s'] ?? %s;", f.varName(), f.varName(), f.defaultValue())
+		}
 	}
 	for _, oo := range oneofs {
 		w.p("$this->%s = $s['%s'] ?? new %s();", oo.name, oo.name, oo.notsetClass)
@@ -1403,6 +1495,29 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 	w.p("$this->%sunrecognized = '';", specialPrefix)
 	w.p("}")
 	w.ln()
+
+	// Getters, setters & presence checks.
+	for _, f := range fields {
+		if !f.isProto3Optional() {
+			continue
+		}
+		camelCaseName := camelCase(f.varName())
+		w.p("public function get%s(): %s {", camelCaseName, f.labeledType())
+		w.p("return $this->%s;", f.varName())
+		w.p("}")
+		w.ln()
+
+		w.p("public function set%s(%s $v): void {", camelCaseName, f.labeledType())
+		w.p("$this->%s = $v;", f.varName())
+		w.p("$this->was_%s_set = true;", f.varName())
+		w.p("}")
+		w.ln()
+
+		w.p("public function has%s(): bool {", camelCaseName)
+		w.p("return $this->was_%s_set;", f.varName())
+		w.p("}")
+		w.ln()
+	}
 
 	fqProtoType := ns.Fqn
 	fqProtoType += strings.Join(append(prefixNames, dp.GetName()), ".")

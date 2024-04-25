@@ -183,11 +183,15 @@ class Funky implements \Protobuf\Message {
       list($fn, $wt) = $d->readTag();
       switch ($fn) {
         case 1:
-          if ($this->monkey == null) $this->monkey = new \Funky_Monkey();
+          if ($this->monkey is null) {
+            $this->monkey = new \Funky_Monkey();
+          }
           $this->monkey->MergeFrom($d->readDecoder());
           break;
         case 2:
-          if ($this->dokey == null) $this->dokey = new \Donkey();
+          if ($this->dokey is null) {
+            $this->dokey = new \Donkey();
+          }
           $this->dokey->MergeFrom($d->readDecoder());
           break;
         default:
@@ -224,13 +228,17 @@ class Funky implements \Protobuf\Message {
     foreach ($d as $k => $v) {
       switch ($k) {
         case 'monkey':
-          if ($v === null) break;
-          if ($this->monkey == null) $this->monkey = new \Funky_Monkey();
+          if ($v is null) break;
+          if ($this->monkey is null) {
+            $this->monkey = new \Funky_Monkey();
+          }
           $this->monkey->MergeJsonFrom($v);
           break;
         case 'dokey':
-          if ($v === null) break;
-          if ($this->dokey == null) $this->dokey = new \Donkey();
+          if ($v is null) break;
+          if ($this->dokey is null) {
+            $this->dokey = new \Donkey();
+          }
           $this->dokey->MergeJsonFrom($v);
           break;
         default:
@@ -244,13 +252,13 @@ class Funky implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     $tmp = $o->monkey;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \Funky_Monkey();
       $nv->CopyFrom($tmp);
       $this->monkey = $nv;
     }
     $tmp = $o->dokey;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \Donkey();
       $nv->CopyFrom($tmp);
       $this->dokey = $nv;

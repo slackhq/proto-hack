@@ -381,7 +381,9 @@ class TestAllTypesProto3_NestedMessage implements \Protobuf\Message {
           $this->a = $d->readVarint32Signed();
           break;
         case 2:
-          if ($this->corecursive == null) $this->corecursive = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+          if ($this->corecursive is null) {
+            $this->corecursive = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+          }
           $this->corecursive->MergeFrom($d->readDecoder());
           break;
         default:
@@ -419,8 +421,10 @@ class TestAllTypesProto3_NestedMessage implements \Protobuf\Message {
           $this->a = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
           break;
         case 'corecursive':
-          if ($v === null) break;
-          if ($this->corecursive == null) $this->corecursive = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+          if ($v is null) break;
+          if ($this->corecursive is null) {
+            $this->corecursive = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+          }
           $this->corecursive->MergeJsonFrom($v);
           break;
         default:
@@ -435,7 +439,7 @@ class TestAllTypesProto3_NestedMessage implements \Protobuf\Message {
     }
     $this->a = $o->a;
     $tmp = $o->corecursive;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto3\TestAllTypesProto3();
       $nv->CopyFrom($tmp);
       $this->corecursive = $nv;
@@ -1815,7 +1819,9 @@ class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Messag
           $this->key = $d->readString();
           break;
         case 2:
-          if ($this->value == null) $this->value = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+          }
           $this->value->MergeFrom($d->readDecoder());
           break;
         default:
@@ -1853,8 +1859,10 @@ class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Messag
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'value':
-          if ($v === null) break;
-          if ($this->value == null) $this->value = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+          if ($v is null) break;
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+          }
           $this->value->MergeJsonFrom($v);
           break;
         default:
@@ -1869,7 +1877,7 @@ class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Messag
     }
     $this->key = $o->key;
     $tmp = $o->value;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
       $nv->CopyFrom($tmp);
       $this->value = $nv;
@@ -1914,7 +1922,9 @@ class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Messa
           $this->key = $d->readString();
           break;
         case 2:
-          if ($this->value == null) $this->value = new \protobuf_test_messages\proto3\ForeignMessage();
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto3\ForeignMessage();
+          }
           $this->value->MergeFrom($d->readDecoder());
           break;
         default:
@@ -1952,8 +1962,10 @@ class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Messa
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'value':
-          if ($v === null) break;
-          if ($this->value == null) $this->value = new \protobuf_test_messages\proto3\ForeignMessage();
+          if ($v is null) break;
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto3\ForeignMessage();
+          }
           $this->value->MergeJsonFrom($v);
           break;
         default:
@@ -1968,7 +1980,7 @@ class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Messa
     }
     $this->key = $o->key;
     $tmp = $o->value;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto3\ForeignMessage();
       $nv->CopyFrom($tmp);
       $this->value = $nv;
@@ -2653,11 +2665,15 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           $this->optional_bytes = $d->readString();
           break;
         case 18:
-          if ($this->optional_nested_message == null) $this->optional_nested_message = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+          if ($this->optional_nested_message is null) {
+            $this->optional_nested_message = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+          }
           $this->optional_nested_message->MergeFrom($d->readDecoder());
           break;
         case 19:
-          if ($this->optional_foreign_message == null) $this->optional_foreign_message = new \protobuf_test_messages\proto3\ForeignMessage();
+          if ($this->optional_foreign_message is null) {
+            $this->optional_foreign_message = new \protobuf_test_messages\proto3\ForeignMessage();
+          }
           $this->optional_foreign_message->MergeFrom($d->readDecoder());
           break;
         case 21:
@@ -2676,7 +2692,9 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           $this->optional_cord = $d->readString();
           break;
         case 27:
-          if ($this->recursive_message == null) $this->recursive_message = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+          if ($this->recursive_message is null) {
+            $this->recursive_message = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+          }
           $this->recursive_message->MergeFrom($d->readDecoder());
           break;
         case 31:
@@ -3263,39 +3281,57 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_null_value(\google\protobuf\NullValue::FromInt($d->readVarint()));
           break;
         case 201:
-          if ($this->optional_bool_wrapper == null) $this->optional_bool_wrapper = new \google\protobuf\BoolValue();
+          if ($this->optional_bool_wrapper is null) {
+            $this->optional_bool_wrapper = new \google\protobuf\BoolValue();
+          }
           $this->optional_bool_wrapper->MergeFrom($d->readDecoder());
           break;
         case 202:
-          if ($this->optional_int32_wrapper == null) $this->optional_int32_wrapper = new \google\protobuf\Int32Value();
+          if ($this->optional_int32_wrapper is null) {
+            $this->optional_int32_wrapper = new \google\protobuf\Int32Value();
+          }
           $this->optional_int32_wrapper->MergeFrom($d->readDecoder());
           break;
         case 203:
-          if ($this->optional_int64_wrapper == null) $this->optional_int64_wrapper = new \google\protobuf\Int64Value();
+          if ($this->optional_int64_wrapper is null) {
+            $this->optional_int64_wrapper = new \google\protobuf\Int64Value();
+          }
           $this->optional_int64_wrapper->MergeFrom($d->readDecoder());
           break;
         case 204:
-          if ($this->optional_uint32_wrapper == null) $this->optional_uint32_wrapper = new \google\protobuf\UInt32Value();
+          if ($this->optional_uint32_wrapper is null) {
+            $this->optional_uint32_wrapper = new \google\protobuf\UInt32Value();
+          }
           $this->optional_uint32_wrapper->MergeFrom($d->readDecoder());
           break;
         case 205:
-          if ($this->optional_uint64_wrapper == null) $this->optional_uint64_wrapper = new \google\protobuf\UInt64Value();
+          if ($this->optional_uint64_wrapper is null) {
+            $this->optional_uint64_wrapper = new \google\protobuf\UInt64Value();
+          }
           $this->optional_uint64_wrapper->MergeFrom($d->readDecoder());
           break;
         case 206:
-          if ($this->optional_float_wrapper == null) $this->optional_float_wrapper = new \google\protobuf\FloatValue();
+          if ($this->optional_float_wrapper is null) {
+            $this->optional_float_wrapper = new \google\protobuf\FloatValue();
+          }
           $this->optional_float_wrapper->MergeFrom($d->readDecoder());
           break;
         case 207:
-          if ($this->optional_double_wrapper == null) $this->optional_double_wrapper = new \google\protobuf\DoubleValue();
+          if ($this->optional_double_wrapper is null) {
+            $this->optional_double_wrapper = new \google\protobuf\DoubleValue();
+          }
           $this->optional_double_wrapper->MergeFrom($d->readDecoder());
           break;
         case 208:
-          if ($this->optional_string_wrapper == null) $this->optional_string_wrapper = new \google\protobuf\StringValue();
+          if ($this->optional_string_wrapper is null) {
+            $this->optional_string_wrapper = new \google\protobuf\StringValue();
+          }
           $this->optional_string_wrapper->MergeFrom($d->readDecoder());
           break;
         case 209:
-          if ($this->optional_bytes_wrapper == null) $this->optional_bytes_wrapper = new \google\protobuf\BytesValue();
+          if ($this->optional_bytes_wrapper is null) {
+            $this->optional_bytes_wrapper = new \google\protobuf\BytesValue();
+          }
           $this->optional_bytes_wrapper->MergeFrom($d->readDecoder());
           break;
         case 211:
@@ -3344,27 +3380,39 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           $this->repeated_bytes_wrapper []= $obj;
           break;
         case 301:
-          if ($this->optional_duration == null) $this->optional_duration = new \google\protobuf\Duration();
+          if ($this->optional_duration is null) {
+            $this->optional_duration = new \google\protobuf\Duration();
+          }
           $this->optional_duration->MergeFrom($d->readDecoder());
           break;
         case 302:
-          if ($this->optional_timestamp == null) $this->optional_timestamp = new \google\protobuf\Timestamp();
+          if ($this->optional_timestamp is null) {
+            $this->optional_timestamp = new \google\protobuf\Timestamp();
+          }
           $this->optional_timestamp->MergeFrom($d->readDecoder());
           break;
         case 303:
-          if ($this->optional_field_mask == null) $this->optional_field_mask = new \google\protobuf\FieldMask();
+          if ($this->optional_field_mask is null) {
+            $this->optional_field_mask = new \google\protobuf\FieldMask();
+          }
           $this->optional_field_mask->MergeFrom($d->readDecoder());
           break;
         case 304:
-          if ($this->optional_struct == null) $this->optional_struct = new \google\protobuf\Struct();
+          if ($this->optional_struct is null) {
+            $this->optional_struct = new \google\protobuf\Struct();
+          }
           $this->optional_struct->MergeFrom($d->readDecoder());
           break;
         case 305:
-          if ($this->optional_any == null) $this->optional_any = new \google\protobuf\Any();
+          if ($this->optional_any is null) {
+            $this->optional_any = new \google\protobuf\Any();
+          }
           $this->optional_any->MergeFrom($d->readDecoder());
           break;
         case 306:
-          if ($this->optional_value == null) $this->optional_value = new \google\protobuf\Value();
+          if ($this->optional_value is null) {
+            $this->optional_value = new \google\protobuf\Value();
+          }
           $this->optional_value->MergeFrom($d->readDecoder());
           break;
         case 307:
@@ -4448,13 +4496,17 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           $this->optional_bytes = \Protobuf\Internal\JsonDecoder::readBytes($v);
           break;
         case 'optional_nested_message': case 'optionalNestedMessage':
-          if ($v === null) break;
-          if ($this->optional_nested_message == null) $this->optional_nested_message = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+          if ($v is null) break;
+          if ($this->optional_nested_message is null) {
+            $this->optional_nested_message = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+          }
           $this->optional_nested_message->MergeJsonFrom($v);
           break;
         case 'optional_foreign_message': case 'optionalForeignMessage':
-          if ($v === null) break;
-          if ($this->optional_foreign_message == null) $this->optional_foreign_message = new \protobuf_test_messages\proto3\ForeignMessage();
+          if ($v is null) break;
+          if ($this->optional_foreign_message is null) {
+            $this->optional_foreign_message = new \protobuf_test_messages\proto3\ForeignMessage();
+          }
           $this->optional_foreign_message->MergeJsonFrom($v);
           break;
         case 'optional_nested_enum': case 'optionalNestedEnum':
@@ -4473,8 +4525,10 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           $this->optional_cord = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'recursive_message': case 'recursiveMessage':
-          if ($v === null) break;
-          if ($this->recursive_message == null) $this->recursive_message = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+          if ($v is null) break;
+          if ($this->recursive_message is null) {
+            $this->recursive_message = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+          }
           $this->recursive_message->MergeJsonFrom($v);
           break;
         case 'repeated_int32': case 'repeatedInt32':
@@ -4896,48 +4950,66 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           $this->oneof_field = new TestAllTypesProto3_oneof_field_oneof_null_value(\google\protobuf\NullValue::FromMixed($v));
           break;
         case 'optional_bool_wrapper': case 'optionalBoolWrapper':
-          if ($v === null) break;
-          if ($this->optional_bool_wrapper == null) $this->optional_bool_wrapper = new \google\protobuf\BoolValue();
+          if ($v is null) break;
+          if ($this->optional_bool_wrapper is null) {
+            $this->optional_bool_wrapper = new \google\protobuf\BoolValue();
+          }
           $this->optional_bool_wrapper->MergeJsonFrom($v);
           break;
         case 'optional_int32_wrapper': case 'optionalInt32Wrapper':
-          if ($v === null) break;
-          if ($this->optional_int32_wrapper == null) $this->optional_int32_wrapper = new \google\protobuf\Int32Value();
+          if ($v is null) break;
+          if ($this->optional_int32_wrapper is null) {
+            $this->optional_int32_wrapper = new \google\protobuf\Int32Value();
+          }
           $this->optional_int32_wrapper->MergeJsonFrom($v);
           break;
         case 'optional_int64_wrapper': case 'optionalInt64Wrapper':
-          if ($v === null) break;
-          if ($this->optional_int64_wrapper == null) $this->optional_int64_wrapper = new \google\protobuf\Int64Value();
+          if ($v is null) break;
+          if ($this->optional_int64_wrapper is null) {
+            $this->optional_int64_wrapper = new \google\protobuf\Int64Value();
+          }
           $this->optional_int64_wrapper->MergeJsonFrom($v);
           break;
         case 'optional_uint32_wrapper': case 'optionalUint32Wrapper':
-          if ($v === null) break;
-          if ($this->optional_uint32_wrapper == null) $this->optional_uint32_wrapper = new \google\protobuf\UInt32Value();
+          if ($v is null) break;
+          if ($this->optional_uint32_wrapper is null) {
+            $this->optional_uint32_wrapper = new \google\protobuf\UInt32Value();
+          }
           $this->optional_uint32_wrapper->MergeJsonFrom($v);
           break;
         case 'optional_uint64_wrapper': case 'optionalUint64Wrapper':
-          if ($v === null) break;
-          if ($this->optional_uint64_wrapper == null) $this->optional_uint64_wrapper = new \google\protobuf\UInt64Value();
+          if ($v is null) break;
+          if ($this->optional_uint64_wrapper is null) {
+            $this->optional_uint64_wrapper = new \google\protobuf\UInt64Value();
+          }
           $this->optional_uint64_wrapper->MergeJsonFrom($v);
           break;
         case 'optional_float_wrapper': case 'optionalFloatWrapper':
-          if ($v === null) break;
-          if ($this->optional_float_wrapper == null) $this->optional_float_wrapper = new \google\protobuf\FloatValue();
+          if ($v is null) break;
+          if ($this->optional_float_wrapper is null) {
+            $this->optional_float_wrapper = new \google\protobuf\FloatValue();
+          }
           $this->optional_float_wrapper->MergeJsonFrom($v);
           break;
         case 'optional_double_wrapper': case 'optionalDoubleWrapper':
-          if ($v === null) break;
-          if ($this->optional_double_wrapper == null) $this->optional_double_wrapper = new \google\protobuf\DoubleValue();
+          if ($v is null) break;
+          if ($this->optional_double_wrapper is null) {
+            $this->optional_double_wrapper = new \google\protobuf\DoubleValue();
+          }
           $this->optional_double_wrapper->MergeJsonFrom($v);
           break;
         case 'optional_string_wrapper': case 'optionalStringWrapper':
-          if ($v === null) break;
-          if ($this->optional_string_wrapper == null) $this->optional_string_wrapper = new \google\protobuf\StringValue();
+          if ($v is null) break;
+          if ($this->optional_string_wrapper is null) {
+            $this->optional_string_wrapper = new \google\protobuf\StringValue();
+          }
           $this->optional_string_wrapper->MergeJsonFrom($v);
           break;
         case 'optional_bytes_wrapper': case 'optionalBytesWrapper':
-          if ($v === null) break;
-          if ($this->optional_bytes_wrapper == null) $this->optional_bytes_wrapper = new \google\protobuf\BytesValue();
+          if ($v is null) break;
+          if ($this->optional_bytes_wrapper is null) {
+            $this->optional_bytes_wrapper = new \google\protobuf\BytesValue();
+          }
           $this->optional_bytes_wrapper->MergeJsonFrom($v);
           break;
         case 'repeated_bool_wrapper': case 'repeatedBoolWrapper':
@@ -5004,32 +5076,44 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           }
           break;
         case 'optional_duration': case 'optionalDuration':
-          if ($v === null) break;
-          if ($this->optional_duration == null) $this->optional_duration = new \google\protobuf\Duration();
+          if ($v is null) break;
+          if ($this->optional_duration is null) {
+            $this->optional_duration = new \google\protobuf\Duration();
+          }
           $this->optional_duration->MergeJsonFrom($v);
           break;
         case 'optional_timestamp': case 'optionalTimestamp':
-          if ($v === null) break;
-          if ($this->optional_timestamp == null) $this->optional_timestamp = new \google\protobuf\Timestamp();
+          if ($v is null) break;
+          if ($this->optional_timestamp is null) {
+            $this->optional_timestamp = new \google\protobuf\Timestamp();
+          }
           $this->optional_timestamp->MergeJsonFrom($v);
           break;
         case 'optional_field_mask': case 'optionalFieldMask':
-          if ($v === null) break;
-          if ($this->optional_field_mask == null) $this->optional_field_mask = new \google\protobuf\FieldMask();
+          if ($v is null) break;
+          if ($this->optional_field_mask is null) {
+            $this->optional_field_mask = new \google\protobuf\FieldMask();
+          }
           $this->optional_field_mask->MergeJsonFrom($v);
           break;
         case 'optional_struct': case 'optionalStruct':
-          if ($v === null) break;
-          if ($this->optional_struct == null) $this->optional_struct = new \google\protobuf\Struct();
+          if ($v is null) break;
+          if ($this->optional_struct is null) {
+            $this->optional_struct = new \google\protobuf\Struct();
+          }
           $this->optional_struct->MergeJsonFrom($v);
           break;
         case 'optional_any': case 'optionalAny':
-          if ($v === null) break;
-          if ($this->optional_any == null) $this->optional_any = new \google\protobuf\Any();
+          if ($v is null) break;
+          if ($this->optional_any is null) {
+            $this->optional_any = new \google\protobuf\Any();
+          }
           $this->optional_any->MergeJsonFrom($v);
           break;
         case 'optional_value': case 'optionalValue':
-          if ($this->optional_value == null) $this->optional_value = new \google\protobuf\Value();
+          if ($this->optional_value is null) {
+            $this->optional_value = new \google\protobuf\Value();
+          }
           $this->optional_value->MergeJsonFrom($v);
           break;
         case 'optional_null_value': case 'optionalNullValue':
@@ -5164,13 +5248,13 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     $this->optional_string = $o->optional_string;
     $this->optional_bytes = $o->optional_bytes;
     $tmp = $o->optional_nested_message;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
       $nv->CopyFrom($tmp);
       $this->optional_nested_message = $nv;
     }
     $tmp = $o->optional_foreign_message;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto3\ForeignMessage();
       $nv->CopyFrom($tmp);
       $this->optional_foreign_message = $nv;
@@ -5181,7 +5265,7 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     $this->optional_string_piece = $o->optional_string_piece;
     $this->optional_cord = $o->optional_cord;
     $tmp = $o->recursive_message;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto3\TestAllTypesProto3();
       $nv->CopyFrom($tmp);
       $this->recursive_message = $nv;
@@ -5271,55 +5355,55 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     $this->unpacked_bool = $o->unpacked_bool;
     $this->unpacked_nested_enum = $o->unpacked_nested_enum;
     $tmp = $o->optional_bool_wrapper;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\BoolValue();
       $nv->CopyFrom($tmp);
       $this->optional_bool_wrapper = $nv;
     }
     $tmp = $o->optional_int32_wrapper;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Int32Value();
       $nv->CopyFrom($tmp);
       $this->optional_int32_wrapper = $nv;
     }
     $tmp = $o->optional_int64_wrapper;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Int64Value();
       $nv->CopyFrom($tmp);
       $this->optional_int64_wrapper = $nv;
     }
     $tmp = $o->optional_uint32_wrapper;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\UInt32Value();
       $nv->CopyFrom($tmp);
       $this->optional_uint32_wrapper = $nv;
     }
     $tmp = $o->optional_uint64_wrapper;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\UInt64Value();
       $nv->CopyFrom($tmp);
       $this->optional_uint64_wrapper = $nv;
     }
     $tmp = $o->optional_float_wrapper;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\FloatValue();
       $nv->CopyFrom($tmp);
       $this->optional_float_wrapper = $nv;
     }
     $tmp = $o->optional_double_wrapper;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\DoubleValue();
       $nv->CopyFrom($tmp);
       $this->optional_double_wrapper = $nv;
     }
     $tmp = $o->optional_string_wrapper;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\StringValue();
       $nv->CopyFrom($tmp);
       $this->optional_string_wrapper = $nv;
     }
     $tmp = $o->optional_bytes_wrapper;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\BytesValue();
       $nv->CopyFrom($tmp);
       $this->optional_bytes_wrapper = $nv;
@@ -5370,37 +5454,37 @@ class TestAllTypesProto3 implements \Protobuf\Message {
       $this->repeated_bytes_wrapper []= $nv;
     }
     $tmp = $o->optional_duration;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Duration();
       $nv->CopyFrom($tmp);
       $this->optional_duration = $nv;
     }
     $tmp = $o->optional_timestamp;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Timestamp();
       $nv->CopyFrom($tmp);
       $this->optional_timestamp = $nv;
     }
     $tmp = $o->optional_field_mask;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\FieldMask();
       $nv->CopyFrom($tmp);
       $this->optional_field_mask = $nv;
     }
     $tmp = $o->optional_struct;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Struct();
       $nv->CopyFrom($tmp);
       $this->optional_struct = $nv;
     }
     $tmp = $o->optional_any;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Any();
       $nv->CopyFrom($tmp);
       $this->optional_any = $nv;
     }
     $tmp = $o->optional_value;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Value();
       $nv->CopyFrom($tmp);
       $this->optional_value = $nv;

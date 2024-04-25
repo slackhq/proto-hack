@@ -89,7 +89,9 @@ class Type implements \Protobuf\Message {
           $this->options []= $obj;
           break;
         case 5:
-          if ($this->source_context == null) $this->source_context = new \google\protobuf\SourceContext();
+          if ($this->source_context is null) {
+            $this->source_context = new \google\protobuf\SourceContext();
+          }
           $this->source_context->MergeFrom($d->readDecoder());
           break;
         case 6:
@@ -171,8 +173,10 @@ class Type implements \Protobuf\Message {
           }
           break;
         case 'source_context': case 'sourceContext':
-          if ($v === null) break;
-          if ($this->source_context == null) $this->source_context = new \google\protobuf\SourceContext();
+          if ($v is null) break;
+          if ($this->source_context is null) {
+            $this->source_context = new \google\protobuf\SourceContext();
+          }
           $this->source_context->MergeJsonFrom($v);
           break;
         case 'syntax':
@@ -201,7 +205,7 @@ class Type implements \Protobuf\Message {
       $this->options []= $nv;
     }
     $tmp = $o->source_context;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\SourceContext();
       $nv->CopyFrom($tmp);
       $this->source_context = $nv;
@@ -593,7 +597,9 @@ class pb_Enum implements \Protobuf\Message {
           $this->options []= $obj;
           break;
         case 4:
-          if ($this->source_context == null) $this->source_context = new \google\protobuf\SourceContext();
+          if ($this->source_context is null) {
+            $this->source_context = new \google\protobuf\SourceContext();
+          }
           $this->source_context->MergeFrom($d->readDecoder());
           break;
         case 5:
@@ -665,8 +671,10 @@ class pb_Enum implements \Protobuf\Message {
           }
           break;
         case 'source_context': case 'sourceContext':
-          if ($v === null) break;
-          if ($this->source_context == null) $this->source_context = new \google\protobuf\SourceContext();
+          if ($v is null) break;
+          if ($this->source_context is null) {
+            $this->source_context = new \google\protobuf\SourceContext();
+          }
           $this->source_context->MergeJsonFrom($v);
           break;
         case 'syntax':
@@ -694,7 +702,7 @@ class pb_Enum implements \Protobuf\Message {
       $this->options []= $nv;
     }
     $tmp = $o->source_context;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\SourceContext();
       $nv->CopyFrom($tmp);
       $this->source_context = $nv;
@@ -855,7 +863,9 @@ class Option implements \Protobuf\Message {
           $this->name = $d->readString();
           break;
         case 2:
-          if ($this->value == null) $this->value = new \google\protobuf\Any();
+          if ($this->value is null) {
+            $this->value = new \google\protobuf\Any();
+          }
           $this->value->MergeFrom($d->readDecoder());
           break;
         default:
@@ -893,8 +903,10 @@ class Option implements \Protobuf\Message {
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
           break;
         case 'value':
-          if ($v === null) break;
-          if ($this->value == null) $this->value = new \google\protobuf\Any();
+          if ($v is null) break;
+          if ($this->value is null) {
+            $this->value = new \google\protobuf\Any();
+          }
           $this->value->MergeJsonFrom($v);
           break;
         default:
@@ -909,7 +921,7 @@ class Option implements \Protobuf\Message {
     }
     $this->name = $o->name;
     $tmp = $o->value;
-    if ($tmp !== null) {
+    if ($tmp is nonnull) {
       $nv = new \google\protobuf\Any();
       $nv->CopyFrom($tmp);
       $this->value = $nv;

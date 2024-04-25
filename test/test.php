@@ -13,6 +13,7 @@ function main(): void {
   require "generated/test/example2_proto.php";
   require "generated/test/example4_proto.php";
   require "generated/test/exampleany_proto.php";
+  require "generated/test/optional_proto3_proto.php";
   require "generated/google/protobuf/descriptor_proto.php";
 
   require "test/test_suite.php";
@@ -69,6 +70,9 @@ function main(): void {
 
   // Any
   testAny();
+
+  // Optional in proto3
+  testOptionalProto3();
 
   // Service
   testLoopbackService();
