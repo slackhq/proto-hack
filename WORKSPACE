@@ -15,13 +15,13 @@ go_rules_dependencies()
 
 go_register_toolchains(version = "1.20.5")
 
-PBV = "3.20.3"
+PBV = "21.12"
 
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "04e1ed9664d1325b43723b6a62a4a41bf6b2b90ac72b5daee288365aad0ea47d",
+    sha256 = "6a31b662deaeb0ac35e6287bda2f3369b19836e6c9f8828d4da444346f420298",
     strip_prefix = "protobuf-" + PBV,
-    urls = ["https://github.com/protocolbuffers/protobuf/archive/v" + PBV + ".zip"],
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/refs/tags/v" + PBV + ".zip"],
 )
 
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
