@@ -153,7 +153,6 @@ func gen(req *ppb.CodeGeneratorRequest) *ppb.CodeGeneratorResponse {
 			f.Content = proto.String(b.String())
 			resp.File = append(resp.File, f)
 		}
-		writeBinaryFileDescriptor(fdp, resp)
 	}
 	return resp
 }
@@ -211,10 +210,7 @@ func binaryFileDescriptorPath(fdp *desc.FileDescriptorProto) string {
 	return strings.TrimSuffix(fdp.GetName(), fext) + "_file_descriptor.pb.bin.gz"
 }
 
-func writeBinaryFileDescriptor(fdp *desc.FileDescriptorProto, resp *ppb.CodeGeneratorResponse) {
-	f := &ppb.CodeGeneratorResponse_File{}
-	f.Name = proto.String(binaryFileDescriptorPath(fdp))
-
+func generateBinaryFileDescriptor(fdp *desc.FileDescriptorProto) string {
 	// First clear out things we don't need that cause non-determinism.
 	fdp.SourceCodeInfo = nil
 
@@ -234,10 +230,7 @@ func writeBinaryFileDescriptor(fdp *desc.FileDescriptorProto, resp *ppb.CodeGene
 		panic(err)
 	}
 
-	// The protoc compiler will complain that this contains invalid UTF-8 data,
-	// but we will ignore that for now.
-	f.Content = proto.String(b.String())
-	resp.File = append(resp.File, f)
+	return b.String()
 }
 
 type FileWriter func(*writer, *Namespace)
@@ -326,7 +319,16 @@ func writeFileDescriptor(w *writer, fdp *desc.FileDescriptorProto) {
 	w.p("}")
 	w.ln()
 	w.p("public function FileDescriptorProtoBytes(): string {")
-	w.p("return (string)\\gzuncompress(\\file_get_contents(\\realpath(\\dirname(__FILE__)) . '/%s'));", filepath.Base(binaryFileDescriptorPath(fdp)))
+	// This logic matches what protoc-gen-go plugin does. See this SO thread for an example:
+	// https://stackoverflow.com/questions/60540511/how-to-display-protoc-gen-go-gzipped-filedescriptorproto-as-plaintext
+	binaryProto := generateBinaryFileDescriptor(fdp)
+	binaryProtoStr := ""
+	for i := 0; i < len(binaryProto); i++ {
+		c := binaryProto[i]
+		binaryProtoStr += fmt.Sprintf("\\x%x", c)
+	}
+	w.p("// %d bytes of gzipped FileDescriptorProto as a string", len(binaryProtoStr))
+	w.p("return (string)\\gzuncompress(\"%s\");", binaryProtoStr)
 	w.p("}")
 	w.p("}")
 }
