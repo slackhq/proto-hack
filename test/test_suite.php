@@ -244,7 +244,10 @@ class Context implements \Grpc\Context {
 function testOptionalProto3(): void {
   echo "Testing empty optional proto3 proto: ";
   $msg = new \baz\optional_proto3();
-  Protobuf\Unmarshal(file_get_contents('generated/test/empty_optional_proto3.pb.bin'), $msg);
+  Protobuf\Unmarshal(
+    file_get_contents('generated/test/empty_optional_proto3.pb.bin'),
+    $msg,
+  );
   a($msg->getAdouble(), 0., 'adouble should be set to default value');
   a($msg->hasAdouble(), false, 'adouble shoult not be set');
   a($msg->getAint64(), 0, 'aint64 should be set to default value');
@@ -267,7 +270,10 @@ function testOptionalProto3(): void {
 
   echo("Testing optional proto3 proto with only default values: ");
   $msg = new \baz\optional_proto3();
-  Protobuf\Unmarshal(file_get_contents('generated/test/default_optional_proto3.pb.bin'), $msg);
+  Protobuf\Unmarshal(
+    file_get_contents('generated/test/default_optional_proto3.pb.bin'),
+    $msg,
+  );
   a($msg->getAdouble(), 0., 'adouble should be set to default value');
   a($msg->hasAdouble(), true, 'adouble should be set');
   a($msg->getAint64(), 0, 'aint64 should be set to default value');
@@ -290,7 +296,10 @@ function testOptionalProto3(): void {
 
   echo("Testing optional proto3 proto with only custom non-default values: ");
   $msg = new \baz\optional_proto3();
-  Protobuf\Unmarshal(file_get_contents('generated/test/custom_optional_proto3.pb.bin'), $msg);
+  Protobuf\Unmarshal(
+    file_get_contents('generated/test/custom_optional_proto3.pb.bin'),
+    $msg,
+  );
   a($msg->getAdouble(), 3.14, 'adouble should be set');
   a($msg->hasAdouble(), true, 'adouble should be set');
   a($msg->getAint64(), 1234, 'aint64 should be set');
@@ -313,7 +322,10 @@ function testOptionalProto3(): void {
 
   echo("Testing JSON decoding: ");
   $msg = new \baz\optional_proto3();
-  Protobuf\UnmarshalJson(file_get_contents('test/mixed_optional_proto3.pb.json'), $msg);
+  Protobuf\UnmarshalJson(
+    file_get_contents('test/mixed_optional_proto3.pb.json'),
+    $msg,
+  );
   a($msg->getAdouble(), 3.14, 'adouble should be set');
   a($msg->hasAdouble(), true, 'adouble should be set');
   a($msg->getAint64(), 1234, 'aint64 should be set');

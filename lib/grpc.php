@@ -283,9 +283,8 @@ namespace Grpc {
     $fq = \ltrim($fq, '/');
     $parts = \explode('/', $fq, 2);
     if (\count($parts) < 2) {
-      return ResultE(
-        Errorf("invalid fully qualified gRPC method name '%s'", $fq),
-      );
+      return
+        ResultE(Errorf("invalid fully qualified gRPC method name '%s'", $fq));
     }
     return ResultV(tuple($parts[0], $parts[1]));
   }
