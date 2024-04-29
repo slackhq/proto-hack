@@ -1,2 +1,3 @@
+build --stamp --workspace_status_command="$PWD/workspace_status"
 test --test_output=errors
 common --experimental_ui_max_stdouterr_bytes=100000000

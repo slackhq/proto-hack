@@ -24,7 +24,7 @@ go_binary(
     ],
     out = "protoc-gen-hack",
     visibility = ["//visibility:public"],
-    x_defs = {"version": "8.0.0"},
+    x_defs = {"version": "{RELEASE_VERSION}"},
     deps = [
         ":opt_go_proto",
         "@com_github_golang_protobuf//proto:go_default_library",
