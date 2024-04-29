@@ -95,9 +95,8 @@ namespace Protobuf\Internal {
 
   function AssertEndiannessAndIntSize(): void {
     if (\PHP_INT_SIZE != 8) {
-      throw new \ProtobufException(
-        "unsupported PHP_INT_SIZE size: ".\PHP_INT_SIZE,
-      );
+      throw
+        new \ProtobufException("unsupported PHP_INT_SIZE size: ".\PHP_INT_SIZE);
     }
     $end = \unpack('l', "\x70\x10\xF0\x00")[1];
     if ($end !== 15732848) {
@@ -126,9 +125,8 @@ namespace Protobuf\Internal {
       $shift = 0;
       while (true) {
         if ($this->isEOF()) {
-          throw new \ProtobufException(
-            "buffer overrun while reading varint-128",
-          );
+          throw
+            new \ProtobufException("buffer overrun while reading varint-128");
         }
         $c = \ord($this->buf[$this->offset]);
         $this->offset++;
@@ -216,9 +214,8 @@ namespace Protobuf\Internal {
       }
       $noff = $this->offset + $size;
       if ($noff > $this->len) {
-        throw new \ProtobufException(
-          "buffer overrun while reading raw: ".$size,
-        );
+        throw
+          new \ProtobufException("buffer overrun while reading raw: ".$size);
       }
       $ss = \substr($this->buf, $this->offset, $size);
       $this->offset = $noff;
@@ -229,9 +226,8 @@ namespace Protobuf\Internal {
       $size = $this->readVarint();
       $noff = $this->offset + $size;
       if ($noff > $this->len) {
-        throw new \ProtobufException(
-          "buffer overrun while reading buffer: ".$size,
-        );
+        throw
+          new \ProtobufException("buffer overrun while reading buffer: ".$size);
       }
       $buf = new Decoder($this->buf, $this->offset, $noff, new Encoder());
       $this->offset = $noff;
@@ -431,12 +427,10 @@ namespace Protobuf\Internal {
 
     public function __construct(int $opt) {
       $this->pretty_print = (bool)($opt & \Protobuf\JsonEncode::PRETTY_PRINT);
-      $this->emit_default_values = (bool)(
-        $opt & \Protobuf\JsonEncode::EMIT_DEFAULT_VALUES
-      );
-      $this->preserve_names = (bool)(
-        $opt & \Protobuf\JsonEncode::PRESERVE_NAMES
-      );
+      $this->emit_default_values =
+        (bool)($opt & \Protobuf\JsonEncode::EMIT_DEFAULT_VALUES);
+      $this->preserve_names =
+        (bool)($opt & \Protobuf\JsonEncode::PRESERVE_NAMES);
       $this->enums_as_ints = (bool)($opt & \Protobuf\JsonEncode::ENUMS_AS_INTS);
     }
   }
@@ -537,10 +531,8 @@ namespace Protobuf\Internal {
       bool $emit_default,
     ): void {
       if ($value != 0 || $emit_default || $this->o->emit_default_values) {
-        $this->a[$this->o->preserve_names ? $oname : $cname] = \sprintf(
-          '%d',
-          $value,
-        );
+        $this->a[$this->o->preserve_names ? $oname : $cname] =
+          \sprintf('%d', $value);
       }
     }
 
@@ -579,10 +571,8 @@ namespace Protobuf\Internal {
       bool $emit_default,
     ): void {
       if ($value != 0 || $emit_default || $this->o->emit_default_values) {
-        $this->a[$this->o->preserve_names ? $oname : $cname] = \sprintf(
-          '%u',
-          $value,
-        );
+        $this->a[$this->o->preserve_names ? $oname : $cname] =
+          \sprintf('%u', $value);
       }
     }
 
@@ -829,13 +819,18 @@ namespace Protobuf\Internal {
         return null;
       }
       $error_data = null;
-      $data = \json_decode_with_error($str, inout $error_data, true, 512, \JSON_FB_HACK_ARRAYS);
+      $data = \json_decode_with_error(
+        $str,
+        inout $error_data,
+        true,
+        512,
+        \JSON_FB_HACK_ARRAYS,
+      );
       if ($data !== null) {
         return $data;
       }
-      throw new \ProtobufException(
-        "json_decode failed; ".($error_data[1] ?? ''),
-      );
+      throw
+        new \ProtobufException("json_decode failed; ".($error_data[1] ?? ''));
     }
 
     public static function readObject(mixed $m): dict<string, mixed> {
@@ -846,9 +841,8 @@ namespace Protobuf\Internal {
         }
         return $ret;
       }
-      throw new \ProtobufException(
-        \sprintf("expected dict got %s", \gettype($m)),
-      );
+      throw
+        new \ProtobufException(\sprintf("expected dict got %s", \gettype($m)));
     }
 
     public static function readList(mixed $m): vec<mixed> {
@@ -861,9 +855,8 @@ namespace Protobuf\Internal {
         }
         return $ret;
       }
-      throw new \ProtobufException(
-        \sprintf("expected vec got %s", \gettype($m)),
-      );
+      throw
+        new \ProtobufException(\sprintf("expected vec got %s", \gettype($m)));
     }
 
     public static function readBytes(mixed $m): string {
@@ -946,9 +939,8 @@ namespace Protobuf\Internal {
         }
         return (int)$m;
       }
-      throw new \ProtobufException(
-        \sprintf("expected int got %s", \gettype($m)),
-      );
+      throw
+        new \ProtobufException(\sprintf("expected int got %s", \gettype($m)));
     }
 
     public static function readInt32Signed(mixed $m): int {
@@ -989,9 +981,8 @@ namespace Protobuf\Internal {
       if (\is_numeric($m)) {
         return (float)$m;
       }
-      throw new \ProtobufException(
-        \sprintf("expected float got %s", \gettype($m)),
-      );
+      throw
+        new \ProtobufException(\sprintf("expected float got %s", \gettype($m)));
     }
 
     public static function readBool(mixed $m): bool {
@@ -999,9 +990,8 @@ namespace Protobuf\Internal {
         return false;
       if ($m is bool)
         return $m;
-      throw new \ProtobufException(
-        \sprintf("expected bool got %s", \gettype($m)),
-      );
+      throw
+        new \ProtobufException(\sprintf("expected bool got %s", \gettype($m)));
     }
 
     public static function readBoolMapKey(mixed $m): bool_map_key_t {

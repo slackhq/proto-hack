@@ -146,10 +146,10 @@ func mustFullyQualified(fqn string) {
 }
 
 // Find is where the magic happens. It takes a fully qualified proto name
-//   e.g. ".foo.bar.baz"
+// e.g. ".foo.bar.baz"
 // resolves it to a named entity and returns the proto name split at the
 // namespace boundary.
-//   e.g. ".foo" "bar.baz"
+// e.g. ".foo" "bar.baz"
 // and also returns the descriptor.
 func (n *Namespace) FindFullyQualifiedName(fqn string) (string, string, interface{}) {
 	mustFullyQualified(fqn)

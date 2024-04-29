@@ -152,16 +152,14 @@ function conformance(ConformanceRequest $creq): ConformanceResponse {
     $payload = $creq->payload->json_payload;
     $wfi = WireFormat::JSON;
   } else {
-    $cresp->result = new ConformanceResponse_result_skipped(
-      "unsupported input type",
-    );
+    $cresp->result =
+      new ConformanceResponse_result_skipped("unsupported input type");
     return $cresp;
   }
   $wfo = $creq->requested_output_format;
   if ($wfo != WireFormat::PROTOBUF && $wfo != WireFormat::JSON) {
-    $cresp->result = new ConformanceResponse_result_skipped(
-      "unsupported output type",
-    );
+    $cresp->result =
+      new ConformanceResponse_result_skipped("unsupported output type");
     return $cresp;
   }
   $r = remarshal($tm, $payload, $wfi, $wfo);
