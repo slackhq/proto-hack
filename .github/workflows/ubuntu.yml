@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checking out
         uses: actions/checkout@v3
+        with:
+          fetch-tags: True
       - name: Building image
         run: docker build -t hhvm-test -f ci/Dockerfile .
       - name: Running tests
