@@ -20,6 +20,8 @@ jobs:
         with:
           fetch-tags: True
           fetch-depth: 0
+      - run: git tags -l
+      - run: git describe --tags
       - name: Building image
         run: docker build -t hhvm-test -f ci/Dockerfile .
       - name: Running tests
