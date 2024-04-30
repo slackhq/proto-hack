@@ -17,6 +17,11 @@ jobs:
     steps:
       - name: Checking out
         uses: actions/checkout@v3
+        with:
+          fetch-tags: True
+          fetch-depth: 0
+      - run: git tag -l
+      - run: git describe --tags
       - name: Building image
         run: docker build -t hhvm-test -f ci/Dockerfile .
       - name: Running tests
