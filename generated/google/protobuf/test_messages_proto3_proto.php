@@ -390,7 +390,7 @@ class TestAllTypesProto3_NestedMessage implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -447,6 +447,25 @@ class TestAllTypesProto3_NestedMessage implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_NestedMessage)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->a !== 0) {
+      $this->a = $o->a;
+    }
+    if ($o->corecursive !== null) {
+      if ($this->corecursive !== null) {
+        $this->corecursive->MergeMessageFrom($o->corecursive);
+      } else {
+        $this->corecursive = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+        $this->corecursive->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapInt32Int32Entry implements \Protobuf\Message {
@@ -490,7 +509,7 @@ class TestAllTypesProto3_MapInt32Int32Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -536,6 +555,20 @@ class TestAllTypesProto3_MapInt32Int32Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapInt32Int32Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapInt64Int64Entry implements \Protobuf\Message {
@@ -579,7 +612,7 @@ class TestAllTypesProto3_MapInt64Int64Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -625,6 +658,20 @@ class TestAllTypesProto3_MapInt64Int64Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapInt64Int64Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapUint32Uint32Entry implements \Protobuf\Message {
@@ -668,7 +715,7 @@ class TestAllTypesProto3_MapUint32Uint32Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -714,6 +761,20 @@ class TestAllTypesProto3_MapUint32Uint32Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapUint32Uint32Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapUint64Uint64Entry implements \Protobuf\Message {
@@ -757,7 +818,7 @@ class TestAllTypesProto3_MapUint64Uint64Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -803,6 +864,20 @@ class TestAllTypesProto3_MapUint64Uint64Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapUint64Uint64Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapSint32Sint32Entry implements \Protobuf\Message {
@@ -846,7 +921,7 @@ class TestAllTypesProto3_MapSint32Sint32Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -892,6 +967,20 @@ class TestAllTypesProto3_MapSint32Sint32Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapSint32Sint32Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapSint64Sint64Entry implements \Protobuf\Message {
@@ -935,7 +1024,7 @@ class TestAllTypesProto3_MapSint64Sint64Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -981,6 +1070,20 @@ class TestAllTypesProto3_MapSint64Sint64Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapSint64Sint64Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapFixed32Fixed32Entry implements \Protobuf\Message {
@@ -1024,7 +1127,7 @@ class TestAllTypesProto3_MapFixed32Fixed32Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1070,6 +1173,20 @@ class TestAllTypesProto3_MapFixed32Fixed32Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapFixed32Fixed32Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapFixed64Fixed64Entry implements \Protobuf\Message {
@@ -1113,7 +1230,7 @@ class TestAllTypesProto3_MapFixed64Fixed64Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1159,6 +1276,20 @@ class TestAllTypesProto3_MapFixed64Fixed64Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapFixed64Fixed64Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
@@ -1202,7 +1333,7 @@ class TestAllTypesProto3_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1248,6 +1379,20 @@ class TestAllTypesProto3_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapSfixed32Sfixed32Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
@@ -1291,7 +1436,7 @@ class TestAllTypesProto3_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1337,6 +1482,20 @@ class TestAllTypesProto3_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapSfixed64Sfixed64Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapInt32FloatEntry implements \Protobuf\Message {
@@ -1380,7 +1539,7 @@ class TestAllTypesProto3_MapInt32FloatEntry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1426,6 +1585,20 @@ class TestAllTypesProto3_MapInt32FloatEntry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapInt32FloatEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0.0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapInt32DoubleEntry implements \Protobuf\Message {
@@ -1469,7 +1642,7 @@ class TestAllTypesProto3_MapInt32DoubleEntry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1515,6 +1688,20 @@ class TestAllTypesProto3_MapInt32DoubleEntry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapInt32DoubleEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== 0) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== 0.0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapBoolBoolEntry implements \Protobuf\Message {
@@ -1558,7 +1745,7 @@ class TestAllTypesProto3_MapBoolBoolEntry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1604,6 +1791,20 @@ class TestAllTypesProto3_MapBoolBoolEntry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapBoolBoolEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== false) {
+      $this->key = $o->key;
+    }
+    if ($o->value !== false) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapStringStringEntry implements \Protobuf\Message {
@@ -1647,7 +1848,7 @@ class TestAllTypesProto3_MapStringStringEntry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1693,6 +1894,20 @@ class TestAllTypesProto3_MapStringStringEntry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapStringStringEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== '') {
+      $this->key = $o->key;
+    }
+    if ($o->value !== '') {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapStringBytesEntry implements \Protobuf\Message {
@@ -1736,7 +1951,7 @@ class TestAllTypesProto3_MapStringBytesEntry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1780,6 +1995,20 @@ class TestAllTypesProto3_MapStringBytesEntry implements \Protobuf\Message {
     $this->key = $o->key;
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapStringBytesEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== '') {
+      $this->key = $o->key;
+    }
+    if ($o->value !== '') {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -1828,7 +2057,7 @@ class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Messag
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1885,6 +2114,25 @@ class TestAllTypesProto3_MapStringNestedMessageEntry implements \Protobuf\Messag
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapStringNestedMessageEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== '') {
+      $this->key = $o->key;
+    }
+    if ($o->value !== null) {
+      if ($this->value !== null) {
+        $this->value->MergeMessageFrom($o->value);
+      } else {
+        $this->value = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+        $this->value->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Message {
@@ -1931,7 +2179,7 @@ class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Messa
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1988,6 +2236,25 @@ class TestAllTypesProto3_MapStringForeignMessageEntry implements \Protobuf\Messa
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapStringForeignMessageEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== '') {
+      $this->key = $o->key;
+    }
+    if ($o->value !== null) {
+      if ($this->value !== null) {
+        $this->value->MergeMessageFrom($o->value);
+      } else {
+        $this->value = new \protobuf_test_messages\proto3\ForeignMessage();
+        $this->value->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapStringNestedEnumEntry implements \Protobuf\Message {
@@ -2031,7 +2298,7 @@ class TestAllTypesProto3_MapStringNestedEnumEntry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -2077,6 +2344,20 @@ class TestAllTypesProto3_MapStringNestedEnumEntry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapStringNestedEnumEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== '') {
+      $this->key = $o->key;
+    }
+    if ($o->value !== \protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum::FromInt(0)) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class TestAllTypesProto3_MapStringForeignEnumEntry implements \Protobuf\Message {
@@ -2120,7 +2401,7 @@ class TestAllTypesProto3_MapStringForeignEnumEntry implements \Protobuf\Message 
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -2164,6 +2445,20 @@ class TestAllTypesProto3_MapStringForeignEnumEntry implements \Protobuf\Message 
     $this->key = $o->key;
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3_MapStringForeignEnumEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== '') {
+      $this->key = $o->key;
+    }
+    if ($o->value !== \protobuf_test_messages\proto3\ForeignEnum::FromInt(0)) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -3511,7 +3806,7 @@ class TestAllTypesProto3 implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -5547,6 +5842,570 @@ class TestAllTypesProto3 implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto3)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->optional_int32 !== 0) {
+      $this->optional_int32 = $o->optional_int32;
+    }
+    if ($o->optional_int64 !== 0) {
+      $this->optional_int64 = $o->optional_int64;
+    }
+    if ($o->optional_uint32 !== 0) {
+      $this->optional_uint32 = $o->optional_uint32;
+    }
+    if ($o->optional_uint64 !== 0) {
+      $this->optional_uint64 = $o->optional_uint64;
+    }
+    if ($o->optional_sint32 !== 0) {
+      $this->optional_sint32 = $o->optional_sint32;
+    }
+    if ($o->optional_sint64 !== 0) {
+      $this->optional_sint64 = $o->optional_sint64;
+    }
+    if ($o->optional_fixed32 !== 0) {
+      $this->optional_fixed32 = $o->optional_fixed32;
+    }
+    if ($o->optional_fixed64 !== 0) {
+      $this->optional_fixed64 = $o->optional_fixed64;
+    }
+    if ($o->optional_sfixed32 !== 0) {
+      $this->optional_sfixed32 = $o->optional_sfixed32;
+    }
+    if ($o->optional_sfixed64 !== 0) {
+      $this->optional_sfixed64 = $o->optional_sfixed64;
+    }
+    if ($o->optional_float !== 0.0) {
+      $this->optional_float = $o->optional_float;
+    }
+    if ($o->optional_double !== 0.0) {
+      $this->optional_double = $o->optional_double;
+    }
+    if ($o->optional_bool !== false) {
+      $this->optional_bool = $o->optional_bool;
+    }
+    if ($o->optional_string !== '') {
+      $this->optional_string = $o->optional_string;
+    }
+    if ($o->optional_bytes !== '') {
+      $this->optional_bytes = $o->optional_bytes;
+    }
+    if ($o->optional_nested_message !== null) {
+      if ($this->optional_nested_message !== null) {
+        $this->optional_nested_message->MergeMessageFrom($o->optional_nested_message);
+      } else {
+        $this->optional_nested_message = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+        $this->optional_nested_message->CopyFrom($o);
+      }
+    }
+    if ($o->optional_foreign_message !== null) {
+      if ($this->optional_foreign_message !== null) {
+        $this->optional_foreign_message->MergeMessageFrom($o->optional_foreign_message);
+      } else {
+        $this->optional_foreign_message = new \protobuf_test_messages\proto3\ForeignMessage();
+        $this->optional_foreign_message->CopyFrom($o);
+      }
+    }
+    if ($o->optional_nested_enum !== \protobuf_test_messages\proto3\TestAllTypesProto3_NestedEnum::FromInt(0)) {
+      $this->optional_nested_enum = $o->optional_nested_enum;
+    }
+    if ($o->optional_foreign_enum !== \protobuf_test_messages\proto3\ForeignEnum::FromInt(0)) {
+      $this->optional_foreign_enum = $o->optional_foreign_enum;
+    }
+    if ($o->optional_aliased_enum !== \protobuf_test_messages\proto3\TestAllTypesProto3_AliasedEnum::FromInt(0)) {
+      $this->optional_aliased_enum = $o->optional_aliased_enum;
+    }
+    if ($o->optional_string_piece !== '') {
+      $this->optional_string_piece = $o->optional_string_piece;
+    }
+    if ($o->optional_cord !== '') {
+      $this->optional_cord = $o->optional_cord;
+    }
+    if ($o->recursive_message !== null) {
+      if ($this->recursive_message !== null) {
+        $this->recursive_message->MergeMessageFrom($o->recursive_message);
+      } else {
+        $this->recursive_message = new \protobuf_test_messages\proto3\TestAllTypesProto3();
+        $this->recursive_message->CopyFrom($o);
+      }
+    }
+    foreach ($o->repeated_int32 as $v) {
+      $this->repeated_int32 []= $v;
+    }
+    foreach ($o->repeated_int64 as $v) {
+      $this->repeated_int64 []= $v;
+    }
+    foreach ($o->repeated_uint32 as $v) {
+      $this->repeated_uint32 []= $v;
+    }
+    foreach ($o->repeated_uint64 as $v) {
+      $this->repeated_uint64 []= $v;
+    }
+    foreach ($o->repeated_sint32 as $v) {
+      $this->repeated_sint32 []= $v;
+    }
+    foreach ($o->repeated_sint64 as $v) {
+      $this->repeated_sint64 []= $v;
+    }
+    foreach ($o->repeated_fixed32 as $v) {
+      $this->repeated_fixed32 []= $v;
+    }
+    foreach ($o->repeated_fixed64 as $v) {
+      $this->repeated_fixed64 []= $v;
+    }
+    foreach ($o->repeated_sfixed32 as $v) {
+      $this->repeated_sfixed32 []= $v;
+    }
+    foreach ($o->repeated_sfixed64 as $v) {
+      $this->repeated_sfixed64 []= $v;
+    }
+    foreach ($o->repeated_float as $v) {
+      $this->repeated_float []= $v;
+    }
+    foreach ($o->repeated_double as $v) {
+      $this->repeated_double []= $v;
+    }
+    foreach ($o->repeated_bool as $v) {
+      $this->repeated_bool []= $v;
+    }
+    foreach ($o->repeated_string as $v) {
+      $this->repeated_string []= $v;
+    }
+    foreach ($o->repeated_bytes as $v) {
+      $this->repeated_bytes []= $v;
+    }
+    foreach ($o->repeated_nested_message as $v) {
+      $vc = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+      $vc->CopyFrom($v);
+      $this->repeated_nested_message []= $vc;
+    }
+    foreach ($o->repeated_foreign_message as $v) {
+      $vc = new \protobuf_test_messages\proto3\ForeignMessage();
+      $vc->CopyFrom($v);
+      $this->repeated_foreign_message []= $vc;
+    }
+    foreach ($o->repeated_nested_enum as $v) {
+      $this->repeated_nested_enum []= $v;
+    }
+    foreach ($o->repeated_foreign_enum as $v) {
+      $this->repeated_foreign_enum []= $v;
+    }
+    foreach ($o->repeated_string_piece as $v) {
+      $this->repeated_string_piece []= $v;
+    }
+    foreach ($o->repeated_cord as $v) {
+      $this->repeated_cord []= $v;
+    }
+    foreach ($o->map_int32_int32 as $k => $v) {
+      $this->map_int32_int32[$k] = $v;
+    }
+    foreach ($o->map_int64_int64 as $k => $v) {
+      $this->map_int64_int64[$k] = $v;
+    }
+    foreach ($o->map_uint32_uint32 as $k => $v) {
+      $this->map_uint32_uint32[$k] = $v;
+    }
+    foreach ($o->map_uint64_uint64 as $k => $v) {
+      $this->map_uint64_uint64[$k] = $v;
+    }
+    foreach ($o->map_sint32_sint32 as $k => $v) {
+      $this->map_sint32_sint32[$k] = $v;
+    }
+    foreach ($o->map_sint64_sint64 as $k => $v) {
+      $this->map_sint64_sint64[$k] = $v;
+    }
+    foreach ($o->map_fixed32_fixed32 as $k => $v) {
+      $this->map_fixed32_fixed32[$k] = $v;
+    }
+    foreach ($o->map_fixed64_fixed64 as $k => $v) {
+      $this->map_fixed64_fixed64[$k] = $v;
+    }
+    foreach ($o->map_sfixed32_sfixed32 as $k => $v) {
+      $this->map_sfixed32_sfixed32[$k] = $v;
+    }
+    foreach ($o->map_sfixed64_sfixed64 as $k => $v) {
+      $this->map_sfixed64_sfixed64[$k] = $v;
+    }
+    foreach ($o->map_int32_float as $k => $v) {
+      $this->map_int32_float[$k] = $v;
+    }
+    foreach ($o->map_int32_double as $k => $v) {
+      $this->map_int32_double[$k] = $v;
+    }
+    foreach ($o->map_bool_bool as $k => $v) {
+      $this->map_bool_bool[$k] = $v;
+    }
+    foreach ($o->map_string_string as $k => $v) {
+      $this->map_string_string[$k] = $v;
+    }
+    foreach ($o->map_string_bytes as $k => $v) {
+      $this->map_string_bytes[$k] = $v;
+    }
+    foreach ($o->map_string_nested_message as $k => $v) {
+      $vc = new \protobuf_test_messages\proto3\TestAllTypesProto3_NestedMessage();
+      $vc->CopyFrom($v);
+      $this->map_string_nested_message[$k] = $vc;
+    }
+    foreach ($o->map_string_foreign_message as $k => $v) {
+      $vc = new \protobuf_test_messages\proto3\ForeignMessage();
+      $vc->CopyFrom($v);
+      $this->map_string_foreign_message[$k] = $vc;
+    }
+    foreach ($o->map_string_nested_enum as $k => $v) {
+      $this->map_string_nested_enum[$k] = $v;
+    }
+    foreach ($o->map_string_foreign_enum as $k => $v) {
+      $this->map_string_foreign_enum[$k] = $v;
+    }
+    foreach ($o->packed_int32 as $v) {
+      $this->packed_int32 []= $v;
+    }
+    foreach ($o->packed_int64 as $v) {
+      $this->packed_int64 []= $v;
+    }
+    foreach ($o->packed_uint32 as $v) {
+      $this->packed_uint32 []= $v;
+    }
+    foreach ($o->packed_uint64 as $v) {
+      $this->packed_uint64 []= $v;
+    }
+    foreach ($o->packed_sint32 as $v) {
+      $this->packed_sint32 []= $v;
+    }
+    foreach ($o->packed_sint64 as $v) {
+      $this->packed_sint64 []= $v;
+    }
+    foreach ($o->packed_fixed32 as $v) {
+      $this->packed_fixed32 []= $v;
+    }
+    foreach ($o->packed_fixed64 as $v) {
+      $this->packed_fixed64 []= $v;
+    }
+    foreach ($o->packed_sfixed32 as $v) {
+      $this->packed_sfixed32 []= $v;
+    }
+    foreach ($o->packed_sfixed64 as $v) {
+      $this->packed_sfixed64 []= $v;
+    }
+    foreach ($o->packed_float as $v) {
+      $this->packed_float []= $v;
+    }
+    foreach ($o->packed_double as $v) {
+      $this->packed_double []= $v;
+    }
+    foreach ($o->packed_bool as $v) {
+      $this->packed_bool []= $v;
+    }
+    foreach ($o->packed_nested_enum as $v) {
+      $this->packed_nested_enum []= $v;
+    }
+    foreach ($o->unpacked_int32 as $v) {
+      $this->unpacked_int32 []= $v;
+    }
+    foreach ($o->unpacked_int64 as $v) {
+      $this->unpacked_int64 []= $v;
+    }
+    foreach ($o->unpacked_uint32 as $v) {
+      $this->unpacked_uint32 []= $v;
+    }
+    foreach ($o->unpacked_uint64 as $v) {
+      $this->unpacked_uint64 []= $v;
+    }
+    foreach ($o->unpacked_sint32 as $v) {
+      $this->unpacked_sint32 []= $v;
+    }
+    foreach ($o->unpacked_sint64 as $v) {
+      $this->unpacked_sint64 []= $v;
+    }
+    foreach ($o->unpacked_fixed32 as $v) {
+      $this->unpacked_fixed32 []= $v;
+    }
+    foreach ($o->unpacked_fixed64 as $v) {
+      $this->unpacked_fixed64 []= $v;
+    }
+    foreach ($o->unpacked_sfixed32 as $v) {
+      $this->unpacked_sfixed32 []= $v;
+    }
+    foreach ($o->unpacked_sfixed64 as $v) {
+      $this->unpacked_sfixed64 []= $v;
+    }
+    foreach ($o->unpacked_float as $v) {
+      $this->unpacked_float []= $v;
+    }
+    foreach ($o->unpacked_double as $v) {
+      $this->unpacked_double []= $v;
+    }
+    foreach ($o->unpacked_bool as $v) {
+      $this->unpacked_bool []= $v;
+    }
+    foreach ($o->unpacked_nested_enum as $v) {
+      $this->unpacked_nested_enum []= $v;
+    }
+    if ($o->optional_bool_wrapper !== null) {
+      if ($this->optional_bool_wrapper !== null) {
+        $this->optional_bool_wrapper->MergeMessageFrom($o->optional_bool_wrapper);
+      } else {
+        $this->optional_bool_wrapper = new \google\protobuf\BoolValue();
+        $this->optional_bool_wrapper->CopyFrom($o);
+      }
+    }
+    if ($o->optional_int32_wrapper !== null) {
+      if ($this->optional_int32_wrapper !== null) {
+        $this->optional_int32_wrapper->MergeMessageFrom($o->optional_int32_wrapper);
+      } else {
+        $this->optional_int32_wrapper = new \google\protobuf\Int32Value();
+        $this->optional_int32_wrapper->CopyFrom($o);
+      }
+    }
+    if ($o->optional_int64_wrapper !== null) {
+      if ($this->optional_int64_wrapper !== null) {
+        $this->optional_int64_wrapper->MergeMessageFrom($o->optional_int64_wrapper);
+      } else {
+        $this->optional_int64_wrapper = new \google\protobuf\Int64Value();
+        $this->optional_int64_wrapper->CopyFrom($o);
+      }
+    }
+    if ($o->optional_uint32_wrapper !== null) {
+      if ($this->optional_uint32_wrapper !== null) {
+        $this->optional_uint32_wrapper->MergeMessageFrom($o->optional_uint32_wrapper);
+      } else {
+        $this->optional_uint32_wrapper = new \google\protobuf\UInt32Value();
+        $this->optional_uint32_wrapper->CopyFrom($o);
+      }
+    }
+    if ($o->optional_uint64_wrapper !== null) {
+      if ($this->optional_uint64_wrapper !== null) {
+        $this->optional_uint64_wrapper->MergeMessageFrom($o->optional_uint64_wrapper);
+      } else {
+        $this->optional_uint64_wrapper = new \google\protobuf\UInt64Value();
+        $this->optional_uint64_wrapper->CopyFrom($o);
+      }
+    }
+    if ($o->optional_float_wrapper !== null) {
+      if ($this->optional_float_wrapper !== null) {
+        $this->optional_float_wrapper->MergeMessageFrom($o->optional_float_wrapper);
+      } else {
+        $this->optional_float_wrapper = new \google\protobuf\FloatValue();
+        $this->optional_float_wrapper->CopyFrom($o);
+      }
+    }
+    if ($o->optional_double_wrapper !== null) {
+      if ($this->optional_double_wrapper !== null) {
+        $this->optional_double_wrapper->MergeMessageFrom($o->optional_double_wrapper);
+      } else {
+        $this->optional_double_wrapper = new \google\protobuf\DoubleValue();
+        $this->optional_double_wrapper->CopyFrom($o);
+      }
+    }
+    if ($o->optional_string_wrapper !== null) {
+      if ($this->optional_string_wrapper !== null) {
+        $this->optional_string_wrapper->MergeMessageFrom($o->optional_string_wrapper);
+      } else {
+        $this->optional_string_wrapper = new \google\protobuf\StringValue();
+        $this->optional_string_wrapper->CopyFrom($o);
+      }
+    }
+    if ($o->optional_bytes_wrapper !== null) {
+      if ($this->optional_bytes_wrapper !== null) {
+        $this->optional_bytes_wrapper->MergeMessageFrom($o->optional_bytes_wrapper);
+      } else {
+        $this->optional_bytes_wrapper = new \google\protobuf\BytesValue();
+        $this->optional_bytes_wrapper->CopyFrom($o);
+      }
+    }
+    foreach ($o->repeated_bool_wrapper as $v) {
+      $vc = new \google\protobuf\BoolValue();
+      $vc->CopyFrom($v);
+      $this->repeated_bool_wrapper []= $vc;
+    }
+    foreach ($o->repeated_int32_wrapper as $v) {
+      $vc = new \google\protobuf\Int32Value();
+      $vc->CopyFrom($v);
+      $this->repeated_int32_wrapper []= $vc;
+    }
+    foreach ($o->repeated_int64_wrapper as $v) {
+      $vc = new \google\protobuf\Int64Value();
+      $vc->CopyFrom($v);
+      $this->repeated_int64_wrapper []= $vc;
+    }
+    foreach ($o->repeated_uint32_wrapper as $v) {
+      $vc = new \google\protobuf\UInt32Value();
+      $vc->CopyFrom($v);
+      $this->repeated_uint32_wrapper []= $vc;
+    }
+    foreach ($o->repeated_uint64_wrapper as $v) {
+      $vc = new \google\protobuf\UInt64Value();
+      $vc->CopyFrom($v);
+      $this->repeated_uint64_wrapper []= $vc;
+    }
+    foreach ($o->repeated_float_wrapper as $v) {
+      $vc = new \google\protobuf\FloatValue();
+      $vc->CopyFrom($v);
+      $this->repeated_float_wrapper []= $vc;
+    }
+    foreach ($o->repeated_double_wrapper as $v) {
+      $vc = new \google\protobuf\DoubleValue();
+      $vc->CopyFrom($v);
+      $this->repeated_double_wrapper []= $vc;
+    }
+    foreach ($o->repeated_string_wrapper as $v) {
+      $vc = new \google\protobuf\StringValue();
+      $vc->CopyFrom($v);
+      $this->repeated_string_wrapper []= $vc;
+    }
+    foreach ($o->repeated_bytes_wrapper as $v) {
+      $vc = new \google\protobuf\BytesValue();
+      $vc->CopyFrom($v);
+      $this->repeated_bytes_wrapper []= $vc;
+    }
+    if ($o->optional_duration !== null) {
+      if ($this->optional_duration !== null) {
+        $this->optional_duration->MergeMessageFrom($o->optional_duration);
+      } else {
+        $this->optional_duration = new \google\protobuf\Duration();
+        $this->optional_duration->CopyFrom($o);
+      }
+    }
+    if ($o->optional_timestamp !== null) {
+      if ($this->optional_timestamp !== null) {
+        $this->optional_timestamp->MergeMessageFrom($o->optional_timestamp);
+      } else {
+        $this->optional_timestamp = new \google\protobuf\Timestamp();
+        $this->optional_timestamp->CopyFrom($o);
+      }
+    }
+    if ($o->optional_field_mask !== null) {
+      if ($this->optional_field_mask !== null) {
+        $this->optional_field_mask->MergeMessageFrom($o->optional_field_mask);
+      } else {
+        $this->optional_field_mask = new \google\protobuf\FieldMask();
+        $this->optional_field_mask->CopyFrom($o);
+      }
+    }
+    if ($o->optional_struct !== null) {
+      if ($this->optional_struct !== null) {
+        $this->optional_struct->MergeMessageFrom($o->optional_struct);
+      } else {
+        $this->optional_struct = new \google\protobuf\Struct();
+        $this->optional_struct->CopyFrom($o);
+      }
+    }
+    if ($o->optional_any !== null) {
+      if ($this->optional_any !== null) {
+        $this->optional_any->MergeMessageFrom($o->optional_any);
+      } else {
+        $this->optional_any = new \google\protobuf\Any();
+        $this->optional_any->CopyFrom($o);
+      }
+    }
+    if ($o->optional_value !== null) {
+      if ($this->optional_value !== null) {
+        $this->optional_value->MergeMessageFrom($o->optional_value);
+      } else {
+        $this->optional_value = new \google\protobuf\Value();
+        $this->optional_value->CopyFrom($o);
+      }
+    }
+    if ($o->optional_null_value !== \google\protobuf\NullValue::FromInt(0)) {
+      $this->optional_null_value = $o->optional_null_value;
+    }
+    foreach ($o->repeated_duration as $v) {
+      $vc = new \google\protobuf\Duration();
+      $vc->CopyFrom($v);
+      $this->repeated_duration []= $vc;
+    }
+    foreach ($o->repeated_timestamp as $v) {
+      $vc = new \google\protobuf\Timestamp();
+      $vc->CopyFrom($v);
+      $this->repeated_timestamp []= $vc;
+    }
+    foreach ($o->repeated_fieldmask as $v) {
+      $vc = new \google\protobuf\FieldMask();
+      $vc->CopyFrom($v);
+      $this->repeated_fieldmask []= $vc;
+    }
+    foreach ($o->repeated_any as $v) {
+      $vc = new \google\protobuf\Any();
+      $vc->CopyFrom($v);
+      $this->repeated_any []= $vc;
+    }
+    foreach ($o->repeated_value as $v) {
+      $vc = new \google\protobuf\Value();
+      $vc->CopyFrom($v);
+      $this->repeated_value []= $vc;
+    }
+    foreach ($o->repeated_list_value as $v) {
+      $vc = new \google\protobuf\ListValue();
+      $vc->CopyFrom($v);
+      $this->repeated_list_value []= $vc;
+    }
+    foreach ($o->repeated_struct as $v) {
+      $vc = new \google\protobuf\Struct();
+      $vc->CopyFrom($v);
+      $this->repeated_struct []= $vc;
+    }
+    if ($o->fieldname1 !== 0) {
+      $this->fieldname1 = $o->fieldname1;
+    }
+    if ($o->field_name2 !== 0) {
+      $this->field_name2 = $o->field_name2;
+    }
+    if ($o->_field_name3 !== 0) {
+      $this->_field_name3 = $o->_field_name3;
+    }
+    if ($o->field__name4_ !== 0) {
+      $this->field__name4_ = $o->field__name4_;
+    }
+    if ($o->field0name5 !== 0) {
+      $this->field0name5 = $o->field0name5;
+    }
+    if ($o->field_0_name6 !== 0) {
+      $this->field_0_name6 = $o->field_0_name6;
+    }
+    if ($o->fieldName7 !== 0) {
+      $this->fieldName7 = $o->fieldName7;
+    }
+    if ($o->FieldName8 !== 0) {
+      $this->FieldName8 = $o->FieldName8;
+    }
+    if ($o->field_Name9 !== 0) {
+      $this->field_Name9 = $o->field_Name9;
+    }
+    if ($o->Field_Name10 !== 0) {
+      $this->Field_Name10 = $o->Field_Name10;
+    }
+    if ($o->FIELD_NAME11 !== 0) {
+      $this->FIELD_NAME11 = $o->FIELD_NAME11;
+    }
+    if ($o->FIELD_name12 !== 0) {
+      $this->FIELD_name12 = $o->FIELD_name12;
+    }
+    if ($o->__field_name13 !== 0) {
+      $this->__field_name13 = $o->__field_name13;
+    }
+    if ($o->__Field_name14 !== 0) {
+      $this->__Field_name14 = $o->__Field_name14;
+    }
+    if ($o->field__name15 !== 0) {
+      $this->field__name15 = $o->field__name15;
+    }
+    if ($o->field__Name16 !== 0) {
+      $this->field__Name16 = $o->field__Name16;
+    }
+    if ($o->field_name17__ !== 0) {
+      $this->field_name17__ = $o->field_name17__;
+    }
+    if ($o->Field_name18__ !== 0) {
+      $this->Field_name18__ = $o->Field_name18__;
+    }
+    if ($o->oneof_field->WhichOneof() !== TestAllTypesProto3_oneof_field_oneof_t::NOT_SET) {
+      $this->oneof_field = $o->oneof_field->Copy();
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class ForeignMessage implements \Protobuf\Message {
@@ -5584,7 +6443,7 @@ class ForeignMessage implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -5621,6 +6480,17 @@ class ForeignMessage implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is ForeignMessage)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->c !== 0) {
+      $this->c = $o->c;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class NullHypothesisProto3 implements \Protobuf\Message {
@@ -5652,7 +6522,7 @@ class NullHypothesisProto3 implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -5678,6 +6548,14 @@ class NullHypothesisProto3 implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is NullHypothesisProto3)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -5736,7 +6614,7 @@ class EnumOnlyProto3 implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -5762,6 +6640,14 @@ class EnumOnlyProto3 implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is EnumOnlyProto3)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
