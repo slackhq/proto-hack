@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"regexp"
 	"strings"
 
 	desc "github.com/golang/protobuf/protoc-gen-go/descriptor"
@@ -127,9 +128,12 @@ func (n *Namespace) Parse(fdp *desc.FileDescriptorProto) {
 	if fdp.GetPackage() != "" {
 		pparts = strings.Split(fdp.GetPackage(), ".")
 	}
-	// If there is a custom namespace for the file, also store the custom fully
-	// qualified name i.e. `cFqn`` in the namespace tree while building it.
+	// If there is a custom namespace for the file, store the custom fully
+	// qualified name i.e. `cFqn` in the namespace tree while building it.
 	if cns := customHackNs(fdp); cns != "" {
+		if !isValidCustomHackNamespace(cns) {
+			panic(fmt.Errorf("Invalid custom hack namespace: %s", cns))
+		}
 		customNsparts = strings.Split(cns, "\\")
 	}
 	childns := n.get(true, pparts, customNsparts)
@@ -212,4 +216,10 @@ func (n *Namespace) find(fqn string, checkParent bool) (string, string, interfac
 		return n.parent.FindFullyQualifiedName(fqn)
 	}
 	return "", "", nil, ""
+}
+
+func isValidCustomHackNamespace(s string) bool {
+	pattern := `^(\w+\\)*\w+$`
+	re := regexp.MustCompile(pattern)
+	return re.MatchString(s)
 }
