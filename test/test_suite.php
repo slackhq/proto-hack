@@ -105,7 +105,7 @@ function testExample1(foo\bar\example1 $got, string $failmsg): void {
 
   $exp->aenum1 = foo\bar\AEnum1::B;
   $exp->aenum2 = foo\bar\example1_AEnum2::D;
-  $exp->aenum22 = fiz\baz\AEnum2::Z;
+  $exp->aenum22 = fizzy\bazzy\AEnum2::Z;
 
   $exp->manystring[] = "ms1";
   $exp->manystring[] = "ms2";
@@ -123,7 +123,7 @@ function testExample1(foo\bar\example1 $got, string $failmsg): void {
   $exp->aexample22 = $e22;
   $e22->aint32 = 123;
 
-  $e23 = new fiz\baz\example2();
+  $e23 = new fizzy\bazzy\example2();
   $exp->aexample23 = $e23;
   $e23->zomg = -12;
 

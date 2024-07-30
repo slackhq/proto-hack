@@ -360,12 +360,12 @@ class example1_AmapEntry implements \Protobuf\Message {
 
 class example1_Amap2Entry implements \Protobuf\Message {
   public string $key;
-  public ?\fiz\baz\example2 $value;
+  public ?\fizzy\bazzy\example2 $value;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => string,
-    ?'value' => ?\fiz\baz\example2,
+    ?'value' => ?\fizzy\bazzy\example2,
   ) $s = shape()) {
     $this->key = $s['key'] ?? '';
     $this->value = $s['value'] ?? null;
@@ -394,7 +394,7 @@ class example1_Amap2Entry implements \Protobuf\Message {
           break;
         case 2:
           if ($this->value is null) {
-            $this->value = new \fiz\baz\example2();
+            $this->value = new \fizzy\bazzy\example2();
           }
           $this->value->MergeFrom($d->readDecoder());
           break;
@@ -435,7 +435,7 @@ class example1_Amap2Entry implements \Protobuf\Message {
         case 'value':
           if ($v is null) break;
           if ($this->value is null) {
-            $this->value = new \fiz\baz\example2();
+            $this->value = new \fizzy\bazzy\example2();
           }
           $this->value->MergeJsonFrom($v);
           break;
@@ -452,7 +452,7 @@ class example1_Amap2Entry implements \Protobuf\Message {
     $this->key = $o->key;
     $tmp = $o->value;
     if ($tmp is nonnull) {
-      $nv = new \fiz\baz\example2();
+      $nv = new \fizzy\bazzy\example2();
       $nv->CopyFrom($tmp);
       $this->value = $nv;
     }
@@ -479,14 +479,14 @@ class example1 implements \Protobuf\Message {
   public string $abytes;
   public \foo\bar\AEnum1_enum_t $aenum1;
   public \foo\bar\example1_AEnum2_enum_t $aenum2;
-  public \fiz\baz\AEnum2_enum_t $aenum22;
+  public \fizzy\bazzy\AEnum2_enum_t $aenum22;
   public vec<string> $manystring;
   public vec<int> $manyint64;
   public ?\foo\bar\example1_example2 $aexample2;
   public ?\foo\bar\example2 $aexample22;
-  public ?\fiz\baz\example2 $aexample23;
+  public ?\fizzy\bazzy\example2 $aexample23;
   public dict<string, string> $amap;
-  public dict<string, \fiz\baz\example2> $amap2;
+  public dict<string, \fizzy\bazzy\example2> $amap2;
   public int $outoforder;
   public ?\google\protobuf\Any $anany;
   public example1_aoneof $aoneof;
@@ -510,14 +510,14 @@ class example1 implements \Protobuf\Message {
     ?'abytes' => string,
     ?'aenum1' => \foo\bar\AEnum1_enum_t,
     ?'aenum2' => \foo\bar\example1_AEnum2_enum_t,
-    ?'aenum22' => \fiz\baz\AEnum2_enum_t,
+    ?'aenum22' => \fizzy\bazzy\AEnum2_enum_t,
     ?'manystring' => vec<string>,
     ?'manyint64' => vec<int>,
     ?'aexample2' => ?\foo\bar\example1_example2,
     ?'aexample22' => ?\foo\bar\example2,
-    ?'aexample23' => ?\fiz\baz\example2,
+    ?'aexample23' => ?\fizzy\bazzy\example2,
     ?'amap' => dict<string, string>,
-    ?'amap2' => dict<string, \fiz\baz\example2>,
+    ?'amap2' => dict<string, \fizzy\bazzy\example2>,
     ?'outoforder' => int,
     ?'anany' => ?\google\protobuf\Any,
     ?'aoneof' => example1_aoneof,
@@ -539,7 +539,7 @@ class example1 implements \Protobuf\Message {
     $this->abytes = $s['abytes'] ?? '';
     $this->aenum1 = $s['aenum1'] ?? \foo\bar\AEnum1::FromInt(0);
     $this->aenum2 = $s['aenum2'] ?? \foo\bar\example1_AEnum2::FromInt(0);
-    $this->aenum22 = $s['aenum22'] ?? \fiz\baz\AEnum2::FromInt(0);
+    $this->aenum22 = $s['aenum22'] ?? \fizzy\bazzy\AEnum2::FromInt(0);
     $this->manystring = $s['manystring'] ?? vec[];
     $this->manyint64 = $s['manyint64'] ?? vec[];
     $this->aexample2 = $s['aexample2'] ?? null;
@@ -622,7 +622,7 @@ class example1 implements \Protobuf\Message {
           $this->aenum2 = \foo\bar\example1_AEnum2::FromInt($d->readVarint());
           break;
         case 22:
-          $this->aenum22 = \fiz\baz\AEnum2::FromInt($d->readVarint());
+          $this->aenum22 = \fizzy\bazzy\AEnum2::FromInt($d->readVarint());
           break;
         case 30:
           $this->manystring []= $d->readString();
@@ -651,7 +651,7 @@ class example1 implements \Protobuf\Message {
           break;
         case 42:
           if ($this->aexample23 is null) {
-            $this->aexample23 = new \fiz\baz\example2();
+            $this->aexample23 = new \fizzy\bazzy\example2();
           }
           $this->aexample23->MergeFrom($d->readDecoder());
           break;
@@ -666,7 +666,7 @@ class example1 implements \Protobuf\Message {
         case 52:
           $obj = new \foo\bar\example1_Amap2Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->amap2[$obj->key] = $obj->value ?? new \fiz\baz\example2();
+          $this->amap2[$obj->key] = $obj->value ?? new \fizzy\bazzy\example2();
           break;
         case 60:
           $this->aoneof = new example1_aoneof_oostring($d->readString());
@@ -756,7 +756,7 @@ class example1 implements \Protobuf\Message {
       $e->writeTag(21, 0);
       $e->writeVarint($this->aenum2);
     }
-    if ($this->aenum22 !== \fiz\baz\AEnum2::FromInt(0)) {
+    if ($this->aenum22 !== \fizzy\bazzy\AEnum2::FromInt(0)) {
       $e->writeTag(22, 0);
       $e->writeVarint($this->aenum22);
     }
@@ -837,7 +837,7 @@ class example1 implements \Protobuf\Message {
     $e->writeBytes('abytes', 'abytes', $this->abytes, false);
     $e->writeEnum('aenum1', 'aenum1', \foo\bar\AEnum1::ToStringDict(), $this->aenum1, false);
     $e->writeEnum('aenum2', 'aenum2', \foo\bar\example1_AEnum2::ToStringDict(), $this->aenum2, false);
-    $e->writeEnum('aenum22', 'aenum22', \fiz\baz\AEnum2::ToStringDict(), $this->aenum22, false);
+    $e->writeEnum('aenum22', 'aenum22', \fizzy\bazzy\AEnum2::ToStringDict(), $this->aenum22, false);
     $e->writePrimitiveList('manystring', 'manystring', $this->manystring);
     $e->writeInt64SignedList('manyint64', 'manyint64', $this->manyint64);
     $e->writeMessage('aexample2', 'aexample2', $this->aexample2, false);
@@ -907,7 +907,7 @@ class example1 implements \Protobuf\Message {
           $this->aenum2 = \foo\bar\example1_AEnum2::FromMixed($v);
           break;
         case 'aenum22':
-          $this->aenum22 = \fiz\baz\AEnum2::FromMixed($v);
+          $this->aenum22 = \fizzy\bazzy\AEnum2::FromMixed($v);
           break;
         case 'manystring':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -936,7 +936,7 @@ class example1 implements \Protobuf\Message {
         case 'aexample23':
           if ($v is null) break;
           if ($this->aexample23 is null) {
-            $this->aexample23 = new \fiz\baz\example2();
+            $this->aexample23 = new \fizzy\bazzy\example2();
           }
           $this->aexample23->MergeJsonFrom($v);
           break;
@@ -953,7 +953,7 @@ class example1 implements \Protobuf\Message {
         case 'amap2':
           if ($v !== null) {
             foreach (\Protobuf\Internal\JsonDecoder::readObject($v) as $k => $v) {
-              $obj = new \fiz\baz\example2();
+              $obj = new \fizzy\bazzy\example2();
               $obj->MergeJsonFrom($v);
               $this->amap2[\Protobuf\Internal\JsonDecoder::readString($k)] = $obj;
             }
@@ -1016,14 +1016,14 @@ class example1 implements \Protobuf\Message {
     }
     $tmp = $o->aexample23;
     if ($tmp is nonnull) {
-      $nv = new \fiz\baz\example2();
+      $nv = new \fizzy\bazzy\example2();
       $nv->CopyFrom($tmp);
       $this->aexample23 = $nv;
     }
     $this->outoforder = $o->outoforder;
     $this->amap = $o->amap;
     foreach ($o->amap2 as $k => $v) {
-      $nv = new \fiz\baz\example2();
+      $nv = new \fizzy\bazzy\example2();
       $nv->CopyFrom($v);
       $this->amap2[$k] = $nv;
     }
