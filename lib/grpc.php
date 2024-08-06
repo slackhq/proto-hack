@@ -4,7 +4,7 @@ namespace Grpc {
   use type \Errors\{Error, Result};
   use function \Errors\{ResultE, ResultV};
 
-  use \Protobuf\Message;
+  use type \Protobuf\Message;
 
 
   newtype Code as int = int;
