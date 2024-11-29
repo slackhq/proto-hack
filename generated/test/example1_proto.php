@@ -64,7 +64,7 @@ class example2 implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -99,6 +99,17 @@ class example2 implements \Protobuf\Message {
     }
     $this->aint32 = $o->aint32;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is example2)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->aint32 !== 0) {
+      $this->aint32 = $o->aint32;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -230,7 +241,7 @@ class example1_example2 implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -265,6 +276,17 @@ class example1_example2 implements \Protobuf\Message {
     }
     $this->astring = $o->astring;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is example1_example2)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->astring !== '') {
+      $this->astring = $o->astring;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -310,7 +332,7 @@ class example1_AmapEntry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -354,6 +376,20 @@ class example1_AmapEntry implements \Protobuf\Message {
     $this->key = $o->key;
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is example1_AmapEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== '') {
+      $this->key = $o->key;
+    }
+    if ($o->value !== '') {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -402,7 +438,7 @@ class example1_Amap2Entry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -457,6 +493,25 @@ class example1_Amap2Entry implements \Protobuf\Message {
       $this->value = $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is example1_Amap2Entry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== '') {
+      $this->key = $o->key;
+    }
+    if ($o->value !== null) {
+      if ($this->value !== null) {
+        $this->value->MergeMessageFrom($o->value);
+      } else {
+        $this->value = new \fiz\baz\example2();
+        $this->value->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -684,7 +739,7 @@ class example1 implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -1035,6 +1090,120 @@ class example1 implements \Protobuf\Message {
     }
     $this->aoneof = $o->aoneof->Copy();
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is example1)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->adouble !== 0.0) {
+      $this->adouble = $o->adouble;
+    }
+    if ($o->afloat !== 0.0) {
+      $this->afloat = $o->afloat;
+    }
+    if ($o->aint32 !== 0) {
+      $this->aint32 = $o->aint32;
+    }
+    if ($o->aint64 !== 0) {
+      $this->aint64 = $o->aint64;
+    }
+    if ($o->auint32 !== 0) {
+      $this->auint32 = $o->auint32;
+    }
+    if ($o->auint64 !== 0) {
+      $this->auint64 = $o->auint64;
+    }
+    if ($o->asint32 !== 0) {
+      $this->asint32 = $o->asint32;
+    }
+    if ($o->asint64 !== 0) {
+      $this->asint64 = $o->asint64;
+    }
+    if ($o->afixed32 !== 0) {
+      $this->afixed32 = $o->afixed32;
+    }
+    if ($o->afixed64 !== 0) {
+      $this->afixed64 = $o->afixed64;
+    }
+    if ($o->asfixed32 !== 0) {
+      $this->asfixed32 = $o->asfixed32;
+    }
+    if ($o->asfixed64 !== 0) {
+      $this->asfixed64 = $o->asfixed64;
+    }
+    if ($o->abool !== false) {
+      $this->abool = $o->abool;
+    }
+    if ($o->astring !== '') {
+      $this->astring = $o->astring;
+    }
+    if ($o->abytes !== '') {
+      $this->abytes = $o->abytes;
+    }
+    if ($o->aenum1 !== \foo\bar\AEnum1::FromInt(0)) {
+      $this->aenum1 = $o->aenum1;
+    }
+    if ($o->aenum2 !== \foo\bar\example1_AEnum2::FromInt(0)) {
+      $this->aenum2 = $o->aenum2;
+    }
+    if ($o->aenum22 !== \fiz\baz\AEnum2::FromInt(0)) {
+      $this->aenum22 = $o->aenum22;
+    }
+    foreach ($o->manystring as $v) {
+      $this->manystring []= $v;
+    }
+    foreach ($o->manyint64 as $v) {
+      $this->manyint64 []= $v;
+    }
+    if ($o->aexample2 !== null) {
+      if ($this->aexample2 !== null) {
+        $this->aexample2->MergeMessageFrom($o->aexample2);
+      } else {
+        $this->aexample2 = new \foo\bar\example1_example2();
+        $this->aexample2->CopyFrom($o);
+      }
+    }
+    if ($o->aexample22 !== null) {
+      if ($this->aexample22 !== null) {
+        $this->aexample22->MergeMessageFrom($o->aexample22);
+      } else {
+        $this->aexample22 = new \foo\bar\example2();
+        $this->aexample22->CopyFrom($o);
+      }
+    }
+    if ($o->aexample23 !== null) {
+      if ($this->aexample23 !== null) {
+        $this->aexample23->MergeMessageFrom($o->aexample23);
+      } else {
+        $this->aexample23 = new \fiz\baz\example2();
+        $this->aexample23->CopyFrom($o);
+      }
+    }
+    if ($o->outoforder !== 0) {
+      $this->outoforder = $o->outoforder;
+    }
+    foreach ($o->amap as $k => $v) {
+      $this->amap[$k] = $v;
+    }
+    foreach ($o->amap2 as $k => $v) {
+      $vc = new \fiz\baz\example2();
+      $vc->CopyFrom($v);
+      $this->amap2[$k] = $vc;
+    }
+    if ($o->anany !== null) {
+      if ($this->anany !== null) {
+        $this->anany->MergeMessageFrom($o->anany);
+      } else {
+        $this->anany = new \google\protobuf\Any();
+        $this->anany->CopyFrom($o);
+      }
+    }
+    if ($o->aoneof->WhichOneof() !== example1_aoneof_oneof_t::NOT_SET) {
+      $this->aoneof = $o->aoneof->Copy();
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

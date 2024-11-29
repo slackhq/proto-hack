@@ -39,7 +39,7 @@ class DoubleValue implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -62,6 +62,17 @@ class DoubleValue implements \Protobuf\Message {
     }
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is DoubleValue)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->value !== 0.0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -101,7 +112,7 @@ class FloatValue implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -124,6 +135,17 @@ class FloatValue implements \Protobuf\Message {
     }
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is FloatValue)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->value !== 0.0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -163,7 +185,7 @@ class Int64Value implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -186,6 +208,17 @@ class Int64Value implements \Protobuf\Message {
     }
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Int64Value)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -225,7 +258,7 @@ class UInt64Value implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -248,6 +281,17 @@ class UInt64Value implements \Protobuf\Message {
     }
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is UInt64Value)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -287,7 +331,7 @@ class Int32Value implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -310,6 +354,17 @@ class Int32Value implements \Protobuf\Message {
     }
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Int32Value)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -349,7 +404,7 @@ class UInt32Value implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -372,6 +427,17 @@ class UInt32Value implements \Protobuf\Message {
     }
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is UInt32Value)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->value !== 0) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -411,7 +477,7 @@ class BoolValue implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -434,6 +500,17 @@ class BoolValue implements \Protobuf\Message {
     }
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is BoolValue)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->value !== false) {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -473,7 +550,7 @@ class StringValue implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -496,6 +573,17 @@ class StringValue implements \Protobuf\Message {
     }
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is StringValue)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->value !== '') {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -535,7 +623,7 @@ class BytesValue implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -558,6 +646,17 @@ class BytesValue implements \Protobuf\Message {
     }
     $this->value = $o->value;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is BytesValue)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->value !== '') {
+      $this->value = $o->value;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

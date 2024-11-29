@@ -38,7 +38,7 @@ class pb_Class implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -73,6 +73,17 @@ class pb_Class implements \Protobuf\Message {
     }
     $this->name = $o->name;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is pb_Class)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -115,7 +126,7 @@ class pb_Interface implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -163,6 +174,22 @@ class pb_Interface implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is pb_Interface)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->class !== null) {
+      if ($this->class !== null) {
+        $this->class->MergeMessageFrom($o->class);
+      } else {
+        $this->class = new \pb_Class();
+        $this->class->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class NotClass implements \Protobuf\Message {
@@ -200,7 +227,7 @@ class NotClass implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -235,6 +262,17 @@ class NotClass implements \Protobuf\Message {
     }
     $this->name = $o->name;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is NotClass)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->name !== '') {
+      $this->name = $o->name;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }

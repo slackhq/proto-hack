@@ -70,7 +70,7 @@ class Struct_FieldsEntry implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -126,6 +126,25 @@ class Struct_FieldsEntry implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Struct_FieldsEntry)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->key !== '') {
+      $this->key = $o->key;
+    }
+    if ($o->value !== null) {
+      if ($this->value !== null) {
+        $this->value->MergeMessageFrom($o->value);
+      } else {
+        $this->value = new \google\protobuf\Value();
+        $this->value->CopyFrom($o);
+      }
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class Struct implements \Protobuf\Message {
@@ -165,7 +184,7 @@ class Struct implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -208,6 +227,19 @@ class Struct implements \Protobuf\Message {
       $this->fields[$k] = $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Struct)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->fields as $k => $v) {
+      $vc = new \google\protobuf\Value();
+      $vc->CopyFrom($v);
+      $this->fields[$k] = $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
@@ -435,7 +467,7 @@ class Value implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -498,6 +530,17 @@ class Value implements \Protobuf\Message {
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is Value)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->kind->WhichOneof() !== Value_kind_oneof_t::NOT_SET) {
+      $this->kind = $o->kind->Copy();
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
 }
 
 class ListValue implements \Protobuf\Message {
@@ -537,7 +580,7 @@ class ListValue implements \Protobuf\Message {
           $d->skip($fn, $wt);
       }
     }
-    $this->XXX_unrecognized = $d->skippedRaw();
+    $this->XXX_unrecognized .= $d->skippedRaw();
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
@@ -577,6 +620,19 @@ class ListValue implements \Protobuf\Message {
       $this->values []= $nv;
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+
+  public function MergeMessageFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is ListValue)) {
+      return \Errors\Errorf('MergeMessageFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->values as $v) {
+      $vc = new \google\protobuf\Value();
+      $vc->CopyFrom($v);
+      $this->values []= $vc;
+    }
+    $this->XXX_unrecognized .= $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
