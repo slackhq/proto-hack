@@ -5,10 +5,14 @@ namespace google\protobuf\compiler;
 // Source: google/protobuf/compiler/plugin.proto
 
 class Version implements \Protobuf\Message {
-  public int $major;
-  public int $minor;
-  public int $patch;
-  public string $suffix;
+  private int $major;
+  private bool $was_major_set;
+  private int $minor;
+  private bool $was_minor_set;
+  private int $patch;
+  private bool $was_patch_set;
+  private string $suffix;
+  private bool $was_suffix_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -17,11 +21,87 @@ class Version implements \Protobuf\Message {
     ?'patch' => int,
     ?'suffix' => string,
   ) $s = shape()) {
-    $this->major = $s['major'] ?? 0;
-    $this->minor = $s['minor'] ?? 0;
-    $this->patch = $s['patch'] ?? 0;
-    $this->suffix = $s['suffix'] ?? '';
+    if (Shapes::keyExists($s, 'major')) {
+      $this->major = $s['major'];
+      $this->was_major_set = true;
+    } else {
+      $this->major = 0;
+      $this->was_major_set = false;
+    }
+    if (Shapes::keyExists($s, 'minor')) {
+      $this->minor = $s['minor'];
+      $this->was_minor_set = true;
+    } else {
+      $this->minor = 0;
+      $this->was_minor_set = false;
+    }
+    if (Shapes::keyExists($s, 'patch')) {
+      $this->patch = $s['patch'];
+      $this->was_patch_set = true;
+    } else {
+      $this->patch = 0;
+      $this->was_patch_set = false;
+    }
+    if (Shapes::keyExists($s, 'suffix')) {
+      $this->suffix = $s['suffix'];
+      $this->was_suffix_set = true;
+    } else {
+      $this->suffix = '';
+      $this->was_suffix_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getMajor(): int {
+    return $this->major;
+  }
+
+  public function setMajor(int $v): void {
+    $this->major = $v;
+    $this->was_major_set = true;
+  }
+
+  public function hasMajor(): bool {
+    return $this->was_major_set;
+  }
+
+  public function getMinor(): int {
+    return $this->minor;
+  }
+
+  public function setMinor(int $v): void {
+    $this->minor = $v;
+    $this->was_minor_set = true;
+  }
+
+  public function hasMinor(): bool {
+    return $this->was_minor_set;
+  }
+
+  public function getPatch(): int {
+    return $this->patch;
+  }
+
+  public function setPatch(int $v): void {
+    $this->patch = $v;
+    $this->was_patch_set = true;
+  }
+
+  public function hasPatch(): bool {
+    return $this->was_patch_set;
+  }
+
+  public function getSuffix(): string {
+    return $this->suffix;
+  }
+
+  public function setSuffix(string $v): void {
+    $this->suffix = $v;
+    $this->was_suffix_set = true;
+  }
+
+  public function hasSuffix(): bool {
+    return $this->was_suffix_set;
   }
 
   public function MessageName(): string {
@@ -43,15 +123,19 @@ class Version implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->major = $d->readVarint32Signed();
+          $this->was_major_set = true;
           break;
         case 2:
           $this->minor = $d->readVarint32Signed();
+          $this->was_minor_set = true;
           break;
         case 3:
           $this->patch = $d->readVarint32Signed();
+          $this->was_patch_set = true;
           break;
         case 4:
           $this->suffix = $d->readString();
+          $this->was_suffix_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -61,19 +145,19 @@ class Version implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->major !== 0) {
+    if ($this->was_major_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->major);
     }
-    if ($this->minor !== 0) {
+    if ($this->was_minor_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->minor);
     }
-    if ($this->patch !== 0) {
+    if ($this->was_patch_set) {
       $e->writeTag(3, 0);
       $e->writeVarint($this->patch);
     }
-    if ($this->suffix !== '') {
+    if ($this->was_suffix_set) {
       $e->writeTag(4, 2);
       $e->writeString($this->suffix);
     }
@@ -81,10 +165,18 @@ class Version implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('major', 'major', $this->major, false);
-    $e->writeInt32('minor', 'minor', $this->minor, false);
-    $e->writeInt32('patch', 'patch', $this->patch, false);
-    $e->writeString('suffix', 'suffix', $this->suffix, false);
+    if ($this->hasMajor()) {
+      $e->writeInt32('major', 'major', $this->major, false);
+    }
+    if ($this->hasMinor()) {
+      $e->writeInt32('minor', 'minor', $this->minor, false);
+    }
+    if ($this->hasPatch()) {
+      $e->writeInt32('patch', 'patch', $this->patch, false);
+    }
+    if ($this->hasSuffix()) {
+      $e->writeString('suffix', 'suffix', $this->suffix, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -94,15 +186,19 @@ class Version implements \Protobuf\Message {
       switch ($k) {
         case 'major':
           $this->major = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_major_set = true;
           break;
         case 'minor':
           $this->minor = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_minor_set = true;
           break;
         case 'patch':
           $this->patch = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_patch_set = true;
           break;
         case 'suffix':
           $this->suffix = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_suffix_set = true;
           break;
         default:
         break;
@@ -114,10 +210,18 @@ class Version implements \Protobuf\Message {
     if (!($o is Version)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->major = $o->major;
-    $this->minor = $o->minor;
-    $this->patch = $o->patch;
-    $this->suffix = $o->suffix;
+    if ($o->hasMajor()) {
+      $this->major = $o->major;
+    }
+    if ($o->hasMinor()) {
+      $this->minor = $o->minor;
+    }
+    if ($o->hasPatch()) {
+      $this->patch = $o->patch;
+    }
+    if ($o->hasSuffix()) {
+      $this->suffix = $o->suffix;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
@@ -125,9 +229,11 @@ class Version implements \Protobuf\Message {
 
 class CodeGeneratorRequest implements \Protobuf\Message {
   public vec<string> $file_to_generate;
-  public string $parameter;
+  private string $parameter;
+  private bool $was_parameter_set;
   public vec<\google\protobuf\FileDescriptorProto> $proto_file;
-  public ?\google\protobuf\compiler\Version $compiler_version;
+  private ?\google\protobuf\compiler\Version $compiler_version;
+  private bool $was_compiler_version_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -137,10 +243,48 @@ class CodeGeneratorRequest implements \Protobuf\Message {
     ?'compiler_version' => ?\google\protobuf\compiler\Version,
   ) $s = shape()) {
     $this->file_to_generate = $s['file_to_generate'] ?? vec[];
-    $this->parameter = $s['parameter'] ?? '';
+    if (Shapes::keyExists($s, 'parameter')) {
+      $this->parameter = $s['parameter'];
+      $this->was_parameter_set = true;
+    } else {
+      $this->parameter = '';
+      $this->was_parameter_set = false;
+    }
     $this->proto_file = $s['proto_file'] ?? vec[];
-    $this->compiler_version = $s['compiler_version'] ?? null;
+    if (Shapes::keyExists($s, 'compiler_version')) {
+      $this->compiler_version = $s['compiler_version'];
+      $this->was_compiler_version_set = true;
+    } else {
+      $this->compiler_version = null;
+      $this->was_compiler_version_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getParameter(): string {
+    return $this->parameter;
+  }
+
+  public function setParameter(string $v): void {
+    $this->parameter = $v;
+    $this->was_parameter_set = true;
+  }
+
+  public function hasParameter(): bool {
+    return $this->was_parameter_set;
+  }
+
+  public function getCompilerVersion(): ?\google\protobuf\compiler\Version {
+    return $this->compiler_version;
+  }
+
+  public function setCompilerVersion(?\google\protobuf\compiler\Version $v): void {
+    $this->compiler_version = $v;
+    $this->was_compiler_version_set = true;
+  }
+
+  public function hasCompilerVersion(): bool {
+    return $this->was_compiler_version_set;
   }
 
   public function MessageName(): string {
@@ -165,10 +309,12 @@ class CodeGeneratorRequest implements \Protobuf\Message {
           break;
         case 2:
           $this->parameter = $d->readString();
+          $this->was_parameter_set = true;
           break;
         case 3:
           if ($this->compiler_version is null) {
             $this->compiler_version = new \google\protobuf\compiler\Version();
+            $this->was_compiler_version_set = true;
           }
           $this->compiler_version->MergeFrom($d->readDecoder());
           break;
@@ -189,15 +335,17 @@ class CodeGeneratorRequest implements \Protobuf\Message {
       $e->writeTag(1, 2);
       $e->writeString($elem);
     }
-    if ($this->parameter !== '') {
+    if ($this->was_parameter_set) {
       $e->writeTag(2, 2);
       $e->writeString($this->parameter);
     }
     $msg = $this->compiler_version;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 3);
+      if ($this->was_compiler_version_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 3);
+      }
     }
     foreach ($this->proto_file as $msg) {
       $nested = new \Protobuf\Internal\Encoder();
@@ -209,8 +357,12 @@ class CodeGeneratorRequest implements \Protobuf\Message {
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
     $e->writePrimitiveList('file_to_generate', 'fileToGenerate', $this->file_to_generate);
-    $e->writeString('parameter', 'parameter', $this->parameter, false);
-    $e->writeMessage('compiler_version', 'compilerVersion', $this->compiler_version, false);
+    if ($this->hasParameter()) {
+      $e->writeString('parameter', 'parameter', $this->parameter, false);
+    }
+    if ($this->hasCompilerVersion()) {
+      $e->writeMessage('compiler_version', 'compilerVersion', $this->compiler_version, false);
+    }
     $e->writeMessageList('proto_file', 'protoFile', $this->proto_file);
   }
 
@@ -226,11 +378,13 @@ class CodeGeneratorRequest implements \Protobuf\Message {
           break;
         case 'parameter':
           $this->parameter = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_parameter_set = true;
           break;
         case 'compiler_version': case 'compilerVersion':
           if ($v is null) break;
           if ($this->compiler_version is null) {
             $this->compiler_version = new \google\protobuf\compiler\Version();
+            $this->was_compiler_version_set = true;
           }
           $this->compiler_version->MergeJsonFrom($v);
           break;
@@ -252,12 +406,16 @@ class CodeGeneratorRequest implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     $this->file_to_generate = $o->file_to_generate;
-    $this->parameter = $o->parameter;
+    if ($o->hasParameter()) {
+      $this->parameter = $o->parameter;
+    }
     $tmp = $o->compiler_version;
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\compiler\Version();
       $nv->CopyFrom($tmp);
-      $this->compiler_version = $nv;
+      $this->setCompilerVersion($nv);
+    } else if ($o->hasCompilerVersion()) {
+      $this->setCompilerVersion(null);
     }
     foreach ($o->proto_file as $v) {
       $nv = new \google\protobuf\FileDescriptorProto();
@@ -295,10 +453,14 @@ abstract class CodeGeneratorResponse_Feature {
 }
 
 class CodeGeneratorResponse_File implements \Protobuf\Message {
-  public string $name;
-  public string $insertion_point;
-  public string $content;
-  public ?\google\protobuf\GeneratedCodeInfo $generated_code_info;
+  private string $name;
+  private bool $was_name_set;
+  private string $insertion_point;
+  private bool $was_insertion_point_set;
+  private string $content;
+  private bool $was_content_set;
+  private ?\google\protobuf\GeneratedCodeInfo $generated_code_info;
+  private bool $was_generated_code_info_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -307,11 +469,87 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
     ?'content' => string,
     ?'generated_code_info' => ?\google\protobuf\GeneratedCodeInfo,
   ) $s = shape()) {
-    $this->name = $s['name'] ?? '';
-    $this->insertion_point = $s['insertion_point'] ?? '';
-    $this->content = $s['content'] ?? '';
-    $this->generated_code_info = $s['generated_code_info'] ?? null;
+    if (Shapes::keyExists($s, 'name')) {
+      $this->name = $s['name'];
+      $this->was_name_set = true;
+    } else {
+      $this->name = '';
+      $this->was_name_set = false;
+    }
+    if (Shapes::keyExists($s, 'insertion_point')) {
+      $this->insertion_point = $s['insertion_point'];
+      $this->was_insertion_point_set = true;
+    } else {
+      $this->insertion_point = '';
+      $this->was_insertion_point_set = false;
+    }
+    if (Shapes::keyExists($s, 'content')) {
+      $this->content = $s['content'];
+      $this->was_content_set = true;
+    } else {
+      $this->content = '';
+      $this->was_content_set = false;
+    }
+    if (Shapes::keyExists($s, 'generated_code_info')) {
+      $this->generated_code_info = $s['generated_code_info'];
+      $this->was_generated_code_info_set = true;
+    } else {
+      $this->generated_code_info = null;
+      $this->was_generated_code_info_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setName(string $v): void {
+    $this->name = $v;
+    $this->was_name_set = true;
+  }
+
+  public function hasName(): bool {
+    return $this->was_name_set;
+  }
+
+  public function getInsertionPoint(): string {
+    return $this->insertion_point;
+  }
+
+  public function setInsertionPoint(string $v): void {
+    $this->insertion_point = $v;
+    $this->was_insertion_point_set = true;
+  }
+
+  public function hasInsertionPoint(): bool {
+    return $this->was_insertion_point_set;
+  }
+
+  public function getContent(): string {
+    return $this->content;
+  }
+
+  public function setContent(string $v): void {
+    $this->content = $v;
+    $this->was_content_set = true;
+  }
+
+  public function hasContent(): bool {
+    return $this->was_content_set;
+  }
+
+  public function getGeneratedCodeInfo(): ?\google\protobuf\GeneratedCodeInfo {
+    return $this->generated_code_info;
+  }
+
+  public function setGeneratedCodeInfo(?\google\protobuf\GeneratedCodeInfo $v): void {
+    $this->generated_code_info = $v;
+    $this->was_generated_code_info_set = true;
+  }
+
+  public function hasGeneratedCodeInfo(): bool {
+    return $this->was_generated_code_info_set;
   }
 
   public function MessageName(): string {
@@ -333,16 +571,20 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->name = $d->readString();
+          $this->was_name_set = true;
           break;
         case 2:
           $this->insertion_point = $d->readString();
+          $this->was_insertion_point_set = true;
           break;
         case 15:
           $this->content = $d->readString();
+          $this->was_content_set = true;
           break;
         case 16:
           if ($this->generated_code_info is null) {
             $this->generated_code_info = new \google\protobuf\GeneratedCodeInfo();
+            $this->was_generated_code_info_set = true;
           }
           $this->generated_code_info->MergeFrom($d->readDecoder());
           break;
@@ -354,32 +596,42 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->name !== '') {
+    if ($this->was_name_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->name);
     }
-    if ($this->insertion_point !== '') {
+    if ($this->was_insertion_point_set) {
       $e->writeTag(2, 2);
       $e->writeString($this->insertion_point);
     }
-    if ($this->content !== '') {
+    if ($this->was_content_set) {
       $e->writeTag(15, 2);
       $e->writeString($this->content);
     }
     $msg = $this->generated_code_info;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 16);
+      if ($this->was_generated_code_info_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 16);
+      }
     }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('name', 'name', $this->name, false);
-    $e->writeString('insertion_point', 'insertionPoint', $this->insertion_point, false);
-    $e->writeString('content', 'content', $this->content, false);
-    $e->writeMessage('generated_code_info', 'generatedCodeInfo', $this->generated_code_info, false);
+    if ($this->hasName()) {
+      $e->writeString('name', 'name', $this->name, false);
+    }
+    if ($this->hasInsertionPoint()) {
+      $e->writeString('insertion_point', 'insertionPoint', $this->insertion_point, false);
+    }
+    if ($this->hasContent()) {
+      $e->writeString('content', 'content', $this->content, false);
+    }
+    if ($this->hasGeneratedCodeInfo()) {
+      $e->writeMessage('generated_code_info', 'generatedCodeInfo', $this->generated_code_info, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -389,17 +641,21 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
       switch ($k) {
         case 'name':
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_name_set = true;
           break;
         case 'insertion_point': case 'insertionPoint':
           $this->insertion_point = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_insertion_point_set = true;
           break;
         case 'content':
           $this->content = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_content_set = true;
           break;
         case 'generated_code_info': case 'generatedCodeInfo':
           if ($v is null) break;
           if ($this->generated_code_info is null) {
             $this->generated_code_info = new \google\protobuf\GeneratedCodeInfo();
+            $this->was_generated_code_info_set = true;
           }
           $this->generated_code_info->MergeJsonFrom($v);
           break;
@@ -413,14 +669,22 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
     if (!($o is CodeGeneratorResponse_File)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->name = $o->name;
-    $this->insertion_point = $o->insertion_point;
-    $this->content = $o->content;
+    if ($o->hasName()) {
+      $this->name = $o->name;
+    }
+    if ($o->hasInsertionPoint()) {
+      $this->insertion_point = $o->insertion_point;
+    }
+    if ($o->hasContent()) {
+      $this->content = $o->content;
+    }
     $tmp = $o->generated_code_info;
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\GeneratedCodeInfo();
       $nv->CopyFrom($tmp);
-      $this->generated_code_info = $nv;
+      $this->setGeneratedCodeInfo($nv);
+    } else if ($o->hasGeneratedCodeInfo()) {
+      $this->setGeneratedCodeInfo(null);
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -428,8 +692,10 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
 }
 
 class CodeGeneratorResponse implements \Protobuf\Message {
-  public string $error;
-  public int $supported_features;
+  private string $error;
+  private bool $was_error_set;
+  private int $supported_features;
+  private bool $was_supported_features_set;
   public vec<\google\protobuf\compiler\CodeGeneratorResponse_File> $file;
   private string $XXX_unrecognized;
 
@@ -438,10 +704,48 @@ class CodeGeneratorResponse implements \Protobuf\Message {
     ?'supported_features' => int,
     ?'file' => vec<\google\protobuf\compiler\CodeGeneratorResponse_File>,
   ) $s = shape()) {
-    $this->error = $s['error'] ?? '';
-    $this->supported_features = $s['supported_features'] ?? 0;
+    if (Shapes::keyExists($s, 'error')) {
+      $this->error = $s['error'];
+      $this->was_error_set = true;
+    } else {
+      $this->error = '';
+      $this->was_error_set = false;
+    }
+    if (Shapes::keyExists($s, 'supported_features')) {
+      $this->supported_features = $s['supported_features'];
+      $this->was_supported_features_set = true;
+    } else {
+      $this->supported_features = 0;
+      $this->was_supported_features_set = false;
+    }
     $this->file = $s['file'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getError(): string {
+    return $this->error;
+  }
+
+  public function setError(string $v): void {
+    $this->error = $v;
+    $this->was_error_set = true;
+  }
+
+  public function hasError(): bool {
+    return $this->was_error_set;
+  }
+
+  public function getSupportedFeatures(): int {
+    return $this->supported_features;
+  }
+
+  public function setSupportedFeatures(int $v): void {
+    $this->supported_features = $v;
+    $this->was_supported_features_set = true;
+  }
+
+  public function hasSupportedFeatures(): bool {
+    return $this->was_supported_features_set;
   }
 
   public function MessageName(): string {
@@ -463,9 +767,11 @@ class CodeGeneratorResponse implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->error = $d->readString();
+          $this->was_error_set = true;
           break;
         case 2:
           $this->supported_features = $d->readVarint();
+          $this->was_supported_features_set = true;
           break;
         case 15:
           $obj = new \google\protobuf\compiler\CodeGeneratorResponse_File();
@@ -480,11 +786,11 @@ class CodeGeneratorResponse implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->error !== '') {
+    if ($this->was_error_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->error);
     }
-    if ($this->supported_features !== 0) {
+    if ($this->was_supported_features_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->supported_features);
     }
@@ -497,8 +803,12 @@ class CodeGeneratorResponse implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('error', 'error', $this->error, false);
-    $e->writeInt64Unsigned('supported_features', 'supportedFeatures', $this->supported_features, false);
+    if ($this->hasError()) {
+      $e->writeString('error', 'error', $this->error, false);
+    }
+    if ($this->hasSupportedFeatures()) {
+      $e->writeInt64Unsigned('supported_features', 'supportedFeatures', $this->supported_features, false);
+    }
     $e->writeMessageList('file', 'file', $this->file);
   }
 
@@ -509,9 +819,11 @@ class CodeGeneratorResponse implements \Protobuf\Message {
       switch ($k) {
         case 'error':
           $this->error = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_error_set = true;
           break;
         case 'supported_features': case 'supportedFeatures':
           $this->supported_features = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_supported_features_set = true;
           break;
         case 'file':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -530,8 +842,12 @@ class CodeGeneratorResponse implements \Protobuf\Message {
     if (!($o is CodeGeneratorResponse)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->error = $o->error;
-    $this->supported_features = $o->supported_features;
+    if ($o->hasError()) {
+      $this->error = $o->error;
+    }
+    if ($o->hasSupportedFeatures()) {
+      $this->supported_features = $o->supported_features;
+    }
     foreach ($o->file as $v) {
       $nv = new \google\protobuf\compiler\CodeGeneratorResponse_File();
       $nv->CopyFrom($v);

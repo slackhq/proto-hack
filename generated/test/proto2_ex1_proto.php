@@ -32,14 +32,21 @@ abstract class AEnum1 {
   }
 }
 
-class example1 implements \Protobuf\Message {
-  public \bing\bong\AEnum1_enum_t $enum_default;
-  public \bing\bong\AEnum1_enum_t $enum_custom;
-  public float $adouble;
-  public float $afloat;
-  public bool $abool;
-  public string $astring;
-  public string $abytes;
+class example1proto2syntax implements \Protobuf\Message {
+  private \bing\bong\AEnum1_enum_t $enum_default;
+  private bool $was_enum_default_set;
+  private \bing\bong\AEnum1_enum_t $enum_custom;
+  private bool $was_enum_custom_set;
+  private float $adouble;
+  private bool $was_adouble_set;
+  private float $afloat;
+  private bool $was_afloat_set;
+  private bool $abool;
+  private bool $was_abool_set;
+  private string $astring;
+  private bool $was_astring_set;
+  private string $abytes;
+  private bool $was_abytes_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -51,22 +58,155 @@ class example1 implements \Protobuf\Message {
     ?'astring' => string,
     ?'abytes' => string,
   ) $s = shape()) {
-    $this->enum_default = $s['enum_default'] ?? \bing\bong\AEnum1::A;
-    $this->enum_custom = $s['enum_custom'] ?? \bing\bong\AEnum1::pb_CLASS;
-    $this->adouble = $s['adouble'] ?? (float)3;
-    $this->afloat = $s['afloat'] ?? (float)4.5;
-    $this->abool = $s['abool'] ?? true;
-    $this->astring = $s['astring'] ?? 'custom!';
-    $this->abytes = $s['abytes'] ?? \stripcslashes('foo');
+    if (Shapes::keyExists($s, 'enum_default')) {
+      $this->enum_default = $s['enum_default'];
+      $this->was_enum_default_set = true;
+    } else {
+      $this->enum_default = \bing\bong\AEnum1::A;
+      $this->was_enum_default_set = false;
+    }
+    if (Shapes::keyExists($s, 'enum_custom')) {
+      $this->enum_custom = $s['enum_custom'];
+      $this->was_enum_custom_set = true;
+    } else {
+      $this->enum_custom = \bing\bong\AEnum1::pb_CLASS;
+      $this->was_enum_custom_set = false;
+    }
+    if (Shapes::keyExists($s, 'adouble')) {
+      $this->adouble = $s['adouble'];
+      $this->was_adouble_set = true;
+    } else {
+      $this->adouble = (float)3;
+      $this->was_adouble_set = false;
+    }
+    if (Shapes::keyExists($s, 'afloat')) {
+      $this->afloat = $s['afloat'];
+      $this->was_afloat_set = true;
+    } else {
+      $this->afloat = (float)4.5;
+      $this->was_afloat_set = false;
+    }
+    if (Shapes::keyExists($s, 'abool')) {
+      $this->abool = $s['abool'];
+      $this->was_abool_set = true;
+    } else {
+      $this->abool = true;
+      $this->was_abool_set = false;
+    }
+    if (Shapes::keyExists($s, 'astring')) {
+      $this->astring = $s['astring'];
+      $this->was_astring_set = true;
+    } else {
+      $this->astring = 'custom!';
+      $this->was_astring_set = false;
+    }
+    if (Shapes::keyExists($s, 'abytes')) {
+      $this->abytes = $s['abytes'];
+      $this->was_abytes_set = true;
+    } else {
+      $this->abytes = \stripcslashes('foo');
+      $this->was_abytes_set = false;
+    }
     $this->XXX_unrecognized = '';
   }
 
-  public function MessageName(): string {
-    return "bing.bong.example1";
+  public function getEnumDefault(): \bing\bong\AEnum1_enum_t {
+    return $this->enum_default;
   }
 
-  public static function ParseFrom(string $input): ?example1 {
-    $msg = new example1();
+  public function setEnumDefault(\bing\bong\AEnum1_enum_t $v): void {
+    $this->enum_default = $v;
+    $this->was_enum_default_set = true;
+  }
+
+  public function hasEnumDefault(): bool {
+    return $this->was_enum_default_set;
+  }
+
+  public function getEnumCustom(): \bing\bong\AEnum1_enum_t {
+    return $this->enum_custom;
+  }
+
+  public function setEnumCustom(\bing\bong\AEnum1_enum_t $v): void {
+    $this->enum_custom = $v;
+    $this->was_enum_custom_set = true;
+  }
+
+  public function hasEnumCustom(): bool {
+    return $this->was_enum_custom_set;
+  }
+
+  public function getAdouble(): float {
+    return $this->adouble;
+  }
+
+  public function setAdouble(float $v): void {
+    $this->adouble = $v;
+    $this->was_adouble_set = true;
+  }
+
+  public function hasAdouble(): bool {
+    return $this->was_adouble_set;
+  }
+
+  public function getAfloat(): float {
+    return $this->afloat;
+  }
+
+  public function setAfloat(float $v): void {
+    $this->afloat = $v;
+    $this->was_afloat_set = true;
+  }
+
+  public function hasAfloat(): bool {
+    return $this->was_afloat_set;
+  }
+
+  public function getAbool(): bool {
+    return $this->abool;
+  }
+
+  public function setAbool(bool $v): void {
+    $this->abool = $v;
+    $this->was_abool_set = true;
+  }
+
+  public function hasAbool(): bool {
+    return $this->was_abool_set;
+  }
+
+  public function getAstring(): string {
+    return $this->astring;
+  }
+
+  public function setAstring(string $v): void {
+    $this->astring = $v;
+    $this->was_astring_set = true;
+  }
+
+  public function hasAstring(): bool {
+    return $this->was_astring_set;
+  }
+
+  public function getAbytes(): string {
+    return $this->abytes;
+  }
+
+  public function setAbytes(string $v): void {
+    $this->abytes = $v;
+    $this->was_abytes_set = true;
+  }
+
+  public function hasAbytes(): bool {
+    return $this->was_abytes_set;
+  }
+
+  public function MessageName(): string {
+    return "bing.bong.example1proto2syntax";
+  }
+
+  public static function ParseFrom(string $input): ?example1proto2syntax {
+    $msg = new example1proto2syntax();
     $e = \Protobuf\Unmarshal($input, $msg);
     if (!$e->Ok()) {
       return null;
@@ -80,24 +220,31 @@ class example1 implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->enum_default = \bing\bong\AEnum1::FromInt($d->readVarint());
+          $this->was_enum_default_set = true;
           break;
         case 2:
           $this->enum_custom = \bing\bong\AEnum1::FromInt($d->readVarint());
+          $this->was_enum_custom_set = true;
           break;
         case 3:
           $this->adouble = $d->readDouble();
+          $this->was_adouble_set = true;
           break;
         case 4:
           $this->afloat = $d->readFloat();
+          $this->was_afloat_set = true;
           break;
         case 5:
           $this->abool = $d->readBool();
+          $this->was_abool_set = true;
           break;
         case 6:
           $this->astring = $d->readString();
+          $this->was_astring_set = true;
           break;
         case 7:
           $this->abytes = $d->readString();
+          $this->was_abytes_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -107,31 +254,31 @@ class example1 implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->enum_default !== \bing\bong\AEnum1::A) {
+    if ($this->was_enum_default_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->enum_default);
     }
-    if ($this->enum_custom !== \bing\bong\AEnum1::pb_CLASS) {
+    if ($this->was_enum_custom_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->enum_custom);
     }
-    if ($this->adouble !== (float)3) {
+    if ($this->was_adouble_set) {
       $e->writeTag(3, 1);
       $e->writeDouble($this->adouble);
     }
-    if ($this->afloat !== (float)4.5) {
+    if ($this->was_afloat_set) {
       $e->writeTag(4, 5);
       $e->writeFloat($this->afloat);
     }
-    if ($this->abool !== true) {
+    if ($this->was_abool_set) {
       $e->writeTag(5, 0);
       $e->writeBool($this->abool);
     }
-    if ($this->astring !== 'custom!') {
+    if ($this->was_astring_set) {
       $e->writeTag(6, 2);
       $e->writeString($this->astring);
     }
-    if ($this->abytes !== \stripcslashes('foo')) {
+    if ($this->was_abytes_set) {
       $e->writeTag(7, 2);
       $e->writeString($this->abytes);
     }
@@ -139,13 +286,27 @@ class example1 implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeEnum('enum_default', 'enumDefault', \bing\bong\AEnum1::ToStringDict(), $this->enum_default, false);
-    $e->writeEnum('enum_custom', 'enumCustom', \bing\bong\AEnum1::ToStringDict(), $this->enum_custom, false);
-    $e->writeFloat('adouble', 'adouble', $this->adouble, false);
-    $e->writeFloat('afloat', 'afloat', $this->afloat, false);
-    $e->writeBool('abool', 'abool', $this->abool, false);
-    $e->writeString('astring', 'astring', $this->astring, false);
-    $e->writeBytes('abytes', 'abytes', $this->abytes, false);
+    if ($this->hasEnumDefault()) {
+      $e->writeEnum('enum_default', 'enumDefault', \bing\bong\AEnum1::ToStringDict(), $this->enum_default, false);
+    }
+    if ($this->hasEnumCustom()) {
+      $e->writeEnum('enum_custom', 'enumCustom', \bing\bong\AEnum1::ToStringDict(), $this->enum_custom, false);
+    }
+    if ($this->hasAdouble()) {
+      $e->writeFloat('adouble', 'adouble', $this->adouble, false);
+    }
+    if ($this->hasAfloat()) {
+      $e->writeFloat('afloat', 'afloat', $this->afloat, false);
+    }
+    if ($this->hasAbool()) {
+      $e->writeBool('abool', 'abool', $this->abool, false);
+    }
+    if ($this->hasAstring()) {
+      $e->writeString('astring', 'astring', $this->astring, false);
+    }
+    if ($this->hasAbytes()) {
+      $e->writeBytes('abytes', 'abytes', $this->abytes, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -155,24 +316,31 @@ class example1 implements \Protobuf\Message {
       switch ($k) {
         case 'enum_default': case 'enumDefault':
           $this->enum_default = \bing\bong\AEnum1::FromMixed($v);
+          $this->was_enum_default_set = true;
           break;
         case 'enum_custom': case 'enumCustom':
           $this->enum_custom = \bing\bong\AEnum1::FromMixed($v);
+          $this->was_enum_custom_set = true;
           break;
         case 'adouble':
           $this->adouble = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          $this->was_adouble_set = true;
           break;
         case 'afloat':
           $this->afloat = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          $this->was_afloat_set = true;
           break;
         case 'abool':
           $this->abool = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_abool_set = true;
           break;
         case 'astring':
           $this->astring = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_astring_set = true;
           break;
         case 'abytes':
           $this->abytes = \Protobuf\Internal\JsonDecoder::readBytes($v);
+          $this->was_abytes_set = true;
           break;
         default:
         break;
@@ -181,16 +349,30 @@ class example1 implements \Protobuf\Message {
   }
 
   public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
-    if (!($o is example1)) {
+    if (!($o is example1proto2syntax)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->enum_default = $o->enum_default;
-    $this->enum_custom = $o->enum_custom;
-    $this->adouble = $o->adouble;
-    $this->afloat = $o->afloat;
-    $this->abool = $o->abool;
-    $this->astring = $o->astring;
-    $this->abytes = $o->abytes;
+    if ($o->hasEnumDefault()) {
+      $this->enum_default = $o->enum_default;
+    }
+    if ($o->hasEnumCustom()) {
+      $this->enum_custom = $o->enum_custom;
+    }
+    if ($o->hasAdouble()) {
+      $this->adouble = $o->adouble;
+    }
+    if ($o->hasAfloat()) {
+      $this->afloat = $o->afloat;
+    }
+    if ($o->hasAbool()) {
+      $this->abool = $o->abool;
+    }
+    if ($o->hasAstring()) {
+      $this->astring = $o->astring;
+    }
+    if ($o->hasAbytes()) {
+      $this->abytes = $o->abytes;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
@@ -204,7 +386,7 @@ class XXX_FileDescriptor_test_proto2_ex1__proto implements \Protobuf\Internal\Fi
   }
 
   public function FileDescriptorProtoBytes(): string {
-    // 1015 bytes of gzipped FileDescriptorProto as a string
-    return (string)\gzuncompress("\x78\xda\x74\x8f\xc1\x6a\xb3\x40\x10\xc7\x99\x18\x63\x9c\x2f\x7c\xd8\x85\xc2\xd2\x5c\xd6\x9e\x96\x1e\x2c\xa6\xe9\xa1\x7b\xb3\x69\x6f\x3d\x6d\x1e\x40\xd6\x66\x95\x80\xba\x41\x77\x21\x7d\x8c\xbe\x71\x51\x93\xde\x7a\x9a\x99\x1f\xbf\x19\xfe\x83\xb7\x56\xf7\xf6\xf1\xd4\x19\x6b\x36\xb9\x3e\xa7\xc9\xd8\x92\xb0\x38\xb6\x55\x52\x98\xb6\xba\xff\x9e\xe1\x52\x9f\x55\x73\xaa\x75\x4a\xb6\xb8\xd2\xad\x6b\xf2\x83\x2e\x95\xab\x2d\x5\x6\xfc\xff\xe6\x26\xf9\xd5\x93\xec\xbd\x75\x4d\x2a\xff\xd\xda\xdb\x64\x91\x17\x1c\xc7\xfc\xd3\xf5\xd6\x34\x74\xf6\xc7\x92\xf0\x77\x1f\xd9\x7e\x2f\x71\x90\x77\xa3\x4b\xd6\x18\xa8\x83\x71\x45\xad\xa9\xc7\x80\x83\x80\x27\x79\x25\x64\x8d\xb\x55\xd6\x46\x59\x3a\x67\xc0\x67\xc2\xdb\x26\xcf\xf2\x82\xc8\x1d\xfa\xaa\x30\xa6\xa6\x3e\x3\xbe\x14\x73\xdb\x39\x2d\x27\x44\x62\xc\x54\x6f\xbb\x63\x5b\xd1\x5\x3\x1e\x8a\x60\x8a\x16\xcb\x2b\x1f\x6f\x17\x5f\x56\xf7\x34\x60\xc0\x57\xc2\x2b\x8d\x91\x17\xf4\x10\xe3\x62\x8a\x4c\x7c\x84\x2c\xf2\x86\xf2\x1a\x1\x9\x71\x7a\x21\xc2\x9f\x0\x0\x0\xff\xff\xa1\x62\x5d\xdb");
+    // 1033 bytes of gzipped FileDescriptorProto as a string
+    return (string)\gzuncompress("\x78\xda\x74\x8f\xb1\x4e\xc3\x30\x10\x86\xe5\xa6\x69\xe8\x51\xa1\x62\x81\x64\xd1\xc5\x61\xb2\x18\x82\x52\xca\x80\xb7\x50\xd8\x98\xdc\x7\x88\x1c\xea\x44\x95\x12\xbb\x4a\x6c\x29\x7d\x18\xde\x15\x25\x6e\xd9\x98\xec\xfb\xf4\xfd\xa7\xff\xe0\xde\xaa\xce\x3e\x1f\x5b\x63\xcd\x3a\x57\x7d\x9a\x8c\x5f\x3c\x2f\xe\xba\x4a\xa\xa3\xab\xc7\x9f\x9\xdc\xa9\x5e\x36\xc7\x5a\xa5\xde\xeb\x4e\xda\xca\x1e\x6f\x60\xa1\xb4\x6b\xf2\xbd\x2a\xa5\xab\x2d\x41\x14\xb1\x9b\xf5\x6d\xf2\x17\x4d\xb2\x4f\xed\x9a\x54\x5c\xf\xda\x87\xb7\xf0\x1b\x8c\x63\xfe\xed\x3a\x6b\x1a\x32\xf9\x27\xc4\xc3\xed\x57\xb6\xdb\x9\x18\xe4\xed\xe8\xe2\x15\x44\x72\x6f\x5c\x51\x2b\x12\x50\xc4\x10\x47\x2f\xe2\x42\xf0\xa\x66\xb2\xac\x8d\xb4\x64\x4a\x11\x9b\xf0\x60\x93\xbc\x8a\x33\xc2\xf\x10\xca\xc2\x98\x9a\x84\x14\xb1\x2b\x3e\xb5\xad\x53\xc2\x23\x1c\x43\x24\x3b\xdb\x1e\x74\x45\x66\x14\xb1\x39\x8f\x7c\xb5\x58\x5c\xf8\xb8\xbb\x38\x59\xd5\x91\x88\x22\xb6\xe0\x41\x69\x8c\x38\xa3\xa7\x18\x66\xbe\x32\xe\x1\x65\xcb\x60\x78\xde\x97\x8\xcf\xc1\x9f\xb0\x84\xdf\x0\x0\x0\xff\xff\x7e\x50\x63\x0");
   }
 }

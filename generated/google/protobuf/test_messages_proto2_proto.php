@@ -108,7 +108,9 @@ class TestAllTypesProto2_oneof_field_oneof_uint32 implements TestAllTypesProto2_
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('oneof_uint32', 'oneofUint32', $this->oneof_uint32, true);
+    if ($this->hasOneofUint32()) {
+      $e->writeInt32('oneof_uint32', 'oneofUint32', $this->oneof_uint32, true);
+    }
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -130,7 +132,9 @@ class TestAllTypesProto2_oneof_field_oneof_nested_message implements TestAllType
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeMessage('oneof_nested_message', 'oneofNestedMessage', $this->oneof_nested_message, true);
+    if ($this->hasOneofNestedMessage()) {
+      $e->writeMessage('oneof_nested_message', 'oneofNestedMessage', $this->oneof_nested_message, true);
+    }
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -153,7 +157,9 @@ class TestAllTypesProto2_oneof_field_oneof_string implements TestAllTypesProto2_
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('oneof_string', 'oneofString', $this->oneof_string, true);
+    if ($this->hasOneofString()) {
+      $e->writeString('oneof_string', 'oneofString', $this->oneof_string, true);
+    }
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -174,7 +180,9 @@ class TestAllTypesProto2_oneof_field_oneof_bytes implements TestAllTypesProto2_o
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeBytes('oneof_bytes', 'oneofBytes', $this->oneof_bytes, true);
+    if ($this->hasOneofBytes()) {
+      $e->writeBytes('oneof_bytes', 'oneofBytes', $this->oneof_bytes, true);
+    }
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -195,7 +203,9 @@ class TestAllTypesProto2_oneof_field_oneof_bool implements TestAllTypesProto2_on
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeBool('oneof_bool', 'oneofBool', $this->oneof_bool, true);
+    if ($this->hasOneofBool()) {
+      $e->writeBool('oneof_bool', 'oneofBool', $this->oneof_bool, true);
+    }
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -216,7 +226,9 @@ class TestAllTypesProto2_oneof_field_oneof_uint64 implements TestAllTypesProto2_
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt64Unsigned('oneof_uint64', 'oneofUint64', $this->oneof_uint64, true);
+    if ($this->hasOneofUint64()) {
+      $e->writeInt64Unsigned('oneof_uint64', 'oneofUint64', $this->oneof_uint64, true);
+    }
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -237,7 +249,9 @@ class TestAllTypesProto2_oneof_field_oneof_float implements TestAllTypesProto2_o
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeFloat('oneof_float', 'oneofFloat', $this->oneof_float, true);
+    if ($this->hasOneofFloat()) {
+      $e->writeFloat('oneof_float', 'oneofFloat', $this->oneof_float, true);
+    }
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -258,7 +272,9 @@ class TestAllTypesProto2_oneof_field_oneof_double implements TestAllTypesProto2_
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeFloat('oneof_double', 'oneofDouble', $this->oneof_double, true);
+    if ($this->hasOneofDouble()) {
+      $e->writeFloat('oneof_double', 'oneofDouble', $this->oneof_double, true);
+    }
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -279,7 +295,9 @@ class TestAllTypesProto2_oneof_field_oneof_enum implements TestAllTypesProto2_on
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeEnum('oneof_enum', 'oneofEnum', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->oneof_enum, true);
+    if ($this->hasOneofEnum()) {
+      $e->writeEnum('oneof_enum', 'oneofEnum', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->oneof_enum, true);
+    }
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -288,17 +306,57 @@ class TestAllTypesProto2_oneof_field_oneof_enum implements TestAllTypesProto2_on
 }
 
 class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
-  public int $a;
-  public ?\protobuf_test_messages\proto2\TestAllTypesProto2 $corecursive;
+  private int $a;
+  private bool $was_a_set;
+  private ?\protobuf_test_messages\proto2\TestAllTypesProto2 $corecursive;
+  private bool $was_corecursive_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'a' => int,
     ?'corecursive' => ?\protobuf_test_messages\proto2\TestAllTypesProto2,
   ) $s = shape()) {
-    $this->a = $s['a'] ?? 0;
-    $this->corecursive = $s['corecursive'] ?? null;
+    if (Shapes::keyExists($s, 'a')) {
+      $this->a = $s['a'];
+      $this->was_a_set = true;
+    } else {
+      $this->a = 0;
+      $this->was_a_set = false;
+    }
+    if (Shapes::keyExists($s, 'corecursive')) {
+      $this->corecursive = $s['corecursive'];
+      $this->was_corecursive_set = true;
+    } else {
+      $this->corecursive = null;
+      $this->was_corecursive_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getA(): int {
+    return $this->a;
+  }
+
+  public function setA(int $v): void {
+    $this->a = $v;
+    $this->was_a_set = true;
+  }
+
+  public function hasA(): bool {
+    return $this->was_a_set;
+  }
+
+  public function getCorecursive(): ?\protobuf_test_messages\proto2\TestAllTypesProto2 {
+    return $this->corecursive;
+  }
+
+  public function setCorecursive(?\protobuf_test_messages\proto2\TestAllTypesProto2 $v): void {
+    $this->corecursive = $v;
+    $this->was_corecursive_set = true;
+  }
+
+  public function hasCorecursive(): bool {
+    return $this->was_corecursive_set;
   }
 
   public function MessageName(): string {
@@ -320,10 +378,12 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->a = $d->readVarint32Signed();
+          $this->was_a_set = true;
           break;
         case 2:
           if ($this->corecursive is null) {
             $this->corecursive = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+            $this->was_corecursive_set = true;
           }
           $this->corecursive->MergeFrom($d->readDecoder());
           break;
@@ -335,22 +395,28 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->a !== 0) {
+    if ($this->was_a_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->a);
     }
     $msg = $this->corecursive;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 2);
+      if ($this->was_corecursive_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 2);
+      }
     }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('a', 'a', $this->a, false);
-    $e->writeMessage('corecursive', 'corecursive', $this->corecursive, false);
+    if ($this->hasA()) {
+      $e->writeInt32('a', 'a', $this->a, false);
+    }
+    if ($this->hasCorecursive()) {
+      $e->writeMessage('corecursive', 'corecursive', $this->corecursive, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -360,11 +426,13 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
       switch ($k) {
         case 'a':
           $this->a = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_a_set = true;
           break;
         case 'corecursive':
           if ($v is null) break;
           if ($this->corecursive is null) {
             $this->corecursive = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+            $this->was_corecursive_set = true;
           }
           $this->corecursive->MergeJsonFrom($v);
           break;
@@ -378,12 +446,16 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_NestedMessage)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->a = $o->a;
+    if ($o->hasA()) {
+      $this->a = $o->a;
+    }
     $tmp = $o->corecursive;
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2();
       $nv->CopyFrom($tmp);
-      $this->corecursive = $nv;
+      $this->setCorecursive($nv);
+    } else if ($o->hasCorecursive()) {
+      $this->setCorecursive(null);
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -391,17 +463,57 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
 }
 
 class TestAllTypesProto2_MapInt32Int32Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -423,9 +535,11 @@ class TestAllTypesProto2_MapInt32Int32Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readVarint32Signed();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readVarint32Signed();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -435,11 +549,11 @@ class TestAllTypesProto2_MapInt32Int32Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -447,8 +561,12 @@ class TestAllTypesProto2_MapInt32Int32Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('key', 'key', $this->key, false);
-    $e->writeInt32('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt32('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt32('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -458,9 +576,11 @@ class TestAllTypesProto2_MapInt32Int32Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -472,25 +592,69 @@ class TestAllTypesProto2_MapInt32Int32Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapInt32Int32Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapInt64Int64Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -512,9 +676,11 @@ class TestAllTypesProto2_MapInt64Int64Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readVarint();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readVarint();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -524,11 +690,11 @@ class TestAllTypesProto2_MapInt64Int64Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -536,8 +702,12 @@ class TestAllTypesProto2_MapInt64Int64Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt64Signed('key', 'key', $this->key, false);
-    $e->writeInt64Signed('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt64Signed('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt64Signed('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -547,9 +717,11 @@ class TestAllTypesProto2_MapInt64Int64Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -561,25 +733,69 @@ class TestAllTypesProto2_MapInt64Int64Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapInt64Int64Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapUint32Uint32Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -601,9 +817,11 @@ class TestAllTypesProto2_MapUint32Uint32Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readVarint32();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readVarint32();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -613,11 +831,11 @@ class TestAllTypesProto2_MapUint32Uint32Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -625,8 +843,12 @@ class TestAllTypesProto2_MapUint32Uint32Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('key', 'key', $this->key, false);
-    $e->writeInt32('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt32('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt32('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -636,9 +858,11 @@ class TestAllTypesProto2_MapUint32Uint32Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -650,25 +874,69 @@ class TestAllTypesProto2_MapUint32Uint32Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapUint32Uint32Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapUint64Uint64Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -690,9 +958,11 @@ class TestAllTypesProto2_MapUint64Uint64Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readVarint();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readVarint();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -702,11 +972,11 @@ class TestAllTypesProto2_MapUint64Uint64Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -714,8 +984,12 @@ class TestAllTypesProto2_MapUint64Uint64Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt64Unsigned('key', 'key', $this->key, false);
-    $e->writeInt64Unsigned('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt64Unsigned('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt64Unsigned('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -725,9 +999,11 @@ class TestAllTypesProto2_MapUint64Uint64Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -739,25 +1015,69 @@ class TestAllTypesProto2_MapUint64Uint64Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapUint64Uint64Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapSint32Sint32Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -779,9 +1099,11 @@ class TestAllTypesProto2_MapSint32Sint32Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readVarintZigZag32();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readVarintZigZag32();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -791,11 +1113,11 @@ class TestAllTypesProto2_MapSint32Sint32Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 0);
       $e->writeVarintZigZag32($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 0);
       $e->writeVarintZigZag32($this->value);
     }
@@ -803,8 +1125,12 @@ class TestAllTypesProto2_MapSint32Sint32Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('key', 'key', $this->key, false);
-    $e->writeInt32('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt32('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt32('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -814,9 +1140,11 @@ class TestAllTypesProto2_MapSint32Sint32Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -828,25 +1156,69 @@ class TestAllTypesProto2_MapSint32Sint32Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapSint32Sint32Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapSint64Sint64Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -868,9 +1240,11 @@ class TestAllTypesProto2_MapSint64Sint64Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readVarintZigZag64();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readVarintZigZag64();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -880,11 +1254,11 @@ class TestAllTypesProto2_MapSint64Sint64Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 0);
       $e->writeVarintZigZag64($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 0);
       $e->writeVarintZigZag64($this->value);
     }
@@ -892,8 +1266,12 @@ class TestAllTypesProto2_MapSint64Sint64Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt64Signed('key', 'key', $this->key, false);
-    $e->writeInt64Signed('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt64Signed('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt64Signed('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -903,9 +1281,11 @@ class TestAllTypesProto2_MapSint64Sint64Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -917,25 +1297,69 @@ class TestAllTypesProto2_MapSint64Sint64Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapSint64Sint64Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapFixed32Fixed32Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -957,9 +1381,11 @@ class TestAllTypesProto2_MapFixed32Fixed32Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readLittleEndianInt32Unsigned();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readLittleEndianInt32Unsigned();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -969,11 +1395,11 @@ class TestAllTypesProto2_MapFixed32Fixed32Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 5);
       $e->writeLittleEndianInt32Unsigned($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 5);
       $e->writeLittleEndianInt32Unsigned($this->value);
     }
@@ -981,8 +1407,12 @@ class TestAllTypesProto2_MapFixed32Fixed32Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('key', 'key', $this->key, false);
-    $e->writeInt32('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt32('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt32('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -992,9 +1422,11 @@ class TestAllTypesProto2_MapFixed32Fixed32Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -1006,25 +1438,69 @@ class TestAllTypesProto2_MapFixed32Fixed32Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapFixed32Fixed32Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapFixed64Fixed64Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1046,9 +1522,11 @@ class TestAllTypesProto2_MapFixed64Fixed64Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readLittleEndianInt64();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readLittleEndianInt64();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1058,11 +1536,11 @@ class TestAllTypesProto2_MapFixed64Fixed64Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 1);
       $e->writeLittleEndianInt64($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 1);
       $e->writeLittleEndianInt64($this->value);
     }
@@ -1070,8 +1548,12 @@ class TestAllTypesProto2_MapFixed64Fixed64Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt64Unsigned('key', 'key', $this->key, false);
-    $e->writeInt64Unsigned('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt64Unsigned('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt64Unsigned('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1081,9 +1563,11 @@ class TestAllTypesProto2_MapFixed64Fixed64Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -1095,25 +1579,69 @@ class TestAllTypesProto2_MapFixed64Fixed64Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapFixed64Fixed64Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1135,9 +1663,11 @@ class TestAllTypesProto2_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readLittleEndianInt32Signed();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readLittleEndianInt32Signed();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1147,11 +1677,11 @@ class TestAllTypesProto2_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 5);
       $e->writeLittleEndianInt32Signed($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 5);
       $e->writeLittleEndianInt32Signed($this->value);
     }
@@ -1159,8 +1689,12 @@ class TestAllTypesProto2_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('key', 'key', $this->key, false);
-    $e->writeInt32('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt32('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt32('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1170,9 +1704,11 @@ class TestAllTypesProto2_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -1184,25 +1720,69 @@ class TestAllTypesProto2_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapSfixed32Sfixed32Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
-  public int $key;
-  public int $value;
+  private int $key;
+  private bool $was_key_set;
+  private int $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => int,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): int {
+    return $this->value;
+  }
+
+  public function setValue(int $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1224,9 +1804,11 @@ class TestAllTypesProto2_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readLittleEndianInt64();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readLittleEndianInt64();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1236,11 +1818,11 @@ class TestAllTypesProto2_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 1);
       $e->writeLittleEndianInt64($this->key);
     }
-    if ($this->value !== 0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 1);
       $e->writeLittleEndianInt64($this->value);
     }
@@ -1248,8 +1830,12 @@ class TestAllTypesProto2_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt64Signed('key', 'key', $this->key, false);
-    $e->writeInt64Signed('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt64Signed('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeInt64Signed('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1259,9 +1845,11 @@ class TestAllTypesProto2_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -1273,25 +1861,69 @@ class TestAllTypesProto2_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapSfixed64Sfixed64Entry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapInt32FloatEntry implements \Protobuf\Message {
-  public int $key;
-  public float $value;
+  private int $key;
+  private bool $was_key_set;
+  private float $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => float,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0.0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0.0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): float {
+    return $this->value;
+  }
+
+  public function setValue(float $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1313,9 +1945,11 @@ class TestAllTypesProto2_MapInt32FloatEntry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readVarint32Signed();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readFloat();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1325,11 +1959,11 @@ class TestAllTypesProto2_MapInt32FloatEntry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->key);
     }
-    if ($this->value !== 0.0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 5);
       $e->writeFloat($this->value);
     }
@@ -1337,8 +1971,12 @@ class TestAllTypesProto2_MapInt32FloatEntry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('key', 'key', $this->key, false);
-    $e->writeFloat('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt32('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeFloat('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1348,9 +1986,11 @@ class TestAllTypesProto2_MapInt32FloatEntry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -1362,25 +2002,69 @@ class TestAllTypesProto2_MapInt32FloatEntry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapInt32FloatEntry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapInt32DoubleEntry implements \Protobuf\Message {
-  public int $key;
-  public float $value;
+  private int $key;
+  private bool $was_key_set;
+  private float $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => int,
     ?'value' => float,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? 0;
-    $this->value = $s['value'] ?? 0.0;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = 0.0;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): float {
+    return $this->value;
+  }
+
+  public function setValue(float $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1402,9 +2086,11 @@ class TestAllTypesProto2_MapInt32DoubleEntry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readVarint32Signed();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readDouble();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1414,11 +2100,11 @@ class TestAllTypesProto2_MapInt32DoubleEntry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== 0) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->key);
     }
-    if ($this->value !== 0.0) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 1);
       $e->writeDouble($this->value);
     }
@@ -1426,8 +2112,12 @@ class TestAllTypesProto2_MapInt32DoubleEntry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('key', 'key', $this->key, false);
-    $e->writeFloat('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeInt32('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeFloat('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1437,9 +2127,11 @@ class TestAllTypesProto2_MapInt32DoubleEntry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -1451,25 +2143,69 @@ class TestAllTypesProto2_MapInt32DoubleEntry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapInt32DoubleEntry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapBoolBoolEntry implements \Protobuf\Message {
-  public bool $key;
-  public bool $value;
+  private bool $key;
+  private bool $was_key_set;
+  private bool $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => bool,
     ?'value' => bool,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? false;
-    $this->value = $s['value'] ?? false;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = false;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = false;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): bool {
+    return $this->key;
+  }
+
+  public function setKey(bool $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): bool {
+    return $this->value;
+  }
+
+  public function setValue(bool $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1491,9 +2227,11 @@ class TestAllTypesProto2_MapBoolBoolEntry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readBool();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readBool();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1503,11 +2241,11 @@ class TestAllTypesProto2_MapBoolBoolEntry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== false) {
+    if ($this->was_key_set) {
       $e->writeTag(1, 0);
       $e->writeBool($this->key);
     }
-    if ($this->value !== false) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 0);
       $e->writeBool($this->value);
     }
@@ -1515,8 +2253,12 @@ class TestAllTypesProto2_MapBoolBoolEntry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeBool('key', 'key', $this->key, false);
-    $e->writeBool('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeBool('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeBool('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1526,9 +2268,11 @@ class TestAllTypesProto2_MapBoolBoolEntry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -1540,25 +2284,69 @@ class TestAllTypesProto2_MapBoolBoolEntry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapBoolBoolEntry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapStringStringEntry implements \Protobuf\Message {
-  public string $key;
-  public string $value;
+  private string $key;
+  private bool $was_key_set;
+  private string $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => string,
     ?'value' => string,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? '';
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = '';
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = '';
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): string {
+    return $this->key;
+  }
+
+  public function setKey(string $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): string {
+    return $this->value;
+  }
+
+  public function setValue(string $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1580,9 +2368,11 @@ class TestAllTypesProto2_MapStringStringEntry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readString();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readString();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1592,11 +2382,11 @@ class TestAllTypesProto2_MapStringStringEntry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== '') {
+    if ($this->was_key_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
-    if ($this->value !== '') {
+    if ($this->was_value_set) {
       $e->writeTag(2, 2);
       $e->writeString($this->value);
     }
@@ -1604,8 +2394,12 @@ class TestAllTypesProto2_MapStringStringEntry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('key', 'key', $this->key, false);
-    $e->writeString('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeString('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeString('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1615,9 +2409,11 @@ class TestAllTypesProto2_MapStringStringEntry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -1629,25 +2425,69 @@ class TestAllTypesProto2_MapStringStringEntry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapStringStringEntry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapStringBytesEntry implements \Protobuf\Message {
-  public string $key;
-  public string $value;
+  private string $key;
+  private bool $was_key_set;
+  private string $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => string,
     ?'value' => string,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? '';
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = '';
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = '';
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): string {
+    return $this->key;
+  }
+
+  public function setKey(string $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): string {
+    return $this->value;
+  }
+
+  public function setValue(string $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1669,9 +2509,11 @@ class TestAllTypesProto2_MapStringBytesEntry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readString();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = $d->readString();
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1681,11 +2523,11 @@ class TestAllTypesProto2_MapStringBytesEntry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== '') {
+    if ($this->was_key_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
-    if ($this->value !== '') {
+    if ($this->was_value_set) {
       $e->writeTag(2, 2);
       $e->writeString($this->value);
     }
@@ -1693,8 +2535,12 @@ class TestAllTypesProto2_MapStringBytesEntry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('key', 'key', $this->key, false);
-    $e->writeBytes('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeString('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeBytes('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1704,9 +2550,11 @@ class TestAllTypesProto2_MapStringBytesEntry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \Protobuf\Internal\JsonDecoder::readBytes($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -1718,25 +2566,69 @@ class TestAllTypesProto2_MapStringBytesEntry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapStringBytesEntry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Message {
-  public string $key;
-  public ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $value;
+  private string $key;
+  private bool $was_key_set;
+  private ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => string,
     ?'value' => ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? null;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = '';
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = null;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): string {
+    return $this->key;
+  }
+
+  public function setKey(string $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage {
+    return $this->value;
+  }
+
+  public function setValue(?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1758,10 +2650,12 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
       switch ($fn) {
         case 1:
           $this->key = $d->readString();
+          $this->was_key_set = true;
           break;
         case 2:
           if ($this->value is null) {
             $this->value = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+            $this->was_value_set = true;
           }
           $this->value->MergeFrom($d->readDecoder());
           break;
@@ -1773,22 +2667,28 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== '') {
+    if ($this->was_key_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
     $msg = $this->value;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 2);
+      if ($this->was_value_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 2);
+      }
     }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('key', 'key', $this->key, false);
-    $e->writeMessage('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeString('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeMessage('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1798,11 +2698,13 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           if ($v is null) break;
           if ($this->value is null) {
             $this->value = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+            $this->was_value_set = true;
           }
           $this->value->MergeJsonFrom($v);
           break;
@@ -1816,12 +2718,16 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
     if (!($o is TestAllTypesProto2_MapStringNestedMessageEntry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
     $tmp = $o->value;
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
       $nv->CopyFrom($tmp);
-      $this->value = $nv;
+      $this->setValue($nv);
+    } else if ($o->hasValue()) {
+      $this->setValue(null);
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1829,17 +2735,57 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
 }
 
 class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Message {
-  public string $key;
-  public ?\protobuf_test_messages\proto2\ForeignMessageProto2 $value;
+  private string $key;
+  private bool $was_key_set;
+  private ?\protobuf_test_messages\proto2\ForeignMessageProto2 $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => string,
     ?'value' => ?\protobuf_test_messages\proto2\ForeignMessageProto2,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? null;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = '';
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = null;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): string {
+    return $this->key;
+  }
+
+  public function setKey(string $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): ?\protobuf_test_messages\proto2\ForeignMessageProto2 {
+    return $this->value;
+  }
+
+  public function setValue(?\protobuf_test_messages\proto2\ForeignMessageProto2 $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1861,10 +2807,12 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
       switch ($fn) {
         case 1:
           $this->key = $d->readString();
+          $this->was_key_set = true;
           break;
         case 2:
           if ($this->value is null) {
             $this->value = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+            $this->was_value_set = true;
           }
           $this->value->MergeFrom($d->readDecoder());
           break;
@@ -1876,22 +2824,28 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== '') {
+    if ($this->was_key_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
     $msg = $this->value;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 2);
+      if ($this->was_value_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 2);
+      }
     }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('key', 'key', $this->key, false);
-    $e->writeMessage('value', 'value', $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeString('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeMessage('value', 'value', $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1901,11 +2855,13 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           if ($v is null) break;
           if ($this->value is null) {
             $this->value = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+            $this->was_value_set = true;
           }
           $this->value->MergeJsonFrom($v);
           break;
@@ -1919,12 +2875,16 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
     if (!($o is TestAllTypesProto2_MapStringForeignMessageEntry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
     $tmp = $o->value;
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\ForeignMessageProto2();
       $nv->CopyFrom($tmp);
-      $this->value = $nv;
+      $this->setValue($nv);
+    } else if ($o->hasValue()) {
+      $this->setValue(null);
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1932,17 +2892,57 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
 }
 
 class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
-  public string $key;
-  public \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t $value;
+  private string $key;
+  private bool $was_key_set;
+  private \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => string,
     ?'value' => \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = '';
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): string {
+    return $this->key;
+  }
+
+  public function setKey(string $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t {
+    return $this->value;
+  }
+
+  public function setValue(\protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -1964,9 +2964,11 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->key = $d->readString();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt($d->readVarint());
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1976,11 +2978,11 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== '') {
+    if ($this->was_key_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
-    if ($this->value !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -1988,8 +2990,12 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('key', 'key', $this->key, false);
-    $e->writeEnum('value', 'value', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeString('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeEnum('value', 'value', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1999,9 +3005,11 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromMixed($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -2013,25 +3021,69 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_MapStringNestedEnumEntry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message {
-  public string $key;
-  public \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t $value;
+  private string $key;
+  private bool $was_key_set;
+  private \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t $value;
+  private bool $was_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'key' => string,
     ?'value' => \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t,
   ) $s = shape()) {
-    $this->key = $s['key'] ?? '';
-    $this->value = $s['value'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO;
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = '';
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO;
+      $this->was_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): string {
+    return $this->key;
+  }
+
+  public function setKey(string $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t {
+    return $this->value;
+  }
+
+  public function setValue(\protobuf_test_messages\proto2\ForeignEnumProto2_enum_t $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
   }
 
   public function MessageName(): string {
@@ -2053,9 +3105,11 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
       switch ($fn) {
         case 1:
           $this->key = $d->readString();
+          $this->was_key_set = true;
           break;
         case 2:
           $this->value = \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt($d->readVarint());
+          $this->was_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -2065,11 +3119,11 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->key !== '') {
+    if ($this->was_key_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->key);
     }
-    if ($this->value !== \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO) {
+    if ($this->was_value_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->value);
     }
@@ -2077,8 +3131,12 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('key', 'key', $this->key, false);
-    $e->writeEnum('value', 'value', \protobuf_test_messages\proto2\ForeignEnumProto2::ToStringDict(), $this->value, false);
+    if ($this->hasKey()) {
+      $e->writeString('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeEnum('value', 'value', \protobuf_test_messages\proto2\ForeignEnumProto2::ToStringDict(), $this->value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -2088,9 +3146,11 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
       switch ($k) {
         case 'key':
           $this->key = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_key_set = true;
           break;
         case 'value':
           $this->value = \protobuf_test_messages\proto2\ForeignEnumProto2::FromMixed($v);
+          $this->was_value_set = true;
           break;
         default:
         break;
@@ -2102,25 +3162,69 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
     if (!($o is TestAllTypesProto2_MapStringForeignEnumEntry)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->key = $o->key;
-    $this->value = $o->value;
+    if ($o->hasKey()) {
+      $this->key = $o->key;
+    }
+    if ($o->hasValue()) {
+      $this->value = $o->value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_Data implements \Protobuf\Message {
-  public int $group_int32;
-  public int $group_uint32;
+  private int $group_int32;
+  private bool $was_group_int32_set;
+  private int $group_uint32;
+  private bool $was_group_uint32_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'group_int32' => int,
     ?'group_uint32' => int,
   ) $s = shape()) {
-    $this->group_int32 = $s['group_int32'] ?? 0;
-    $this->group_uint32 = $s['group_uint32'] ?? 0;
+    if (Shapes::keyExists($s, 'group_int32')) {
+      $this->group_int32 = $s['group_int32'];
+      $this->was_group_int32_set = true;
+    } else {
+      $this->group_int32 = 0;
+      $this->was_group_int32_set = false;
+    }
+    if (Shapes::keyExists($s, 'group_uint32')) {
+      $this->group_uint32 = $s['group_uint32'];
+      $this->was_group_uint32_set = true;
+    } else {
+      $this->group_uint32 = 0;
+      $this->was_group_uint32_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getGroupInt32(): int {
+    return $this->group_int32;
+  }
+
+  public function setGroupInt32(int $v): void {
+    $this->group_int32 = $v;
+    $this->was_group_int32_set = true;
+  }
+
+  public function hasGroupInt32(): bool {
+    return $this->was_group_int32_set;
+  }
+
+  public function getGroupUint32(): int {
+    return $this->group_uint32;
+  }
+
+  public function setGroupUint32(int $v): void {
+    $this->group_uint32 = $v;
+    $this->was_group_uint32_set = true;
+  }
+
+  public function hasGroupUint32(): bool {
+    return $this->was_group_uint32_set;
   }
 
   public function MessageName(): string {
@@ -2142,9 +3246,11 @@ class TestAllTypesProto2_Data implements \Protobuf\Message {
       switch ($fn) {
         case 202:
           $this->group_int32 = $d->readVarint32Signed();
+          $this->was_group_int32_set = true;
           break;
         case 203:
           $this->group_uint32 = $d->readVarint32();
+          $this->was_group_uint32_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -2154,11 +3260,11 @@ class TestAllTypesProto2_Data implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->group_int32 !== 0) {
+    if ($this->was_group_int32_set) {
       $e->writeTag(202, 0);
       $e->writeVarint($this->group_int32);
     }
-    if ($this->group_uint32 !== 0) {
+    if ($this->was_group_uint32_set) {
       $e->writeTag(203, 0);
       $e->writeVarint($this->group_uint32);
     }
@@ -2166,8 +3272,12 @@ class TestAllTypesProto2_Data implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('group_int32', 'groupInt32', $this->group_int32, false);
-    $e->writeInt32('group_uint32', 'groupUint32', $this->group_uint32, false);
+    if ($this->hasGroupInt32()) {
+      $e->writeInt32('group_int32', 'groupInt32', $this->group_int32, false);
+    }
+    if ($this->hasGroupUint32()) {
+      $e->writeInt32('group_uint32', 'groupUint32', $this->group_uint32, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -2177,9 +3287,11 @@ class TestAllTypesProto2_Data implements \Protobuf\Message {
       switch ($k) {
         case 'group_int32': case 'groupInt32':
           $this->group_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_group_int32_set = true;
           break;
         case 'group_uint32': case 'groupUint32':
           $this->group_uint32 = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          $this->was_group_uint32_set = true;
           break;
         default:
         break;
@@ -2191,8 +3303,12 @@ class TestAllTypesProto2_Data implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2_Data)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->group_int32 = $o->group_int32;
-    $this->group_uint32 = $o->group_uint32;
+    if ($o->hasGroupInt32()) {
+      $this->group_int32 = $o->group_int32;
+    }
+    if ($o->hasGroupUint32()) {
+      $this->group_uint32 = $o->group_uint32;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
@@ -2258,14 +3374,34 @@ class TestAllTypesProto2_MessageSetCorrect implements \Protobuf\Message {
 }
 
 class TestAllTypesProto2_MessageSetCorrectExtension1 implements \Protobuf\Message {
-  public string $str;
+  private string $str;
+  private bool $was_str_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'str' => string,
   ) $s = shape()) {
-    $this->str = $s['str'] ?? '';
+    if (Shapes::keyExists($s, 'str')) {
+      $this->str = $s['str'];
+      $this->was_str_set = true;
+    } else {
+      $this->str = '';
+      $this->was_str_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getStr(): string {
+    return $this->str;
+  }
+
+  public function setStr(string $v): void {
+    $this->str = $v;
+    $this->was_str_set = true;
+  }
+
+  public function hasStr(): bool {
+    return $this->was_str_set;
   }
 
   public function MessageName(): string {
@@ -2287,6 +3423,7 @@ class TestAllTypesProto2_MessageSetCorrectExtension1 implements \Protobuf\Messag
       switch ($fn) {
         case 25:
           $this->str = $d->readString();
+          $this->was_str_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -2296,7 +3433,7 @@ class TestAllTypesProto2_MessageSetCorrectExtension1 implements \Protobuf\Messag
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->str !== '') {
+    if ($this->was_str_set) {
       $e->writeTag(25, 2);
       $e->writeString($this->str);
     }
@@ -2304,7 +3441,9 @@ class TestAllTypesProto2_MessageSetCorrectExtension1 implements \Protobuf\Messag
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('str', 'str', $this->str, false);
+    if ($this->hasStr()) {
+      $e->writeString('str', 'str', $this->str, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -2314,6 +3453,7 @@ class TestAllTypesProto2_MessageSetCorrectExtension1 implements \Protobuf\Messag
       switch ($k) {
         case 'str':
           $this->str = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_str_set = true;
           break;
         default:
         break;
@@ -2325,21 +3465,43 @@ class TestAllTypesProto2_MessageSetCorrectExtension1 implements \Protobuf\Messag
     if (!($o is TestAllTypesProto2_MessageSetCorrectExtension1)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->str = $o->str;
+    if ($o->hasStr()) {
+      $this->str = $o->str;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2_MessageSetCorrectExtension2 implements \Protobuf\Message {
-  public int $i;
+  private int $i;
+  private bool $was_i_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'i' => int,
   ) $s = shape()) {
-    $this->i = $s['i'] ?? 0;
+    if (Shapes::keyExists($s, 'i')) {
+      $this->i = $s['i'];
+      $this->was_i_set = true;
+    } else {
+      $this->i = 0;
+      $this->was_i_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getI(): int {
+    return $this->i;
+  }
+
+  public function setI(int $v): void {
+    $this->i = $v;
+    $this->was_i_set = true;
+  }
+
+  public function hasI(): bool {
+    return $this->was_i_set;
   }
 
   public function MessageName(): string {
@@ -2361,6 +3523,7 @@ class TestAllTypesProto2_MessageSetCorrectExtension2 implements \Protobuf\Messag
       switch ($fn) {
         case 9:
           $this->i = $d->readVarint32Signed();
+          $this->was_i_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -2370,7 +3533,7 @@ class TestAllTypesProto2_MessageSetCorrectExtension2 implements \Protobuf\Messag
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->i !== 0) {
+    if ($this->was_i_set) {
       $e->writeTag(9, 0);
       $e->writeVarint($this->i);
     }
@@ -2378,7 +3541,9 @@ class TestAllTypesProto2_MessageSetCorrectExtension2 implements \Protobuf\Messag
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('i', 'i', $this->i, false);
+    if ($this->hasI()) {
+      $e->writeInt32('i', 'i', $this->i, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -2388,6 +3553,7 @@ class TestAllTypesProto2_MessageSetCorrectExtension2 implements \Protobuf\Messag
       switch ($k) {
         case 'i':
           $this->i = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_i_set = true;
           break;
         default:
         break;
@@ -2399,35 +3565,59 @@ class TestAllTypesProto2_MessageSetCorrectExtension2 implements \Protobuf\Messag
     if (!($o is TestAllTypesProto2_MessageSetCorrectExtension2)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->i = $o->i;
+    if ($o->hasI()) {
+      $this->i = $o->i;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class TestAllTypesProto2 implements \Protobuf\Message {
-  public int $optional_int32;
-  public int $optional_int64;
-  public int $optional_uint32;
-  public int $optional_uint64;
-  public int $optional_sint32;
-  public int $optional_sint64;
-  public int $optional_fixed32;
-  public int $optional_fixed64;
-  public int $optional_sfixed32;
-  public int $optional_sfixed64;
-  public float $optional_float;
-  public float $optional_double;
-  public bool $optional_bool;
-  public string $optional_string;
-  public string $optional_bytes;
-  public ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $optional_nested_message;
-  public ?\protobuf_test_messages\proto2\ForeignMessageProto2 $optional_foreign_message;
-  public \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t $optional_nested_enum;
-  public \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t $optional_foreign_enum;
-  public string $optional_string_piece;
-  public string $optional_cord;
-  public ?\protobuf_test_messages\proto2\TestAllTypesProto2 $recursive_message;
+  private int $optional_int32;
+  private bool $was_optional_int32_set;
+  private int $optional_int64;
+  private bool $was_optional_int64_set;
+  private int $optional_uint32;
+  private bool $was_optional_uint32_set;
+  private int $optional_uint64;
+  private bool $was_optional_uint64_set;
+  private int $optional_sint32;
+  private bool $was_optional_sint32_set;
+  private int $optional_sint64;
+  private bool $was_optional_sint64_set;
+  private int $optional_fixed32;
+  private bool $was_optional_fixed32_set;
+  private int $optional_fixed64;
+  private bool $was_optional_fixed64_set;
+  private int $optional_sfixed32;
+  private bool $was_optional_sfixed32_set;
+  private int $optional_sfixed64;
+  private bool $was_optional_sfixed64_set;
+  private float $optional_float;
+  private bool $was_optional_float_set;
+  private float $optional_double;
+  private bool $was_optional_double_set;
+  private bool $optional_bool;
+  private bool $was_optional_bool_set;
+  private string $optional_string;
+  private bool $was_optional_string_set;
+  private string $optional_bytes;
+  private bool $was_optional_bytes_set;
+  private ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $optional_nested_message;
+  private bool $was_optional_nested_message_set;
+  private ?\protobuf_test_messages\proto2\ForeignMessageProto2 $optional_foreign_message;
+  private bool $was_optional_foreign_message_set;
+  private \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t $optional_nested_enum;
+  private bool $was_optional_nested_enum_set;
+  private \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t $optional_foreign_enum;
+  private bool $was_optional_foreign_enum_set;
+  private string $optional_string_piece;
+  private bool $was_optional_string_piece_set;
+  private string $optional_cord;
+  private bool $was_optional_cord_set;
+  private ?\protobuf_test_messages\proto2\TestAllTypesProto2 $recursive_message;
+  private bool $was_recursive_message_set;
   public vec<int> $repeated_int32;
   public vec<int> $repeated_int64;
   public vec<int> $repeated_uint32;
@@ -2496,40 +3686,74 @@ class TestAllTypesProto2 implements \Protobuf\Message {
   public dict<string, \protobuf_test_messages\proto2\ForeignMessageProto2> $map_string_foreign_message;
   public dict<string, \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t> $map_string_nested_enum;
   public dict<string, \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t> $map_string_foreign_enum;
-  public ?\protobuf_test_messages\proto2\TestAllTypesProto2_Data $data;
-  public int $default_int32;
-  public int $default_int64;
-  public int $default_uint32;
-  public int $default_uint64;
-  public int $default_sint32;
-  public int $default_sint64;
-  public int $default_fixed32;
-  public int $default_fixed64;
-  public int $default_sfixed32;
-  public int $default_sfixed64;
-  public float $default_float;
-  public float $default_double;
-  public bool $default_bool;
-  public string $default_string;
-  public string $default_bytes;
-  public int $fieldname1;
-  public int $field_name2;
-  public int $_field_name3;
-  public int $field__name4_;
-  public int $field0name5;
-  public int $field_0_name6;
-  public int $fieldName7;
-  public int $FieldName8;
-  public int $field_Name9;
-  public int $Field_Name10;
-  public int $FIELD_NAME11;
-  public int $FIELD_name12;
-  public int $__field_name13;
-  public int $__Field_name14;
-  public int $field__name15;
-  public int $field__Name16;
-  public int $field_name17__;
-  public int $Field_name18__;
+  private ?\protobuf_test_messages\proto2\TestAllTypesProto2_Data $data;
+  private bool $was_data_set;
+  private int $default_int32;
+  private bool $was_default_int32_set;
+  private int $default_int64;
+  private bool $was_default_int64_set;
+  private int $default_uint32;
+  private bool $was_default_uint32_set;
+  private int $default_uint64;
+  private bool $was_default_uint64_set;
+  private int $default_sint32;
+  private bool $was_default_sint32_set;
+  private int $default_sint64;
+  private bool $was_default_sint64_set;
+  private int $default_fixed32;
+  private bool $was_default_fixed32_set;
+  private int $default_fixed64;
+  private bool $was_default_fixed64_set;
+  private int $default_sfixed32;
+  private bool $was_default_sfixed32_set;
+  private int $default_sfixed64;
+  private bool $was_default_sfixed64_set;
+  private float $default_float;
+  private bool $was_default_float_set;
+  private float $default_double;
+  private bool $was_default_double_set;
+  private bool $default_bool;
+  private bool $was_default_bool_set;
+  private string $default_string;
+  private bool $was_default_string_set;
+  private string $default_bytes;
+  private bool $was_default_bytes_set;
+  private int $fieldname1;
+  private bool $was_fieldname1_set;
+  private int $field_name2;
+  private bool $was_field_name2_set;
+  private int $_field_name3;
+  private bool $was__field_name3_set;
+  private int $field__name4_;
+  private bool $was_field__name4__set;
+  private int $field0name5;
+  private bool $was_field0name5_set;
+  private int $field_0_name6;
+  private bool $was_field_0_name6_set;
+  private int $fieldName7;
+  private bool $was_fieldName7_set;
+  private int $FieldName8;
+  private bool $was_FieldName8_set;
+  private int $field_Name9;
+  private bool $was_field_Name9_set;
+  private int $Field_Name10;
+  private bool $was_Field_Name10_set;
+  private int $FIELD_NAME11;
+  private bool $was_FIELD_NAME11_set;
+  private int $FIELD_name12;
+  private bool $was_FIELD_name12_set;
+  private int $__field_name13;
+  private bool $was___field_name13_set;
+  private int $__Field_name14;
+  private bool $was___Field_name14_set;
+  private int $field__name15;
+  private bool $was_field__name15_set;
+  private int $field__Name16;
+  private bool $was_field__Name16_set;
+  private int $field_name17__;
+  private bool $was_field_name17___set;
+  private int $Field_name18__;
+  private bool $was_Field_name18___set;
   public TestAllTypesProto2_oneof_field $oneof_field;
   private string $XXX_unrecognized;
 
@@ -2660,28 +3884,160 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     ?'Field_name18__' => int,
     ?'oneof_field' => TestAllTypesProto2_oneof_field,
   ) $s = shape()) {
-    $this->optional_int32 = $s['optional_int32'] ?? 0;
-    $this->optional_int64 = $s['optional_int64'] ?? 0;
-    $this->optional_uint32 = $s['optional_uint32'] ?? 0;
-    $this->optional_uint64 = $s['optional_uint64'] ?? 0;
-    $this->optional_sint32 = $s['optional_sint32'] ?? 0;
-    $this->optional_sint64 = $s['optional_sint64'] ?? 0;
-    $this->optional_fixed32 = $s['optional_fixed32'] ?? 0;
-    $this->optional_fixed64 = $s['optional_fixed64'] ?? 0;
-    $this->optional_sfixed32 = $s['optional_sfixed32'] ?? 0;
-    $this->optional_sfixed64 = $s['optional_sfixed64'] ?? 0;
-    $this->optional_float = $s['optional_float'] ?? 0.0;
-    $this->optional_double = $s['optional_double'] ?? 0.0;
-    $this->optional_bool = $s['optional_bool'] ?? false;
-    $this->optional_string = $s['optional_string'] ?? '';
-    $this->optional_bytes = $s['optional_bytes'] ?? '';
-    $this->optional_nested_message = $s['optional_nested_message'] ?? null;
-    $this->optional_foreign_message = $s['optional_foreign_message'] ?? null;
-    $this->optional_nested_enum = $s['optional_nested_enum'] ?? \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO;
-    $this->optional_foreign_enum = $s['optional_foreign_enum'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO;
-    $this->optional_string_piece = $s['optional_string_piece'] ?? '';
-    $this->optional_cord = $s['optional_cord'] ?? '';
-    $this->recursive_message = $s['recursive_message'] ?? null;
+    if (Shapes::keyExists($s, 'optional_int32')) {
+      $this->optional_int32 = $s['optional_int32'];
+      $this->was_optional_int32_set = true;
+    } else {
+      $this->optional_int32 = 0;
+      $this->was_optional_int32_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_int64')) {
+      $this->optional_int64 = $s['optional_int64'];
+      $this->was_optional_int64_set = true;
+    } else {
+      $this->optional_int64 = 0;
+      $this->was_optional_int64_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_uint32')) {
+      $this->optional_uint32 = $s['optional_uint32'];
+      $this->was_optional_uint32_set = true;
+    } else {
+      $this->optional_uint32 = 0;
+      $this->was_optional_uint32_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_uint64')) {
+      $this->optional_uint64 = $s['optional_uint64'];
+      $this->was_optional_uint64_set = true;
+    } else {
+      $this->optional_uint64 = 0;
+      $this->was_optional_uint64_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_sint32')) {
+      $this->optional_sint32 = $s['optional_sint32'];
+      $this->was_optional_sint32_set = true;
+    } else {
+      $this->optional_sint32 = 0;
+      $this->was_optional_sint32_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_sint64')) {
+      $this->optional_sint64 = $s['optional_sint64'];
+      $this->was_optional_sint64_set = true;
+    } else {
+      $this->optional_sint64 = 0;
+      $this->was_optional_sint64_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_fixed32')) {
+      $this->optional_fixed32 = $s['optional_fixed32'];
+      $this->was_optional_fixed32_set = true;
+    } else {
+      $this->optional_fixed32 = 0;
+      $this->was_optional_fixed32_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_fixed64')) {
+      $this->optional_fixed64 = $s['optional_fixed64'];
+      $this->was_optional_fixed64_set = true;
+    } else {
+      $this->optional_fixed64 = 0;
+      $this->was_optional_fixed64_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_sfixed32')) {
+      $this->optional_sfixed32 = $s['optional_sfixed32'];
+      $this->was_optional_sfixed32_set = true;
+    } else {
+      $this->optional_sfixed32 = 0;
+      $this->was_optional_sfixed32_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_sfixed64')) {
+      $this->optional_sfixed64 = $s['optional_sfixed64'];
+      $this->was_optional_sfixed64_set = true;
+    } else {
+      $this->optional_sfixed64 = 0;
+      $this->was_optional_sfixed64_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_float')) {
+      $this->optional_float = $s['optional_float'];
+      $this->was_optional_float_set = true;
+    } else {
+      $this->optional_float = 0.0;
+      $this->was_optional_float_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_double')) {
+      $this->optional_double = $s['optional_double'];
+      $this->was_optional_double_set = true;
+    } else {
+      $this->optional_double = 0.0;
+      $this->was_optional_double_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_bool')) {
+      $this->optional_bool = $s['optional_bool'];
+      $this->was_optional_bool_set = true;
+    } else {
+      $this->optional_bool = false;
+      $this->was_optional_bool_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_string')) {
+      $this->optional_string = $s['optional_string'];
+      $this->was_optional_string_set = true;
+    } else {
+      $this->optional_string = '';
+      $this->was_optional_string_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_bytes')) {
+      $this->optional_bytes = $s['optional_bytes'];
+      $this->was_optional_bytes_set = true;
+    } else {
+      $this->optional_bytes = '';
+      $this->was_optional_bytes_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_nested_message')) {
+      $this->optional_nested_message = $s['optional_nested_message'];
+      $this->was_optional_nested_message_set = true;
+    } else {
+      $this->optional_nested_message = null;
+      $this->was_optional_nested_message_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_foreign_message')) {
+      $this->optional_foreign_message = $s['optional_foreign_message'];
+      $this->was_optional_foreign_message_set = true;
+    } else {
+      $this->optional_foreign_message = null;
+      $this->was_optional_foreign_message_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_nested_enum')) {
+      $this->optional_nested_enum = $s['optional_nested_enum'];
+      $this->was_optional_nested_enum_set = true;
+    } else {
+      $this->optional_nested_enum = \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO;
+      $this->was_optional_nested_enum_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_foreign_enum')) {
+      $this->optional_foreign_enum = $s['optional_foreign_enum'];
+      $this->was_optional_foreign_enum_set = true;
+    } else {
+      $this->optional_foreign_enum = \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO;
+      $this->was_optional_foreign_enum_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_string_piece')) {
+      $this->optional_string_piece = $s['optional_string_piece'];
+      $this->was_optional_string_piece_set = true;
+    } else {
+      $this->optional_string_piece = '';
+      $this->was_optional_string_piece_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_cord')) {
+      $this->optional_cord = $s['optional_cord'];
+      $this->was_optional_cord_set = true;
+    } else {
+      $this->optional_cord = '';
+      $this->was_optional_cord_set = false;
+    }
+    if (Shapes::keyExists($s, 'recursive_message')) {
+      $this->recursive_message = $s['recursive_message'];
+      $this->was_recursive_message_set = true;
+    } else {
+      $this->recursive_message = null;
+      $this->was_recursive_message_set = false;
+    }
     $this->repeated_int32 = $s['repeated_int32'] ?? vec[];
     $this->repeated_int64 = $s['repeated_int64'] ?? vec[];
     $this->repeated_uint32 = $s['repeated_uint32'] ?? vec[];
@@ -2750,42 +4106,1091 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->map_string_foreign_message = $s['map_string_foreign_message'] ?? dict[];
     $this->map_string_nested_enum = $s['map_string_nested_enum'] ?? dict[];
     $this->map_string_foreign_enum = $s['map_string_foreign_enum'] ?? dict[];
-    $this->data = $s['data'] ?? null;
-    $this->default_int32 = $s['default_int32'] ?? -123456789;
-    $this->default_int64 = $s['default_int64'] ?? -9123456789123456789;
-    $this->default_uint32 = $s['default_uint32'] ?? 2123456789;
-    $this->default_uint64 = $s['default_uint64'] ?? -8323287284586094827;
-    $this->default_sint32 = $s['default_sint32'] ?? -123456789;
-    $this->default_sint64 = $s['default_sint64'] ?? -9123456789123456789;
-    $this->default_fixed32 = $s['default_fixed32'] ?? 2123456789;
-    $this->default_fixed64 = $s['default_fixed64'] ?? -8323287284586094827;
-    $this->default_sfixed32 = $s['default_sfixed32'] ?? -123456789;
-    $this->default_sfixed64 = $s['default_sfixed64'] ?? -9123456789123456789;
-    $this->default_float = $s['default_float'] ?? (float)9e+09;
-    $this->default_double = $s['default_double'] ?? (float)7e+22;
-    $this->default_bool = $s['default_bool'] ?? true;
-    $this->default_string = $s['default_string'] ?? 'Rosebud';
-    $this->default_bytes = $s['default_bytes'] ?? \stripcslashes('joshua');
-    $this->fieldname1 = $s['fieldname1'] ?? 0;
-    $this->field_name2 = $s['field_name2'] ?? 0;
-    $this->_field_name3 = $s['_field_name3'] ?? 0;
-    $this->field__name4_ = $s['field__name4_'] ?? 0;
-    $this->field0name5 = $s['field0name5'] ?? 0;
-    $this->field_0_name6 = $s['field_0_name6'] ?? 0;
-    $this->fieldName7 = $s['fieldName7'] ?? 0;
-    $this->FieldName8 = $s['FieldName8'] ?? 0;
-    $this->field_Name9 = $s['field_Name9'] ?? 0;
-    $this->Field_Name10 = $s['Field_Name10'] ?? 0;
-    $this->FIELD_NAME11 = $s['FIELD_NAME11'] ?? 0;
-    $this->FIELD_name12 = $s['FIELD_name12'] ?? 0;
-    $this->__field_name13 = $s['__field_name13'] ?? 0;
-    $this->__Field_name14 = $s['__Field_name14'] ?? 0;
-    $this->field__name15 = $s['field__name15'] ?? 0;
-    $this->field__Name16 = $s['field__Name16'] ?? 0;
-    $this->field_name17__ = $s['field_name17__'] ?? 0;
-    $this->Field_name18__ = $s['Field_name18__'] ?? 0;
+    if (Shapes::keyExists($s, 'data')) {
+      $this->data = $s['data'];
+      $this->was_data_set = true;
+    } else {
+      $this->data = null;
+      $this->was_data_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_int32')) {
+      $this->default_int32 = $s['default_int32'];
+      $this->was_default_int32_set = true;
+    } else {
+      $this->default_int32 = -123456789;
+      $this->was_default_int32_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_int64')) {
+      $this->default_int64 = $s['default_int64'];
+      $this->was_default_int64_set = true;
+    } else {
+      $this->default_int64 = -9123456789123456789;
+      $this->was_default_int64_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_uint32')) {
+      $this->default_uint32 = $s['default_uint32'];
+      $this->was_default_uint32_set = true;
+    } else {
+      $this->default_uint32 = 2123456789;
+      $this->was_default_uint32_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_uint64')) {
+      $this->default_uint64 = $s['default_uint64'];
+      $this->was_default_uint64_set = true;
+    } else {
+      $this->default_uint64 = -8323287284586094827;
+      $this->was_default_uint64_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_sint32')) {
+      $this->default_sint32 = $s['default_sint32'];
+      $this->was_default_sint32_set = true;
+    } else {
+      $this->default_sint32 = -123456789;
+      $this->was_default_sint32_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_sint64')) {
+      $this->default_sint64 = $s['default_sint64'];
+      $this->was_default_sint64_set = true;
+    } else {
+      $this->default_sint64 = -9123456789123456789;
+      $this->was_default_sint64_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_fixed32')) {
+      $this->default_fixed32 = $s['default_fixed32'];
+      $this->was_default_fixed32_set = true;
+    } else {
+      $this->default_fixed32 = 2123456789;
+      $this->was_default_fixed32_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_fixed64')) {
+      $this->default_fixed64 = $s['default_fixed64'];
+      $this->was_default_fixed64_set = true;
+    } else {
+      $this->default_fixed64 = -8323287284586094827;
+      $this->was_default_fixed64_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_sfixed32')) {
+      $this->default_sfixed32 = $s['default_sfixed32'];
+      $this->was_default_sfixed32_set = true;
+    } else {
+      $this->default_sfixed32 = -123456789;
+      $this->was_default_sfixed32_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_sfixed64')) {
+      $this->default_sfixed64 = $s['default_sfixed64'];
+      $this->was_default_sfixed64_set = true;
+    } else {
+      $this->default_sfixed64 = -9123456789123456789;
+      $this->was_default_sfixed64_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_float')) {
+      $this->default_float = $s['default_float'];
+      $this->was_default_float_set = true;
+    } else {
+      $this->default_float = (float)9e+09;
+      $this->was_default_float_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_double')) {
+      $this->default_double = $s['default_double'];
+      $this->was_default_double_set = true;
+    } else {
+      $this->default_double = (float)7e+22;
+      $this->was_default_double_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_bool')) {
+      $this->default_bool = $s['default_bool'];
+      $this->was_default_bool_set = true;
+    } else {
+      $this->default_bool = true;
+      $this->was_default_bool_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_string')) {
+      $this->default_string = $s['default_string'];
+      $this->was_default_string_set = true;
+    } else {
+      $this->default_string = 'Rosebud';
+      $this->was_default_string_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_bytes')) {
+      $this->default_bytes = $s['default_bytes'];
+      $this->was_default_bytes_set = true;
+    } else {
+      $this->default_bytes = \stripcslashes('joshua');
+      $this->was_default_bytes_set = false;
+    }
+    if (Shapes::keyExists($s, 'fieldname1')) {
+      $this->fieldname1 = $s['fieldname1'];
+      $this->was_fieldname1_set = true;
+    } else {
+      $this->fieldname1 = 0;
+      $this->was_fieldname1_set = false;
+    }
+    if (Shapes::keyExists($s, 'field_name2')) {
+      $this->field_name2 = $s['field_name2'];
+      $this->was_field_name2_set = true;
+    } else {
+      $this->field_name2 = 0;
+      $this->was_field_name2_set = false;
+    }
+    if (Shapes::keyExists($s, '_field_name3')) {
+      $this->_field_name3 = $s['_field_name3'];
+      $this->was__field_name3_set = true;
+    } else {
+      $this->_field_name3 = 0;
+      $this->was__field_name3_set = false;
+    }
+    if (Shapes::keyExists($s, 'field__name4_')) {
+      $this->field__name4_ = $s['field__name4_'];
+      $this->was_field__name4__set = true;
+    } else {
+      $this->field__name4_ = 0;
+      $this->was_field__name4__set = false;
+    }
+    if (Shapes::keyExists($s, 'field0name5')) {
+      $this->field0name5 = $s['field0name5'];
+      $this->was_field0name5_set = true;
+    } else {
+      $this->field0name5 = 0;
+      $this->was_field0name5_set = false;
+    }
+    if (Shapes::keyExists($s, 'field_0_name6')) {
+      $this->field_0_name6 = $s['field_0_name6'];
+      $this->was_field_0_name6_set = true;
+    } else {
+      $this->field_0_name6 = 0;
+      $this->was_field_0_name6_set = false;
+    }
+    if (Shapes::keyExists($s, 'fieldName7')) {
+      $this->fieldName7 = $s['fieldName7'];
+      $this->was_fieldName7_set = true;
+    } else {
+      $this->fieldName7 = 0;
+      $this->was_fieldName7_set = false;
+    }
+    if (Shapes::keyExists($s, 'FieldName8')) {
+      $this->FieldName8 = $s['FieldName8'];
+      $this->was_FieldName8_set = true;
+    } else {
+      $this->FieldName8 = 0;
+      $this->was_FieldName8_set = false;
+    }
+    if (Shapes::keyExists($s, 'field_Name9')) {
+      $this->field_Name9 = $s['field_Name9'];
+      $this->was_field_Name9_set = true;
+    } else {
+      $this->field_Name9 = 0;
+      $this->was_field_Name9_set = false;
+    }
+    if (Shapes::keyExists($s, 'Field_Name10')) {
+      $this->Field_Name10 = $s['Field_Name10'];
+      $this->was_Field_Name10_set = true;
+    } else {
+      $this->Field_Name10 = 0;
+      $this->was_Field_Name10_set = false;
+    }
+    if (Shapes::keyExists($s, 'FIELD_NAME11')) {
+      $this->FIELD_NAME11 = $s['FIELD_NAME11'];
+      $this->was_FIELD_NAME11_set = true;
+    } else {
+      $this->FIELD_NAME11 = 0;
+      $this->was_FIELD_NAME11_set = false;
+    }
+    if (Shapes::keyExists($s, 'FIELD_name12')) {
+      $this->FIELD_name12 = $s['FIELD_name12'];
+      $this->was_FIELD_name12_set = true;
+    } else {
+      $this->FIELD_name12 = 0;
+      $this->was_FIELD_name12_set = false;
+    }
+    if (Shapes::keyExists($s, '__field_name13')) {
+      $this->__field_name13 = $s['__field_name13'];
+      $this->was___field_name13_set = true;
+    } else {
+      $this->__field_name13 = 0;
+      $this->was___field_name13_set = false;
+    }
+    if (Shapes::keyExists($s, '__Field_name14')) {
+      $this->__Field_name14 = $s['__Field_name14'];
+      $this->was___Field_name14_set = true;
+    } else {
+      $this->__Field_name14 = 0;
+      $this->was___Field_name14_set = false;
+    }
+    if (Shapes::keyExists($s, 'field__name15')) {
+      $this->field__name15 = $s['field__name15'];
+      $this->was_field__name15_set = true;
+    } else {
+      $this->field__name15 = 0;
+      $this->was_field__name15_set = false;
+    }
+    if (Shapes::keyExists($s, 'field__Name16')) {
+      $this->field__Name16 = $s['field__Name16'];
+      $this->was_field__Name16_set = true;
+    } else {
+      $this->field__Name16 = 0;
+      $this->was_field__Name16_set = false;
+    }
+    if (Shapes::keyExists($s, 'field_name17__')) {
+      $this->field_name17__ = $s['field_name17__'];
+      $this->was_field_name17___set = true;
+    } else {
+      $this->field_name17__ = 0;
+      $this->was_field_name17___set = false;
+    }
+    if (Shapes::keyExists($s, 'Field_name18__')) {
+      $this->Field_name18__ = $s['Field_name18__'];
+      $this->was_Field_name18___set = true;
+    } else {
+      $this->Field_name18__ = 0;
+      $this->was_Field_name18___set = false;
+    }
     $this->oneof_field = $s['oneof_field'] ?? new TestAllTypesProto2_oneof_field_NOT_SET();
     $this->XXX_unrecognized = '';
+  }
+
+  public function getOptionalInt32(): int {
+    return $this->optional_int32;
+  }
+
+  public function setOptionalInt32(int $v): void {
+    $this->optional_int32 = $v;
+    $this->was_optional_int32_set = true;
+  }
+
+  public function hasOptionalInt32(): bool {
+    return $this->was_optional_int32_set;
+  }
+
+  public function getOptionalInt64(): int {
+    return $this->optional_int64;
+  }
+
+  public function setOptionalInt64(int $v): void {
+    $this->optional_int64 = $v;
+    $this->was_optional_int64_set = true;
+  }
+
+  public function hasOptionalInt64(): bool {
+    return $this->was_optional_int64_set;
+  }
+
+  public function getOptionalUint32(): int {
+    return $this->optional_uint32;
+  }
+
+  public function setOptionalUint32(int $v): void {
+    $this->optional_uint32 = $v;
+    $this->was_optional_uint32_set = true;
+  }
+
+  public function hasOptionalUint32(): bool {
+    return $this->was_optional_uint32_set;
+  }
+
+  public function getOptionalUint64(): int {
+    return $this->optional_uint64;
+  }
+
+  public function setOptionalUint64(int $v): void {
+    $this->optional_uint64 = $v;
+    $this->was_optional_uint64_set = true;
+  }
+
+  public function hasOptionalUint64(): bool {
+    return $this->was_optional_uint64_set;
+  }
+
+  public function getOptionalSint32(): int {
+    return $this->optional_sint32;
+  }
+
+  public function setOptionalSint32(int $v): void {
+    $this->optional_sint32 = $v;
+    $this->was_optional_sint32_set = true;
+  }
+
+  public function hasOptionalSint32(): bool {
+    return $this->was_optional_sint32_set;
+  }
+
+  public function getOptionalSint64(): int {
+    return $this->optional_sint64;
+  }
+
+  public function setOptionalSint64(int $v): void {
+    $this->optional_sint64 = $v;
+    $this->was_optional_sint64_set = true;
+  }
+
+  public function hasOptionalSint64(): bool {
+    return $this->was_optional_sint64_set;
+  }
+
+  public function getOptionalFixed32(): int {
+    return $this->optional_fixed32;
+  }
+
+  public function setOptionalFixed32(int $v): void {
+    $this->optional_fixed32 = $v;
+    $this->was_optional_fixed32_set = true;
+  }
+
+  public function hasOptionalFixed32(): bool {
+    return $this->was_optional_fixed32_set;
+  }
+
+  public function getOptionalFixed64(): int {
+    return $this->optional_fixed64;
+  }
+
+  public function setOptionalFixed64(int $v): void {
+    $this->optional_fixed64 = $v;
+    $this->was_optional_fixed64_set = true;
+  }
+
+  public function hasOptionalFixed64(): bool {
+    return $this->was_optional_fixed64_set;
+  }
+
+  public function getOptionalSfixed32(): int {
+    return $this->optional_sfixed32;
+  }
+
+  public function setOptionalSfixed32(int $v): void {
+    $this->optional_sfixed32 = $v;
+    $this->was_optional_sfixed32_set = true;
+  }
+
+  public function hasOptionalSfixed32(): bool {
+    return $this->was_optional_sfixed32_set;
+  }
+
+  public function getOptionalSfixed64(): int {
+    return $this->optional_sfixed64;
+  }
+
+  public function setOptionalSfixed64(int $v): void {
+    $this->optional_sfixed64 = $v;
+    $this->was_optional_sfixed64_set = true;
+  }
+
+  public function hasOptionalSfixed64(): bool {
+    return $this->was_optional_sfixed64_set;
+  }
+
+  public function getOptionalFloat(): float {
+    return $this->optional_float;
+  }
+
+  public function setOptionalFloat(float $v): void {
+    $this->optional_float = $v;
+    $this->was_optional_float_set = true;
+  }
+
+  public function hasOptionalFloat(): bool {
+    return $this->was_optional_float_set;
+  }
+
+  public function getOptionalDouble(): float {
+    return $this->optional_double;
+  }
+
+  public function setOptionalDouble(float $v): void {
+    $this->optional_double = $v;
+    $this->was_optional_double_set = true;
+  }
+
+  public function hasOptionalDouble(): bool {
+    return $this->was_optional_double_set;
+  }
+
+  public function getOptionalBool(): bool {
+    return $this->optional_bool;
+  }
+
+  public function setOptionalBool(bool $v): void {
+    $this->optional_bool = $v;
+    $this->was_optional_bool_set = true;
+  }
+
+  public function hasOptionalBool(): bool {
+    return $this->was_optional_bool_set;
+  }
+
+  public function getOptionalString(): string {
+    return $this->optional_string;
+  }
+
+  public function setOptionalString(string $v): void {
+    $this->optional_string = $v;
+    $this->was_optional_string_set = true;
+  }
+
+  public function hasOptionalString(): bool {
+    return $this->was_optional_string_set;
+  }
+
+  public function getOptionalBytes(): string {
+    return $this->optional_bytes;
+  }
+
+  public function setOptionalBytes(string $v): void {
+    $this->optional_bytes = $v;
+    $this->was_optional_bytes_set = true;
+  }
+
+  public function hasOptionalBytes(): bool {
+    return $this->was_optional_bytes_set;
+  }
+
+  public function getOptionalNestedMessage(): ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage {
+    return $this->optional_nested_message;
+  }
+
+  public function setOptionalNestedMessage(?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $v): void {
+    $this->optional_nested_message = $v;
+    $this->was_optional_nested_message_set = true;
+  }
+
+  public function hasOptionalNestedMessage(): bool {
+    return $this->was_optional_nested_message_set;
+  }
+
+  public function getOptionalForeignMessage(): ?\protobuf_test_messages\proto2\ForeignMessageProto2 {
+    return $this->optional_foreign_message;
+  }
+
+  public function setOptionalForeignMessage(?\protobuf_test_messages\proto2\ForeignMessageProto2 $v): void {
+    $this->optional_foreign_message = $v;
+    $this->was_optional_foreign_message_set = true;
+  }
+
+  public function hasOptionalForeignMessage(): bool {
+    return $this->was_optional_foreign_message_set;
+  }
+
+  public function getOptionalNestedEnum(): \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t {
+    return $this->optional_nested_enum;
+  }
+
+  public function setOptionalNestedEnum(\protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t $v): void {
+    $this->optional_nested_enum = $v;
+    $this->was_optional_nested_enum_set = true;
+  }
+
+  public function hasOptionalNestedEnum(): bool {
+    return $this->was_optional_nested_enum_set;
+  }
+
+  public function getOptionalForeignEnum(): \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t {
+    return $this->optional_foreign_enum;
+  }
+
+  public function setOptionalForeignEnum(\protobuf_test_messages\proto2\ForeignEnumProto2_enum_t $v): void {
+    $this->optional_foreign_enum = $v;
+    $this->was_optional_foreign_enum_set = true;
+  }
+
+  public function hasOptionalForeignEnum(): bool {
+    return $this->was_optional_foreign_enum_set;
+  }
+
+  public function getOptionalStringPiece(): string {
+    return $this->optional_string_piece;
+  }
+
+  public function setOptionalStringPiece(string $v): void {
+    $this->optional_string_piece = $v;
+    $this->was_optional_string_piece_set = true;
+  }
+
+  public function hasOptionalStringPiece(): bool {
+    return $this->was_optional_string_piece_set;
+  }
+
+  public function getOptionalCord(): string {
+    return $this->optional_cord;
+  }
+
+  public function setOptionalCord(string $v): void {
+    $this->optional_cord = $v;
+    $this->was_optional_cord_set = true;
+  }
+
+  public function hasOptionalCord(): bool {
+    return $this->was_optional_cord_set;
+  }
+
+  public function getRecursiveMessage(): ?\protobuf_test_messages\proto2\TestAllTypesProto2 {
+    return $this->recursive_message;
+  }
+
+  public function setRecursiveMessage(?\protobuf_test_messages\proto2\TestAllTypesProto2 $v): void {
+    $this->recursive_message = $v;
+    $this->was_recursive_message_set = true;
+  }
+
+  public function hasRecursiveMessage(): bool {
+    return $this->was_recursive_message_set;
+  }
+
+  public function getOneofUint32(): int {
+    return $this->oneof_uint32;
+  }
+
+  public function setOneofUint32(int $v): void {
+    $this->oneof_uint32 = $v;
+    $this->was_oneof_uint32_set = true;
+  }
+
+  public function hasOneofUint32(): bool {
+    return $this->was_oneof_uint32_set;
+  }
+
+  public function getOneofNestedMessage(): ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage {
+    return $this->oneof_nested_message;
+  }
+
+  public function setOneofNestedMessage(?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $v): void {
+    $this->oneof_nested_message = $v;
+    $this->was_oneof_nested_message_set = true;
+  }
+
+  public function hasOneofNestedMessage(): bool {
+    return $this->was_oneof_nested_message_set;
+  }
+
+  public function getOneofString(): string {
+    return $this->oneof_string;
+  }
+
+  public function setOneofString(string $v): void {
+    $this->oneof_string = $v;
+    $this->was_oneof_string_set = true;
+  }
+
+  public function hasOneofString(): bool {
+    return $this->was_oneof_string_set;
+  }
+
+  public function getOneofBytes(): string {
+    return $this->oneof_bytes;
+  }
+
+  public function setOneofBytes(string $v): void {
+    $this->oneof_bytes = $v;
+    $this->was_oneof_bytes_set = true;
+  }
+
+  public function hasOneofBytes(): bool {
+    return $this->was_oneof_bytes_set;
+  }
+
+  public function getOneofBool(): bool {
+    return $this->oneof_bool;
+  }
+
+  public function setOneofBool(bool $v): void {
+    $this->oneof_bool = $v;
+    $this->was_oneof_bool_set = true;
+  }
+
+  public function hasOneofBool(): bool {
+    return $this->was_oneof_bool_set;
+  }
+
+  public function getOneofUint64(): int {
+    return $this->oneof_uint64;
+  }
+
+  public function setOneofUint64(int $v): void {
+    $this->oneof_uint64 = $v;
+    $this->was_oneof_uint64_set = true;
+  }
+
+  public function hasOneofUint64(): bool {
+    return $this->was_oneof_uint64_set;
+  }
+
+  public function getOneofFloat(): float {
+    return $this->oneof_float;
+  }
+
+  public function setOneofFloat(float $v): void {
+    $this->oneof_float = $v;
+    $this->was_oneof_float_set = true;
+  }
+
+  public function hasOneofFloat(): bool {
+    return $this->was_oneof_float_set;
+  }
+
+  public function getOneofDouble(): float {
+    return $this->oneof_double;
+  }
+
+  public function setOneofDouble(float $v): void {
+    $this->oneof_double = $v;
+    $this->was_oneof_double_set = true;
+  }
+
+  public function hasOneofDouble(): bool {
+    return $this->was_oneof_double_set;
+  }
+
+  public function getOneofEnum(): \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t {
+    return $this->oneof_enum;
+  }
+
+  public function setOneofEnum(\protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t $v): void {
+    $this->oneof_enum = $v;
+    $this->was_oneof_enum_set = true;
+  }
+
+  public function hasOneofEnum(): bool {
+    return $this->was_oneof_enum_set;
+  }
+
+  public function getData(): ?\protobuf_test_messages\proto2\TestAllTypesProto2_Data {
+    return $this->data;
+  }
+
+  public function setData(?\protobuf_test_messages\proto2\TestAllTypesProto2_Data $v): void {
+    $this->data = $v;
+    $this->was_data_set = true;
+  }
+
+  public function hasData(): bool {
+    return $this->was_data_set;
+  }
+
+  public function getDefaultInt32(): int {
+    return $this->default_int32;
+  }
+
+  public function setDefaultInt32(int $v): void {
+    $this->default_int32 = $v;
+    $this->was_default_int32_set = true;
+  }
+
+  public function hasDefaultInt32(): bool {
+    return $this->was_default_int32_set;
+  }
+
+  public function getDefaultInt64(): int {
+    return $this->default_int64;
+  }
+
+  public function setDefaultInt64(int $v): void {
+    $this->default_int64 = $v;
+    $this->was_default_int64_set = true;
+  }
+
+  public function hasDefaultInt64(): bool {
+    return $this->was_default_int64_set;
+  }
+
+  public function getDefaultUint32(): int {
+    return $this->default_uint32;
+  }
+
+  public function setDefaultUint32(int $v): void {
+    $this->default_uint32 = $v;
+    $this->was_default_uint32_set = true;
+  }
+
+  public function hasDefaultUint32(): bool {
+    return $this->was_default_uint32_set;
+  }
+
+  public function getDefaultUint64(): int {
+    return $this->default_uint64;
+  }
+
+  public function setDefaultUint64(int $v): void {
+    $this->default_uint64 = $v;
+    $this->was_default_uint64_set = true;
+  }
+
+  public function hasDefaultUint64(): bool {
+    return $this->was_default_uint64_set;
+  }
+
+  public function getDefaultSint32(): int {
+    return $this->default_sint32;
+  }
+
+  public function setDefaultSint32(int $v): void {
+    $this->default_sint32 = $v;
+    $this->was_default_sint32_set = true;
+  }
+
+  public function hasDefaultSint32(): bool {
+    return $this->was_default_sint32_set;
+  }
+
+  public function getDefaultSint64(): int {
+    return $this->default_sint64;
+  }
+
+  public function setDefaultSint64(int $v): void {
+    $this->default_sint64 = $v;
+    $this->was_default_sint64_set = true;
+  }
+
+  public function hasDefaultSint64(): bool {
+    return $this->was_default_sint64_set;
+  }
+
+  public function getDefaultFixed32(): int {
+    return $this->default_fixed32;
+  }
+
+  public function setDefaultFixed32(int $v): void {
+    $this->default_fixed32 = $v;
+    $this->was_default_fixed32_set = true;
+  }
+
+  public function hasDefaultFixed32(): bool {
+    return $this->was_default_fixed32_set;
+  }
+
+  public function getDefaultFixed64(): int {
+    return $this->default_fixed64;
+  }
+
+  public function setDefaultFixed64(int $v): void {
+    $this->default_fixed64 = $v;
+    $this->was_default_fixed64_set = true;
+  }
+
+  public function hasDefaultFixed64(): bool {
+    return $this->was_default_fixed64_set;
+  }
+
+  public function getDefaultSfixed32(): int {
+    return $this->default_sfixed32;
+  }
+
+  public function setDefaultSfixed32(int $v): void {
+    $this->default_sfixed32 = $v;
+    $this->was_default_sfixed32_set = true;
+  }
+
+  public function hasDefaultSfixed32(): bool {
+    return $this->was_default_sfixed32_set;
+  }
+
+  public function getDefaultSfixed64(): int {
+    return $this->default_sfixed64;
+  }
+
+  public function setDefaultSfixed64(int $v): void {
+    $this->default_sfixed64 = $v;
+    $this->was_default_sfixed64_set = true;
+  }
+
+  public function hasDefaultSfixed64(): bool {
+    return $this->was_default_sfixed64_set;
+  }
+
+  public function getDefaultFloat(): float {
+    return $this->default_float;
+  }
+
+  public function setDefaultFloat(float $v): void {
+    $this->default_float = $v;
+    $this->was_default_float_set = true;
+  }
+
+  public function hasDefaultFloat(): bool {
+    return $this->was_default_float_set;
+  }
+
+  public function getDefaultDouble(): float {
+    return $this->default_double;
+  }
+
+  public function setDefaultDouble(float $v): void {
+    $this->default_double = $v;
+    $this->was_default_double_set = true;
+  }
+
+  public function hasDefaultDouble(): bool {
+    return $this->was_default_double_set;
+  }
+
+  public function getDefaultBool(): bool {
+    return $this->default_bool;
+  }
+
+  public function setDefaultBool(bool $v): void {
+    $this->default_bool = $v;
+    $this->was_default_bool_set = true;
+  }
+
+  public function hasDefaultBool(): bool {
+    return $this->was_default_bool_set;
+  }
+
+  public function getDefaultString(): string {
+    return $this->default_string;
+  }
+
+  public function setDefaultString(string $v): void {
+    $this->default_string = $v;
+    $this->was_default_string_set = true;
+  }
+
+  public function hasDefaultString(): bool {
+    return $this->was_default_string_set;
+  }
+
+  public function getDefaultBytes(): string {
+    return $this->default_bytes;
+  }
+
+  public function setDefaultBytes(string $v): void {
+    $this->default_bytes = $v;
+    $this->was_default_bytes_set = true;
+  }
+
+  public function hasDefaultBytes(): bool {
+    return $this->was_default_bytes_set;
+  }
+
+  public function getFieldname1(): int {
+    return $this->fieldname1;
+  }
+
+  public function setFieldname1(int $v): void {
+    $this->fieldname1 = $v;
+    $this->was_fieldname1_set = true;
+  }
+
+  public function hasFieldname1(): bool {
+    return $this->was_fieldname1_set;
+  }
+
+  public function getFieldName2(): int {
+    return $this->field_name2;
+  }
+
+  public function setFieldName2(int $v): void {
+    $this->field_name2 = $v;
+    $this->was_field_name2_set = true;
+  }
+
+  public function hasFieldName2(): bool {
+    return $this->was_field_name2_set;
+  }
+
+  public function getFieldName3(): int {
+    return $this->_field_name3;
+  }
+
+  public function setFieldName3(int $v): void {
+    $this->_field_name3 = $v;
+    $this->was__field_name3_set = true;
+  }
+
+  public function hasFieldName3(): bool {
+    return $this->was__field_name3_set;
+  }
+
+  public function getFieldName4(): int {
+    return $this->field__name4_;
+  }
+
+  public function setFieldName4(int $v): void {
+    $this->field__name4_ = $v;
+    $this->was_field__name4__set = true;
+  }
+
+  public function hasFieldName4(): bool {
+    return $this->was_field__name4__set;
+  }
+
+  public function getField0name5(): int {
+    return $this->field0name5;
+  }
+
+  public function setField0name5(int $v): void {
+    $this->field0name5 = $v;
+    $this->was_field0name5_set = true;
+  }
+
+  public function hasField0name5(): bool {
+    return $this->was_field0name5_set;
+  }
+
+  public function getField0Name6(): int {
+    return $this->field_0_name6;
+  }
+
+  public function setField0Name6(int $v): void {
+    $this->field_0_name6 = $v;
+    $this->was_field_0_name6_set = true;
+  }
+
+  public function hasField0Name6(): bool {
+    return $this->was_field_0_name6_set;
+  }
+
+  public function getFieldName7(): int {
+    return $this->fieldName7;
+  }
+
+  public function setFieldName7(int $v): void {
+    $this->fieldName7 = $v;
+    $this->was_fieldName7_set = true;
+  }
+
+  public function hasFieldName7(): bool {
+    return $this->was_fieldName7_set;
+  }
+
+  public function getFieldName8(): int {
+    return $this->FieldName8;
+  }
+
+  public function setFieldName8(int $v): void {
+    $this->FieldName8 = $v;
+    $this->was_FieldName8_set = true;
+  }
+
+  public function hasFieldName8(): bool {
+    return $this->was_FieldName8_set;
+  }
+
+  public function getFieldName9(): int {
+    return $this->field_Name9;
+  }
+
+  public function setFieldName9(int $v): void {
+    $this->field_Name9 = $v;
+    $this->was_field_Name9_set = true;
+  }
+
+  public function hasFieldName9(): bool {
+    return $this->was_field_Name9_set;
+  }
+
+  public function getFieldName10(): int {
+    return $this->Field_Name10;
+  }
+
+  public function setFieldName10(int $v): void {
+    $this->Field_Name10 = $v;
+    $this->was_Field_Name10_set = true;
+  }
+
+  public function hasFieldName10(): bool {
+    return $this->was_Field_Name10_set;
+  }
+
+  public function getFIELDNAME11(): int {
+    return $this->FIELD_NAME11;
+  }
+
+  public function setFIELDNAME11(int $v): void {
+    $this->FIELD_NAME11 = $v;
+    $this->was_FIELD_NAME11_set = true;
+  }
+
+  public function hasFIELDNAME11(): bool {
+    return $this->was_FIELD_NAME11_set;
+  }
+
+  public function getFIELDName12(): int {
+    return $this->FIELD_name12;
+  }
+
+  public function setFIELDName12(int $v): void {
+    $this->FIELD_name12 = $v;
+    $this->was_FIELD_name12_set = true;
+  }
+
+  public function hasFIELDName12(): bool {
+    return $this->was_FIELD_name12_set;
+  }
+
+  public function getFieldName13(): int {
+    return $this->__field_name13;
+  }
+
+  public function setFieldName13(int $v): void {
+    $this->__field_name13 = $v;
+    $this->was___field_name13_set = true;
+  }
+
+  public function hasFieldName13(): bool {
+    return $this->was___field_name13_set;
+  }
+
+  public function getFieldName14(): int {
+    return $this->__Field_name14;
+  }
+
+  public function setFieldName14(int $v): void {
+    $this->__Field_name14 = $v;
+    $this->was___Field_name14_set = true;
+  }
+
+  public function hasFieldName14(): bool {
+    return $this->was___Field_name14_set;
+  }
+
+  public function getFieldName15(): int {
+    return $this->field__name15;
+  }
+
+  public function setFieldName15(int $v): void {
+    $this->field__name15 = $v;
+    $this->was_field__name15_set = true;
+  }
+
+  public function hasFieldName15(): bool {
+    return $this->was_field__name15_set;
+  }
+
+  public function getFieldName16(): int {
+    return $this->field__Name16;
+  }
+
+  public function setFieldName16(int $v): void {
+    $this->field__Name16 = $v;
+    $this->was_field__Name16_set = true;
+  }
+
+  public function hasFieldName16(): bool {
+    return $this->was_field__Name16_set;
+  }
+
+  public function getFieldName17(): int {
+    return $this->field_name17__;
+  }
+
+  public function setFieldName17(int $v): void {
+    $this->field_name17__ = $v;
+    $this->was_field_name17___set = true;
+  }
+
+  public function hasFieldName17(): bool {
+    return $this->was_field_name17___set;
+  }
+
+  public function getFieldName18(): int {
+    return $this->Field_name18__;
+  }
+
+  public function setFieldName18(int $v): void {
+    $this->Field_name18__ = $v;
+    $this->was_Field_name18___set = true;
+  }
+
+  public function hasFieldName18(): bool {
+    return $this->was_Field_name18___set;
   }
 
   public function MessageName(): string {
@@ -2807,76 +5212,98 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->optional_int32 = $d->readVarint32Signed();
+          $this->was_optional_int32_set = true;
           break;
         case 2:
           $this->optional_int64 = $d->readVarint();
+          $this->was_optional_int64_set = true;
           break;
         case 3:
           $this->optional_uint32 = $d->readVarint32();
+          $this->was_optional_uint32_set = true;
           break;
         case 4:
           $this->optional_uint64 = $d->readVarint();
+          $this->was_optional_uint64_set = true;
           break;
         case 5:
           $this->optional_sint32 = $d->readVarintZigZag32();
+          $this->was_optional_sint32_set = true;
           break;
         case 6:
           $this->optional_sint64 = $d->readVarintZigZag64();
+          $this->was_optional_sint64_set = true;
           break;
         case 7:
           $this->optional_fixed32 = $d->readLittleEndianInt32Unsigned();
+          $this->was_optional_fixed32_set = true;
           break;
         case 8:
           $this->optional_fixed64 = $d->readLittleEndianInt64();
+          $this->was_optional_fixed64_set = true;
           break;
         case 9:
           $this->optional_sfixed32 = $d->readLittleEndianInt32Signed();
+          $this->was_optional_sfixed32_set = true;
           break;
         case 10:
           $this->optional_sfixed64 = $d->readLittleEndianInt64();
+          $this->was_optional_sfixed64_set = true;
           break;
         case 11:
           $this->optional_float = $d->readFloat();
+          $this->was_optional_float_set = true;
           break;
         case 12:
           $this->optional_double = $d->readDouble();
+          $this->was_optional_double_set = true;
           break;
         case 13:
           $this->optional_bool = $d->readBool();
+          $this->was_optional_bool_set = true;
           break;
         case 14:
           $this->optional_string = $d->readString();
+          $this->was_optional_string_set = true;
           break;
         case 15:
           $this->optional_bytes = $d->readString();
+          $this->was_optional_bytes_set = true;
           break;
         case 18:
           if ($this->optional_nested_message is null) {
             $this->optional_nested_message = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+            $this->was_optional_nested_message_set = true;
           }
           $this->optional_nested_message->MergeFrom($d->readDecoder());
           break;
         case 19:
           if ($this->optional_foreign_message is null) {
             $this->optional_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+            $this->was_optional_foreign_message_set = true;
           }
           $this->optional_foreign_message->MergeFrom($d->readDecoder());
           break;
         case 21:
           $this->optional_nested_enum = \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt($d->readVarint());
+          $this->was_optional_nested_enum_set = true;
           break;
         case 22:
           $this->optional_foreign_enum = \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt($d->readVarint());
+          $this->was_optional_foreign_enum_set = true;
           break;
         case 24:
           $this->optional_string_piece = $d->readString();
+          $this->was_optional_string_piece_set = true;
           break;
         case 25:
           $this->optional_cord = $d->readString();
+          $this->was_optional_cord_set = true;
           break;
         case 27:
           if ($this->recursive_message is null) {
             $this->recursive_message = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+            $this->was_recursive_message_set = true;
           }
           $this->recursive_message->MergeFrom($d->readDecoder());
           break;
@@ -3463,107 +5890,141 @@ class TestAllTypesProto2 implements \Protobuf\Message {
         case 201:
           if ($this->data is null) {
             $this->data = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
+            $this->was_data_set = true;
           }
           $this->data->MergeFrom($d->readDecoder());
           break;
         case 241:
           $this->default_int32 = $d->readVarint32Signed();
+          $this->was_default_int32_set = true;
           break;
         case 242:
           $this->default_int64 = $d->readVarint();
+          $this->was_default_int64_set = true;
           break;
         case 243:
           $this->default_uint32 = $d->readVarint32();
+          $this->was_default_uint32_set = true;
           break;
         case 244:
           $this->default_uint64 = $d->readVarint();
+          $this->was_default_uint64_set = true;
           break;
         case 245:
           $this->default_sint32 = $d->readVarintZigZag32();
+          $this->was_default_sint32_set = true;
           break;
         case 246:
           $this->default_sint64 = $d->readVarintZigZag64();
+          $this->was_default_sint64_set = true;
           break;
         case 247:
           $this->default_fixed32 = $d->readLittleEndianInt32Unsigned();
+          $this->was_default_fixed32_set = true;
           break;
         case 248:
           $this->default_fixed64 = $d->readLittleEndianInt64();
+          $this->was_default_fixed64_set = true;
           break;
         case 249:
           $this->default_sfixed32 = $d->readLittleEndianInt32Signed();
+          $this->was_default_sfixed32_set = true;
           break;
         case 250:
           $this->default_sfixed64 = $d->readLittleEndianInt64();
+          $this->was_default_sfixed64_set = true;
           break;
         case 251:
           $this->default_float = $d->readFloat();
+          $this->was_default_float_set = true;
           break;
         case 252:
           $this->default_double = $d->readDouble();
+          $this->was_default_double_set = true;
           break;
         case 253:
           $this->default_bool = $d->readBool();
+          $this->was_default_bool_set = true;
           break;
         case 254:
           $this->default_string = $d->readString();
+          $this->was_default_string_set = true;
           break;
         case 255:
           $this->default_bytes = $d->readString();
+          $this->was_default_bytes_set = true;
           break;
         case 401:
           $this->fieldname1 = $d->readVarint32Signed();
+          $this->was_fieldname1_set = true;
           break;
         case 402:
           $this->field_name2 = $d->readVarint32Signed();
+          $this->was_field_name2_set = true;
           break;
         case 403:
           $this->_field_name3 = $d->readVarint32Signed();
+          $this->was__field_name3_set = true;
           break;
         case 404:
           $this->field__name4_ = $d->readVarint32Signed();
+          $this->was_field__name4__set = true;
           break;
         case 405:
           $this->field0name5 = $d->readVarint32Signed();
+          $this->was_field0name5_set = true;
           break;
         case 406:
           $this->field_0_name6 = $d->readVarint32Signed();
+          $this->was_field_0_name6_set = true;
           break;
         case 407:
           $this->fieldName7 = $d->readVarint32Signed();
+          $this->was_fieldName7_set = true;
           break;
         case 408:
           $this->FieldName8 = $d->readVarint32Signed();
+          $this->was_FieldName8_set = true;
           break;
         case 409:
           $this->field_Name9 = $d->readVarint32Signed();
+          $this->was_field_Name9_set = true;
           break;
         case 410:
           $this->Field_Name10 = $d->readVarint32Signed();
+          $this->was_Field_Name10_set = true;
           break;
         case 411:
           $this->FIELD_NAME11 = $d->readVarint32Signed();
+          $this->was_FIELD_NAME11_set = true;
           break;
         case 412:
           $this->FIELD_name12 = $d->readVarint32Signed();
+          $this->was_FIELD_name12_set = true;
           break;
         case 413:
           $this->__field_name13 = $d->readVarint32Signed();
+          $this->was___field_name13_set = true;
           break;
         case 414:
           $this->__Field_name14 = $d->readVarint32Signed();
+          $this->was___Field_name14_set = true;
           break;
         case 415:
           $this->field__name15 = $d->readVarint32Signed();
+          $this->was_field__name15_set = true;
           break;
         case 416:
           $this->field__Name16 = $d->readVarint32Signed();
+          $this->was_field__Name16_set = true;
           break;
         case 417:
           $this->field_name17__ = $d->readVarint32Signed();
+          $this->was_field_name17___set = true;
           break;
         case 418:
           $this->Field_name18__ = $d->readVarint32Signed();
+          $this->was_Field_name18___set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -3573,99 +6034,105 @@ class TestAllTypesProto2 implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->optional_int32 !== 0) {
+    if ($this->was_optional_int32_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->optional_int32);
     }
-    if ($this->optional_int64 !== 0) {
+    if ($this->was_optional_int64_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->optional_int64);
     }
-    if ($this->optional_uint32 !== 0) {
+    if ($this->was_optional_uint32_set) {
       $e->writeTag(3, 0);
       $e->writeVarint($this->optional_uint32);
     }
-    if ($this->optional_uint64 !== 0) {
+    if ($this->was_optional_uint64_set) {
       $e->writeTag(4, 0);
       $e->writeVarint($this->optional_uint64);
     }
-    if ($this->optional_sint32 !== 0) {
+    if ($this->was_optional_sint32_set) {
       $e->writeTag(5, 0);
       $e->writeVarintZigZag32($this->optional_sint32);
     }
-    if ($this->optional_sint64 !== 0) {
+    if ($this->was_optional_sint64_set) {
       $e->writeTag(6, 0);
       $e->writeVarintZigZag64($this->optional_sint64);
     }
-    if ($this->optional_fixed32 !== 0) {
+    if ($this->was_optional_fixed32_set) {
       $e->writeTag(7, 5);
       $e->writeLittleEndianInt32Unsigned($this->optional_fixed32);
     }
-    if ($this->optional_fixed64 !== 0) {
+    if ($this->was_optional_fixed64_set) {
       $e->writeTag(8, 1);
       $e->writeLittleEndianInt64($this->optional_fixed64);
     }
-    if ($this->optional_sfixed32 !== 0) {
+    if ($this->was_optional_sfixed32_set) {
       $e->writeTag(9, 5);
       $e->writeLittleEndianInt32Signed($this->optional_sfixed32);
     }
-    if ($this->optional_sfixed64 !== 0) {
+    if ($this->was_optional_sfixed64_set) {
       $e->writeTag(10, 1);
       $e->writeLittleEndianInt64($this->optional_sfixed64);
     }
-    if ($this->optional_float !== 0.0) {
+    if ($this->was_optional_float_set) {
       $e->writeTag(11, 5);
       $e->writeFloat($this->optional_float);
     }
-    if ($this->optional_double !== 0.0) {
+    if ($this->was_optional_double_set) {
       $e->writeTag(12, 1);
       $e->writeDouble($this->optional_double);
     }
-    if ($this->optional_bool !== false) {
+    if ($this->was_optional_bool_set) {
       $e->writeTag(13, 0);
       $e->writeBool($this->optional_bool);
     }
-    if ($this->optional_string !== '') {
+    if ($this->was_optional_string_set) {
       $e->writeTag(14, 2);
       $e->writeString($this->optional_string);
     }
-    if ($this->optional_bytes !== '') {
+    if ($this->was_optional_bytes_set) {
       $e->writeTag(15, 2);
       $e->writeString($this->optional_bytes);
     }
     $msg = $this->optional_nested_message;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 18);
+      if ($this->was_optional_nested_message_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 18);
+      }
     }
     $msg = $this->optional_foreign_message;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 19);
+      if ($this->was_optional_foreign_message_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 19);
+      }
     }
-    if ($this->optional_nested_enum !== \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FOO) {
+    if ($this->was_optional_nested_enum_set) {
       $e->writeTag(21, 0);
       $e->writeVarint($this->optional_nested_enum);
     }
-    if ($this->optional_foreign_enum !== \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO) {
+    if ($this->was_optional_foreign_enum_set) {
       $e->writeTag(22, 0);
       $e->writeVarint($this->optional_foreign_enum);
     }
-    if ($this->optional_string_piece !== '') {
+    if ($this->was_optional_string_piece_set) {
       $e->writeTag(24, 2);
       $e->writeString($this->optional_string_piece);
     }
-    if ($this->optional_cord !== '') {
+    if ($this->was_optional_cord_set) {
       $e->writeTag(25, 2);
       $e->writeString($this->optional_cord);
     }
     $msg = $this->recursive_message;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 27);
+      if ($this->was_recursive_message_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 27);
+      }
     }
     foreach ($this->repeated_int32 as $elem) {
       $e->writeTag(31, 0);
@@ -4061,139 +6528,141 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     }
     $msg = $this->data;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 201);
+      if ($this->was_data_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 201);
+      }
     }
-    if ($this->default_int32 !== -123456789) {
+    if ($this->was_default_int32_set) {
       $e->writeTag(241, 0);
       $e->writeVarint($this->default_int32);
     }
-    if ($this->default_int64 !== -9123456789123456789) {
+    if ($this->was_default_int64_set) {
       $e->writeTag(242, 0);
       $e->writeVarint($this->default_int64);
     }
-    if ($this->default_uint32 !== 2123456789) {
+    if ($this->was_default_uint32_set) {
       $e->writeTag(243, 0);
       $e->writeVarint($this->default_uint32);
     }
-    if ($this->default_uint64 !== -8323287284586094827) {
+    if ($this->was_default_uint64_set) {
       $e->writeTag(244, 0);
       $e->writeVarint($this->default_uint64);
     }
-    if ($this->default_sint32 !== -123456789) {
+    if ($this->was_default_sint32_set) {
       $e->writeTag(245, 0);
       $e->writeVarintZigZag32($this->default_sint32);
     }
-    if ($this->default_sint64 !== -9123456789123456789) {
+    if ($this->was_default_sint64_set) {
       $e->writeTag(246, 0);
       $e->writeVarintZigZag64($this->default_sint64);
     }
-    if ($this->default_fixed32 !== 2123456789) {
+    if ($this->was_default_fixed32_set) {
       $e->writeTag(247, 5);
       $e->writeLittleEndianInt32Unsigned($this->default_fixed32);
     }
-    if ($this->default_fixed64 !== -8323287284586094827) {
+    if ($this->was_default_fixed64_set) {
       $e->writeTag(248, 1);
       $e->writeLittleEndianInt64($this->default_fixed64);
     }
-    if ($this->default_sfixed32 !== -123456789) {
+    if ($this->was_default_sfixed32_set) {
       $e->writeTag(249, 5);
       $e->writeLittleEndianInt32Signed($this->default_sfixed32);
     }
-    if ($this->default_sfixed64 !== -9123456789123456789) {
+    if ($this->was_default_sfixed64_set) {
       $e->writeTag(250, 1);
       $e->writeLittleEndianInt64($this->default_sfixed64);
     }
-    if ($this->default_float !== (float)9e+09) {
+    if ($this->was_default_float_set) {
       $e->writeTag(251, 5);
       $e->writeFloat($this->default_float);
     }
-    if ($this->default_double !== (float)7e+22) {
+    if ($this->was_default_double_set) {
       $e->writeTag(252, 1);
       $e->writeDouble($this->default_double);
     }
-    if ($this->default_bool !== true) {
+    if ($this->was_default_bool_set) {
       $e->writeTag(253, 0);
       $e->writeBool($this->default_bool);
     }
-    if ($this->default_string !== 'Rosebud') {
+    if ($this->was_default_string_set) {
       $e->writeTag(254, 2);
       $e->writeString($this->default_string);
     }
-    if ($this->default_bytes !== \stripcslashes('joshua')) {
+    if ($this->was_default_bytes_set) {
       $e->writeTag(255, 2);
       $e->writeString($this->default_bytes);
     }
-    if ($this->fieldname1 !== 0) {
+    if ($this->was_fieldname1_set) {
       $e->writeTag(401, 0);
       $e->writeVarint($this->fieldname1);
     }
-    if ($this->field_name2 !== 0) {
+    if ($this->was_field_name2_set) {
       $e->writeTag(402, 0);
       $e->writeVarint($this->field_name2);
     }
-    if ($this->_field_name3 !== 0) {
+    if ($this->was__field_name3_set) {
       $e->writeTag(403, 0);
       $e->writeVarint($this->_field_name3);
     }
-    if ($this->field__name4_ !== 0) {
+    if ($this->was_field__name4__set) {
       $e->writeTag(404, 0);
       $e->writeVarint($this->field__name4_);
     }
-    if ($this->field0name5 !== 0) {
+    if ($this->was_field0name5_set) {
       $e->writeTag(405, 0);
       $e->writeVarint($this->field0name5);
     }
-    if ($this->field_0_name6 !== 0) {
+    if ($this->was_field_0_name6_set) {
       $e->writeTag(406, 0);
       $e->writeVarint($this->field_0_name6);
     }
-    if ($this->fieldName7 !== 0) {
+    if ($this->was_fieldName7_set) {
       $e->writeTag(407, 0);
       $e->writeVarint($this->fieldName7);
     }
-    if ($this->FieldName8 !== 0) {
+    if ($this->was_FieldName8_set) {
       $e->writeTag(408, 0);
       $e->writeVarint($this->FieldName8);
     }
-    if ($this->field_Name9 !== 0) {
+    if ($this->was_field_Name9_set) {
       $e->writeTag(409, 0);
       $e->writeVarint($this->field_Name9);
     }
-    if ($this->Field_Name10 !== 0) {
+    if ($this->was_Field_Name10_set) {
       $e->writeTag(410, 0);
       $e->writeVarint($this->Field_Name10);
     }
-    if ($this->FIELD_NAME11 !== 0) {
+    if ($this->was_FIELD_NAME11_set) {
       $e->writeTag(411, 0);
       $e->writeVarint($this->FIELD_NAME11);
     }
-    if ($this->FIELD_name12 !== 0) {
+    if ($this->was_FIELD_name12_set) {
       $e->writeTag(412, 0);
       $e->writeVarint($this->FIELD_name12);
     }
-    if ($this->__field_name13 !== 0) {
+    if ($this->was___field_name13_set) {
       $e->writeTag(413, 0);
       $e->writeVarint($this->__field_name13);
     }
-    if ($this->__Field_name14 !== 0) {
+    if ($this->was___Field_name14_set) {
       $e->writeTag(414, 0);
       $e->writeVarint($this->__Field_name14);
     }
-    if ($this->field__name15 !== 0) {
+    if ($this->was_field__name15_set) {
       $e->writeTag(415, 0);
       $e->writeVarint($this->field__name15);
     }
-    if ($this->field__Name16 !== 0) {
+    if ($this->was_field__Name16_set) {
       $e->writeTag(416, 0);
       $e->writeVarint($this->field__Name16);
     }
-    if ($this->field_name17__ !== 0) {
+    if ($this->was_field_name17___set) {
       $e->writeTag(417, 0);
       $e->writeVarint($this->field_name17__);
     }
-    if ($this->Field_name18__ !== 0) {
+    if ($this->was_Field_name18___set) {
       $e->writeTag(418, 0);
       $e->writeVarint($this->Field_name18__);
     }
@@ -4202,28 +6671,72 @@ class TestAllTypesProto2 implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('optional_int32', 'optionalInt32', $this->optional_int32, false);
-    $e->writeInt64Signed('optional_int64', 'optionalInt64', $this->optional_int64, false);
-    $e->writeInt32('optional_uint32', 'optionalUint32', $this->optional_uint32, false);
-    $e->writeInt64Unsigned('optional_uint64', 'optionalUint64', $this->optional_uint64, false);
-    $e->writeInt32('optional_sint32', 'optionalSint32', $this->optional_sint32, false);
-    $e->writeInt64Signed('optional_sint64', 'optionalSint64', $this->optional_sint64, false);
-    $e->writeInt32('optional_fixed32', 'optionalFixed32', $this->optional_fixed32, false);
-    $e->writeInt64Unsigned('optional_fixed64', 'optionalFixed64', $this->optional_fixed64, false);
-    $e->writeInt32('optional_sfixed32', 'optionalSfixed32', $this->optional_sfixed32, false);
-    $e->writeInt64Signed('optional_sfixed64', 'optionalSfixed64', $this->optional_sfixed64, false);
-    $e->writeFloat('optional_float', 'optionalFloat', $this->optional_float, false);
-    $e->writeFloat('optional_double', 'optionalDouble', $this->optional_double, false);
-    $e->writeBool('optional_bool', 'optionalBool', $this->optional_bool, false);
-    $e->writeString('optional_string', 'optionalString', $this->optional_string, false);
-    $e->writeBytes('optional_bytes', 'optionalBytes', $this->optional_bytes, false);
-    $e->writeMessage('optional_nested_message', 'optionalNestedMessage', $this->optional_nested_message, false);
-    $e->writeMessage('optional_foreign_message', 'optionalForeignMessage', $this->optional_foreign_message, false);
-    $e->writeEnum('optional_nested_enum', 'optionalNestedEnum', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->optional_nested_enum, false);
-    $e->writeEnum('optional_foreign_enum', 'optionalForeignEnum', \protobuf_test_messages\proto2\ForeignEnumProto2::ToStringDict(), $this->optional_foreign_enum, false);
-    $e->writeString('optional_string_piece', 'optionalStringPiece', $this->optional_string_piece, false);
-    $e->writeString('optional_cord', 'optionalCord', $this->optional_cord, false);
-    $e->writeMessage('recursive_message', 'recursiveMessage', $this->recursive_message, false);
+    if ($this->hasOptionalInt32()) {
+      $e->writeInt32('optional_int32', 'optionalInt32', $this->optional_int32, false);
+    }
+    if ($this->hasOptionalInt64()) {
+      $e->writeInt64Signed('optional_int64', 'optionalInt64', $this->optional_int64, false);
+    }
+    if ($this->hasOptionalUint32()) {
+      $e->writeInt32('optional_uint32', 'optionalUint32', $this->optional_uint32, false);
+    }
+    if ($this->hasOptionalUint64()) {
+      $e->writeInt64Unsigned('optional_uint64', 'optionalUint64', $this->optional_uint64, false);
+    }
+    if ($this->hasOptionalSint32()) {
+      $e->writeInt32('optional_sint32', 'optionalSint32', $this->optional_sint32, false);
+    }
+    if ($this->hasOptionalSint64()) {
+      $e->writeInt64Signed('optional_sint64', 'optionalSint64', $this->optional_sint64, false);
+    }
+    if ($this->hasOptionalFixed32()) {
+      $e->writeInt32('optional_fixed32', 'optionalFixed32', $this->optional_fixed32, false);
+    }
+    if ($this->hasOptionalFixed64()) {
+      $e->writeInt64Unsigned('optional_fixed64', 'optionalFixed64', $this->optional_fixed64, false);
+    }
+    if ($this->hasOptionalSfixed32()) {
+      $e->writeInt32('optional_sfixed32', 'optionalSfixed32', $this->optional_sfixed32, false);
+    }
+    if ($this->hasOptionalSfixed64()) {
+      $e->writeInt64Signed('optional_sfixed64', 'optionalSfixed64', $this->optional_sfixed64, false);
+    }
+    if ($this->hasOptionalFloat()) {
+      $e->writeFloat('optional_float', 'optionalFloat', $this->optional_float, false);
+    }
+    if ($this->hasOptionalDouble()) {
+      $e->writeFloat('optional_double', 'optionalDouble', $this->optional_double, false);
+    }
+    if ($this->hasOptionalBool()) {
+      $e->writeBool('optional_bool', 'optionalBool', $this->optional_bool, false);
+    }
+    if ($this->hasOptionalString()) {
+      $e->writeString('optional_string', 'optionalString', $this->optional_string, false);
+    }
+    if ($this->hasOptionalBytes()) {
+      $e->writeBytes('optional_bytes', 'optionalBytes', $this->optional_bytes, false);
+    }
+    if ($this->hasOptionalNestedMessage()) {
+      $e->writeMessage('optional_nested_message', 'optionalNestedMessage', $this->optional_nested_message, false);
+    }
+    if ($this->hasOptionalForeignMessage()) {
+      $e->writeMessage('optional_foreign_message', 'optionalForeignMessage', $this->optional_foreign_message, false);
+    }
+    if ($this->hasOptionalNestedEnum()) {
+      $e->writeEnum('optional_nested_enum', 'optionalNestedEnum', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->optional_nested_enum, false);
+    }
+    if ($this->hasOptionalForeignEnum()) {
+      $e->writeEnum('optional_foreign_enum', 'optionalForeignEnum', \protobuf_test_messages\proto2\ForeignEnumProto2::ToStringDict(), $this->optional_foreign_enum, false);
+    }
+    if ($this->hasOptionalStringPiece()) {
+      $e->writeString('optional_string_piece', 'optionalStringPiece', $this->optional_string_piece, false);
+    }
+    if ($this->hasOptionalCord()) {
+      $e->writeString('optional_cord', 'optionalCord', $this->optional_cord, false);
+    }
+    if ($this->hasRecursiveMessage()) {
+      $e->writeMessage('recursive_message', 'recursiveMessage', $this->recursive_message, false);
+    }
     $e->writePrimitiveList('repeated_int32', 'repeatedInt32', $this->repeated_int32);
     $e->writeInt64SignedList('repeated_int64', 'repeatedInt64', $this->repeated_int64);
     $e->writePrimitiveList('repeated_uint32', 'repeatedUint32', $this->repeated_uint32);
@@ -4292,40 +6805,108 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $e->writeFloatList('unpacked_double', 'unpackedDouble', $this->unpacked_double);
     $e->writePrimitiveList('unpacked_bool', 'unpackedBool', $this->unpacked_bool);
     $e->writeEnumList('unpacked_nested_enum', 'unpackedNestedEnum', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->unpacked_nested_enum);
-    $e->writeMessage('data', 'data', $this->data, false);
-    $e->writeInt32('default_int32', 'defaultInt32', $this->default_int32, false);
-    $e->writeInt64Signed('default_int64', 'defaultInt64', $this->default_int64, false);
-    $e->writeInt32('default_uint32', 'defaultUint32', $this->default_uint32, false);
-    $e->writeInt64Unsigned('default_uint64', 'defaultUint64', $this->default_uint64, false);
-    $e->writeInt32('default_sint32', 'defaultSint32', $this->default_sint32, false);
-    $e->writeInt64Signed('default_sint64', 'defaultSint64', $this->default_sint64, false);
-    $e->writeInt32('default_fixed32', 'defaultFixed32', $this->default_fixed32, false);
-    $e->writeInt64Unsigned('default_fixed64', 'defaultFixed64', $this->default_fixed64, false);
-    $e->writeInt32('default_sfixed32', 'defaultSfixed32', $this->default_sfixed32, false);
-    $e->writeInt64Signed('default_sfixed64', 'defaultSfixed64', $this->default_sfixed64, false);
-    $e->writeFloat('default_float', 'defaultFloat', $this->default_float, false);
-    $e->writeFloat('default_double', 'defaultDouble', $this->default_double, false);
-    $e->writeBool('default_bool', 'defaultBool', $this->default_bool, false);
-    $e->writeString('default_string', 'defaultString', $this->default_string, false);
-    $e->writeBytes('default_bytes', 'defaultBytes', $this->default_bytes, false);
-    $e->writeInt32('fieldname1', 'fieldname1', $this->fieldname1, false);
-    $e->writeInt32('field_name2', 'fieldName2', $this->field_name2, false);
-    $e->writeInt32('_field_name3', 'FieldName3', $this->_field_name3, false);
-    $e->writeInt32('field__name4_', 'fieldName4', $this->field__name4_, false);
-    $e->writeInt32('field0name5', 'field0name5', $this->field0name5, false);
-    $e->writeInt32('field_0_name6', 'field0Name6', $this->field_0_name6, false);
-    $e->writeInt32('fieldName7', 'fieldName7', $this->fieldName7, false);
-    $e->writeInt32('FieldName8', 'FieldName8', $this->FieldName8, false);
-    $e->writeInt32('field_Name9', 'fieldName9', $this->field_Name9, false);
-    $e->writeInt32('Field_Name10', 'FieldName10', $this->Field_Name10, false);
-    $e->writeInt32('FIELD_NAME11', 'FIELDNAME11', $this->FIELD_NAME11, false);
-    $e->writeInt32('FIELD_name12', 'FIELDName12', $this->FIELD_name12, false);
-    $e->writeInt32('__field_name13', 'FieldName13', $this->__field_name13, false);
-    $e->writeInt32('__Field_name14', 'FieldName14', $this->__Field_name14, false);
-    $e->writeInt32('field__name15', 'fieldName15', $this->field__name15, false);
-    $e->writeInt32('field__Name16', 'fieldName16', $this->field__Name16, false);
-    $e->writeInt32('field_name17__', 'fieldName17', $this->field_name17__, false);
-    $e->writeInt32('Field_name18__', 'FieldName18', $this->Field_name18__, false);
+    if ($this->hasData()) {
+      $e->writeMessage('data', 'data', $this->data, false);
+    }
+    if ($this->hasDefaultInt32()) {
+      $e->writeInt32('default_int32', 'defaultInt32', $this->default_int32, false);
+    }
+    if ($this->hasDefaultInt64()) {
+      $e->writeInt64Signed('default_int64', 'defaultInt64', $this->default_int64, false);
+    }
+    if ($this->hasDefaultUint32()) {
+      $e->writeInt32('default_uint32', 'defaultUint32', $this->default_uint32, false);
+    }
+    if ($this->hasDefaultUint64()) {
+      $e->writeInt64Unsigned('default_uint64', 'defaultUint64', $this->default_uint64, false);
+    }
+    if ($this->hasDefaultSint32()) {
+      $e->writeInt32('default_sint32', 'defaultSint32', $this->default_sint32, false);
+    }
+    if ($this->hasDefaultSint64()) {
+      $e->writeInt64Signed('default_sint64', 'defaultSint64', $this->default_sint64, false);
+    }
+    if ($this->hasDefaultFixed32()) {
+      $e->writeInt32('default_fixed32', 'defaultFixed32', $this->default_fixed32, false);
+    }
+    if ($this->hasDefaultFixed64()) {
+      $e->writeInt64Unsigned('default_fixed64', 'defaultFixed64', $this->default_fixed64, false);
+    }
+    if ($this->hasDefaultSfixed32()) {
+      $e->writeInt32('default_sfixed32', 'defaultSfixed32', $this->default_sfixed32, false);
+    }
+    if ($this->hasDefaultSfixed64()) {
+      $e->writeInt64Signed('default_sfixed64', 'defaultSfixed64', $this->default_sfixed64, false);
+    }
+    if ($this->hasDefaultFloat()) {
+      $e->writeFloat('default_float', 'defaultFloat', $this->default_float, false);
+    }
+    if ($this->hasDefaultDouble()) {
+      $e->writeFloat('default_double', 'defaultDouble', $this->default_double, false);
+    }
+    if ($this->hasDefaultBool()) {
+      $e->writeBool('default_bool', 'defaultBool', $this->default_bool, false);
+    }
+    if ($this->hasDefaultString()) {
+      $e->writeString('default_string', 'defaultString', $this->default_string, false);
+    }
+    if ($this->hasDefaultBytes()) {
+      $e->writeBytes('default_bytes', 'defaultBytes', $this->default_bytes, false);
+    }
+    if ($this->hasFieldname1()) {
+      $e->writeInt32('fieldname1', 'fieldname1', $this->fieldname1, false);
+    }
+    if ($this->hasFieldName2()) {
+      $e->writeInt32('field_name2', 'fieldName2', $this->field_name2, false);
+    }
+    if ($this->hasFieldName3()) {
+      $e->writeInt32('_field_name3', 'FieldName3', $this->_field_name3, false);
+    }
+    if ($this->hasFieldName4()) {
+      $e->writeInt32('field__name4_', 'fieldName4', $this->field__name4_, false);
+    }
+    if ($this->hasField0name5()) {
+      $e->writeInt32('field0name5', 'field0name5', $this->field0name5, false);
+    }
+    if ($this->hasField0Name6()) {
+      $e->writeInt32('field_0_name6', 'field0Name6', $this->field_0_name6, false);
+    }
+    if ($this->hasFieldName7()) {
+      $e->writeInt32('fieldName7', 'fieldName7', $this->fieldName7, false);
+    }
+    if ($this->hasFieldName8()) {
+      $e->writeInt32('FieldName8', 'FieldName8', $this->FieldName8, false);
+    }
+    if ($this->hasFieldName9()) {
+      $e->writeInt32('field_Name9', 'fieldName9', $this->field_Name9, false);
+    }
+    if ($this->hasFieldName10()) {
+      $e->writeInt32('Field_Name10', 'FieldName10', $this->Field_Name10, false);
+    }
+    if ($this->hasFIELDNAME11()) {
+      $e->writeInt32('FIELD_NAME11', 'FIELDNAME11', $this->FIELD_NAME11, false);
+    }
+    if ($this->hasFIELDName12()) {
+      $e->writeInt32('FIELD_name12', 'FIELDName12', $this->FIELD_name12, false);
+    }
+    if ($this->hasFieldName13()) {
+      $e->writeInt32('__field_name13', 'FieldName13', $this->__field_name13, false);
+    }
+    if ($this->hasFieldName14()) {
+      $e->writeInt32('__Field_name14', 'FieldName14', $this->__Field_name14, false);
+    }
+    if ($this->hasFieldName15()) {
+      $e->writeInt32('field__name15', 'fieldName15', $this->field__name15, false);
+    }
+    if ($this->hasFieldName16()) {
+      $e->writeInt32('field__Name16', 'fieldName16', $this->field__Name16, false);
+    }
+    if ($this->hasFieldName17()) {
+      $e->writeInt32('field_name17__', 'fieldName17', $this->field_name17__, false);
+    }
+    if ($this->hasFieldName18()) {
+      $e->writeInt32('Field_name18__', 'FieldName18', $this->Field_name18__, false);
+    }
     $this->oneof_field->WriteJsonTo($e);
   }
 
@@ -4336,53 +6917,69 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       switch ($k) {
         case 'optional_int32': case 'optionalInt32':
           $this->optional_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_optional_int32_set = true;
           break;
         case 'optional_int64': case 'optionalInt64':
           $this->optional_int64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_optional_int64_set = true;
           break;
         case 'optional_uint32': case 'optionalUint32':
           $this->optional_uint32 = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          $this->was_optional_uint32_set = true;
           break;
         case 'optional_uint64': case 'optionalUint64':
           $this->optional_uint64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_optional_uint64_set = true;
           break;
         case 'optional_sint32': case 'optionalSint32':
           $this->optional_sint32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_optional_sint32_set = true;
           break;
         case 'optional_sint64': case 'optionalSint64':
           $this->optional_sint64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_optional_sint64_set = true;
           break;
         case 'optional_fixed32': case 'optionalFixed32':
           $this->optional_fixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_optional_fixed32_set = true;
           break;
         case 'optional_fixed64': case 'optionalFixed64':
           $this->optional_fixed64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_optional_fixed64_set = true;
           break;
         case 'optional_sfixed32': case 'optionalSfixed32':
           $this->optional_sfixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_optional_sfixed32_set = true;
           break;
         case 'optional_sfixed64': case 'optionalSfixed64':
           $this->optional_sfixed64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_optional_sfixed64_set = true;
           break;
         case 'optional_float': case 'optionalFloat':
           $this->optional_float = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          $this->was_optional_float_set = true;
           break;
         case 'optional_double': case 'optionalDouble':
           $this->optional_double = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          $this->was_optional_double_set = true;
           break;
         case 'optional_bool': case 'optionalBool':
           $this->optional_bool = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_optional_bool_set = true;
           break;
         case 'optional_string': case 'optionalString':
           $this->optional_string = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_optional_string_set = true;
           break;
         case 'optional_bytes': case 'optionalBytes':
           $this->optional_bytes = \Protobuf\Internal\JsonDecoder::readBytes($v);
+          $this->was_optional_bytes_set = true;
           break;
         case 'optional_nested_message': case 'optionalNestedMessage':
           if ($v is null) break;
           if ($this->optional_nested_message is null) {
             $this->optional_nested_message = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+            $this->was_optional_nested_message_set = true;
           }
           $this->optional_nested_message->MergeJsonFrom($v);
           break;
@@ -4390,25 +6987,31 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           if ($v is null) break;
           if ($this->optional_foreign_message is null) {
             $this->optional_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+            $this->was_optional_foreign_message_set = true;
           }
           $this->optional_foreign_message->MergeJsonFrom($v);
           break;
         case 'optional_nested_enum': case 'optionalNestedEnum':
           $this->optional_nested_enum = \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromMixed($v);
+          $this->was_optional_nested_enum_set = true;
           break;
         case 'optional_foreign_enum': case 'optionalForeignEnum':
           $this->optional_foreign_enum = \protobuf_test_messages\proto2\ForeignEnumProto2::FromMixed($v);
+          $this->was_optional_foreign_enum_set = true;
           break;
         case 'optional_string_piece': case 'optionalStringPiece':
           $this->optional_string_piece = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_optional_string_piece_set = true;
           break;
         case 'optional_cord': case 'optionalCord':
           $this->optional_cord = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_optional_cord_set = true;
           break;
         case 'recursive_message': case 'recursiveMessage':
           if ($v is null) break;
           if ($this->recursive_message is null) {
             $this->recursive_message = new \protobuf_test_messages\proto2\TestAllTypesProto2();
+            $this->was_recursive_message_set = true;
           }
           $this->recursive_message->MergeJsonFrom($v);
           break;
@@ -4831,107 +7434,141 @@ class TestAllTypesProto2 implements \Protobuf\Message {
           if ($v is null) break;
           if ($this->data is null) {
             $this->data = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
+            $this->was_data_set = true;
           }
           $this->data->MergeJsonFrom($v);
           break;
         case 'default_int32': case 'defaultInt32':
           $this->default_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_default_int32_set = true;
           break;
         case 'default_int64': case 'defaultInt64':
           $this->default_int64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_default_int64_set = true;
           break;
         case 'default_uint32': case 'defaultUint32':
           $this->default_uint32 = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          $this->was_default_uint32_set = true;
           break;
         case 'default_uint64': case 'defaultUint64':
           $this->default_uint64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_default_uint64_set = true;
           break;
         case 'default_sint32': case 'defaultSint32':
           $this->default_sint32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_default_sint32_set = true;
           break;
         case 'default_sint64': case 'defaultSint64':
           $this->default_sint64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_default_sint64_set = true;
           break;
         case 'default_fixed32': case 'defaultFixed32':
           $this->default_fixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_default_fixed32_set = true;
           break;
         case 'default_fixed64': case 'defaultFixed64':
           $this->default_fixed64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_default_fixed64_set = true;
           break;
         case 'default_sfixed32': case 'defaultSfixed32':
           $this->default_sfixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_default_sfixed32_set = true;
           break;
         case 'default_sfixed64': case 'defaultSfixed64':
           $this->default_sfixed64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_default_sfixed64_set = true;
           break;
         case 'default_float': case 'defaultFloat':
           $this->default_float = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          $this->was_default_float_set = true;
           break;
         case 'default_double': case 'defaultDouble':
           $this->default_double = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          $this->was_default_double_set = true;
           break;
         case 'default_bool': case 'defaultBool':
           $this->default_bool = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_default_bool_set = true;
           break;
         case 'default_string': case 'defaultString':
           $this->default_string = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_default_string_set = true;
           break;
         case 'default_bytes': case 'defaultBytes':
           $this->default_bytes = \Protobuf\Internal\JsonDecoder::readBytes($v);
+          $this->was_default_bytes_set = true;
           break;
         case 'fieldname1':
           $this->fieldname1 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_fieldname1_set = true;
           break;
         case 'field_name2': case 'fieldName2':
           $this->field_name2 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_field_name2_set = true;
           break;
         case '_field_name3': case 'FieldName3':
           $this->_field_name3 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was__field_name3_set = true;
           break;
         case 'field__name4_': case 'fieldName4':
           $this->field__name4_ = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_field__name4__set = true;
           break;
         case 'field0name5':
           $this->field0name5 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_field0name5_set = true;
           break;
         case 'field_0_name6': case 'field0Name6':
           $this->field_0_name6 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_field_0_name6_set = true;
           break;
         case 'fieldName7':
           $this->fieldName7 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_fieldName7_set = true;
           break;
         case 'FieldName8':
           $this->FieldName8 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_FieldName8_set = true;
           break;
         case 'field_Name9': case 'fieldName9':
           $this->field_Name9 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_field_Name9_set = true;
           break;
         case 'Field_Name10': case 'FieldName10':
           $this->Field_Name10 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_Field_Name10_set = true;
           break;
         case 'FIELD_NAME11': case 'FIELDNAME11':
           $this->FIELD_NAME11 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_FIELD_NAME11_set = true;
           break;
         case 'FIELD_name12': case 'FIELDName12':
           $this->FIELD_name12 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_FIELD_name12_set = true;
           break;
         case '__field_name13': case 'FieldName13':
           $this->__field_name13 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was___field_name13_set = true;
           break;
         case '__Field_name14': case 'FieldName14':
           $this->__Field_name14 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was___Field_name14_set = true;
           break;
         case 'field__name15': case 'fieldName15':
           $this->field__name15 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_field__name15_set = true;
           break;
         case 'field__Name16': case 'fieldName16':
           $this->field__Name16 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_field__Name16_set = true;
           break;
         case 'field_name17__': case 'fieldName17':
           $this->field_name17__ = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_field_name17___set = true;
           break;
         case 'Field_name18__': case 'FieldName18':
           $this->Field_name18__ = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_Field_name18___set = true;
           break;
         default:
         break;
@@ -4943,42 +7580,86 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if (!($o is TestAllTypesProto2)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->optional_int32 = $o->optional_int32;
-    $this->optional_int64 = $o->optional_int64;
-    $this->optional_uint32 = $o->optional_uint32;
-    $this->optional_uint64 = $o->optional_uint64;
-    $this->optional_sint32 = $o->optional_sint32;
-    $this->optional_sint64 = $o->optional_sint64;
-    $this->optional_fixed32 = $o->optional_fixed32;
-    $this->optional_fixed64 = $o->optional_fixed64;
-    $this->optional_sfixed32 = $o->optional_sfixed32;
-    $this->optional_sfixed64 = $o->optional_sfixed64;
-    $this->optional_float = $o->optional_float;
-    $this->optional_double = $o->optional_double;
-    $this->optional_bool = $o->optional_bool;
-    $this->optional_string = $o->optional_string;
-    $this->optional_bytes = $o->optional_bytes;
+    if ($o->hasOptionalInt32()) {
+      $this->optional_int32 = $o->optional_int32;
+    }
+    if ($o->hasOptionalInt64()) {
+      $this->optional_int64 = $o->optional_int64;
+    }
+    if ($o->hasOptionalUint32()) {
+      $this->optional_uint32 = $o->optional_uint32;
+    }
+    if ($o->hasOptionalUint64()) {
+      $this->optional_uint64 = $o->optional_uint64;
+    }
+    if ($o->hasOptionalSint32()) {
+      $this->optional_sint32 = $o->optional_sint32;
+    }
+    if ($o->hasOptionalSint64()) {
+      $this->optional_sint64 = $o->optional_sint64;
+    }
+    if ($o->hasOptionalFixed32()) {
+      $this->optional_fixed32 = $o->optional_fixed32;
+    }
+    if ($o->hasOptionalFixed64()) {
+      $this->optional_fixed64 = $o->optional_fixed64;
+    }
+    if ($o->hasOptionalSfixed32()) {
+      $this->optional_sfixed32 = $o->optional_sfixed32;
+    }
+    if ($o->hasOptionalSfixed64()) {
+      $this->optional_sfixed64 = $o->optional_sfixed64;
+    }
+    if ($o->hasOptionalFloat()) {
+      $this->optional_float = $o->optional_float;
+    }
+    if ($o->hasOptionalDouble()) {
+      $this->optional_double = $o->optional_double;
+    }
+    if ($o->hasOptionalBool()) {
+      $this->optional_bool = $o->optional_bool;
+    }
+    if ($o->hasOptionalString()) {
+      $this->optional_string = $o->optional_string;
+    }
+    if ($o->hasOptionalBytes()) {
+      $this->optional_bytes = $o->optional_bytes;
+    }
     $tmp = $o->optional_nested_message;
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
       $nv->CopyFrom($tmp);
-      $this->optional_nested_message = $nv;
+      $this->setOptionalNestedMessage($nv);
+    } else if ($o->hasOptionalNestedMessage()) {
+      $this->setOptionalNestedMessage(null);
     }
     $tmp = $o->optional_foreign_message;
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\ForeignMessageProto2();
       $nv->CopyFrom($tmp);
-      $this->optional_foreign_message = $nv;
+      $this->setOptionalForeignMessage($nv);
+    } else if ($o->hasOptionalForeignMessage()) {
+      $this->setOptionalForeignMessage(null);
     }
-    $this->optional_nested_enum = $o->optional_nested_enum;
-    $this->optional_foreign_enum = $o->optional_foreign_enum;
-    $this->optional_string_piece = $o->optional_string_piece;
-    $this->optional_cord = $o->optional_cord;
+    if ($o->hasOptionalNestedEnum()) {
+      $this->optional_nested_enum = $o->optional_nested_enum;
+    }
+    if ($o->hasOptionalForeignEnum()) {
+      $this->optional_foreign_enum = $o->optional_foreign_enum;
+    }
+    if ($o->hasOptionalStringPiece()) {
+      $this->optional_string_piece = $o->optional_string_piece;
+    }
+    if ($o->hasOptionalCord()) {
+      $this->optional_cord = $o->optional_cord;
+    }
     $tmp = $o->recursive_message;
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2();
       $nv->CopyFrom($tmp);
-      $this->recursive_message = $nv;
+      $this->setRecursiveMessage($nv);
+    } else if ($o->hasRecursiveMessage()) {
+      $this->setRecursiveMessage(null);
     }
     $this->repeated_int32 = $o->repeated_int32;
     $this->repeated_int64 = $o->repeated_int64;
@@ -5068,41 +7749,109 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
       $nv->CopyFrom($tmp);
-      $this->data = $nv;
+      $this->setData($nv);
+    } else if ($o->hasData()) {
+      $this->setData(null);
     }
-    $this->default_int32 = $o->default_int32;
-    $this->default_int64 = $o->default_int64;
-    $this->default_uint32 = $o->default_uint32;
-    $this->default_uint64 = $o->default_uint64;
-    $this->default_sint32 = $o->default_sint32;
-    $this->default_sint64 = $o->default_sint64;
-    $this->default_fixed32 = $o->default_fixed32;
-    $this->default_fixed64 = $o->default_fixed64;
-    $this->default_sfixed32 = $o->default_sfixed32;
-    $this->default_sfixed64 = $o->default_sfixed64;
-    $this->default_float = $o->default_float;
-    $this->default_double = $o->default_double;
-    $this->default_bool = $o->default_bool;
-    $this->default_string = $o->default_string;
-    $this->default_bytes = $o->default_bytes;
-    $this->fieldname1 = $o->fieldname1;
-    $this->field_name2 = $o->field_name2;
-    $this->_field_name3 = $o->_field_name3;
-    $this->field__name4_ = $o->field__name4_;
-    $this->field0name5 = $o->field0name5;
-    $this->field_0_name6 = $o->field_0_name6;
-    $this->fieldName7 = $o->fieldName7;
-    $this->FieldName8 = $o->FieldName8;
-    $this->field_Name9 = $o->field_Name9;
-    $this->Field_Name10 = $o->Field_Name10;
-    $this->FIELD_NAME11 = $o->FIELD_NAME11;
-    $this->FIELD_name12 = $o->FIELD_name12;
-    $this->__field_name13 = $o->__field_name13;
-    $this->__Field_name14 = $o->__Field_name14;
-    $this->field__name15 = $o->field__name15;
-    $this->field__Name16 = $o->field__Name16;
-    $this->field_name17__ = $o->field_name17__;
-    $this->Field_name18__ = $o->Field_name18__;
+    if ($o->hasDefaultInt32()) {
+      $this->default_int32 = $o->default_int32;
+    }
+    if ($o->hasDefaultInt64()) {
+      $this->default_int64 = $o->default_int64;
+    }
+    if ($o->hasDefaultUint32()) {
+      $this->default_uint32 = $o->default_uint32;
+    }
+    if ($o->hasDefaultUint64()) {
+      $this->default_uint64 = $o->default_uint64;
+    }
+    if ($o->hasDefaultSint32()) {
+      $this->default_sint32 = $o->default_sint32;
+    }
+    if ($o->hasDefaultSint64()) {
+      $this->default_sint64 = $o->default_sint64;
+    }
+    if ($o->hasDefaultFixed32()) {
+      $this->default_fixed32 = $o->default_fixed32;
+    }
+    if ($o->hasDefaultFixed64()) {
+      $this->default_fixed64 = $o->default_fixed64;
+    }
+    if ($o->hasDefaultSfixed32()) {
+      $this->default_sfixed32 = $o->default_sfixed32;
+    }
+    if ($o->hasDefaultSfixed64()) {
+      $this->default_sfixed64 = $o->default_sfixed64;
+    }
+    if ($o->hasDefaultFloat()) {
+      $this->default_float = $o->default_float;
+    }
+    if ($o->hasDefaultDouble()) {
+      $this->default_double = $o->default_double;
+    }
+    if ($o->hasDefaultBool()) {
+      $this->default_bool = $o->default_bool;
+    }
+    if ($o->hasDefaultString()) {
+      $this->default_string = $o->default_string;
+    }
+    if ($o->hasDefaultBytes()) {
+      $this->default_bytes = $o->default_bytes;
+    }
+    if ($o->hasFieldname1()) {
+      $this->fieldname1 = $o->fieldname1;
+    }
+    if ($o->hasFieldName2()) {
+      $this->field_name2 = $o->field_name2;
+    }
+    if ($o->hasFieldName3()) {
+      $this->_field_name3 = $o->_field_name3;
+    }
+    if ($o->hasFieldName4()) {
+      $this->field__name4_ = $o->field__name4_;
+    }
+    if ($o->hasField0name5()) {
+      $this->field0name5 = $o->field0name5;
+    }
+    if ($o->hasField0Name6()) {
+      $this->field_0_name6 = $o->field_0_name6;
+    }
+    if ($o->hasFieldName7()) {
+      $this->fieldName7 = $o->fieldName7;
+    }
+    if ($o->hasFieldName8()) {
+      $this->FieldName8 = $o->FieldName8;
+    }
+    if ($o->hasFieldName9()) {
+      $this->field_Name9 = $o->field_Name9;
+    }
+    if ($o->hasFieldName10()) {
+      $this->Field_Name10 = $o->Field_Name10;
+    }
+    if ($o->hasFIELDNAME11()) {
+      $this->FIELD_NAME11 = $o->FIELD_NAME11;
+    }
+    if ($o->hasFIELDName12()) {
+      $this->FIELD_name12 = $o->FIELD_name12;
+    }
+    if ($o->hasFieldName13()) {
+      $this->__field_name13 = $o->__field_name13;
+    }
+    if ($o->hasFieldName14()) {
+      $this->__Field_name14 = $o->__Field_name14;
+    }
+    if ($o->hasFieldName15()) {
+      $this->field__name15 = $o->field__name15;
+    }
+    if ($o->hasFieldName16()) {
+      $this->field__Name16 = $o->field__Name16;
+    }
+    if ($o->hasFieldName17()) {
+      $this->field_name17__ = $o->field_name17__;
+    }
+    if ($o->hasFieldName18()) {
+      $this->Field_name18__ = $o->Field_name18__;
+    }
     $this->oneof_field = $o->oneof_field->Copy();
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -5110,14 +7859,34 @@ class TestAllTypesProto2 implements \Protobuf\Message {
 }
 
 class ForeignMessageProto2 implements \Protobuf\Message {
-  public int $c;
+  private int $c;
+  private bool $was_c_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'c' => int,
   ) $s = shape()) {
-    $this->c = $s['c'] ?? 0;
+    if (Shapes::keyExists($s, 'c')) {
+      $this->c = $s['c'];
+      $this->was_c_set = true;
+    } else {
+      $this->c = 0;
+      $this->was_c_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getC(): int {
+    return $this->c;
+  }
+
+  public function setC(int $v): void {
+    $this->c = $v;
+    $this->was_c_set = true;
+  }
+
+  public function hasC(): bool {
+    return $this->was_c_set;
   }
 
   public function MessageName(): string {
@@ -5139,6 +7908,7 @@ class ForeignMessageProto2 implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->c = $d->readVarint32Signed();
+          $this->was_c_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -5148,7 +7918,7 @@ class ForeignMessageProto2 implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->c !== 0) {
+    if ($this->was_c_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->c);
     }
@@ -5156,7 +7926,9 @@ class ForeignMessageProto2 implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('c', 'c', $this->c, false);
+    if ($this->hasC()) {
+      $e->writeInt32('c', 'c', $this->c, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -5166,6 +7938,7 @@ class ForeignMessageProto2 implements \Protobuf\Message {
       switch ($k) {
         case 'c':
           $this->c = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_c_set = true;
           break;
         default:
         break;
@@ -5177,21 +7950,43 @@ class ForeignMessageProto2 implements \Protobuf\Message {
     if (!($o is ForeignMessageProto2)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->c = $o->c;
+    if ($o->hasC()) {
+      $this->c = $o->c;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class UnknownToTestAllTypes_OptionalGroup implements \Protobuf\Message {
-  public int $a;
+  private int $a;
+  private bool $was_a_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'a' => int,
   ) $s = shape()) {
-    $this->a = $s['a'] ?? 0;
+    if (Shapes::keyExists($s, 'a')) {
+      $this->a = $s['a'];
+      $this->was_a_set = true;
+    } else {
+      $this->a = 0;
+      $this->was_a_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getA(): int {
+    return $this->a;
+  }
+
+  public function setA(int $v): void {
+    $this->a = $v;
+    $this->was_a_set = true;
+  }
+
+  public function hasA(): bool {
+    return $this->was_a_set;
   }
 
   public function MessageName(): string {
@@ -5213,6 +8008,7 @@ class UnknownToTestAllTypes_OptionalGroup implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->a = $d->readVarint32Signed();
+          $this->was_a_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -5222,7 +8018,7 @@ class UnknownToTestAllTypes_OptionalGroup implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->a !== 0) {
+    if ($this->was_a_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->a);
     }
@@ -5230,7 +8026,9 @@ class UnknownToTestAllTypes_OptionalGroup implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('a', 'a', $this->a, false);
+    if ($this->hasA()) {
+      $e->writeInt32('a', 'a', $this->a, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -5240,6 +8038,7 @@ class UnknownToTestAllTypes_OptionalGroup implements \Protobuf\Message {
       switch ($k) {
         case 'a':
           $this->a = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_a_set = true;
           break;
         default:
         break;
@@ -5251,18 +8050,25 @@ class UnknownToTestAllTypes_OptionalGroup implements \Protobuf\Message {
     if (!($o is UnknownToTestAllTypes_OptionalGroup)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->a = $o->a;
+    if ($o->hasA()) {
+      $this->a = $o->a;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class UnknownToTestAllTypes implements \Protobuf\Message {
-  public int $optional_int32;
-  public string $optional_string;
-  public ?\protobuf_test_messages\proto2\ForeignMessageProto2 $nested_message;
-  public ?\protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup $optionalgroup;
-  public bool $optional_bool;
+  private int $optional_int32;
+  private bool $was_optional_int32_set;
+  private string $optional_string;
+  private bool $was_optional_string_set;
+  private ?\protobuf_test_messages\proto2\ForeignMessageProto2 $nested_message;
+  private bool $was_nested_message_set;
+  private ?\protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup $optionalgroup;
+  private bool $was_optionalgroup_set;
+  private bool $optional_bool;
+  private bool $was_optional_bool_set;
   public vec<int> $repeated_int32;
   private string $XXX_unrecognized;
 
@@ -5274,13 +8080,108 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
     ?'optional_bool' => bool,
     ?'repeated_int32' => vec<int>,
   ) $s = shape()) {
-    $this->optional_int32 = $s['optional_int32'] ?? 0;
-    $this->optional_string = $s['optional_string'] ?? '';
-    $this->nested_message = $s['nested_message'] ?? null;
-    $this->optionalgroup = $s['optionalgroup'] ?? null;
-    $this->optional_bool = $s['optional_bool'] ?? false;
+    if (Shapes::keyExists($s, 'optional_int32')) {
+      $this->optional_int32 = $s['optional_int32'];
+      $this->was_optional_int32_set = true;
+    } else {
+      $this->optional_int32 = 0;
+      $this->was_optional_int32_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_string')) {
+      $this->optional_string = $s['optional_string'];
+      $this->was_optional_string_set = true;
+    } else {
+      $this->optional_string = '';
+      $this->was_optional_string_set = false;
+    }
+    if (Shapes::keyExists($s, 'nested_message')) {
+      $this->nested_message = $s['nested_message'];
+      $this->was_nested_message_set = true;
+    } else {
+      $this->nested_message = null;
+      $this->was_nested_message_set = false;
+    }
+    if (Shapes::keyExists($s, 'optionalgroup')) {
+      $this->optionalgroup = $s['optionalgroup'];
+      $this->was_optionalgroup_set = true;
+    } else {
+      $this->optionalgroup = null;
+      $this->was_optionalgroup_set = false;
+    }
+    if (Shapes::keyExists($s, 'optional_bool')) {
+      $this->optional_bool = $s['optional_bool'];
+      $this->was_optional_bool_set = true;
+    } else {
+      $this->optional_bool = false;
+      $this->was_optional_bool_set = false;
+    }
     $this->repeated_int32 = $s['repeated_int32'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getOptionalInt32(): int {
+    return $this->optional_int32;
+  }
+
+  public function setOptionalInt32(int $v): void {
+    $this->optional_int32 = $v;
+    $this->was_optional_int32_set = true;
+  }
+
+  public function hasOptionalInt32(): bool {
+    return $this->was_optional_int32_set;
+  }
+
+  public function getOptionalString(): string {
+    return $this->optional_string;
+  }
+
+  public function setOptionalString(string $v): void {
+    $this->optional_string = $v;
+    $this->was_optional_string_set = true;
+  }
+
+  public function hasOptionalString(): bool {
+    return $this->was_optional_string_set;
+  }
+
+  public function getNestedMessage(): ?\protobuf_test_messages\proto2\ForeignMessageProto2 {
+    return $this->nested_message;
+  }
+
+  public function setNestedMessage(?\protobuf_test_messages\proto2\ForeignMessageProto2 $v): void {
+    $this->nested_message = $v;
+    $this->was_nested_message_set = true;
+  }
+
+  public function hasNestedMessage(): bool {
+    return $this->was_nested_message_set;
+  }
+
+  public function getOptionalgroup(): ?\protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup {
+    return $this->optionalgroup;
+  }
+
+  public function setOptionalgroup(?\protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup $v): void {
+    $this->optionalgroup = $v;
+    $this->was_optionalgroup_set = true;
+  }
+
+  public function hasOptionalgroup(): bool {
+    return $this->was_optionalgroup_set;
+  }
+
+  public function getOptionalBool(): bool {
+    return $this->optional_bool;
+  }
+
+  public function setOptionalBool(bool $v): void {
+    $this->optional_bool = $v;
+    $this->was_optional_bool_set = true;
+  }
+
+  public function hasOptionalBool(): bool {
+    return $this->was_optional_bool_set;
   }
 
   public function MessageName(): string {
@@ -5302,24 +8203,29 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
       switch ($fn) {
         case 1001:
           $this->optional_int32 = $d->readVarint32Signed();
+          $this->was_optional_int32_set = true;
           break;
         case 1002:
           $this->optional_string = $d->readString();
+          $this->was_optional_string_set = true;
           break;
         case 1003:
           if ($this->nested_message is null) {
             $this->nested_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+            $this->was_nested_message_set = true;
           }
           $this->nested_message->MergeFrom($d->readDecoder());
           break;
         case 1004:
           if ($this->optionalgroup is null) {
             $this->optionalgroup = new \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup();
+            $this->was_optionalgroup_set = true;
           }
           $this->optionalgroup->MergeFrom($d->readDecoder());
           break;
         case 1006:
           $this->optional_bool = $d->readBool();
+          $this->was_optional_bool_set = true;
           break;
         case 1011:
           if ($wt == 2) {
@@ -5339,27 +8245,31 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->optional_int32 !== 0) {
+    if ($this->was_optional_int32_set) {
       $e->writeTag(1001, 0);
       $e->writeVarint($this->optional_int32);
     }
-    if ($this->optional_string !== '') {
+    if ($this->was_optional_string_set) {
       $e->writeTag(1002, 2);
       $e->writeString($this->optional_string);
     }
     $msg = $this->nested_message;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 1003);
+      if ($this->was_nested_message_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 1003);
+      }
     }
     $msg = $this->optionalgroup;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 1004);
+      if ($this->was_optionalgroup_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 1004);
+      }
     }
-    if ($this->optional_bool !== false) {
+    if ($this->was_optional_bool_set) {
       $e->writeTag(1006, 0);
       $e->writeBool($this->optional_bool);
     }
@@ -5371,11 +8281,21 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('optional_int32', 'optionalInt32', $this->optional_int32, false);
-    $e->writeString('optional_string', 'optionalString', $this->optional_string, false);
-    $e->writeMessage('nested_message', 'nestedMessage', $this->nested_message, false);
-    $e->writeMessage('optionalgroup', 'optionalgroup', $this->optionalgroup, false);
-    $e->writeBool('optional_bool', 'optionalBool', $this->optional_bool, false);
+    if ($this->hasOptionalInt32()) {
+      $e->writeInt32('optional_int32', 'optionalInt32', $this->optional_int32, false);
+    }
+    if ($this->hasOptionalString()) {
+      $e->writeString('optional_string', 'optionalString', $this->optional_string, false);
+    }
+    if ($this->hasNestedMessage()) {
+      $e->writeMessage('nested_message', 'nestedMessage', $this->nested_message, false);
+    }
+    if ($this->hasOptionalgroup()) {
+      $e->writeMessage('optionalgroup', 'optionalgroup', $this->optionalgroup, false);
+    }
+    if ($this->hasOptionalBool()) {
+      $e->writeBool('optional_bool', 'optionalBool', $this->optional_bool, false);
+    }
     $e->writePrimitiveList('repeated_int32', 'repeatedInt32', $this->repeated_int32);
   }
 
@@ -5386,14 +8306,17 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
       switch ($k) {
         case 'optional_int32': case 'optionalInt32':
           $this->optional_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_optional_int32_set = true;
           break;
         case 'optional_string': case 'optionalString':
           $this->optional_string = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_optional_string_set = true;
           break;
         case 'nested_message': case 'nestedMessage':
           if ($v is null) break;
           if ($this->nested_message is null) {
             $this->nested_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+            $this->was_nested_message_set = true;
           }
           $this->nested_message->MergeJsonFrom($v);
           break;
@@ -5401,11 +8324,13 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
           if ($v is null) break;
           if ($this->optionalgroup is null) {
             $this->optionalgroup = new \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup();
+            $this->was_optionalgroup_set = true;
           }
           $this->optionalgroup->MergeJsonFrom($v);
           break;
         case 'optional_bool': case 'optionalBool':
           $this->optional_bool = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_optional_bool_set = true;
           break;
         case 'repeated_int32': case 'repeatedInt32':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -5422,21 +8347,31 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
     if (!($o is UnknownToTestAllTypes)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->optional_int32 = $o->optional_int32;
-    $this->optional_string = $o->optional_string;
+    if ($o->hasOptionalInt32()) {
+      $this->optional_int32 = $o->optional_int32;
+    }
+    if ($o->hasOptionalString()) {
+      $this->optional_string = $o->optional_string;
+    }
     $tmp = $o->nested_message;
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\ForeignMessageProto2();
       $nv->CopyFrom($tmp);
-      $this->nested_message = $nv;
+      $this->setNestedMessage($nv);
+    } else if ($o->hasNestedMessage()) {
+      $this->setNestedMessage(null);
     }
     $tmp = $o->optionalgroup;
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\UnknownToTestAllTypes_OptionalGroup();
       $nv->CopyFrom($tmp);
-      $this->optionalgroup = $nv;
+      $this->setOptionalgroup($nv);
+    } else if ($o->hasOptionalgroup()) {
+      $this->setOptionalgroup(null);
     }
-    $this->optional_bool = $o->optional_bool;
+    if ($o->hasOptionalBool()) {
+      $this->optional_bool = $o->optional_bool;
+    }
     $this->repeated_int32 = $o->repeated_int32;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -5587,14 +8522,34 @@ class EnumOnlyProto2 implements \Protobuf\Message {
 }
 
 class OneStringProto2 implements \Protobuf\Message {
-  public string $data;
+  private string $data;
+  private bool $was_data_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'data' => string,
   ) $s = shape()) {
-    $this->data = $s['data'] ?? '';
+    if (Shapes::keyExists($s, 'data')) {
+      $this->data = $s['data'];
+      $this->was_data_set = true;
+    } else {
+      $this->data = '';
+      $this->was_data_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getData(): string {
+    return $this->data;
+  }
+
+  public function setData(string $v): void {
+    $this->data = $v;
+    $this->was_data_set = true;
+  }
+
+  public function hasData(): bool {
+    return $this->was_data_set;
   }
 
   public function MessageName(): string {
@@ -5616,6 +8571,7 @@ class OneStringProto2 implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->data = $d->readString();
+          $this->was_data_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -5625,7 +8581,7 @@ class OneStringProto2 implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->data !== '') {
+    if ($this->was_data_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->data);
     }
@@ -5633,7 +8589,9 @@ class OneStringProto2 implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('data', 'data', $this->data, false);
+    if ($this->hasData()) {
+      $e->writeString('data', 'data', $this->data, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -5643,6 +8601,7 @@ class OneStringProto2 implements \Protobuf\Message {
       switch ($k) {
         case 'data':
           $this->data = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_data_set = true;
           break;
         default:
         break;
@@ -5654,7 +8613,9 @@ class OneStringProto2 implements \Protobuf\Message {
     if (!($o is OneStringProto2)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->data = $o->data;
+    if ($o->hasData()) {
+      $this->data = $o->data;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
