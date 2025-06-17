@@ -11,7 +11,7 @@ enum AEnum1 {
   CLASS = 10;
 }
 
-message example1proto2syntax {
+message example1 {
   optional AEnum1 enum_default = 1;
   optional AEnum1 enum_custom = 2 [ default = CLASS ];
 
