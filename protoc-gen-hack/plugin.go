@@ -579,15 +579,22 @@ func (f *field) writeDecoder(w *writer, dec, wt string) {
 	if f.isMap {
 		w.p("$obj = new %s();", f.phpType())
 		w.p("$obj->MergeFrom(%s->readDecoder());", dec)
-		k := "$obj->key"
-		if f.isMapWithBoolKey() {
-			k = fmt.Sprintf("%s\\BoolMapKey::FromBool($obj->key)", libNs)
-		}
 		_, vv := f.mapFields()
+		k := "$obj->key"
+		if vv.isProto2Optional() {
+			k = "$obj->getKey()"
+		}
+		if f.isMapWithBoolKey() {
+			k = fmt.Sprintf("%s\\BoolMapKey::FromBool(%s)", libNs, k)
+		}
+		v := "$obj->value"
+		if vv.isProto2Optional() {
+			v = "$obj->getValue()"
+		}
 		if vv.isMessageOrGroup() {
-			w.p("$this->%s[%s] = $obj->value ?? new %s();", f.varName(), k, vv.phpType())
+			w.p("$this->%s[%s] = %s ?? new %s();", f.varName(), k, v, vv.phpType())
 		} else {
-			w.p("$this->%s[%s] = $obj->value;", f.varName(), k)
+			w.p("$this->%s[%s] = %s;", f.varName(), k, v)
 		}
 		return
 	}
@@ -739,12 +746,18 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 	if f.isMap {
 		w.p("foreach ($this->%s as $k => $v) {", f.varName())
 		w.p("$obj = new %s();", f.phpType())
+		_, vv := f.mapFields()
 		k := "$k"
 		if f.isMapWithBoolKey() {
 			k = fmt.Sprintf("%s\\BoolMapKey::ToBool($k)", libNs)
 		}
-		w.p("$obj->key = %s;", k)
-		w.p("$obj->value = $v;")
+		if vv.isProto2Optional() {
+			w.p("$obj->setKey(%s);", k)
+			w.p("$obj->setValue($v);")
+		} else {
+			w.p("$obj->key = %s;", k)
+			w.p("$obj->value = $v;")
+		}
 		w.p("$nested = new %s\\Encoder();", libNsInternal)
 		w.p("$obj->WriteTo($nested);")
 		w.p("%s->writeEncoder($nested, %d);", enc, f.fd.GetNumber())
@@ -1194,7 +1207,7 @@ func (f *field) isProto3Optional() bool {
 }
 
 func (f *field) isProto2Optional() bool {
-	return f.syn == SyntaxProto2 && f.fd.GetLabel() == desc.FieldDescriptorProto_LABEL_OPTIONAL
+	return f.syn == SyntaxProto2 && f.fd.GetLabel() == desc.FieldDescriptorProto_LABEL_OPTIONAL && f.fd.OneofIndex == nil
 }
 
 func (f *field) isOptional() bool {

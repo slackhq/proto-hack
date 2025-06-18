@@ -108,9 +108,7 @@ class TestAllTypesProto2_oneof_field_oneof_uint32 implements TestAllTypesProto2_
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->hasOneofUint32()) {
-      $e->writeInt32('oneof_uint32', 'oneofUint32', $this->oneof_uint32, true);
-    }
+    $e->writeInt32('oneof_uint32', 'oneofUint32', $this->oneof_uint32, true);
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -132,9 +130,7 @@ class TestAllTypesProto2_oneof_field_oneof_nested_message implements TestAllType
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->hasOneofNestedMessage()) {
-      $e->writeMessage('oneof_nested_message', 'oneofNestedMessage', $this->oneof_nested_message, true);
-    }
+    $e->writeMessage('oneof_nested_message', 'oneofNestedMessage', $this->oneof_nested_message, true);
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -157,9 +153,7 @@ class TestAllTypesProto2_oneof_field_oneof_string implements TestAllTypesProto2_
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->hasOneofString()) {
-      $e->writeString('oneof_string', 'oneofString', $this->oneof_string, true);
-    }
+    $e->writeString('oneof_string', 'oneofString', $this->oneof_string, true);
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -180,9 +174,7 @@ class TestAllTypesProto2_oneof_field_oneof_bytes implements TestAllTypesProto2_o
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->hasOneofBytes()) {
-      $e->writeBytes('oneof_bytes', 'oneofBytes', $this->oneof_bytes, true);
-    }
+    $e->writeBytes('oneof_bytes', 'oneofBytes', $this->oneof_bytes, true);
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -203,9 +195,7 @@ class TestAllTypesProto2_oneof_field_oneof_bool implements TestAllTypesProto2_on
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->hasOneofBool()) {
-      $e->writeBool('oneof_bool', 'oneofBool', $this->oneof_bool, true);
-    }
+    $e->writeBool('oneof_bool', 'oneofBool', $this->oneof_bool, true);
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -226,9 +216,7 @@ class TestAllTypesProto2_oneof_field_oneof_uint64 implements TestAllTypesProto2_
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->hasOneofUint64()) {
-      $e->writeInt64Unsigned('oneof_uint64', 'oneofUint64', $this->oneof_uint64, true);
-    }
+    $e->writeInt64Unsigned('oneof_uint64', 'oneofUint64', $this->oneof_uint64, true);
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -249,9 +237,7 @@ class TestAllTypesProto2_oneof_field_oneof_float implements TestAllTypesProto2_o
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->hasOneofFloat()) {
-      $e->writeFloat('oneof_float', 'oneofFloat', $this->oneof_float, true);
-    }
+    $e->writeFloat('oneof_float', 'oneofFloat', $this->oneof_float, true);
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -272,9 +258,7 @@ class TestAllTypesProto2_oneof_field_oneof_double implements TestAllTypesProto2_
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->hasOneofDouble()) {
-      $e->writeFloat('oneof_double', 'oneofDouble', $this->oneof_double, true);
-    }
+    $e->writeFloat('oneof_double', 'oneofDouble', $this->oneof_double, true);
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -295,9 +279,7 @@ class TestAllTypesProto2_oneof_field_oneof_enum implements TestAllTypesProto2_on
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    if ($this->hasOneofEnum()) {
-      $e->writeEnum('oneof_enum', 'oneofEnum', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->oneof_enum, true);
-    }
+    $e->writeEnum('oneof_enum', 'oneofEnum', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->oneof_enum, true);
   }
 
   public function Copy(): TestAllTypesProto2_oneof_field {
@@ -4634,123 +4616,6 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     return $this->was_recursive_message_set;
   }
 
-  public function getOneofUint32(): int {
-    return $this->oneof_uint32;
-  }
-
-  public function setOneofUint32(int $v): void {
-    $this->oneof_uint32 = $v;
-    $this->was_oneof_uint32_set = true;
-  }
-
-  public function hasOneofUint32(): bool {
-    return $this->was_oneof_uint32_set;
-  }
-
-  public function getOneofNestedMessage(): ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage {
-    return $this->oneof_nested_message;
-  }
-
-  public function setOneofNestedMessage(?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $v): void {
-    $this->oneof_nested_message = $v;
-    $this->was_oneof_nested_message_set = true;
-  }
-
-  public function hasOneofNestedMessage(): bool {
-    return $this->was_oneof_nested_message_set;
-  }
-
-  public function getOneofString(): string {
-    return $this->oneof_string;
-  }
-
-  public function setOneofString(string $v): void {
-    $this->oneof_string = $v;
-    $this->was_oneof_string_set = true;
-  }
-
-  public function hasOneofString(): bool {
-    return $this->was_oneof_string_set;
-  }
-
-  public function getOneofBytes(): string {
-    return $this->oneof_bytes;
-  }
-
-  public function setOneofBytes(string $v): void {
-    $this->oneof_bytes = $v;
-    $this->was_oneof_bytes_set = true;
-  }
-
-  public function hasOneofBytes(): bool {
-    return $this->was_oneof_bytes_set;
-  }
-
-  public function getOneofBool(): bool {
-    return $this->oneof_bool;
-  }
-
-  public function setOneofBool(bool $v): void {
-    $this->oneof_bool = $v;
-    $this->was_oneof_bool_set = true;
-  }
-
-  public function hasOneofBool(): bool {
-    return $this->was_oneof_bool_set;
-  }
-
-  public function getOneofUint64(): int {
-    return $this->oneof_uint64;
-  }
-
-  public function setOneofUint64(int $v): void {
-    $this->oneof_uint64 = $v;
-    $this->was_oneof_uint64_set = true;
-  }
-
-  public function hasOneofUint64(): bool {
-    return $this->was_oneof_uint64_set;
-  }
-
-  public function getOneofFloat(): float {
-    return $this->oneof_float;
-  }
-
-  public function setOneofFloat(float $v): void {
-    $this->oneof_float = $v;
-    $this->was_oneof_float_set = true;
-  }
-
-  public function hasOneofFloat(): bool {
-    return $this->was_oneof_float_set;
-  }
-
-  public function getOneofDouble(): float {
-    return $this->oneof_double;
-  }
-
-  public function setOneofDouble(float $v): void {
-    $this->oneof_double = $v;
-    $this->was_oneof_double_set = true;
-  }
-
-  public function hasOneofDouble(): bool {
-    return $this->was_oneof_double_set;
-  }
-
-  public function getOneofEnum(): \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t {
-    return $this->oneof_enum;
-  }
-
-  public function setOneofEnum(\protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t $v): void {
-    $this->oneof_enum = $v;
-    $this->was_oneof_enum_set = true;
-  }
-
-  public function hasOneofEnum(): bool {
-    return $this->was_oneof_enum_set;
-  }
-
   public function getData(): ?\protobuf_test_messages\proto2\TestAllTypesProto2_Data {
     return $this->data;
   }
@@ -5482,97 +5347,97 @@ class TestAllTypesProto2 implements \Protobuf\Message {
         case 56:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32Int32Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_int32_int32[$obj->key] = $obj->value;
+          $this->map_int32_int32[$obj->getKey()] = $obj->getValue();
           break;
         case 57:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt64Int64Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_int64_int64[$obj->key] = $obj->value;
+          $this->map_int64_int64[$obj->getKey()] = $obj->getValue();
           break;
         case 58:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapUint32Uint32Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_uint32_uint32[$obj->key] = $obj->value;
+          $this->map_uint32_uint32[$obj->getKey()] = $obj->getValue();
           break;
         case 59:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapUint64Uint64Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_uint64_uint64[$obj->key] = $obj->value;
+          $this->map_uint64_uint64[$obj->getKey()] = $obj->getValue();
           break;
         case 60:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapSint32Sint32Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_sint32_sint32[$obj->key] = $obj->value;
+          $this->map_sint32_sint32[$obj->getKey()] = $obj->getValue();
           break;
         case 61:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapSint64Sint64Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_sint64_sint64[$obj->key] = $obj->value;
+          $this->map_sint64_sint64[$obj->getKey()] = $obj->getValue();
           break;
         case 62:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapFixed32Fixed32Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_fixed32_fixed32[$obj->key] = $obj->value;
+          $this->map_fixed32_fixed32[$obj->getKey()] = $obj->getValue();
           break;
         case 63:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapFixed64Fixed64Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_fixed64_fixed64[$obj->key] = $obj->value;
+          $this->map_fixed64_fixed64[$obj->getKey()] = $obj->getValue();
           break;
         case 64:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapSfixed32Sfixed32Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_sfixed32_sfixed32[$obj->key] = $obj->value;
+          $this->map_sfixed32_sfixed32[$obj->getKey()] = $obj->getValue();
           break;
         case 65:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapSfixed64Sfixed64Entry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_sfixed64_sfixed64[$obj->key] = $obj->value;
+          $this->map_sfixed64_sfixed64[$obj->getKey()] = $obj->getValue();
           break;
         case 66:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32FloatEntry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_int32_float[$obj->key] = $obj->value;
+          $this->map_int32_float[$obj->getKey()] = $obj->getValue();
           break;
         case 67:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32DoubleEntry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_int32_double[$obj->key] = $obj->value;
+          $this->map_int32_double[$obj->getKey()] = $obj->getValue();
           break;
         case 68:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapBoolBoolEntry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_bool_bool[\Protobuf\BoolMapKey::FromBool($obj->key)] = $obj->value;
+          $this->map_bool_bool[\Protobuf\BoolMapKey::FromBool($obj->getKey())] = $obj->getValue();
           break;
         case 69:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringStringEntry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_string_string[$obj->key] = $obj->value;
+          $this->map_string_string[$obj->getKey()] = $obj->getValue();
           break;
         case 70:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringBytesEntry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_string_bytes[$obj->key] = $obj->value;
+          $this->map_string_bytes[$obj->getKey()] = $obj->getValue();
           break;
         case 71:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringNestedMessageEntry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_string_nested_message[$obj->key] = $obj->value ?? new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          $this->map_string_nested_message[$obj->getKey()] = $obj->getValue() ?? new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
           break;
         case 72:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringForeignMessageEntry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_string_foreign_message[$obj->key] = $obj->value ?? new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          $this->map_string_foreign_message[$obj->getKey()] = $obj->getValue() ?? new \protobuf_test_messages\proto2\ForeignMessageProto2();
           break;
         case 73:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringNestedEnumEntry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_string_nested_enum[$obj->key] = $obj->value;
+          $this->map_string_nested_enum[$obj->getKey()] = $obj->getValue();
           break;
         case 74:
           $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringForeignEnumEntry();
           $obj->MergeFrom($d->readDecoder());
-          $this->map_string_foreign_enum[$obj->key] = $obj->value;
+          $this->map_string_foreign_enum[$obj->getKey()] = $obj->getValue();
           break;
         case 75:
           if ($wt == 2) {
@@ -6222,152 +6087,152 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     }
     foreach ($this->map_int32_int32 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32Int32Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 56);
     }
     foreach ($this->map_int64_int64 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt64Int64Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 57);
     }
     foreach ($this->map_uint32_uint32 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapUint32Uint32Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 58);
     }
     foreach ($this->map_uint64_uint64 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapUint64Uint64Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 59);
     }
     foreach ($this->map_sint32_sint32 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapSint32Sint32Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 60);
     }
     foreach ($this->map_sint64_sint64 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapSint64Sint64Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 61);
     }
     foreach ($this->map_fixed32_fixed32 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapFixed32Fixed32Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 62);
     }
     foreach ($this->map_fixed64_fixed64 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapFixed64Fixed64Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 63);
     }
     foreach ($this->map_sfixed32_sfixed32 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapSfixed32Sfixed32Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 64);
     }
     foreach ($this->map_sfixed64_sfixed64 as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapSfixed64Sfixed64Entry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 65);
     }
     foreach ($this->map_int32_float as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32FloatEntry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 66);
     }
     foreach ($this->map_int32_double as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32DoubleEntry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 67);
     }
     foreach ($this->map_bool_bool as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapBoolBoolEntry();
-      $obj->key = \Protobuf\BoolMapKey::ToBool($k);
-      $obj->value = $v;
+      $obj->setKey(\Protobuf\BoolMapKey::ToBool($k));
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 68);
     }
     foreach ($this->map_string_string as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringStringEntry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 69);
     }
     foreach ($this->map_string_bytes as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringBytesEntry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 70);
     }
     foreach ($this->map_string_nested_message as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringNestedMessageEntry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 71);
     }
     foreach ($this->map_string_foreign_message as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringForeignMessageEntry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 72);
     }
     foreach ($this->map_string_nested_enum as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringNestedEnumEntry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 73);
     }
     foreach ($this->map_string_foreign_enum as $k => $v) {
       $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapStringForeignEnumEntry();
-      $obj->key = $k;
-      $obj->value = $v;
+      $obj->setKey($k);
+      $obj->setValue($v);
       $nested = new \Protobuf\Internal\Encoder();
       $obj->WriteTo($nested);
       $e->writeEncoder($nested, 74);

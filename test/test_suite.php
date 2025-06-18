@@ -160,10 +160,10 @@ function testDescriptorReflection(): void {
   }
   $dp = new google\protobuf\FileDescriptorProto();
   check(Protobuf\Unmarshal($names['test/example1.proto'], $dp));
-  if ($dp->package != 'foo.bar') {
+  if ($dp->getPackage() != 'foo.bar') {
     throw new \Exception(
       'descriptor proto for example1.proto has unexpected package: '.
-      $dp->package,
+      $dp->getPackage(),
     );
   }
 
