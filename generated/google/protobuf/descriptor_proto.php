@@ -90,8 +90,10 @@ class FileDescriptorSet implements \Protobuf\Message {
 }
 
 class FileDescriptorProto implements \Protobuf\Message {
-  public string $name;
-  public string $package;
+  private string $name;
+  private bool $was_name_set;
+  private string $package;
+  private bool $was_package_set;
   public vec<string> $dependency;
   public vec<int> $public_dependency;
   public vec<int> $weak_dependency;
@@ -99,9 +101,12 @@ class FileDescriptorProto implements \Protobuf\Message {
   public vec<\google\protobuf\EnumDescriptorProto> $enum_type;
   public vec<\google\protobuf\ServiceDescriptorProto> $service;
   public vec<\google\protobuf\FieldDescriptorProto> $extension;
-  public ?\google\protobuf\FileOptions $options;
-  public ?\google\protobuf\SourceCodeInfo $source_code_info;
-  public string $syntax;
+  private ?\google\protobuf\FileOptions $options;
+  private bool $was_options_set;
+  private ?\google\protobuf\SourceCodeInfo $source_code_info;
+  private bool $was_source_code_info_set;
+  private string $syntax;
+  private bool $was_syntax_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -118,8 +123,20 @@ class FileDescriptorProto implements \Protobuf\Message {
     ?'source_code_info' => ?\google\protobuf\SourceCodeInfo,
     ?'syntax' => string,
   ) $s = shape()) {
-    $this->name = $s['name'] ?? '';
-    $this->package = $s['package'] ?? '';
+    if (Shapes::keyExists($s, 'name')) {
+      $this->name = $s['name'];
+      $this->was_name_set = true;
+    } else {
+      $this->name = '';
+      $this->was_name_set = false;
+    }
+    if (Shapes::keyExists($s, 'package')) {
+      $this->package = $s['package'];
+      $this->was_package_set = true;
+    } else {
+      $this->package = '';
+      $this->was_package_set = false;
+    }
     $this->dependency = $s['dependency'] ?? vec[];
     $this->public_dependency = $s['public_dependency'] ?? vec[];
     $this->weak_dependency = $s['weak_dependency'] ?? vec[];
@@ -127,10 +144,93 @@ class FileDescriptorProto implements \Protobuf\Message {
     $this->enum_type = $s['enum_type'] ?? vec[];
     $this->service = $s['service'] ?? vec[];
     $this->extension = $s['extension'] ?? vec[];
-    $this->options = $s['options'] ?? null;
-    $this->source_code_info = $s['source_code_info'] ?? null;
-    $this->syntax = $s['syntax'] ?? '';
+    if (Shapes::keyExists($s, 'options')) {
+      $this->options = $s['options'];
+      $this->was_options_set = true;
+    } else {
+      $this->options = null;
+      $this->was_options_set = false;
+    }
+    if (Shapes::keyExists($s, 'source_code_info')) {
+      $this->source_code_info = $s['source_code_info'];
+      $this->was_source_code_info_set = true;
+    } else {
+      $this->source_code_info = null;
+      $this->was_source_code_info_set = false;
+    }
+    if (Shapes::keyExists($s, 'syntax')) {
+      $this->syntax = $s['syntax'];
+      $this->was_syntax_set = true;
+    } else {
+      $this->syntax = '';
+      $this->was_syntax_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setName(string $v): void {
+    $this->name = $v;
+    $this->was_name_set = true;
+  }
+
+  public function hasName(): bool {
+    return $this->was_name_set;
+  }
+
+  public function getPackage(): string {
+    return $this->package;
+  }
+
+  public function setPackage(string $v): void {
+    $this->package = $v;
+    $this->was_package_set = true;
+  }
+
+  public function hasPackage(): bool {
+    return $this->was_package_set;
+  }
+
+  public function getOptions(): ?\google\protobuf\FileOptions {
+    return $this->options;
+  }
+
+  public function setOptions(?\google\protobuf\FileOptions $v): void {
+    $this->options = $v;
+    $this->was_options_set = true;
+  }
+
+  public function hasOptions(): bool {
+    return $this->was_options_set;
+  }
+
+  public function getSourceCodeInfo(): ?\google\protobuf\SourceCodeInfo {
+    return $this->source_code_info;
+  }
+
+  public function setSourceCodeInfo(?\google\protobuf\SourceCodeInfo $v): void {
+    $this->source_code_info = $v;
+    $this->was_source_code_info_set = true;
+  }
+
+  public function hasSourceCodeInfo(): bool {
+    return $this->was_source_code_info_set;
+  }
+
+  public function getSyntax(): string {
+    return $this->syntax;
+  }
+
+  public function setSyntax(string $v): void {
+    $this->syntax = $v;
+    $this->was_syntax_set = true;
+  }
+
+  public function hasSyntax(): bool {
+    return $this->was_syntax_set;
   }
 
   public function MessageName(): string {
@@ -152,9 +252,11 @@ class FileDescriptorProto implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->name = $d->readString();
+          $this->was_name_set = true;
           break;
         case 2:
           $this->package = $d->readString();
+          $this->was_package_set = true;
           break;
         case 3:
           $this->dependency []= $d->readString();
@@ -182,12 +284,14 @@ class FileDescriptorProto implements \Protobuf\Message {
         case 8:
           if ($this->options is null) {
             $this->options = new \google\protobuf\FileOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeFrom($d->readDecoder());
           break;
         case 9:
           if ($this->source_code_info is null) {
             $this->source_code_info = new \google\protobuf\SourceCodeInfo();
+            $this->was_source_code_info_set = true;
           }
           $this->source_code_info->MergeFrom($d->readDecoder());
           break;
@@ -213,6 +317,7 @@ class FileDescriptorProto implements \Protobuf\Message {
           break;
         case 12:
           $this->syntax = $d->readString();
+          $this->was_syntax_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -222,11 +327,11 @@ class FileDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->name !== '') {
+    if ($this->was_name_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->name);
     }
-    if ($this->package !== '') {
+    if ($this->was_package_set) {
       $e->writeTag(2, 2);
       $e->writeString($this->package);
     }
@@ -256,15 +361,19 @@ class FileDescriptorProto implements \Protobuf\Message {
     }
     $msg = $this->options;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 8);
+      if ($this->was_options_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 8);
+      }
     }
     $msg = $this->source_code_info;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 9);
+      if ($this->was_source_code_info_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 9);
+      }
     }
     foreach ($this->public_dependency as $elem) {
       $e->writeTag(10, 0);
@@ -274,7 +383,7 @@ class FileDescriptorProto implements \Protobuf\Message {
       $e->writeTag(11, 0);
       $e->writeVarint($elem);
     }
-    if ($this->syntax !== '') {
+    if ($this->was_syntax_set) {
       $e->writeTag(12, 2);
       $e->writeString($this->syntax);
     }
@@ -282,18 +391,28 @@ class FileDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('name', 'name', $this->name, false);
-    $e->writeString('package', 'package', $this->package, false);
+    if ($this->hasName()) {
+      $e->writeString('name', 'name', $this->name, false);
+    }
+    if ($this->hasPackage()) {
+      $e->writeString('package', 'package', $this->package, false);
+    }
     $e->writePrimitiveList('dependency', 'dependency', $this->dependency);
     $e->writeMessageList('message_type', 'messageType', $this->message_type);
     $e->writeMessageList('enum_type', 'enumType', $this->enum_type);
     $e->writeMessageList('service', 'service', $this->service);
     $e->writeMessageList('extension', 'extension', $this->extension);
-    $e->writeMessage('options', 'options', $this->options, false);
-    $e->writeMessage('source_code_info', 'sourceCodeInfo', $this->source_code_info, false);
+    if ($this->hasOptions()) {
+      $e->writeMessage('options', 'options', $this->options, false);
+    }
+    if ($this->hasSourceCodeInfo()) {
+      $e->writeMessage('source_code_info', 'sourceCodeInfo', $this->source_code_info, false);
+    }
     $e->writePrimitiveList('public_dependency', 'publicDependency', $this->public_dependency);
     $e->writePrimitiveList('weak_dependency', 'weakDependency', $this->weak_dependency);
-    $e->writeString('syntax', 'syntax', $this->syntax, false);
+    if ($this->hasSyntax()) {
+      $e->writeString('syntax', 'syntax', $this->syntax, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -303,9 +422,11 @@ class FileDescriptorProto implements \Protobuf\Message {
       switch ($k) {
         case 'name':
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_name_set = true;
           break;
         case 'package':
           $this->package = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_package_set = true;
           break;
         case 'dependency':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -344,6 +465,7 @@ class FileDescriptorProto implements \Protobuf\Message {
           if ($v is null) break;
           if ($this->options is null) {
             $this->options = new \google\protobuf\FileOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeJsonFrom($v);
           break;
@@ -351,6 +473,7 @@ class FileDescriptorProto implements \Protobuf\Message {
           if ($v is null) break;
           if ($this->source_code_info is null) {
             $this->source_code_info = new \google\protobuf\SourceCodeInfo();
+            $this->was_source_code_info_set = true;
           }
           $this->source_code_info->MergeJsonFrom($v);
           break;
@@ -366,6 +489,7 @@ class FileDescriptorProto implements \Protobuf\Message {
           break;
         case 'syntax':
           $this->syntax = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_syntax_set = true;
           break;
         default:
         break;
@@ -377,8 +501,12 @@ class FileDescriptorProto implements \Protobuf\Message {
     if (!($o is FileDescriptorProto)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->name = $o->name;
-    $this->package = $o->package;
+    if ($o->hasName()) {
+      $this->name = $o->name;
+    }
+    if ($o->hasPackage()) {
+      $this->package = $o->package;
+    }
     $this->dependency = $o->dependency;
     foreach ($o->message_type as $v) {
       $nv = new \google\protobuf\DescriptorProto();
@@ -404,26 +532,35 @@ class FileDescriptorProto implements \Protobuf\Message {
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\FileOptions();
       $nv->CopyFrom($tmp);
-      $this->options = $nv;
+      $this->setOptions($nv);
+    } else if ($o->hasOptions()) {
+      $this->setOptions(null);
     }
     $tmp = $o->source_code_info;
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\SourceCodeInfo();
       $nv->CopyFrom($tmp);
-      $this->source_code_info = $nv;
+      $this->setSourceCodeInfo($nv);
+    } else if ($o->hasSourceCodeInfo()) {
+      $this->setSourceCodeInfo(null);
     }
     $this->public_dependency = $o->public_dependency;
     $this->weak_dependency = $o->weak_dependency;
-    $this->syntax = $o->syntax;
+    if ($o->hasSyntax()) {
+      $this->syntax = $o->syntax;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class DescriptorProto_ExtensionRange implements \Protobuf\Message {
-  public int $start;
-  public int $end;
-  public ?\google\protobuf\ExtensionRangeOptions $options;
+  private int $start;
+  private bool $was_start_set;
+  private int $end;
+  private bool $was_end_set;
+  private ?\google\protobuf\ExtensionRangeOptions $options;
+  private bool $was_options_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -431,10 +568,67 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
     ?'end' => int,
     ?'options' => ?\google\protobuf\ExtensionRangeOptions,
   ) $s = shape()) {
-    $this->start = $s['start'] ?? 0;
-    $this->end = $s['end'] ?? 0;
-    $this->options = $s['options'] ?? null;
+    if (Shapes::keyExists($s, 'start')) {
+      $this->start = $s['start'];
+      $this->was_start_set = true;
+    } else {
+      $this->start = 0;
+      $this->was_start_set = false;
+    }
+    if (Shapes::keyExists($s, 'end')) {
+      $this->end = $s['end'];
+      $this->was_end_set = true;
+    } else {
+      $this->end = 0;
+      $this->was_end_set = false;
+    }
+    if (Shapes::keyExists($s, 'options')) {
+      $this->options = $s['options'];
+      $this->was_options_set = true;
+    } else {
+      $this->options = null;
+      $this->was_options_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getStart(): int {
+    return $this->start;
+  }
+
+  public function setStart(int $v): void {
+    $this->start = $v;
+    $this->was_start_set = true;
+  }
+
+  public function hasStart(): bool {
+    return $this->was_start_set;
+  }
+
+  public function getEnd(): int {
+    return $this->end;
+  }
+
+  public function setEnd(int $v): void {
+    $this->end = $v;
+    $this->was_end_set = true;
+  }
+
+  public function hasEnd(): bool {
+    return $this->was_end_set;
+  }
+
+  public function getOptions(): ?\google\protobuf\ExtensionRangeOptions {
+    return $this->options;
+  }
+
+  public function setOptions(?\google\protobuf\ExtensionRangeOptions $v): void {
+    $this->options = $v;
+    $this->was_options_set = true;
+  }
+
+  public function hasOptions(): bool {
+    return $this->was_options_set;
   }
 
   public function MessageName(): string {
@@ -456,13 +650,16 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->start = $d->readVarint32Signed();
+          $this->was_start_set = true;
           break;
         case 2:
           $this->end = $d->readVarint32Signed();
+          $this->was_end_set = true;
           break;
         case 3:
           if ($this->options is null) {
             $this->options = new \google\protobuf\ExtensionRangeOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeFrom($d->readDecoder());
           break;
@@ -474,27 +671,35 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->start !== 0) {
+    if ($this->was_start_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->start);
     }
-    if ($this->end !== 0) {
+    if ($this->was_end_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->end);
     }
     $msg = $this->options;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 3);
+      if ($this->was_options_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 3);
+      }
     }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('start', 'start', $this->start, false);
-    $e->writeInt32('end', 'end', $this->end, false);
-    $e->writeMessage('options', 'options', $this->options, false);
+    if ($this->hasStart()) {
+      $e->writeInt32('start', 'start', $this->start, false);
+    }
+    if ($this->hasEnd()) {
+      $e->writeInt32('end', 'end', $this->end, false);
+    }
+    if ($this->hasOptions()) {
+      $e->writeMessage('options', 'options', $this->options, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -504,14 +709,17 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
       switch ($k) {
         case 'start':
           $this->start = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_start_set = true;
           break;
         case 'end':
           $this->end = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_end_set = true;
           break;
         case 'options':
           if ($v is null) break;
           if ($this->options is null) {
             $this->options = new \google\protobuf\ExtensionRangeOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeJsonFrom($v);
           break;
@@ -525,13 +733,19 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
     if (!($o is DescriptorProto_ExtensionRange)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->start = $o->start;
-    $this->end = $o->end;
+    if ($o->hasStart()) {
+      $this->start = $o->start;
+    }
+    if ($o->hasEnd()) {
+      $this->end = $o->end;
+    }
     $tmp = $o->options;
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\ExtensionRangeOptions();
       $nv->CopyFrom($tmp);
-      $this->options = $nv;
+      $this->setOptions($nv);
+    } else if ($o->hasOptions()) {
+      $this->setOptions(null);
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -539,17 +753,57 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
 }
 
 class DescriptorProto_ReservedRange implements \Protobuf\Message {
-  public int $start;
-  public int $end;
+  private int $start;
+  private bool $was_start_set;
+  private int $end;
+  private bool $was_end_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'start' => int,
     ?'end' => int,
   ) $s = shape()) {
-    $this->start = $s['start'] ?? 0;
-    $this->end = $s['end'] ?? 0;
+    if (Shapes::keyExists($s, 'start')) {
+      $this->start = $s['start'];
+      $this->was_start_set = true;
+    } else {
+      $this->start = 0;
+      $this->was_start_set = false;
+    }
+    if (Shapes::keyExists($s, 'end')) {
+      $this->end = $s['end'];
+      $this->was_end_set = true;
+    } else {
+      $this->end = 0;
+      $this->was_end_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getStart(): int {
+    return $this->start;
+  }
+
+  public function setStart(int $v): void {
+    $this->start = $v;
+    $this->was_start_set = true;
+  }
+
+  public function hasStart(): bool {
+    return $this->was_start_set;
+  }
+
+  public function getEnd(): int {
+    return $this->end;
+  }
+
+  public function setEnd(int $v): void {
+    $this->end = $v;
+    $this->was_end_set = true;
+  }
+
+  public function hasEnd(): bool {
+    return $this->was_end_set;
   }
 
   public function MessageName(): string {
@@ -571,9 +825,11 @@ class DescriptorProto_ReservedRange implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->start = $d->readVarint32Signed();
+          $this->was_start_set = true;
           break;
         case 2:
           $this->end = $d->readVarint32Signed();
+          $this->was_end_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -583,11 +839,11 @@ class DescriptorProto_ReservedRange implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->start !== 0) {
+    if ($this->was_start_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->start);
     }
-    if ($this->end !== 0) {
+    if ($this->was_end_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->end);
     }
@@ -595,8 +851,12 @@ class DescriptorProto_ReservedRange implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('start', 'start', $this->start, false);
-    $e->writeInt32('end', 'end', $this->end, false);
+    if ($this->hasStart()) {
+      $e->writeInt32('start', 'start', $this->start, false);
+    }
+    if ($this->hasEnd()) {
+      $e->writeInt32('end', 'end', $this->end, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -606,9 +866,11 @@ class DescriptorProto_ReservedRange implements \Protobuf\Message {
       switch ($k) {
         case 'start':
           $this->start = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_start_set = true;
           break;
         case 'end':
           $this->end = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_end_set = true;
           break;
         default:
         break;
@@ -620,22 +882,28 @@ class DescriptorProto_ReservedRange implements \Protobuf\Message {
     if (!($o is DescriptorProto_ReservedRange)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->start = $o->start;
-    $this->end = $o->end;
+    if ($o->hasStart()) {
+      $this->start = $o->start;
+    }
+    if ($o->hasEnd()) {
+      $this->end = $o->end;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class DescriptorProto implements \Protobuf\Message {
-  public string $name;
+  private string $name;
+  private bool $was_name_set;
   public vec<\google\protobuf\FieldDescriptorProto> $field;
   public vec<\google\protobuf\FieldDescriptorProto> $extension;
   public vec<\google\protobuf\DescriptorProto> $nested_type;
   public vec<\google\protobuf\EnumDescriptorProto> $enum_type;
   public vec<\google\protobuf\DescriptorProto_ExtensionRange> $extension_range;
   public vec<\google\protobuf\OneofDescriptorProto> $oneof_decl;
-  public ?\google\protobuf\MessageOptions $options;
+  private ?\google\protobuf\MessageOptions $options;
+  private bool $was_options_set;
   public vec<\google\protobuf\DescriptorProto_ReservedRange> $reserved_range;
   public vec<string> $reserved_name;
   private string $XXX_unrecognized;
@@ -652,17 +920,55 @@ class DescriptorProto implements \Protobuf\Message {
     ?'reserved_range' => vec<\google\protobuf\DescriptorProto_ReservedRange>,
     ?'reserved_name' => vec<string>,
   ) $s = shape()) {
-    $this->name = $s['name'] ?? '';
+    if (Shapes::keyExists($s, 'name')) {
+      $this->name = $s['name'];
+      $this->was_name_set = true;
+    } else {
+      $this->name = '';
+      $this->was_name_set = false;
+    }
     $this->field = $s['field'] ?? vec[];
     $this->extension = $s['extension'] ?? vec[];
     $this->nested_type = $s['nested_type'] ?? vec[];
     $this->enum_type = $s['enum_type'] ?? vec[];
     $this->extension_range = $s['extension_range'] ?? vec[];
     $this->oneof_decl = $s['oneof_decl'] ?? vec[];
-    $this->options = $s['options'] ?? null;
+    if (Shapes::keyExists($s, 'options')) {
+      $this->options = $s['options'];
+      $this->was_options_set = true;
+    } else {
+      $this->options = null;
+      $this->was_options_set = false;
+    }
     $this->reserved_range = $s['reserved_range'] ?? vec[];
     $this->reserved_name = $s['reserved_name'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setName(string $v): void {
+    $this->name = $v;
+    $this->was_name_set = true;
+  }
+
+  public function hasName(): bool {
+    return $this->was_name_set;
+  }
+
+  public function getOptions(): ?\google\protobuf\MessageOptions {
+    return $this->options;
+  }
+
+  public function setOptions(?\google\protobuf\MessageOptions $v): void {
+    $this->options = $v;
+    $this->was_options_set = true;
+  }
+
+  public function hasOptions(): bool {
+    return $this->was_options_set;
   }
 
   public function MessageName(): string {
@@ -684,6 +990,7 @@ class DescriptorProto implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->name = $d->readString();
+          $this->was_name_set = true;
           break;
         case 2:
           $obj = new \google\protobuf\FieldDescriptorProto();
@@ -713,6 +1020,7 @@ class DescriptorProto implements \Protobuf\Message {
         case 7:
           if ($this->options is null) {
             $this->options = new \google\protobuf\MessageOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeFrom($d->readDecoder());
           break;
@@ -737,7 +1045,7 @@ class DescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->name !== '') {
+    if ($this->was_name_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->name);
     }
@@ -768,9 +1076,11 @@ class DescriptorProto implements \Protobuf\Message {
     }
     $msg = $this->options;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 7);
+      if ($this->was_options_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 7);
+      }
     }
     foreach ($this->oneof_decl as $msg) {
       $nested = new \Protobuf\Internal\Encoder();
@@ -790,13 +1100,17 @@ class DescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('name', 'name', $this->name, false);
+    if ($this->hasName()) {
+      $e->writeString('name', 'name', $this->name, false);
+    }
     $e->writeMessageList('field', 'field', $this->field);
     $e->writeMessageList('nested_type', 'nestedType', $this->nested_type);
     $e->writeMessageList('enum_type', 'enumType', $this->enum_type);
     $e->writeMessageList('extension_range', 'extensionRange', $this->extension_range);
     $e->writeMessageList('extension', 'extension', $this->extension);
-    $e->writeMessage('options', 'options', $this->options, false);
+    if ($this->hasOptions()) {
+      $e->writeMessage('options', 'options', $this->options, false);
+    }
     $e->writeMessageList('oneof_decl', 'oneofDecl', $this->oneof_decl);
     $e->writeMessageList('reserved_range', 'reservedRange', $this->reserved_range);
     $e->writePrimitiveList('reserved_name', 'reservedName', $this->reserved_name);
@@ -809,6 +1123,7 @@ class DescriptorProto implements \Protobuf\Message {
       switch ($k) {
         case 'name':
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_name_set = true;
           break;
         case 'field':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -849,6 +1164,7 @@ class DescriptorProto implements \Protobuf\Message {
           if ($v is null) break;
           if ($this->options is null) {
             $this->options = new \google\protobuf\MessageOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeJsonFrom($v);
           break;
@@ -881,7 +1197,9 @@ class DescriptorProto implements \Protobuf\Message {
     if (!($o is DescriptorProto)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->name = $o->name;
+    if ($o->hasName()) {
+      $this->name = $o->name;
+    }
     foreach ($o->field as $v) {
       $nv = new \google\protobuf\FieldDescriptorProto();
       $nv->CopyFrom($v);
@@ -911,7 +1229,9 @@ class DescriptorProto implements \Protobuf\Message {
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\MessageOptions();
       $nv->CopyFrom($tmp);
-      $this->options = $nv;
+      $this->setOptions($nv);
+    } else if ($o->hasOptions()) {
+      $this->setOptions(null);
     }
     foreach ($o->oneof_decl as $v) {
       $nv = new \google\protobuf\OneofDescriptorProto();
@@ -1116,17 +1436,28 @@ abstract class FieldDescriptorProto_Label {
 }
 
 class FieldDescriptorProto implements \Protobuf\Message {
-  public string $name;
-  public int $number;
-  public \google\protobuf\FieldDescriptorProto_Label_enum_t $label;
-  public \google\protobuf\FieldDescriptorProto_Type_enum_t $type;
-  public string $type_name;
-  public string $extendee;
-  public string $default_value;
-  public int $oneof_index;
-  public string $json_name;
-  public ?\google\protobuf\FieldOptions $options;
-  public bool $proto3_optional;
+  private string $name;
+  private bool $was_name_set;
+  private int $number;
+  private bool $was_number_set;
+  private \google\protobuf\FieldDescriptorProto_Label_enum_t $label;
+  private bool $was_label_set;
+  private \google\protobuf\FieldDescriptorProto_Type_enum_t $type;
+  private bool $was_type_set;
+  private string $type_name;
+  private bool $was_type_name_set;
+  private string $extendee;
+  private bool $was_extendee_set;
+  private string $default_value;
+  private bool $was_default_value_set;
+  private int $oneof_index;
+  private bool $was_oneof_index_set;
+  private string $json_name;
+  private bool $was_json_name_set;
+  private ?\google\protobuf\FieldOptions $options;
+  private bool $was_options_set;
+  private bool $proto3_optional;
+  private bool $was_proto3_optional_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -1142,18 +1473,227 @@ class FieldDescriptorProto implements \Protobuf\Message {
     ?'options' => ?\google\protobuf\FieldOptions,
     ?'proto3_optional' => bool,
   ) $s = shape()) {
-    $this->name = $s['name'] ?? '';
-    $this->number = $s['number'] ?? 0;
-    $this->label = $s['label'] ?? \google\protobuf\FieldDescriptorProto_Label::LABEL_OPTIONAL;
-    $this->type = $s['type'] ?? \google\protobuf\FieldDescriptorProto_Type::TYPE_DOUBLE;
-    $this->type_name = $s['type_name'] ?? '';
-    $this->extendee = $s['extendee'] ?? '';
-    $this->default_value = $s['default_value'] ?? '';
-    $this->oneof_index = $s['oneof_index'] ?? 0;
-    $this->json_name = $s['json_name'] ?? '';
-    $this->options = $s['options'] ?? null;
-    $this->proto3_optional = $s['proto3_optional'] ?? false;
+    if (Shapes::keyExists($s, 'name')) {
+      $this->name = $s['name'];
+      $this->was_name_set = true;
+    } else {
+      $this->name = '';
+      $this->was_name_set = false;
+    }
+    if (Shapes::keyExists($s, 'number')) {
+      $this->number = $s['number'];
+      $this->was_number_set = true;
+    } else {
+      $this->number = 0;
+      $this->was_number_set = false;
+    }
+    if (Shapes::keyExists($s, 'label')) {
+      $this->label = $s['label'];
+      $this->was_label_set = true;
+    } else {
+      $this->label = \google\protobuf\FieldDescriptorProto_Label::LABEL_OPTIONAL;
+      $this->was_label_set = false;
+    }
+    if (Shapes::keyExists($s, 'type')) {
+      $this->type = $s['type'];
+      $this->was_type_set = true;
+    } else {
+      $this->type = \google\protobuf\FieldDescriptorProto_Type::TYPE_DOUBLE;
+      $this->was_type_set = false;
+    }
+    if (Shapes::keyExists($s, 'type_name')) {
+      $this->type_name = $s['type_name'];
+      $this->was_type_name_set = true;
+    } else {
+      $this->type_name = '';
+      $this->was_type_name_set = false;
+    }
+    if (Shapes::keyExists($s, 'extendee')) {
+      $this->extendee = $s['extendee'];
+      $this->was_extendee_set = true;
+    } else {
+      $this->extendee = '';
+      $this->was_extendee_set = false;
+    }
+    if (Shapes::keyExists($s, 'default_value')) {
+      $this->default_value = $s['default_value'];
+      $this->was_default_value_set = true;
+    } else {
+      $this->default_value = '';
+      $this->was_default_value_set = false;
+    }
+    if (Shapes::keyExists($s, 'oneof_index')) {
+      $this->oneof_index = $s['oneof_index'];
+      $this->was_oneof_index_set = true;
+    } else {
+      $this->oneof_index = 0;
+      $this->was_oneof_index_set = false;
+    }
+    if (Shapes::keyExists($s, 'json_name')) {
+      $this->json_name = $s['json_name'];
+      $this->was_json_name_set = true;
+    } else {
+      $this->json_name = '';
+      $this->was_json_name_set = false;
+    }
+    if (Shapes::keyExists($s, 'options')) {
+      $this->options = $s['options'];
+      $this->was_options_set = true;
+    } else {
+      $this->options = null;
+      $this->was_options_set = false;
+    }
+    if (Shapes::keyExists($s, 'proto3_optional')) {
+      $this->proto3_optional = $s['proto3_optional'];
+      $this->was_proto3_optional_set = true;
+    } else {
+      $this->proto3_optional = false;
+      $this->was_proto3_optional_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setName(string $v): void {
+    $this->name = $v;
+    $this->was_name_set = true;
+  }
+
+  public function hasName(): bool {
+    return $this->was_name_set;
+  }
+
+  public function getNumber(): int {
+    return $this->number;
+  }
+
+  public function setNumber(int $v): void {
+    $this->number = $v;
+    $this->was_number_set = true;
+  }
+
+  public function hasNumber(): bool {
+    return $this->was_number_set;
+  }
+
+  public function getLabel(): \google\protobuf\FieldDescriptorProto_Label_enum_t {
+    return $this->label;
+  }
+
+  public function setLabel(\google\protobuf\FieldDescriptorProto_Label_enum_t $v): void {
+    $this->label = $v;
+    $this->was_label_set = true;
+  }
+
+  public function hasLabel(): bool {
+    return $this->was_label_set;
+  }
+
+  public function getType(): \google\protobuf\FieldDescriptorProto_Type_enum_t {
+    return $this->type;
+  }
+
+  public function setType(\google\protobuf\FieldDescriptorProto_Type_enum_t $v): void {
+    $this->type = $v;
+    $this->was_type_set = true;
+  }
+
+  public function hasType(): bool {
+    return $this->was_type_set;
+  }
+
+  public function getTypeName(): string {
+    return $this->type_name;
+  }
+
+  public function setTypeName(string $v): void {
+    $this->type_name = $v;
+    $this->was_type_name_set = true;
+  }
+
+  public function hasTypeName(): bool {
+    return $this->was_type_name_set;
+  }
+
+  public function getExtendee(): string {
+    return $this->extendee;
+  }
+
+  public function setExtendee(string $v): void {
+    $this->extendee = $v;
+    $this->was_extendee_set = true;
+  }
+
+  public function hasExtendee(): bool {
+    return $this->was_extendee_set;
+  }
+
+  public function getDefaultValue(): string {
+    return $this->default_value;
+  }
+
+  public function setDefaultValue(string $v): void {
+    $this->default_value = $v;
+    $this->was_default_value_set = true;
+  }
+
+  public function hasDefaultValue(): bool {
+    return $this->was_default_value_set;
+  }
+
+  public function getOneofIndex(): int {
+    return $this->oneof_index;
+  }
+
+  public function setOneofIndex(int $v): void {
+    $this->oneof_index = $v;
+    $this->was_oneof_index_set = true;
+  }
+
+  public function hasOneofIndex(): bool {
+    return $this->was_oneof_index_set;
+  }
+
+  public function getJsonName(): string {
+    return $this->json_name;
+  }
+
+  public function setJsonName(string $v): void {
+    $this->json_name = $v;
+    $this->was_json_name_set = true;
+  }
+
+  public function hasJsonName(): bool {
+    return $this->was_json_name_set;
+  }
+
+  public function getOptions(): ?\google\protobuf\FieldOptions {
+    return $this->options;
+  }
+
+  public function setOptions(?\google\protobuf\FieldOptions $v): void {
+    $this->options = $v;
+    $this->was_options_set = true;
+  }
+
+  public function hasOptions(): bool {
+    return $this->was_options_set;
+  }
+
+  public function getProto3Optional(): bool {
+    return $this->proto3_optional;
+  }
+
+  public function setProto3Optional(bool $v): void {
+    $this->proto3_optional = $v;
+    $this->was_proto3_optional_set = true;
+  }
+
+  public function hasProto3Optional(): bool {
+    return $this->was_proto3_optional_set;
   }
 
   public function MessageName(): string {
@@ -1175,39 +1715,50 @@ class FieldDescriptorProto implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->name = $d->readString();
+          $this->was_name_set = true;
           break;
         case 2:
           $this->extendee = $d->readString();
+          $this->was_extendee_set = true;
           break;
         case 3:
           $this->number = $d->readVarint32Signed();
+          $this->was_number_set = true;
           break;
         case 4:
           $this->label = \google\protobuf\FieldDescriptorProto_Label::FromInt($d->readVarint());
+          $this->was_label_set = true;
           break;
         case 5:
           $this->type = \google\protobuf\FieldDescriptorProto_Type::FromInt($d->readVarint());
+          $this->was_type_set = true;
           break;
         case 6:
           $this->type_name = $d->readString();
+          $this->was_type_name_set = true;
           break;
         case 7:
           $this->default_value = $d->readString();
+          $this->was_default_value_set = true;
           break;
         case 8:
           if ($this->options is null) {
             $this->options = new \google\protobuf\FieldOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeFrom($d->readDecoder());
           break;
         case 9:
           $this->oneof_index = $d->readVarint32Signed();
+          $this->was_oneof_index_set = true;
           break;
         case 10:
           $this->json_name = $d->readString();
+          $this->was_json_name_set = true;
           break;
         case 17:
           $this->proto3_optional = $d->readBool();
+          $this->was_proto3_optional_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1217,49 +1768,51 @@ class FieldDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->name !== '') {
+    if ($this->was_name_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->name);
     }
-    if ($this->extendee !== '') {
+    if ($this->was_extendee_set) {
       $e->writeTag(2, 2);
       $e->writeString($this->extendee);
     }
-    if ($this->number !== 0) {
+    if ($this->was_number_set) {
       $e->writeTag(3, 0);
       $e->writeVarint($this->number);
     }
-    if ($this->label !== \google\protobuf\FieldDescriptorProto_Label::LABEL_OPTIONAL) {
+    if ($this->was_label_set) {
       $e->writeTag(4, 0);
       $e->writeVarint($this->label);
     }
-    if ($this->type !== \google\protobuf\FieldDescriptorProto_Type::TYPE_DOUBLE) {
+    if ($this->was_type_set) {
       $e->writeTag(5, 0);
       $e->writeVarint($this->type);
     }
-    if ($this->type_name !== '') {
+    if ($this->was_type_name_set) {
       $e->writeTag(6, 2);
       $e->writeString($this->type_name);
     }
-    if ($this->default_value !== '') {
+    if ($this->was_default_value_set) {
       $e->writeTag(7, 2);
       $e->writeString($this->default_value);
     }
     $msg = $this->options;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 8);
+      if ($this->was_options_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 8);
+      }
     }
-    if ($this->oneof_index !== 0) {
+    if ($this->was_oneof_index_set) {
       $e->writeTag(9, 0);
       $e->writeVarint($this->oneof_index);
     }
-    if ($this->json_name !== '') {
+    if ($this->was_json_name_set) {
       $e->writeTag(10, 2);
       $e->writeString($this->json_name);
     }
-    if ($this->proto3_optional !== false) {
+    if ($this->was_proto3_optional_set) {
       $e->writeTag(17, 0);
       $e->writeBool($this->proto3_optional);
     }
@@ -1267,17 +1820,39 @@ class FieldDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('name', 'name', $this->name, false);
-    $e->writeString('extendee', 'extendee', $this->extendee, false);
-    $e->writeInt32('number', 'number', $this->number, false);
-    $e->writeEnum('label', 'label', \google\protobuf\FieldDescriptorProto_Label::ToStringDict(), $this->label, false);
-    $e->writeEnum('type', 'type', \google\protobuf\FieldDescriptorProto_Type::ToStringDict(), $this->type, false);
-    $e->writeString('type_name', 'typeName', $this->type_name, false);
-    $e->writeString('default_value', 'defaultValue', $this->default_value, false);
-    $e->writeMessage('options', 'options', $this->options, false);
-    $e->writeInt32('oneof_index', 'oneofIndex', $this->oneof_index, false);
-    $e->writeString('json_name', 'jsonName', $this->json_name, false);
-    $e->writeBool('proto3_optional', 'proto3Optional', $this->proto3_optional, false);
+    if ($this->hasName()) {
+      $e->writeString('name', 'name', $this->name, false);
+    }
+    if ($this->hasExtendee()) {
+      $e->writeString('extendee', 'extendee', $this->extendee, false);
+    }
+    if ($this->hasNumber()) {
+      $e->writeInt32('number', 'number', $this->number, false);
+    }
+    if ($this->hasLabel()) {
+      $e->writeEnum('label', 'label', \google\protobuf\FieldDescriptorProto_Label::ToStringDict(), $this->label, false);
+    }
+    if ($this->hasType()) {
+      $e->writeEnum('type', 'type', \google\protobuf\FieldDescriptorProto_Type::ToStringDict(), $this->type, false);
+    }
+    if ($this->hasTypeName()) {
+      $e->writeString('type_name', 'typeName', $this->type_name, false);
+    }
+    if ($this->hasDefaultValue()) {
+      $e->writeString('default_value', 'defaultValue', $this->default_value, false);
+    }
+    if ($this->hasOptions()) {
+      $e->writeMessage('options', 'options', $this->options, false);
+    }
+    if ($this->hasOneofIndex()) {
+      $e->writeInt32('oneof_index', 'oneofIndex', $this->oneof_index, false);
+    }
+    if ($this->hasJsonName()) {
+      $e->writeString('json_name', 'jsonName', $this->json_name, false);
+    }
+    if ($this->hasProto3Optional()) {
+      $e->writeBool('proto3_optional', 'proto3Optional', $this->proto3_optional, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1287,40 +1862,51 @@ class FieldDescriptorProto implements \Protobuf\Message {
       switch ($k) {
         case 'name':
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_name_set = true;
           break;
         case 'extendee':
           $this->extendee = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_extendee_set = true;
           break;
         case 'number':
           $this->number = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_number_set = true;
           break;
         case 'label':
           $this->label = \google\protobuf\FieldDescriptorProto_Label::FromMixed($v);
+          $this->was_label_set = true;
           break;
         case 'type':
           $this->type = \google\protobuf\FieldDescriptorProto_Type::FromMixed($v);
+          $this->was_type_set = true;
           break;
         case 'type_name': case 'typeName':
           $this->type_name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_type_name_set = true;
           break;
         case 'default_value': case 'defaultValue':
           $this->default_value = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_default_value_set = true;
           break;
         case 'options':
           if ($v is null) break;
           if ($this->options is null) {
             $this->options = new \google\protobuf\FieldOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeJsonFrom($v);
           break;
         case 'oneof_index': case 'oneofIndex':
           $this->oneof_index = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_oneof_index_set = true;
           break;
         case 'json_name': case 'jsonName':
           $this->json_name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_json_name_set = true;
           break;
         case 'proto3_optional': case 'proto3Optional':
           $this->proto3_optional = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_proto3_optional_set = true;
           break;
         default:
         break;
@@ -1332,39 +1918,101 @@ class FieldDescriptorProto implements \Protobuf\Message {
     if (!($o is FieldDescriptorProto)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->name = $o->name;
-    $this->extendee = $o->extendee;
-    $this->number = $o->number;
-    $this->label = $o->label;
-    $this->type = $o->type;
-    $this->type_name = $o->type_name;
-    $this->default_value = $o->default_value;
+    if ($o->hasName()) {
+      $this->name = $o->name;
+    }
+    if ($o->hasExtendee()) {
+      $this->extendee = $o->extendee;
+    }
+    if ($o->hasNumber()) {
+      $this->number = $o->number;
+    }
+    if ($o->hasLabel()) {
+      $this->label = $o->label;
+    }
+    if ($o->hasType()) {
+      $this->type = $o->type;
+    }
+    if ($o->hasTypeName()) {
+      $this->type_name = $o->type_name;
+    }
+    if ($o->hasDefaultValue()) {
+      $this->default_value = $o->default_value;
+    }
     $tmp = $o->options;
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\FieldOptions();
       $nv->CopyFrom($tmp);
-      $this->options = $nv;
+      $this->setOptions($nv);
+    } else if ($o->hasOptions()) {
+      $this->setOptions(null);
     }
-    $this->oneof_index = $o->oneof_index;
-    $this->json_name = $o->json_name;
-    $this->proto3_optional = $o->proto3_optional;
+    if ($o->hasOneofIndex()) {
+      $this->oneof_index = $o->oneof_index;
+    }
+    if ($o->hasJsonName()) {
+      $this->json_name = $o->json_name;
+    }
+    if ($o->hasProto3Optional()) {
+      $this->proto3_optional = $o->proto3_optional;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class OneofDescriptorProto implements \Protobuf\Message {
-  public string $name;
-  public ?\google\protobuf\OneofOptions $options;
+  private string $name;
+  private bool $was_name_set;
+  private ?\google\protobuf\OneofOptions $options;
+  private bool $was_options_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'name' => string,
     ?'options' => ?\google\protobuf\OneofOptions,
   ) $s = shape()) {
-    $this->name = $s['name'] ?? '';
-    $this->options = $s['options'] ?? null;
+    if (Shapes::keyExists($s, 'name')) {
+      $this->name = $s['name'];
+      $this->was_name_set = true;
+    } else {
+      $this->name = '';
+      $this->was_name_set = false;
+    }
+    if (Shapes::keyExists($s, 'options')) {
+      $this->options = $s['options'];
+      $this->was_options_set = true;
+    } else {
+      $this->options = null;
+      $this->was_options_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setName(string $v): void {
+    $this->name = $v;
+    $this->was_name_set = true;
+  }
+
+  public function hasName(): bool {
+    return $this->was_name_set;
+  }
+
+  public function getOptions(): ?\google\protobuf\OneofOptions {
+    return $this->options;
+  }
+
+  public function setOptions(?\google\protobuf\OneofOptions $v): void {
+    $this->options = $v;
+    $this->was_options_set = true;
+  }
+
+  public function hasOptions(): bool {
+    return $this->was_options_set;
   }
 
   public function MessageName(): string {
@@ -1386,10 +2034,12 @@ class OneofDescriptorProto implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->name = $d->readString();
+          $this->was_name_set = true;
           break;
         case 2:
           if ($this->options is null) {
             $this->options = new \google\protobuf\OneofOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeFrom($d->readDecoder());
           break;
@@ -1401,22 +2051,28 @@ class OneofDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->name !== '') {
+    if ($this->was_name_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->name);
     }
     $msg = $this->options;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 2);
+      if ($this->was_options_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 2);
+      }
     }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('name', 'name', $this->name, false);
-    $e->writeMessage('options', 'options', $this->options, false);
+    if ($this->hasName()) {
+      $e->writeString('name', 'name', $this->name, false);
+    }
+    if ($this->hasOptions()) {
+      $e->writeMessage('options', 'options', $this->options, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1426,11 +2082,13 @@ class OneofDescriptorProto implements \Protobuf\Message {
       switch ($k) {
         case 'name':
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_name_set = true;
           break;
         case 'options':
           if ($v is null) break;
           if ($this->options is null) {
             $this->options = new \google\protobuf\OneofOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeJsonFrom($v);
           break;
@@ -1444,12 +2102,16 @@ class OneofDescriptorProto implements \Protobuf\Message {
     if (!($o is OneofDescriptorProto)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->name = $o->name;
+    if ($o->hasName()) {
+      $this->name = $o->name;
+    }
     $tmp = $o->options;
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\OneofOptions();
       $nv->CopyFrom($tmp);
-      $this->options = $nv;
+      $this->setOptions($nv);
+    } else if ($o->hasOptions()) {
+      $this->setOptions(null);
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1457,17 +2119,57 @@ class OneofDescriptorProto implements \Protobuf\Message {
 }
 
 class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
-  public int $start;
-  public int $end;
+  private int $start;
+  private bool $was_start_set;
+  private int $end;
+  private bool $was_end_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'start' => int,
     ?'end' => int,
   ) $s = shape()) {
-    $this->start = $s['start'] ?? 0;
-    $this->end = $s['end'] ?? 0;
+    if (Shapes::keyExists($s, 'start')) {
+      $this->start = $s['start'];
+      $this->was_start_set = true;
+    } else {
+      $this->start = 0;
+      $this->was_start_set = false;
+    }
+    if (Shapes::keyExists($s, 'end')) {
+      $this->end = $s['end'];
+      $this->was_end_set = true;
+    } else {
+      $this->end = 0;
+      $this->was_end_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getStart(): int {
+    return $this->start;
+  }
+
+  public function setStart(int $v): void {
+    $this->start = $v;
+    $this->was_start_set = true;
+  }
+
+  public function hasStart(): bool {
+    return $this->was_start_set;
+  }
+
+  public function getEnd(): int {
+    return $this->end;
+  }
+
+  public function setEnd(int $v): void {
+    $this->end = $v;
+    $this->was_end_set = true;
+  }
+
+  public function hasEnd(): bool {
+    return $this->was_end_set;
   }
 
   public function MessageName(): string {
@@ -1489,9 +2191,11 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->start = $d->readVarint32Signed();
+          $this->was_start_set = true;
           break;
         case 2:
           $this->end = $d->readVarint32Signed();
+          $this->was_end_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -1501,11 +2205,11 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->start !== 0) {
+    if ($this->was_start_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->start);
     }
-    if ($this->end !== 0) {
+    if ($this->was_end_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->end);
     }
@@ -1513,8 +2217,12 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeInt32('start', 'start', $this->start, false);
-    $e->writeInt32('end', 'end', $this->end, false);
+    if ($this->hasStart()) {
+      $e->writeInt32('start', 'start', $this->start, false);
+    }
+    if ($this->hasEnd()) {
+      $e->writeInt32('end', 'end', $this->end, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1524,9 +2232,11 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
       switch ($k) {
         case 'start':
           $this->start = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_start_set = true;
           break;
         case 'end':
           $this->end = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_end_set = true;
           break;
         default:
         break;
@@ -1538,17 +2248,23 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
     if (!($o is EnumDescriptorProto_EnumReservedRange)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->start = $o->start;
-    $this->end = $o->end;
+    if ($o->hasStart()) {
+      $this->start = $o->start;
+    }
+    if ($o->hasEnd()) {
+      $this->end = $o->end;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
 }
 
 class EnumDescriptorProto implements \Protobuf\Message {
-  public string $name;
+  private string $name;
+  private bool $was_name_set;
   public vec<\google\protobuf\EnumValueDescriptorProto> $value;
-  public ?\google\protobuf\EnumOptions $options;
+  private ?\google\protobuf\EnumOptions $options;
+  private bool $was_options_set;
   public vec<\google\protobuf\EnumDescriptorProto_EnumReservedRange> $reserved_range;
   public vec<string> $reserved_name;
   private string $XXX_unrecognized;
@@ -1560,12 +2276,50 @@ class EnumDescriptorProto implements \Protobuf\Message {
     ?'reserved_range' => vec<\google\protobuf\EnumDescriptorProto_EnumReservedRange>,
     ?'reserved_name' => vec<string>,
   ) $s = shape()) {
-    $this->name = $s['name'] ?? '';
+    if (Shapes::keyExists($s, 'name')) {
+      $this->name = $s['name'];
+      $this->was_name_set = true;
+    } else {
+      $this->name = '';
+      $this->was_name_set = false;
+    }
     $this->value = $s['value'] ?? vec[];
-    $this->options = $s['options'] ?? null;
+    if (Shapes::keyExists($s, 'options')) {
+      $this->options = $s['options'];
+      $this->was_options_set = true;
+    } else {
+      $this->options = null;
+      $this->was_options_set = false;
+    }
     $this->reserved_range = $s['reserved_range'] ?? vec[];
     $this->reserved_name = $s['reserved_name'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setName(string $v): void {
+    $this->name = $v;
+    $this->was_name_set = true;
+  }
+
+  public function hasName(): bool {
+    return $this->was_name_set;
+  }
+
+  public function getOptions(): ?\google\protobuf\EnumOptions {
+    return $this->options;
+  }
+
+  public function setOptions(?\google\protobuf\EnumOptions $v): void {
+    $this->options = $v;
+    $this->was_options_set = true;
+  }
+
+  public function hasOptions(): bool {
+    return $this->was_options_set;
   }
 
   public function MessageName(): string {
@@ -1587,6 +2341,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->name = $d->readString();
+          $this->was_name_set = true;
           break;
         case 2:
           $obj = new \google\protobuf\EnumValueDescriptorProto();
@@ -1596,6 +2351,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
         case 3:
           if ($this->options is null) {
             $this->options = new \google\protobuf\EnumOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeFrom($d->readDecoder());
           break;
@@ -1615,7 +2371,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->name !== '') {
+    if ($this->was_name_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->name);
     }
@@ -1626,9 +2382,11 @@ class EnumDescriptorProto implements \Protobuf\Message {
     }
     $msg = $this->options;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 3);
+      if ($this->was_options_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 3);
+      }
     }
     foreach ($this->reserved_range as $msg) {
       $nested = new \Protobuf\Internal\Encoder();
@@ -1643,9 +2401,13 @@ class EnumDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('name', 'name', $this->name, false);
+    if ($this->hasName()) {
+      $e->writeString('name', 'name', $this->name, false);
+    }
     $e->writeMessageList('value', 'value', $this->value);
-    $e->writeMessage('options', 'options', $this->options, false);
+    if ($this->hasOptions()) {
+      $e->writeMessage('options', 'options', $this->options, false);
+    }
     $e->writeMessageList('reserved_range', 'reservedRange', $this->reserved_range);
     $e->writePrimitiveList('reserved_name', 'reservedName', $this->reserved_name);
   }
@@ -1657,6 +2419,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
       switch ($k) {
         case 'name':
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_name_set = true;
           break;
         case 'value':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -1669,6 +2432,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
           if ($v is null) break;
           if ($this->options is null) {
             $this->options = new \google\protobuf\EnumOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeJsonFrom($v);
           break;
@@ -1694,7 +2458,9 @@ class EnumDescriptorProto implements \Protobuf\Message {
     if (!($o is EnumDescriptorProto)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->name = $o->name;
+    if ($o->hasName()) {
+      $this->name = $o->name;
+    }
     foreach ($o->value as $v) {
       $nv = new \google\protobuf\EnumValueDescriptorProto();
       $nv->CopyFrom($v);
@@ -1704,7 +2470,9 @@ class EnumDescriptorProto implements \Protobuf\Message {
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\EnumOptions();
       $nv->CopyFrom($tmp);
-      $this->options = $nv;
+      $this->setOptions($nv);
+    } else if ($o->hasOptions()) {
+      $this->setOptions(null);
     }
     foreach ($o->reserved_range as $v) {
       $nv = new \google\protobuf\EnumDescriptorProto_EnumReservedRange();
@@ -1718,9 +2486,12 @@ class EnumDescriptorProto implements \Protobuf\Message {
 }
 
 class EnumValueDescriptorProto implements \Protobuf\Message {
-  public string $name;
-  public int $number;
-  public ?\google\protobuf\EnumValueOptions $options;
+  private string $name;
+  private bool $was_name_set;
+  private int $number;
+  private bool $was_number_set;
+  private ?\google\protobuf\EnumValueOptions $options;
+  private bool $was_options_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -1728,10 +2499,67 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
     ?'number' => int,
     ?'options' => ?\google\protobuf\EnumValueOptions,
   ) $s = shape()) {
-    $this->name = $s['name'] ?? '';
-    $this->number = $s['number'] ?? 0;
-    $this->options = $s['options'] ?? null;
+    if (Shapes::keyExists($s, 'name')) {
+      $this->name = $s['name'];
+      $this->was_name_set = true;
+    } else {
+      $this->name = '';
+      $this->was_name_set = false;
+    }
+    if (Shapes::keyExists($s, 'number')) {
+      $this->number = $s['number'];
+      $this->was_number_set = true;
+    } else {
+      $this->number = 0;
+      $this->was_number_set = false;
+    }
+    if (Shapes::keyExists($s, 'options')) {
+      $this->options = $s['options'];
+      $this->was_options_set = true;
+    } else {
+      $this->options = null;
+      $this->was_options_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setName(string $v): void {
+    $this->name = $v;
+    $this->was_name_set = true;
+  }
+
+  public function hasName(): bool {
+    return $this->was_name_set;
+  }
+
+  public function getNumber(): int {
+    return $this->number;
+  }
+
+  public function setNumber(int $v): void {
+    $this->number = $v;
+    $this->was_number_set = true;
+  }
+
+  public function hasNumber(): bool {
+    return $this->was_number_set;
+  }
+
+  public function getOptions(): ?\google\protobuf\EnumValueOptions {
+    return $this->options;
+  }
+
+  public function setOptions(?\google\protobuf\EnumValueOptions $v): void {
+    $this->options = $v;
+    $this->was_options_set = true;
+  }
+
+  public function hasOptions(): bool {
+    return $this->was_options_set;
   }
 
   public function MessageName(): string {
@@ -1753,13 +2581,16 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->name = $d->readString();
+          $this->was_name_set = true;
           break;
         case 2:
           $this->number = $d->readVarint32Signed();
+          $this->was_number_set = true;
           break;
         case 3:
           if ($this->options is null) {
             $this->options = new \google\protobuf\EnumValueOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeFrom($d->readDecoder());
           break;
@@ -1771,27 +2602,35 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->name !== '') {
+    if ($this->was_name_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->name);
     }
-    if ($this->number !== 0) {
+    if ($this->was_number_set) {
       $e->writeTag(2, 0);
       $e->writeVarint($this->number);
     }
     $msg = $this->options;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 3);
+      if ($this->was_options_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 3);
+      }
     }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('name', 'name', $this->name, false);
-    $e->writeInt32('number', 'number', $this->number, false);
-    $e->writeMessage('options', 'options', $this->options, false);
+    if ($this->hasName()) {
+      $e->writeString('name', 'name', $this->name, false);
+    }
+    if ($this->hasNumber()) {
+      $e->writeInt32('number', 'number', $this->number, false);
+    }
+    if ($this->hasOptions()) {
+      $e->writeMessage('options', 'options', $this->options, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1801,14 +2640,17 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
       switch ($k) {
         case 'name':
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_name_set = true;
           break;
         case 'number':
           $this->number = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_number_set = true;
           break;
         case 'options':
           if ($v is null) break;
           if ($this->options is null) {
             $this->options = new \google\protobuf\EnumValueOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeJsonFrom($v);
           break;
@@ -1822,13 +2664,19 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
     if (!($o is EnumValueDescriptorProto)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->name = $o->name;
-    $this->number = $o->number;
+    if ($o->hasName()) {
+      $this->name = $o->name;
+    }
+    if ($o->hasNumber()) {
+      $this->number = $o->number;
+    }
     $tmp = $o->options;
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\EnumValueOptions();
       $nv->CopyFrom($tmp);
-      $this->options = $nv;
+      $this->setOptions($nv);
+    } else if ($o->hasOptions()) {
+      $this->setOptions(null);
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1836,9 +2684,11 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
 }
 
 class ServiceDescriptorProto implements \Protobuf\Message {
-  public string $name;
+  private string $name;
+  private bool $was_name_set;
   public vec<\google\protobuf\MethodDescriptorProto> $method;
-  public ?\google\protobuf\ServiceOptions $options;
+  private ?\google\protobuf\ServiceOptions $options;
+  private bool $was_options_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -1846,10 +2696,48 @@ class ServiceDescriptorProto implements \Protobuf\Message {
     ?'method' => vec<\google\protobuf\MethodDescriptorProto>,
     ?'options' => ?\google\protobuf\ServiceOptions,
   ) $s = shape()) {
-    $this->name = $s['name'] ?? '';
+    if (Shapes::keyExists($s, 'name')) {
+      $this->name = $s['name'];
+      $this->was_name_set = true;
+    } else {
+      $this->name = '';
+      $this->was_name_set = false;
+    }
     $this->method = $s['method'] ?? vec[];
-    $this->options = $s['options'] ?? null;
+    if (Shapes::keyExists($s, 'options')) {
+      $this->options = $s['options'];
+      $this->was_options_set = true;
+    } else {
+      $this->options = null;
+      $this->was_options_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setName(string $v): void {
+    $this->name = $v;
+    $this->was_name_set = true;
+  }
+
+  public function hasName(): bool {
+    return $this->was_name_set;
+  }
+
+  public function getOptions(): ?\google\protobuf\ServiceOptions {
+    return $this->options;
+  }
+
+  public function setOptions(?\google\protobuf\ServiceOptions $v): void {
+    $this->options = $v;
+    $this->was_options_set = true;
+  }
+
+  public function hasOptions(): bool {
+    return $this->was_options_set;
   }
 
   public function MessageName(): string {
@@ -1871,6 +2759,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->name = $d->readString();
+          $this->was_name_set = true;
           break;
         case 2:
           $obj = new \google\protobuf\MethodDescriptorProto();
@@ -1880,6 +2769,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
         case 3:
           if ($this->options is null) {
             $this->options = new \google\protobuf\ServiceOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeFrom($d->readDecoder());
           break;
@@ -1891,7 +2781,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->name !== '') {
+    if ($this->was_name_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->name);
     }
@@ -1902,17 +2792,23 @@ class ServiceDescriptorProto implements \Protobuf\Message {
     }
     $msg = $this->options;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 3);
+      if ($this->was_options_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 3);
+      }
     }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('name', 'name', $this->name, false);
+    if ($this->hasName()) {
+      $e->writeString('name', 'name', $this->name, false);
+    }
     $e->writeMessageList('method', 'method', $this->method);
-    $e->writeMessage('options', 'options', $this->options, false);
+    if ($this->hasOptions()) {
+      $e->writeMessage('options', 'options', $this->options, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -1922,6 +2818,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
       switch ($k) {
         case 'name':
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_name_set = true;
           break;
         case 'method':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -1934,6 +2831,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
           if ($v is null) break;
           if ($this->options is null) {
             $this->options = new \google\protobuf\ServiceOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeJsonFrom($v);
           break;
@@ -1947,7 +2845,9 @@ class ServiceDescriptorProto implements \Protobuf\Message {
     if (!($o is ServiceDescriptorProto)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->name = $o->name;
+    if ($o->hasName()) {
+      $this->name = $o->name;
+    }
     foreach ($o->method as $v) {
       $nv = new \google\protobuf\MethodDescriptorProto();
       $nv->CopyFrom($v);
@@ -1957,7 +2857,9 @@ class ServiceDescriptorProto implements \Protobuf\Message {
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\ServiceOptions();
       $nv->CopyFrom($tmp);
-      $this->options = $nv;
+      $this->setOptions($nv);
+    } else if ($o->hasOptions()) {
+      $this->setOptions(null);
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1965,12 +2867,18 @@ class ServiceDescriptorProto implements \Protobuf\Message {
 }
 
 class MethodDescriptorProto implements \Protobuf\Message {
-  public string $name;
-  public string $input_type;
-  public string $output_type;
-  public ?\google\protobuf\MethodOptions $options;
-  public bool $client_streaming;
-  public bool $server_streaming;
+  private string $name;
+  private bool $was_name_set;
+  private string $input_type;
+  private bool $was_input_type_set;
+  private string $output_type;
+  private bool $was_output_type_set;
+  private ?\google\protobuf\MethodOptions $options;
+  private bool $was_options_set;
+  private bool $client_streaming;
+  private bool $was_client_streaming_set;
+  private bool $server_streaming;
+  private bool $was_server_streaming_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -1981,13 +2889,127 @@ class MethodDescriptorProto implements \Protobuf\Message {
     ?'client_streaming' => bool,
     ?'server_streaming' => bool,
   ) $s = shape()) {
-    $this->name = $s['name'] ?? '';
-    $this->input_type = $s['input_type'] ?? '';
-    $this->output_type = $s['output_type'] ?? '';
-    $this->options = $s['options'] ?? null;
-    $this->client_streaming = $s['client_streaming'] ?? false;
-    $this->server_streaming = $s['server_streaming'] ?? false;
+    if (Shapes::keyExists($s, 'name')) {
+      $this->name = $s['name'];
+      $this->was_name_set = true;
+    } else {
+      $this->name = '';
+      $this->was_name_set = false;
+    }
+    if (Shapes::keyExists($s, 'input_type')) {
+      $this->input_type = $s['input_type'];
+      $this->was_input_type_set = true;
+    } else {
+      $this->input_type = '';
+      $this->was_input_type_set = false;
+    }
+    if (Shapes::keyExists($s, 'output_type')) {
+      $this->output_type = $s['output_type'];
+      $this->was_output_type_set = true;
+    } else {
+      $this->output_type = '';
+      $this->was_output_type_set = false;
+    }
+    if (Shapes::keyExists($s, 'options')) {
+      $this->options = $s['options'];
+      $this->was_options_set = true;
+    } else {
+      $this->options = null;
+      $this->was_options_set = false;
+    }
+    if (Shapes::keyExists($s, 'client_streaming')) {
+      $this->client_streaming = $s['client_streaming'];
+      $this->was_client_streaming_set = true;
+    } else {
+      $this->client_streaming = false;
+      $this->was_client_streaming_set = false;
+    }
+    if (Shapes::keyExists($s, 'server_streaming')) {
+      $this->server_streaming = $s['server_streaming'];
+      $this->was_server_streaming_set = true;
+    } else {
+      $this->server_streaming = false;
+      $this->was_server_streaming_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getName(): string {
+    return $this->name;
+  }
+
+  public function setName(string $v): void {
+    $this->name = $v;
+    $this->was_name_set = true;
+  }
+
+  public function hasName(): bool {
+    return $this->was_name_set;
+  }
+
+  public function getInputType(): string {
+    return $this->input_type;
+  }
+
+  public function setInputType(string $v): void {
+    $this->input_type = $v;
+    $this->was_input_type_set = true;
+  }
+
+  public function hasInputType(): bool {
+    return $this->was_input_type_set;
+  }
+
+  public function getOutputType(): string {
+    return $this->output_type;
+  }
+
+  public function setOutputType(string $v): void {
+    $this->output_type = $v;
+    $this->was_output_type_set = true;
+  }
+
+  public function hasOutputType(): bool {
+    return $this->was_output_type_set;
+  }
+
+  public function getOptions(): ?\google\protobuf\MethodOptions {
+    return $this->options;
+  }
+
+  public function setOptions(?\google\protobuf\MethodOptions $v): void {
+    $this->options = $v;
+    $this->was_options_set = true;
+  }
+
+  public function hasOptions(): bool {
+    return $this->was_options_set;
+  }
+
+  public function getClientStreaming(): bool {
+    return $this->client_streaming;
+  }
+
+  public function setClientStreaming(bool $v): void {
+    $this->client_streaming = $v;
+    $this->was_client_streaming_set = true;
+  }
+
+  public function hasClientStreaming(): bool {
+    return $this->was_client_streaming_set;
+  }
+
+  public function getServerStreaming(): bool {
+    return $this->server_streaming;
+  }
+
+  public function setServerStreaming(bool $v): void {
+    $this->server_streaming = $v;
+    $this->was_server_streaming_set = true;
+  }
+
+  public function hasServerStreaming(): bool {
+    return $this->was_server_streaming_set;
   }
 
   public function MessageName(): string {
@@ -2009,24 +3031,30 @@ class MethodDescriptorProto implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->name = $d->readString();
+          $this->was_name_set = true;
           break;
         case 2:
           $this->input_type = $d->readString();
+          $this->was_input_type_set = true;
           break;
         case 3:
           $this->output_type = $d->readString();
+          $this->was_output_type_set = true;
           break;
         case 4:
           if ($this->options is null) {
             $this->options = new \google\protobuf\MethodOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeFrom($d->readDecoder());
           break;
         case 5:
           $this->client_streaming = $d->readBool();
+          $this->was_client_streaming_set = true;
           break;
         case 6:
           $this->server_streaming = $d->readBool();
+          $this->was_server_streaming_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -2036,29 +3064,31 @@ class MethodDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->name !== '') {
+    if ($this->was_name_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->name);
     }
-    if ($this->input_type !== '') {
+    if ($this->was_input_type_set) {
       $e->writeTag(2, 2);
       $e->writeString($this->input_type);
     }
-    if ($this->output_type !== '') {
+    if ($this->was_output_type_set) {
       $e->writeTag(3, 2);
       $e->writeString($this->output_type);
     }
     $msg = $this->options;
     if ($msg != null) {
-      $nested = new \Protobuf\Internal\Encoder();
-      $msg->WriteTo($nested);
-      $e->writeEncoder($nested, 4);
+      if ($this->was_options_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 4);
+      }
     }
-    if ($this->client_streaming !== false) {
+    if ($this->was_client_streaming_set) {
       $e->writeTag(5, 0);
       $e->writeBool($this->client_streaming);
     }
-    if ($this->server_streaming !== false) {
+    if ($this->was_server_streaming_set) {
       $e->writeTag(6, 0);
       $e->writeBool($this->server_streaming);
     }
@@ -2066,12 +3096,24 @@ class MethodDescriptorProto implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('name', 'name', $this->name, false);
-    $e->writeString('input_type', 'inputType', $this->input_type, false);
-    $e->writeString('output_type', 'outputType', $this->output_type, false);
-    $e->writeMessage('options', 'options', $this->options, false);
-    $e->writeBool('client_streaming', 'clientStreaming', $this->client_streaming, false);
-    $e->writeBool('server_streaming', 'serverStreaming', $this->server_streaming, false);
+    if ($this->hasName()) {
+      $e->writeString('name', 'name', $this->name, false);
+    }
+    if ($this->hasInputType()) {
+      $e->writeString('input_type', 'inputType', $this->input_type, false);
+    }
+    if ($this->hasOutputType()) {
+      $e->writeString('output_type', 'outputType', $this->output_type, false);
+    }
+    if ($this->hasOptions()) {
+      $e->writeMessage('options', 'options', $this->options, false);
+    }
+    if ($this->hasClientStreaming()) {
+      $e->writeBool('client_streaming', 'clientStreaming', $this->client_streaming, false);
+    }
+    if ($this->hasServerStreaming()) {
+      $e->writeBool('server_streaming', 'serverStreaming', $this->server_streaming, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -2081,25 +3123,31 @@ class MethodDescriptorProto implements \Protobuf\Message {
       switch ($k) {
         case 'name':
           $this->name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_name_set = true;
           break;
         case 'input_type': case 'inputType':
           $this->input_type = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_input_type_set = true;
           break;
         case 'output_type': case 'outputType':
           $this->output_type = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_output_type_set = true;
           break;
         case 'options':
           if ($v is null) break;
           if ($this->options is null) {
             $this->options = new \google\protobuf\MethodOptions();
+            $this->was_options_set = true;
           }
           $this->options->MergeJsonFrom($v);
           break;
         case 'client_streaming': case 'clientStreaming':
           $this->client_streaming = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_client_streaming_set = true;
           break;
         case 'server_streaming': case 'serverStreaming':
           $this->server_streaming = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_server_streaming_set = true;
           break;
         default:
         break;
@@ -2111,17 +3159,29 @@ class MethodDescriptorProto implements \Protobuf\Message {
     if (!($o is MethodDescriptorProto)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->name = $o->name;
-    $this->input_type = $o->input_type;
-    $this->output_type = $o->output_type;
+    if ($o->hasName()) {
+      $this->name = $o->name;
+    }
+    if ($o->hasInputType()) {
+      $this->input_type = $o->input_type;
+    }
+    if ($o->hasOutputType()) {
+      $this->output_type = $o->output_type;
+    }
     $tmp = $o->options;
     if ($tmp is nonnull) {
       $nv = new \google\protobuf\MethodOptions();
       $nv->CopyFrom($tmp);
-      $this->options = $nv;
+      $this->setOptions($nv);
+    } else if ($o->hasOptions()) {
+      $this->setOptions(null);
     }
-    $this->client_streaming = $o->client_streaming;
-    $this->server_streaming = $o->server_streaming;
+    if ($o->hasClientStreaming()) {
+      $this->client_streaming = $o->client_streaming;
+    }
+    if ($o->hasServerStreaming()) {
+      $this->server_streaming = $o->server_streaming;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
@@ -2156,26 +3216,46 @@ abstract class FileOptions_OptimizeMode {
 }
 
 class FileOptions implements \Protobuf\Message {
-  public string $java_package;
-  public string $java_outer_classname;
-  public bool $java_multiple_files;
-  public bool $java_generate_equals_and_hash;
-  public bool $java_string_check_utf8;
-  public \google\protobuf\FileOptions_OptimizeMode_enum_t $optimize_for;
-  public string $go_package;
-  public bool $cc_generic_services;
-  public bool $java_generic_services;
-  public bool $py_generic_services;
-  public bool $php_generic_services;
-  public bool $deprecated;
-  public bool $cc_enable_arenas;
-  public string $objc_class_prefix;
-  public string $csharp_namespace;
-  public string $swift_prefix;
-  public string $php_class_prefix;
-  public string $php_namespace;
-  public string $php_metadata_namespace;
-  public string $ruby_package;
+  private string $java_package;
+  private bool $was_java_package_set;
+  private string $java_outer_classname;
+  private bool $was_java_outer_classname_set;
+  private bool $java_multiple_files;
+  private bool $was_java_multiple_files_set;
+  private bool $java_generate_equals_and_hash;
+  private bool $was_java_generate_equals_and_hash_set;
+  private bool $java_string_check_utf8;
+  private bool $was_java_string_check_utf8_set;
+  private \google\protobuf\FileOptions_OptimizeMode_enum_t $optimize_for;
+  private bool $was_optimize_for_set;
+  private string $go_package;
+  private bool $was_go_package_set;
+  private bool $cc_generic_services;
+  private bool $was_cc_generic_services_set;
+  private bool $java_generic_services;
+  private bool $was_java_generic_services_set;
+  private bool $py_generic_services;
+  private bool $was_py_generic_services_set;
+  private bool $php_generic_services;
+  private bool $was_php_generic_services_set;
+  private bool $deprecated;
+  private bool $was_deprecated_set;
+  private bool $cc_enable_arenas;
+  private bool $was_cc_enable_arenas_set;
+  private string $objc_class_prefix;
+  private bool $was_objc_class_prefix_set;
+  private string $csharp_namespace;
+  private bool $was_csharp_namespace_set;
+  private string $swift_prefix;
+  private bool $was_swift_prefix_set;
+  private string $php_class_prefix;
+  private bool $was_php_class_prefix_set;
+  private string $php_namespace;
+  private bool $was_php_namespace_set;
+  private string $php_metadata_namespace;
+  private bool $was_php_metadata_namespace_set;
+  private string $ruby_package;
+  private bool $was_ruby_package_set;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
@@ -2202,28 +3282,408 @@ class FileOptions implements \Protobuf\Message {
     ?'ruby_package' => string,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
-    $this->java_package = $s['java_package'] ?? '';
-    $this->java_outer_classname = $s['java_outer_classname'] ?? '';
-    $this->java_multiple_files = $s['java_multiple_files'] ?? false;
-    $this->java_generate_equals_and_hash = $s['java_generate_equals_and_hash'] ?? false;
-    $this->java_string_check_utf8 = $s['java_string_check_utf8'] ?? false;
-    $this->optimize_for = $s['optimize_for'] ?? \google\protobuf\FileOptions_OptimizeMode::SPEED;
-    $this->go_package = $s['go_package'] ?? '';
-    $this->cc_generic_services = $s['cc_generic_services'] ?? false;
-    $this->java_generic_services = $s['java_generic_services'] ?? false;
-    $this->py_generic_services = $s['py_generic_services'] ?? false;
-    $this->php_generic_services = $s['php_generic_services'] ?? false;
-    $this->deprecated = $s['deprecated'] ?? false;
-    $this->cc_enable_arenas = $s['cc_enable_arenas'] ?? true;
-    $this->objc_class_prefix = $s['objc_class_prefix'] ?? '';
-    $this->csharp_namespace = $s['csharp_namespace'] ?? '';
-    $this->swift_prefix = $s['swift_prefix'] ?? '';
-    $this->php_class_prefix = $s['php_class_prefix'] ?? '';
-    $this->php_namespace = $s['php_namespace'] ?? '';
-    $this->php_metadata_namespace = $s['php_metadata_namespace'] ?? '';
-    $this->ruby_package = $s['ruby_package'] ?? '';
+    if (Shapes::keyExists($s, 'java_package')) {
+      $this->java_package = $s['java_package'];
+      $this->was_java_package_set = true;
+    } else {
+      $this->java_package = '';
+      $this->was_java_package_set = false;
+    }
+    if (Shapes::keyExists($s, 'java_outer_classname')) {
+      $this->java_outer_classname = $s['java_outer_classname'];
+      $this->was_java_outer_classname_set = true;
+    } else {
+      $this->java_outer_classname = '';
+      $this->was_java_outer_classname_set = false;
+    }
+    if (Shapes::keyExists($s, 'java_multiple_files')) {
+      $this->java_multiple_files = $s['java_multiple_files'];
+      $this->was_java_multiple_files_set = true;
+    } else {
+      $this->java_multiple_files = false;
+      $this->was_java_multiple_files_set = false;
+    }
+    if (Shapes::keyExists($s, 'java_generate_equals_and_hash')) {
+      $this->java_generate_equals_and_hash = $s['java_generate_equals_and_hash'];
+      $this->was_java_generate_equals_and_hash_set = true;
+    } else {
+      $this->java_generate_equals_and_hash = false;
+      $this->was_java_generate_equals_and_hash_set = false;
+    }
+    if (Shapes::keyExists($s, 'java_string_check_utf8')) {
+      $this->java_string_check_utf8 = $s['java_string_check_utf8'];
+      $this->was_java_string_check_utf8_set = true;
+    } else {
+      $this->java_string_check_utf8 = false;
+      $this->was_java_string_check_utf8_set = false;
+    }
+    if (Shapes::keyExists($s, 'optimize_for')) {
+      $this->optimize_for = $s['optimize_for'];
+      $this->was_optimize_for_set = true;
+    } else {
+      $this->optimize_for = \google\protobuf\FileOptions_OptimizeMode::SPEED;
+      $this->was_optimize_for_set = false;
+    }
+    if (Shapes::keyExists($s, 'go_package')) {
+      $this->go_package = $s['go_package'];
+      $this->was_go_package_set = true;
+    } else {
+      $this->go_package = '';
+      $this->was_go_package_set = false;
+    }
+    if (Shapes::keyExists($s, 'cc_generic_services')) {
+      $this->cc_generic_services = $s['cc_generic_services'];
+      $this->was_cc_generic_services_set = true;
+    } else {
+      $this->cc_generic_services = false;
+      $this->was_cc_generic_services_set = false;
+    }
+    if (Shapes::keyExists($s, 'java_generic_services')) {
+      $this->java_generic_services = $s['java_generic_services'];
+      $this->was_java_generic_services_set = true;
+    } else {
+      $this->java_generic_services = false;
+      $this->was_java_generic_services_set = false;
+    }
+    if (Shapes::keyExists($s, 'py_generic_services')) {
+      $this->py_generic_services = $s['py_generic_services'];
+      $this->was_py_generic_services_set = true;
+    } else {
+      $this->py_generic_services = false;
+      $this->was_py_generic_services_set = false;
+    }
+    if (Shapes::keyExists($s, 'php_generic_services')) {
+      $this->php_generic_services = $s['php_generic_services'];
+      $this->was_php_generic_services_set = true;
+    } else {
+      $this->php_generic_services = false;
+      $this->was_php_generic_services_set = false;
+    }
+    if (Shapes::keyExists($s, 'deprecated')) {
+      $this->deprecated = $s['deprecated'];
+      $this->was_deprecated_set = true;
+    } else {
+      $this->deprecated = false;
+      $this->was_deprecated_set = false;
+    }
+    if (Shapes::keyExists($s, 'cc_enable_arenas')) {
+      $this->cc_enable_arenas = $s['cc_enable_arenas'];
+      $this->was_cc_enable_arenas_set = true;
+    } else {
+      $this->cc_enable_arenas = true;
+      $this->was_cc_enable_arenas_set = false;
+    }
+    if (Shapes::keyExists($s, 'objc_class_prefix')) {
+      $this->objc_class_prefix = $s['objc_class_prefix'];
+      $this->was_objc_class_prefix_set = true;
+    } else {
+      $this->objc_class_prefix = '';
+      $this->was_objc_class_prefix_set = false;
+    }
+    if (Shapes::keyExists($s, 'csharp_namespace')) {
+      $this->csharp_namespace = $s['csharp_namespace'];
+      $this->was_csharp_namespace_set = true;
+    } else {
+      $this->csharp_namespace = '';
+      $this->was_csharp_namespace_set = false;
+    }
+    if (Shapes::keyExists($s, 'swift_prefix')) {
+      $this->swift_prefix = $s['swift_prefix'];
+      $this->was_swift_prefix_set = true;
+    } else {
+      $this->swift_prefix = '';
+      $this->was_swift_prefix_set = false;
+    }
+    if (Shapes::keyExists($s, 'php_class_prefix')) {
+      $this->php_class_prefix = $s['php_class_prefix'];
+      $this->was_php_class_prefix_set = true;
+    } else {
+      $this->php_class_prefix = '';
+      $this->was_php_class_prefix_set = false;
+    }
+    if (Shapes::keyExists($s, 'php_namespace')) {
+      $this->php_namespace = $s['php_namespace'];
+      $this->was_php_namespace_set = true;
+    } else {
+      $this->php_namespace = '';
+      $this->was_php_namespace_set = false;
+    }
+    if (Shapes::keyExists($s, 'php_metadata_namespace')) {
+      $this->php_metadata_namespace = $s['php_metadata_namespace'];
+      $this->was_php_metadata_namespace_set = true;
+    } else {
+      $this->php_metadata_namespace = '';
+      $this->was_php_metadata_namespace_set = false;
+    }
+    if (Shapes::keyExists($s, 'ruby_package')) {
+      $this->ruby_package = $s['ruby_package'];
+      $this->was_ruby_package_set = true;
+    } else {
+      $this->ruby_package = '';
+      $this->was_ruby_package_set = false;
+    }
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getJavaPackage(): string {
+    return $this->java_package;
+  }
+
+  public function setJavaPackage(string $v): void {
+    $this->java_package = $v;
+    $this->was_java_package_set = true;
+  }
+
+  public function hasJavaPackage(): bool {
+    return $this->was_java_package_set;
+  }
+
+  public function getJavaOuterClassname(): string {
+    return $this->java_outer_classname;
+  }
+
+  public function setJavaOuterClassname(string $v): void {
+    $this->java_outer_classname = $v;
+    $this->was_java_outer_classname_set = true;
+  }
+
+  public function hasJavaOuterClassname(): bool {
+    return $this->was_java_outer_classname_set;
+  }
+
+  public function getJavaMultipleFiles(): bool {
+    return $this->java_multiple_files;
+  }
+
+  public function setJavaMultipleFiles(bool $v): void {
+    $this->java_multiple_files = $v;
+    $this->was_java_multiple_files_set = true;
+  }
+
+  public function hasJavaMultipleFiles(): bool {
+    return $this->was_java_multiple_files_set;
+  }
+
+  public function getJavaGenerateEqualsAndHash(): bool {
+    return $this->java_generate_equals_and_hash;
+  }
+
+  public function setJavaGenerateEqualsAndHash(bool $v): void {
+    $this->java_generate_equals_and_hash = $v;
+    $this->was_java_generate_equals_and_hash_set = true;
+  }
+
+  public function hasJavaGenerateEqualsAndHash(): bool {
+    return $this->was_java_generate_equals_and_hash_set;
+  }
+
+  public function getJavaStringCheckUtf8(): bool {
+    return $this->java_string_check_utf8;
+  }
+
+  public function setJavaStringCheckUtf8(bool $v): void {
+    $this->java_string_check_utf8 = $v;
+    $this->was_java_string_check_utf8_set = true;
+  }
+
+  public function hasJavaStringCheckUtf8(): bool {
+    return $this->was_java_string_check_utf8_set;
+  }
+
+  public function getOptimizeFor(): \google\protobuf\FileOptions_OptimizeMode_enum_t {
+    return $this->optimize_for;
+  }
+
+  public function setOptimizeFor(\google\protobuf\FileOptions_OptimizeMode_enum_t $v): void {
+    $this->optimize_for = $v;
+    $this->was_optimize_for_set = true;
+  }
+
+  public function hasOptimizeFor(): bool {
+    return $this->was_optimize_for_set;
+  }
+
+  public function getGoPackage(): string {
+    return $this->go_package;
+  }
+
+  public function setGoPackage(string $v): void {
+    $this->go_package = $v;
+    $this->was_go_package_set = true;
+  }
+
+  public function hasGoPackage(): bool {
+    return $this->was_go_package_set;
+  }
+
+  public function getCcGenericServices(): bool {
+    return $this->cc_generic_services;
+  }
+
+  public function setCcGenericServices(bool $v): void {
+    $this->cc_generic_services = $v;
+    $this->was_cc_generic_services_set = true;
+  }
+
+  public function hasCcGenericServices(): bool {
+    return $this->was_cc_generic_services_set;
+  }
+
+  public function getJavaGenericServices(): bool {
+    return $this->java_generic_services;
+  }
+
+  public function setJavaGenericServices(bool $v): void {
+    $this->java_generic_services = $v;
+    $this->was_java_generic_services_set = true;
+  }
+
+  public function hasJavaGenericServices(): bool {
+    return $this->was_java_generic_services_set;
+  }
+
+  public function getPyGenericServices(): bool {
+    return $this->py_generic_services;
+  }
+
+  public function setPyGenericServices(bool $v): void {
+    $this->py_generic_services = $v;
+    $this->was_py_generic_services_set = true;
+  }
+
+  public function hasPyGenericServices(): bool {
+    return $this->was_py_generic_services_set;
+  }
+
+  public function getPhpGenericServices(): bool {
+    return $this->php_generic_services;
+  }
+
+  public function setPhpGenericServices(bool $v): void {
+    $this->php_generic_services = $v;
+    $this->was_php_generic_services_set = true;
+  }
+
+  public function hasPhpGenericServices(): bool {
+    return $this->was_php_generic_services_set;
+  }
+
+  public function getDeprecated(): bool {
+    return $this->deprecated;
+  }
+
+  public function setDeprecated(bool $v): void {
+    $this->deprecated = $v;
+    $this->was_deprecated_set = true;
+  }
+
+  public function hasDeprecated(): bool {
+    return $this->was_deprecated_set;
+  }
+
+  public function getCcEnableArenas(): bool {
+    return $this->cc_enable_arenas;
+  }
+
+  public function setCcEnableArenas(bool $v): void {
+    $this->cc_enable_arenas = $v;
+    $this->was_cc_enable_arenas_set = true;
+  }
+
+  public function hasCcEnableArenas(): bool {
+    return $this->was_cc_enable_arenas_set;
+  }
+
+  public function getObjcClassPrefix(): string {
+    return $this->objc_class_prefix;
+  }
+
+  public function setObjcClassPrefix(string $v): void {
+    $this->objc_class_prefix = $v;
+    $this->was_objc_class_prefix_set = true;
+  }
+
+  public function hasObjcClassPrefix(): bool {
+    return $this->was_objc_class_prefix_set;
+  }
+
+  public function getCsharpNamespace(): string {
+    return $this->csharp_namespace;
+  }
+
+  public function setCsharpNamespace(string $v): void {
+    $this->csharp_namespace = $v;
+    $this->was_csharp_namespace_set = true;
+  }
+
+  public function hasCsharpNamespace(): bool {
+    return $this->was_csharp_namespace_set;
+  }
+
+  public function getSwiftPrefix(): string {
+    return $this->swift_prefix;
+  }
+
+  public function setSwiftPrefix(string $v): void {
+    $this->swift_prefix = $v;
+    $this->was_swift_prefix_set = true;
+  }
+
+  public function hasSwiftPrefix(): bool {
+    return $this->was_swift_prefix_set;
+  }
+
+  public function getPhpClassPrefix(): string {
+    return $this->php_class_prefix;
+  }
+
+  public function setPhpClassPrefix(string $v): void {
+    $this->php_class_prefix = $v;
+    $this->was_php_class_prefix_set = true;
+  }
+
+  public function hasPhpClassPrefix(): bool {
+    return $this->was_php_class_prefix_set;
+  }
+
+  public function getPhpNamespace(): string {
+    return $this->php_namespace;
+  }
+
+  public function setPhpNamespace(string $v): void {
+    $this->php_namespace = $v;
+    $this->was_php_namespace_set = true;
+  }
+
+  public function hasPhpNamespace(): bool {
+    return $this->was_php_namespace_set;
+  }
+
+  public function getPhpMetadataNamespace(): string {
+    return $this->php_metadata_namespace;
+  }
+
+  public function setPhpMetadataNamespace(string $v): void {
+    $this->php_metadata_namespace = $v;
+    $this->was_php_metadata_namespace_set = true;
+  }
+
+  public function hasPhpMetadataNamespace(): bool {
+    return $this->was_php_metadata_namespace_set;
+  }
+
+  public function getRubyPackage(): string {
+    return $this->ruby_package;
+  }
+
+  public function setRubyPackage(string $v): void {
+    $this->ruby_package = $v;
+    $this->was_ruby_package_set = true;
+  }
+
+  public function hasRubyPackage(): bool {
+    return $this->was_ruby_package_set;
   }
 
   public function MessageName(): string {
@@ -2245,63 +3705,83 @@ class FileOptions implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->java_package = $d->readString();
+          $this->was_java_package_set = true;
           break;
         case 8:
           $this->java_outer_classname = $d->readString();
+          $this->was_java_outer_classname_set = true;
           break;
         case 9:
           $this->optimize_for = \google\protobuf\FileOptions_OptimizeMode::FromInt($d->readVarint());
+          $this->was_optimize_for_set = true;
           break;
         case 10:
           $this->java_multiple_files = $d->readBool();
+          $this->was_java_multiple_files_set = true;
           break;
         case 11:
           $this->go_package = $d->readString();
+          $this->was_go_package_set = true;
           break;
         case 16:
           $this->cc_generic_services = $d->readBool();
+          $this->was_cc_generic_services_set = true;
           break;
         case 17:
           $this->java_generic_services = $d->readBool();
+          $this->was_java_generic_services_set = true;
           break;
         case 18:
           $this->py_generic_services = $d->readBool();
+          $this->was_py_generic_services_set = true;
           break;
         case 20:
           $this->java_generate_equals_and_hash = $d->readBool();
+          $this->was_java_generate_equals_and_hash_set = true;
           break;
         case 23:
           $this->deprecated = $d->readBool();
+          $this->was_deprecated_set = true;
           break;
         case 27:
           $this->java_string_check_utf8 = $d->readBool();
+          $this->was_java_string_check_utf8_set = true;
           break;
         case 31:
           $this->cc_enable_arenas = $d->readBool();
+          $this->was_cc_enable_arenas_set = true;
           break;
         case 36:
           $this->objc_class_prefix = $d->readString();
+          $this->was_objc_class_prefix_set = true;
           break;
         case 37:
           $this->csharp_namespace = $d->readString();
+          $this->was_csharp_namespace_set = true;
           break;
         case 39:
           $this->swift_prefix = $d->readString();
+          $this->was_swift_prefix_set = true;
           break;
         case 40:
           $this->php_class_prefix = $d->readString();
+          $this->was_php_class_prefix_set = true;
           break;
         case 41:
           $this->php_namespace = $d->readString();
+          $this->was_php_namespace_set = true;
           break;
         case 42:
           $this->php_generic_services = $d->readBool();
+          $this->was_php_generic_services_set = true;
           break;
         case 44:
           $this->php_metadata_namespace = $d->readString();
+          $this->was_php_metadata_namespace_set = true;
           break;
         case 45:
           $this->ruby_package = $d->readString();
+          $this->was_ruby_package_set = true;
           break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
@@ -2316,83 +3796,83 @@ class FileOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->java_package !== '') {
+    if ($this->was_java_package_set) {
       $e->writeTag(1, 2);
       $e->writeString($this->java_package);
     }
-    if ($this->java_outer_classname !== '') {
+    if ($this->was_java_outer_classname_set) {
       $e->writeTag(8, 2);
       $e->writeString($this->java_outer_classname);
     }
-    if ($this->optimize_for !== \google\protobuf\FileOptions_OptimizeMode::SPEED) {
+    if ($this->was_optimize_for_set) {
       $e->writeTag(9, 0);
       $e->writeVarint($this->optimize_for);
     }
-    if ($this->java_multiple_files !== false) {
+    if ($this->was_java_multiple_files_set) {
       $e->writeTag(10, 0);
       $e->writeBool($this->java_multiple_files);
     }
-    if ($this->go_package !== '') {
+    if ($this->was_go_package_set) {
       $e->writeTag(11, 2);
       $e->writeString($this->go_package);
     }
-    if ($this->cc_generic_services !== false) {
+    if ($this->was_cc_generic_services_set) {
       $e->writeTag(16, 0);
       $e->writeBool($this->cc_generic_services);
     }
-    if ($this->java_generic_services !== false) {
+    if ($this->was_java_generic_services_set) {
       $e->writeTag(17, 0);
       $e->writeBool($this->java_generic_services);
     }
-    if ($this->py_generic_services !== false) {
+    if ($this->was_py_generic_services_set) {
       $e->writeTag(18, 0);
       $e->writeBool($this->py_generic_services);
     }
-    if ($this->java_generate_equals_and_hash !== false) {
+    if ($this->was_java_generate_equals_and_hash_set) {
       $e->writeTag(20, 0);
       $e->writeBool($this->java_generate_equals_and_hash);
     }
-    if ($this->deprecated !== false) {
+    if ($this->was_deprecated_set) {
       $e->writeTag(23, 0);
       $e->writeBool($this->deprecated);
     }
-    if ($this->java_string_check_utf8 !== false) {
+    if ($this->was_java_string_check_utf8_set) {
       $e->writeTag(27, 0);
       $e->writeBool($this->java_string_check_utf8);
     }
-    if ($this->cc_enable_arenas !== true) {
+    if ($this->was_cc_enable_arenas_set) {
       $e->writeTag(31, 0);
       $e->writeBool($this->cc_enable_arenas);
     }
-    if ($this->objc_class_prefix !== '') {
+    if ($this->was_objc_class_prefix_set) {
       $e->writeTag(36, 2);
       $e->writeString($this->objc_class_prefix);
     }
-    if ($this->csharp_namespace !== '') {
+    if ($this->was_csharp_namespace_set) {
       $e->writeTag(37, 2);
       $e->writeString($this->csharp_namespace);
     }
-    if ($this->swift_prefix !== '') {
+    if ($this->was_swift_prefix_set) {
       $e->writeTag(39, 2);
       $e->writeString($this->swift_prefix);
     }
-    if ($this->php_class_prefix !== '') {
+    if ($this->was_php_class_prefix_set) {
       $e->writeTag(40, 2);
       $e->writeString($this->php_class_prefix);
     }
-    if ($this->php_namespace !== '') {
+    if ($this->was_php_namespace_set) {
       $e->writeTag(41, 2);
       $e->writeString($this->php_namespace);
     }
-    if ($this->php_generic_services !== false) {
+    if ($this->was_php_generic_services_set) {
       $e->writeTag(42, 0);
       $e->writeBool($this->php_generic_services);
     }
-    if ($this->php_metadata_namespace !== '') {
+    if ($this->was_php_metadata_namespace_set) {
       $e->writeTag(44, 2);
       $e->writeString($this->php_metadata_namespace);
     }
-    if ($this->ruby_package !== '') {
+    if ($this->was_ruby_package_set) {
       $e->writeTag(45, 2);
       $e->writeString($this->ruby_package);
     }
@@ -2405,26 +3885,66 @@ class FileOptions implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeString('java_package', 'javaPackage', $this->java_package, false);
-    $e->writeString('java_outer_classname', 'javaOuterClassname', $this->java_outer_classname, false);
-    $e->writeEnum('optimize_for', 'optimizeFor', \google\protobuf\FileOptions_OptimizeMode::ToStringDict(), $this->optimize_for, false);
-    $e->writeBool('java_multiple_files', 'javaMultipleFiles', $this->java_multiple_files, false);
-    $e->writeString('go_package', 'goPackage', $this->go_package, false);
-    $e->writeBool('cc_generic_services', 'ccGenericServices', $this->cc_generic_services, false);
-    $e->writeBool('java_generic_services', 'javaGenericServices', $this->java_generic_services, false);
-    $e->writeBool('py_generic_services', 'pyGenericServices', $this->py_generic_services, false);
-    $e->writeBool('java_generate_equals_and_hash', 'javaGenerateEqualsAndHash', $this->java_generate_equals_and_hash, false);
-    $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
-    $e->writeBool('java_string_check_utf8', 'javaStringCheckUtf8', $this->java_string_check_utf8, false);
-    $e->writeBool('cc_enable_arenas', 'ccEnableArenas', $this->cc_enable_arenas, false);
-    $e->writeString('objc_class_prefix', 'objcClassPrefix', $this->objc_class_prefix, false);
-    $e->writeString('csharp_namespace', 'csharpNamespace', $this->csharp_namespace, false);
-    $e->writeString('swift_prefix', 'swiftPrefix', $this->swift_prefix, false);
-    $e->writeString('php_class_prefix', 'phpClassPrefix', $this->php_class_prefix, false);
-    $e->writeString('php_namespace', 'phpNamespace', $this->php_namespace, false);
-    $e->writeBool('php_generic_services', 'phpGenericServices', $this->php_generic_services, false);
-    $e->writeString('php_metadata_namespace', 'phpMetadataNamespace', $this->php_metadata_namespace, false);
-    $e->writeString('ruby_package', 'rubyPackage', $this->ruby_package, false);
+    if ($this->hasJavaPackage()) {
+      $e->writeString('java_package', 'javaPackage', $this->java_package, false);
+    }
+    if ($this->hasJavaOuterClassname()) {
+      $e->writeString('java_outer_classname', 'javaOuterClassname', $this->java_outer_classname, false);
+    }
+    if ($this->hasOptimizeFor()) {
+      $e->writeEnum('optimize_for', 'optimizeFor', \google\protobuf\FileOptions_OptimizeMode::ToStringDict(), $this->optimize_for, false);
+    }
+    if ($this->hasJavaMultipleFiles()) {
+      $e->writeBool('java_multiple_files', 'javaMultipleFiles', $this->java_multiple_files, false);
+    }
+    if ($this->hasGoPackage()) {
+      $e->writeString('go_package', 'goPackage', $this->go_package, false);
+    }
+    if ($this->hasCcGenericServices()) {
+      $e->writeBool('cc_generic_services', 'ccGenericServices', $this->cc_generic_services, false);
+    }
+    if ($this->hasJavaGenericServices()) {
+      $e->writeBool('java_generic_services', 'javaGenericServices', $this->java_generic_services, false);
+    }
+    if ($this->hasPyGenericServices()) {
+      $e->writeBool('py_generic_services', 'pyGenericServices', $this->py_generic_services, false);
+    }
+    if ($this->hasJavaGenerateEqualsAndHash()) {
+      $e->writeBool('java_generate_equals_and_hash', 'javaGenerateEqualsAndHash', $this->java_generate_equals_and_hash, false);
+    }
+    if ($this->hasDeprecated()) {
+      $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    }
+    if ($this->hasJavaStringCheckUtf8()) {
+      $e->writeBool('java_string_check_utf8', 'javaStringCheckUtf8', $this->java_string_check_utf8, false);
+    }
+    if ($this->hasCcEnableArenas()) {
+      $e->writeBool('cc_enable_arenas', 'ccEnableArenas', $this->cc_enable_arenas, false);
+    }
+    if ($this->hasObjcClassPrefix()) {
+      $e->writeString('objc_class_prefix', 'objcClassPrefix', $this->objc_class_prefix, false);
+    }
+    if ($this->hasCsharpNamespace()) {
+      $e->writeString('csharp_namespace', 'csharpNamespace', $this->csharp_namespace, false);
+    }
+    if ($this->hasSwiftPrefix()) {
+      $e->writeString('swift_prefix', 'swiftPrefix', $this->swift_prefix, false);
+    }
+    if ($this->hasPhpClassPrefix()) {
+      $e->writeString('php_class_prefix', 'phpClassPrefix', $this->php_class_prefix, false);
+    }
+    if ($this->hasPhpNamespace()) {
+      $e->writeString('php_namespace', 'phpNamespace', $this->php_namespace, false);
+    }
+    if ($this->hasPhpGenericServices()) {
+      $e->writeBool('php_generic_services', 'phpGenericServices', $this->php_generic_services, false);
+    }
+    if ($this->hasPhpMetadataNamespace()) {
+      $e->writeString('php_metadata_namespace', 'phpMetadataNamespace', $this->php_metadata_namespace, false);
+    }
+    if ($this->hasRubyPackage()) {
+      $e->writeString('ruby_package', 'rubyPackage', $this->ruby_package, false);
+    }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -2435,63 +3955,83 @@ class FileOptions implements \Protobuf\Message {
       switch ($k) {
         case 'java_package': case 'javaPackage':
           $this->java_package = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_java_package_set = true;
           break;
         case 'java_outer_classname': case 'javaOuterClassname':
           $this->java_outer_classname = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_java_outer_classname_set = true;
           break;
         case 'optimize_for': case 'optimizeFor':
           $this->optimize_for = \google\protobuf\FileOptions_OptimizeMode::FromMixed($v);
+          $this->was_optimize_for_set = true;
           break;
         case 'java_multiple_files': case 'javaMultipleFiles':
           $this->java_multiple_files = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_java_multiple_files_set = true;
           break;
         case 'go_package': case 'goPackage':
           $this->go_package = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_go_package_set = true;
           break;
         case 'cc_generic_services': case 'ccGenericServices':
           $this->cc_generic_services = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_cc_generic_services_set = true;
           break;
         case 'java_generic_services': case 'javaGenericServices':
           $this->java_generic_services = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_java_generic_services_set = true;
           break;
         case 'py_generic_services': case 'pyGenericServices':
           $this->py_generic_services = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_py_generic_services_set = true;
           break;
         case 'java_generate_equals_and_hash': case 'javaGenerateEqualsAndHash':
           $this->java_generate_equals_and_hash = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_java_generate_equals_and_hash_set = true;
           break;
         case 'deprecated':
           $this->deprecated = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_deprecated_set = true;
           break;
         case 'java_string_check_utf8': case 'javaStringCheckUtf8':
           $this->java_string_check_utf8 = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_java_string_check_utf8_set = true;
           break;
         case 'cc_enable_arenas': case 'ccEnableArenas':
           $this->cc_enable_arenas = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_cc_enable_arenas_set = true;
           break;
         case 'objc_class_prefix': case 'objcClassPrefix':
           $this->objc_class_prefix = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_objc_class_prefix_set = true;
           break;
         case 'csharp_namespace': case 'csharpNamespace':
           $this->csharp_namespace = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_csharp_namespace_set = true;
           break;
         case 'swift_prefix': case 'swiftPrefix':
           $this->swift_prefix = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_swift_prefix_set = true;
           break;
         case 'php_class_prefix': case 'phpClassPrefix':
           $this->php_class_prefix = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_php_class_prefix_set = true;
           break;
         case 'php_namespace': case 'phpNamespace':
           $this->php_namespace = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_php_namespace_set = true;
           break;
         case 'php_generic_services': case 'phpGenericServices':
           $this->php_generic_services = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_php_generic_services_set = true;
           break;
         case 'php_metadata_namespace': case 'phpMetadataNamespace':
           $this->php_metadata_namespace = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_php_metadata_namespace_set = true;
           break;
         case 'ruby_package': case 'rubyPackage':
           $this->ruby_package = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_ruby_package_set = true;
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -2510,26 +4050,66 @@ class FileOptions implements \Protobuf\Message {
     if (!($o is FileOptions)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->java_package = $o->java_package;
-    $this->java_outer_classname = $o->java_outer_classname;
-    $this->optimize_for = $o->optimize_for;
-    $this->java_multiple_files = $o->java_multiple_files;
-    $this->go_package = $o->go_package;
-    $this->cc_generic_services = $o->cc_generic_services;
-    $this->java_generic_services = $o->java_generic_services;
-    $this->py_generic_services = $o->py_generic_services;
-    $this->java_generate_equals_and_hash = $o->java_generate_equals_and_hash;
-    $this->deprecated = $o->deprecated;
-    $this->java_string_check_utf8 = $o->java_string_check_utf8;
-    $this->cc_enable_arenas = $o->cc_enable_arenas;
-    $this->objc_class_prefix = $o->objc_class_prefix;
-    $this->csharp_namespace = $o->csharp_namespace;
-    $this->swift_prefix = $o->swift_prefix;
-    $this->php_class_prefix = $o->php_class_prefix;
-    $this->php_namespace = $o->php_namespace;
-    $this->php_generic_services = $o->php_generic_services;
-    $this->php_metadata_namespace = $o->php_metadata_namespace;
-    $this->ruby_package = $o->ruby_package;
+    if ($o->hasJavaPackage()) {
+      $this->java_package = $o->java_package;
+    }
+    if ($o->hasJavaOuterClassname()) {
+      $this->java_outer_classname = $o->java_outer_classname;
+    }
+    if ($o->hasOptimizeFor()) {
+      $this->optimize_for = $o->optimize_for;
+    }
+    if ($o->hasJavaMultipleFiles()) {
+      $this->java_multiple_files = $o->java_multiple_files;
+    }
+    if ($o->hasGoPackage()) {
+      $this->go_package = $o->go_package;
+    }
+    if ($o->hasCcGenericServices()) {
+      $this->cc_generic_services = $o->cc_generic_services;
+    }
+    if ($o->hasJavaGenericServices()) {
+      $this->java_generic_services = $o->java_generic_services;
+    }
+    if ($o->hasPyGenericServices()) {
+      $this->py_generic_services = $o->py_generic_services;
+    }
+    if ($o->hasJavaGenerateEqualsAndHash()) {
+      $this->java_generate_equals_and_hash = $o->java_generate_equals_and_hash;
+    }
+    if ($o->hasDeprecated()) {
+      $this->deprecated = $o->deprecated;
+    }
+    if ($o->hasJavaStringCheckUtf8()) {
+      $this->java_string_check_utf8 = $o->java_string_check_utf8;
+    }
+    if ($o->hasCcEnableArenas()) {
+      $this->cc_enable_arenas = $o->cc_enable_arenas;
+    }
+    if ($o->hasObjcClassPrefix()) {
+      $this->objc_class_prefix = $o->objc_class_prefix;
+    }
+    if ($o->hasCsharpNamespace()) {
+      $this->csharp_namespace = $o->csharp_namespace;
+    }
+    if ($o->hasSwiftPrefix()) {
+      $this->swift_prefix = $o->swift_prefix;
+    }
+    if ($o->hasPhpClassPrefix()) {
+      $this->php_class_prefix = $o->php_class_prefix;
+    }
+    if ($o->hasPhpNamespace()) {
+      $this->php_namespace = $o->php_namespace;
+    }
+    if ($o->hasPhpGenericServices()) {
+      $this->php_generic_services = $o->php_generic_services;
+    }
+    if ($o->hasPhpMetadataNamespace()) {
+      $this->php_metadata_namespace = $o->php_metadata_namespace;
+    }
+    if ($o->hasRubyPackage()) {
+      $this->ruby_package = $o->ruby_package;
+    }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
@@ -2541,10 +4121,14 @@ class FileOptions implements \Protobuf\Message {
 }
 
 class MessageOptions implements \Protobuf\Message {
-  public bool $message_set_wire_format;
-  public bool $no_standard_descriptor_accessor;
-  public bool $deprecated;
-  public bool $map_entry;
+  private bool $message_set_wire_format;
+  private bool $was_message_set_wire_format_set;
+  private bool $no_standard_descriptor_accessor;
+  private bool $was_no_standard_descriptor_accessor_set;
+  private bool $deprecated;
+  private bool $was_deprecated_set;
+  private bool $map_entry;
+  private bool $was_map_entry_set;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
@@ -2555,12 +4139,88 @@ class MessageOptions implements \Protobuf\Message {
     ?'map_entry' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
-    $this->message_set_wire_format = $s['message_set_wire_format'] ?? false;
-    $this->no_standard_descriptor_accessor = $s['no_standard_descriptor_accessor'] ?? false;
-    $this->deprecated = $s['deprecated'] ?? false;
-    $this->map_entry = $s['map_entry'] ?? false;
+    if (Shapes::keyExists($s, 'message_set_wire_format')) {
+      $this->message_set_wire_format = $s['message_set_wire_format'];
+      $this->was_message_set_wire_format_set = true;
+    } else {
+      $this->message_set_wire_format = false;
+      $this->was_message_set_wire_format_set = false;
+    }
+    if (Shapes::keyExists($s, 'no_standard_descriptor_accessor')) {
+      $this->no_standard_descriptor_accessor = $s['no_standard_descriptor_accessor'];
+      $this->was_no_standard_descriptor_accessor_set = true;
+    } else {
+      $this->no_standard_descriptor_accessor = false;
+      $this->was_no_standard_descriptor_accessor_set = false;
+    }
+    if (Shapes::keyExists($s, 'deprecated')) {
+      $this->deprecated = $s['deprecated'];
+      $this->was_deprecated_set = true;
+    } else {
+      $this->deprecated = false;
+      $this->was_deprecated_set = false;
+    }
+    if (Shapes::keyExists($s, 'map_entry')) {
+      $this->map_entry = $s['map_entry'];
+      $this->was_map_entry_set = true;
+    } else {
+      $this->map_entry = false;
+      $this->was_map_entry_set = false;
+    }
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getMessageSetWireFormat(): bool {
+    return $this->message_set_wire_format;
+  }
+
+  public function setMessageSetWireFormat(bool $v): void {
+    $this->message_set_wire_format = $v;
+    $this->was_message_set_wire_format_set = true;
+  }
+
+  public function hasMessageSetWireFormat(): bool {
+    return $this->was_message_set_wire_format_set;
+  }
+
+  public function getNoStandardDescriptorAccessor(): bool {
+    return $this->no_standard_descriptor_accessor;
+  }
+
+  public function setNoStandardDescriptorAccessor(bool $v): void {
+    $this->no_standard_descriptor_accessor = $v;
+    $this->was_no_standard_descriptor_accessor_set = true;
+  }
+
+  public function hasNoStandardDescriptorAccessor(): bool {
+    return $this->was_no_standard_descriptor_accessor_set;
+  }
+
+  public function getDeprecated(): bool {
+    return $this->deprecated;
+  }
+
+  public function setDeprecated(bool $v): void {
+    $this->deprecated = $v;
+    $this->was_deprecated_set = true;
+  }
+
+  public function hasDeprecated(): bool {
+    return $this->was_deprecated_set;
+  }
+
+  public function getMapEntry(): bool {
+    return $this->map_entry;
+  }
+
+  public function setMapEntry(bool $v): void {
+    $this->map_entry = $v;
+    $this->was_map_entry_set = true;
+  }
+
+  public function hasMapEntry(): bool {
+    return $this->was_map_entry_set;
   }
 
   public function MessageName(): string {
@@ -2582,15 +4242,19 @@ class MessageOptions implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->message_set_wire_format = $d->readBool();
+          $this->was_message_set_wire_format_set = true;
           break;
         case 2:
           $this->no_standard_descriptor_accessor = $d->readBool();
+          $this->was_no_standard_descriptor_accessor_set = true;
           break;
         case 3:
           $this->deprecated = $d->readBool();
+          $this->was_deprecated_set = true;
           break;
         case 7:
           $this->map_entry = $d->readBool();
+          $this->was_map_entry_set = true;
           break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
@@ -2605,19 +4269,19 @@ class MessageOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->message_set_wire_format !== false) {
+    if ($this->was_message_set_wire_format_set) {
       $e->writeTag(1, 0);
       $e->writeBool($this->message_set_wire_format);
     }
-    if ($this->no_standard_descriptor_accessor !== false) {
+    if ($this->was_no_standard_descriptor_accessor_set) {
       $e->writeTag(2, 0);
       $e->writeBool($this->no_standard_descriptor_accessor);
     }
-    if ($this->deprecated !== false) {
+    if ($this->was_deprecated_set) {
       $e->writeTag(3, 0);
       $e->writeBool($this->deprecated);
     }
-    if ($this->map_entry !== false) {
+    if ($this->was_map_entry_set) {
       $e->writeTag(7, 0);
       $e->writeBool($this->map_entry);
     }
@@ -2630,10 +4294,18 @@ class MessageOptions implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeBool('message_set_wire_format', 'messageSetWireFormat', $this->message_set_wire_format, false);
-    $e->writeBool('no_standard_descriptor_accessor', 'noStandardDescriptorAccessor', $this->no_standard_descriptor_accessor, false);
-    $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
-    $e->writeBool('map_entry', 'mapEntry', $this->map_entry, false);
+    if ($this->hasMessageSetWireFormat()) {
+      $e->writeBool('message_set_wire_format', 'messageSetWireFormat', $this->message_set_wire_format, false);
+    }
+    if ($this->hasNoStandardDescriptorAccessor()) {
+      $e->writeBool('no_standard_descriptor_accessor', 'noStandardDescriptorAccessor', $this->no_standard_descriptor_accessor, false);
+    }
+    if ($this->hasDeprecated()) {
+      $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    }
+    if ($this->hasMapEntry()) {
+      $e->writeBool('map_entry', 'mapEntry', $this->map_entry, false);
+    }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -2644,15 +4316,19 @@ class MessageOptions implements \Protobuf\Message {
       switch ($k) {
         case 'message_set_wire_format': case 'messageSetWireFormat':
           $this->message_set_wire_format = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_message_set_wire_format_set = true;
           break;
         case 'no_standard_descriptor_accessor': case 'noStandardDescriptorAccessor':
           $this->no_standard_descriptor_accessor = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_no_standard_descriptor_accessor_set = true;
           break;
         case 'deprecated':
           $this->deprecated = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_deprecated_set = true;
           break;
         case 'map_entry': case 'mapEntry':
           $this->map_entry = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_map_entry_set = true;
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -2671,10 +4347,18 @@ class MessageOptions implements \Protobuf\Message {
     if (!($o is MessageOptions)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->message_set_wire_format = $o->message_set_wire_format;
-    $this->no_standard_descriptor_accessor = $o->no_standard_descriptor_accessor;
-    $this->deprecated = $o->deprecated;
-    $this->map_entry = $o->map_entry;
+    if ($o->hasMessageSetWireFormat()) {
+      $this->message_set_wire_format = $o->message_set_wire_format;
+    }
+    if ($o->hasNoStandardDescriptorAccessor()) {
+      $this->no_standard_descriptor_accessor = $o->no_standard_descriptor_accessor;
+    }
+    if ($o->hasDeprecated()) {
+      $this->deprecated = $o->deprecated;
+    }
+    if ($o->hasMapEntry()) {
+      $this->map_entry = $o->map_entry;
+    }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
@@ -2742,13 +4426,20 @@ abstract class FieldOptions_JSType {
 }
 
 class FieldOptions implements \Protobuf\Message {
-  public \google\protobuf\FieldOptions_CType_enum_t $ctype;
-  public bool $packed;
-  public \google\protobuf\FieldOptions_JSType_enum_t $jstype;
-  public bool $lazy;
-  public bool $unverified_lazy;
-  public bool $deprecated;
-  public bool $weak;
+  private \google\protobuf\FieldOptions_CType_enum_t $ctype;
+  private bool $was_ctype_set;
+  private bool $packed;
+  private bool $was_packed_set;
+  private \google\protobuf\FieldOptions_JSType_enum_t $jstype;
+  private bool $was_jstype_set;
+  private bool $lazy;
+  private bool $was_lazy_set;
+  private bool $unverified_lazy;
+  private bool $was_unverified_lazy_set;
+  private bool $deprecated;
+  private bool $was_deprecated_set;
+  private bool $weak;
+  private bool $was_weak_set;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
@@ -2762,15 +4453,148 @@ class FieldOptions implements \Protobuf\Message {
     ?'weak' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
-    $this->ctype = $s['ctype'] ?? \google\protobuf\FieldOptions_CType::STRING;
-    $this->packed = $s['packed'] ?? false;
-    $this->jstype = $s['jstype'] ?? \google\protobuf\FieldOptions_JSType::JS_NORMAL;
-    $this->lazy = $s['lazy'] ?? false;
-    $this->unverified_lazy = $s['unverified_lazy'] ?? false;
-    $this->deprecated = $s['deprecated'] ?? false;
-    $this->weak = $s['weak'] ?? false;
+    if (Shapes::keyExists($s, 'ctype')) {
+      $this->ctype = $s['ctype'];
+      $this->was_ctype_set = true;
+    } else {
+      $this->ctype = \google\protobuf\FieldOptions_CType::STRING;
+      $this->was_ctype_set = false;
+    }
+    if (Shapes::keyExists($s, 'packed')) {
+      $this->packed = $s['packed'];
+      $this->was_packed_set = true;
+    } else {
+      $this->packed = false;
+      $this->was_packed_set = false;
+    }
+    if (Shapes::keyExists($s, 'jstype')) {
+      $this->jstype = $s['jstype'];
+      $this->was_jstype_set = true;
+    } else {
+      $this->jstype = \google\protobuf\FieldOptions_JSType::JS_NORMAL;
+      $this->was_jstype_set = false;
+    }
+    if (Shapes::keyExists($s, 'lazy')) {
+      $this->lazy = $s['lazy'];
+      $this->was_lazy_set = true;
+    } else {
+      $this->lazy = false;
+      $this->was_lazy_set = false;
+    }
+    if (Shapes::keyExists($s, 'unverified_lazy')) {
+      $this->unverified_lazy = $s['unverified_lazy'];
+      $this->was_unverified_lazy_set = true;
+    } else {
+      $this->unverified_lazy = false;
+      $this->was_unverified_lazy_set = false;
+    }
+    if (Shapes::keyExists($s, 'deprecated')) {
+      $this->deprecated = $s['deprecated'];
+      $this->was_deprecated_set = true;
+    } else {
+      $this->deprecated = false;
+      $this->was_deprecated_set = false;
+    }
+    if (Shapes::keyExists($s, 'weak')) {
+      $this->weak = $s['weak'];
+      $this->was_weak_set = true;
+    } else {
+      $this->weak = false;
+      $this->was_weak_set = false;
+    }
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getCtype(): \google\protobuf\FieldOptions_CType_enum_t {
+    return $this->ctype;
+  }
+
+  public function setCtype(\google\protobuf\FieldOptions_CType_enum_t $v): void {
+    $this->ctype = $v;
+    $this->was_ctype_set = true;
+  }
+
+  public function hasCtype(): bool {
+    return $this->was_ctype_set;
+  }
+
+  public function getPacked(): bool {
+    return $this->packed;
+  }
+
+  public function setPacked(bool $v): void {
+    $this->packed = $v;
+    $this->was_packed_set = true;
+  }
+
+  public function hasPacked(): bool {
+    return $this->was_packed_set;
+  }
+
+  public function getJstype(): \google\protobuf\FieldOptions_JSType_enum_t {
+    return $this->jstype;
+  }
+
+  public function setJstype(\google\protobuf\FieldOptions_JSType_enum_t $v): void {
+    $this->jstype = $v;
+    $this->was_jstype_set = true;
+  }
+
+  public function hasJstype(): bool {
+    return $this->was_jstype_set;
+  }
+
+  public function getLazy(): bool {
+    return $this->lazy;
+  }
+
+  public function setLazy(bool $v): void {
+    $this->lazy = $v;
+    $this->was_lazy_set = true;
+  }
+
+  public function hasLazy(): bool {
+    return $this->was_lazy_set;
+  }
+
+  public function getUnverifiedLazy(): bool {
+    return $this->unverified_lazy;
+  }
+
+  public function setUnverifiedLazy(bool $v): void {
+    $this->unverified_lazy = $v;
+    $this->was_unverified_lazy_set = true;
+  }
+
+  public function hasUnverifiedLazy(): bool {
+    return $this->was_unverified_lazy_set;
+  }
+
+  public function getDeprecated(): bool {
+    return $this->deprecated;
+  }
+
+  public function setDeprecated(bool $v): void {
+    $this->deprecated = $v;
+    $this->was_deprecated_set = true;
+  }
+
+  public function hasDeprecated(): bool {
+    return $this->was_deprecated_set;
+  }
+
+  public function getWeak(): bool {
+    return $this->weak;
+  }
+
+  public function setWeak(bool $v): void {
+    $this->weak = $v;
+    $this->was_weak_set = true;
+  }
+
+  public function hasWeak(): bool {
+    return $this->was_weak_set;
   }
 
   public function MessageName(): string {
@@ -2792,24 +4616,31 @@ class FieldOptions implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->ctype = \google\protobuf\FieldOptions_CType::FromInt($d->readVarint());
+          $this->was_ctype_set = true;
           break;
         case 2:
           $this->packed = $d->readBool();
+          $this->was_packed_set = true;
           break;
         case 3:
           $this->deprecated = $d->readBool();
+          $this->was_deprecated_set = true;
           break;
         case 5:
           $this->lazy = $d->readBool();
+          $this->was_lazy_set = true;
           break;
         case 6:
           $this->jstype = \google\protobuf\FieldOptions_JSType::FromInt($d->readVarint());
+          $this->was_jstype_set = true;
           break;
         case 10:
           $this->weak = $d->readBool();
+          $this->was_weak_set = true;
           break;
         case 15:
           $this->unverified_lazy = $d->readBool();
+          $this->was_unverified_lazy_set = true;
           break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
@@ -2824,31 +4655,31 @@ class FieldOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->ctype !== \google\protobuf\FieldOptions_CType::STRING) {
+    if ($this->was_ctype_set) {
       $e->writeTag(1, 0);
       $e->writeVarint($this->ctype);
     }
-    if ($this->packed !== false) {
+    if ($this->was_packed_set) {
       $e->writeTag(2, 0);
       $e->writeBool($this->packed);
     }
-    if ($this->deprecated !== false) {
+    if ($this->was_deprecated_set) {
       $e->writeTag(3, 0);
       $e->writeBool($this->deprecated);
     }
-    if ($this->lazy !== false) {
+    if ($this->was_lazy_set) {
       $e->writeTag(5, 0);
       $e->writeBool($this->lazy);
     }
-    if ($this->jstype !== \google\protobuf\FieldOptions_JSType::JS_NORMAL) {
+    if ($this->was_jstype_set) {
       $e->writeTag(6, 0);
       $e->writeVarint($this->jstype);
     }
-    if ($this->weak !== false) {
+    if ($this->was_weak_set) {
       $e->writeTag(10, 0);
       $e->writeBool($this->weak);
     }
-    if ($this->unverified_lazy !== false) {
+    if ($this->was_unverified_lazy_set) {
       $e->writeTag(15, 0);
       $e->writeBool($this->unverified_lazy);
     }
@@ -2861,13 +4692,27 @@ class FieldOptions implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeEnum('ctype', 'ctype', \google\protobuf\FieldOptions_CType::ToStringDict(), $this->ctype, false);
-    $e->writeBool('packed', 'packed', $this->packed, false);
-    $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
-    $e->writeBool('lazy', 'lazy', $this->lazy, false);
-    $e->writeEnum('jstype', 'jstype', \google\protobuf\FieldOptions_JSType::ToStringDict(), $this->jstype, false);
-    $e->writeBool('weak', 'weak', $this->weak, false);
-    $e->writeBool('unverified_lazy', 'unverifiedLazy', $this->unverified_lazy, false);
+    if ($this->hasCtype()) {
+      $e->writeEnum('ctype', 'ctype', \google\protobuf\FieldOptions_CType::ToStringDict(), $this->ctype, false);
+    }
+    if ($this->hasPacked()) {
+      $e->writeBool('packed', 'packed', $this->packed, false);
+    }
+    if ($this->hasDeprecated()) {
+      $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    }
+    if ($this->hasLazy()) {
+      $e->writeBool('lazy', 'lazy', $this->lazy, false);
+    }
+    if ($this->hasJstype()) {
+      $e->writeEnum('jstype', 'jstype', \google\protobuf\FieldOptions_JSType::ToStringDict(), $this->jstype, false);
+    }
+    if ($this->hasWeak()) {
+      $e->writeBool('weak', 'weak', $this->weak, false);
+    }
+    if ($this->hasUnverifiedLazy()) {
+      $e->writeBool('unverified_lazy', 'unverifiedLazy', $this->unverified_lazy, false);
+    }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -2878,24 +4723,31 @@ class FieldOptions implements \Protobuf\Message {
       switch ($k) {
         case 'ctype':
           $this->ctype = \google\protobuf\FieldOptions_CType::FromMixed($v);
+          $this->was_ctype_set = true;
           break;
         case 'packed':
           $this->packed = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_packed_set = true;
           break;
         case 'deprecated':
           $this->deprecated = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_deprecated_set = true;
           break;
         case 'lazy':
           $this->lazy = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_lazy_set = true;
           break;
         case 'jstype':
           $this->jstype = \google\protobuf\FieldOptions_JSType::FromMixed($v);
+          $this->was_jstype_set = true;
           break;
         case 'weak':
           $this->weak = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_weak_set = true;
           break;
         case 'unverified_lazy': case 'unverifiedLazy':
           $this->unverified_lazy = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_unverified_lazy_set = true;
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -2914,13 +4766,27 @@ class FieldOptions implements \Protobuf\Message {
     if (!($o is FieldOptions)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->ctype = $o->ctype;
-    $this->packed = $o->packed;
-    $this->deprecated = $o->deprecated;
-    $this->lazy = $o->lazy;
-    $this->jstype = $o->jstype;
-    $this->weak = $o->weak;
-    $this->unverified_lazy = $o->unverified_lazy;
+    if ($o->hasCtype()) {
+      $this->ctype = $o->ctype;
+    }
+    if ($o->hasPacked()) {
+      $this->packed = $o->packed;
+    }
+    if ($o->hasDeprecated()) {
+      $this->deprecated = $o->deprecated;
+    }
+    if ($o->hasLazy()) {
+      $this->lazy = $o->lazy;
+    }
+    if ($o->hasJstype()) {
+      $this->jstype = $o->jstype;
+    }
+    if ($o->hasWeak()) {
+      $this->weak = $o->weak;
+    }
+    if ($o->hasUnverifiedLazy()) {
+      $this->unverified_lazy = $o->unverified_lazy;
+    }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
@@ -3017,8 +4883,10 @@ class OneofOptions implements \Protobuf\Message {
 }
 
 class EnumOptions implements \Protobuf\Message {
-  public bool $allow_alias;
-  public bool $deprecated;
+  private bool $allow_alias;
+  private bool $was_allow_alias_set;
+  private bool $deprecated;
+  private bool $was_deprecated_set;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
@@ -3027,10 +4895,48 @@ class EnumOptions implements \Protobuf\Message {
     ?'deprecated' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
-    $this->allow_alias = $s['allow_alias'] ?? false;
-    $this->deprecated = $s['deprecated'] ?? false;
+    if (Shapes::keyExists($s, 'allow_alias')) {
+      $this->allow_alias = $s['allow_alias'];
+      $this->was_allow_alias_set = true;
+    } else {
+      $this->allow_alias = false;
+      $this->was_allow_alias_set = false;
+    }
+    if (Shapes::keyExists($s, 'deprecated')) {
+      $this->deprecated = $s['deprecated'];
+      $this->was_deprecated_set = true;
+    } else {
+      $this->deprecated = false;
+      $this->was_deprecated_set = false;
+    }
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getAllowAlias(): bool {
+    return $this->allow_alias;
+  }
+
+  public function setAllowAlias(bool $v): void {
+    $this->allow_alias = $v;
+    $this->was_allow_alias_set = true;
+  }
+
+  public function hasAllowAlias(): bool {
+    return $this->was_allow_alias_set;
+  }
+
+  public function getDeprecated(): bool {
+    return $this->deprecated;
+  }
+
+  public function setDeprecated(bool $v): void {
+    $this->deprecated = $v;
+    $this->was_deprecated_set = true;
+  }
+
+  public function hasDeprecated(): bool {
+    return $this->was_deprecated_set;
   }
 
   public function MessageName(): string {
@@ -3052,9 +4958,11 @@ class EnumOptions implements \Protobuf\Message {
       switch ($fn) {
         case 2:
           $this->allow_alias = $d->readBool();
+          $this->was_allow_alias_set = true;
           break;
         case 3:
           $this->deprecated = $d->readBool();
+          $this->was_deprecated_set = true;
           break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
@@ -3069,11 +4977,11 @@ class EnumOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->allow_alias !== false) {
+    if ($this->was_allow_alias_set) {
       $e->writeTag(2, 0);
       $e->writeBool($this->allow_alias);
     }
-    if ($this->deprecated !== false) {
+    if ($this->was_deprecated_set) {
       $e->writeTag(3, 0);
       $e->writeBool($this->deprecated);
     }
@@ -3086,8 +4994,12 @@ class EnumOptions implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeBool('allow_alias', 'allowAlias', $this->allow_alias, false);
-    $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    if ($this->hasAllowAlias()) {
+      $e->writeBool('allow_alias', 'allowAlias', $this->allow_alias, false);
+    }
+    if ($this->hasDeprecated()) {
+      $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -3098,9 +5010,11 @@ class EnumOptions implements \Protobuf\Message {
       switch ($k) {
         case 'allow_alias': case 'allowAlias':
           $this->allow_alias = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_allow_alias_set = true;
           break;
         case 'deprecated':
           $this->deprecated = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_deprecated_set = true;
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -3119,8 +5033,12 @@ class EnumOptions implements \Protobuf\Message {
     if (!($o is EnumOptions)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->allow_alias = $o->allow_alias;
-    $this->deprecated = $o->deprecated;
+    if ($o->hasAllowAlias()) {
+      $this->allow_alias = $o->allow_alias;
+    }
+    if ($o->hasDeprecated()) {
+      $this->deprecated = $o->deprecated;
+    }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
@@ -3132,7 +5050,8 @@ class EnumOptions implements \Protobuf\Message {
 }
 
 class EnumValueOptions implements \Protobuf\Message {
-  public bool $deprecated;
+  private bool $deprecated;
+  private bool $was_deprecated_set;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
@@ -3140,9 +5059,28 @@ class EnumValueOptions implements \Protobuf\Message {
     ?'deprecated' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
-    $this->deprecated = $s['deprecated'] ?? false;
+    if (Shapes::keyExists($s, 'deprecated')) {
+      $this->deprecated = $s['deprecated'];
+      $this->was_deprecated_set = true;
+    } else {
+      $this->deprecated = false;
+      $this->was_deprecated_set = false;
+    }
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getDeprecated(): bool {
+    return $this->deprecated;
+  }
+
+  public function setDeprecated(bool $v): void {
+    $this->deprecated = $v;
+    $this->was_deprecated_set = true;
+  }
+
+  public function hasDeprecated(): bool {
+    return $this->was_deprecated_set;
   }
 
   public function MessageName(): string {
@@ -3164,6 +5102,7 @@ class EnumValueOptions implements \Protobuf\Message {
       switch ($fn) {
         case 1:
           $this->deprecated = $d->readBool();
+          $this->was_deprecated_set = true;
           break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
@@ -3178,7 +5117,7 @@ class EnumValueOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->deprecated !== false) {
+    if ($this->was_deprecated_set) {
       $e->writeTag(1, 0);
       $e->writeBool($this->deprecated);
     }
@@ -3191,7 +5130,9 @@ class EnumValueOptions implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    if ($this->hasDeprecated()) {
+      $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -3202,6 +5143,7 @@ class EnumValueOptions implements \Protobuf\Message {
       switch ($k) {
         case 'deprecated':
           $this->deprecated = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_deprecated_set = true;
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -3220,7 +5162,9 @@ class EnumValueOptions implements \Protobuf\Message {
     if (!($o is EnumValueOptions)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->deprecated = $o->deprecated;
+    if ($o->hasDeprecated()) {
+      $this->deprecated = $o->deprecated;
+    }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
@@ -3232,7 +5176,8 @@ class EnumValueOptions implements \Protobuf\Message {
 }
 
 class ServiceOptions implements \Protobuf\Message {
-  public bool $deprecated;
+  private bool $deprecated;
+  private bool $was_deprecated_set;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
@@ -3240,9 +5185,28 @@ class ServiceOptions implements \Protobuf\Message {
     ?'deprecated' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
-    $this->deprecated = $s['deprecated'] ?? false;
+    if (Shapes::keyExists($s, 'deprecated')) {
+      $this->deprecated = $s['deprecated'];
+      $this->was_deprecated_set = true;
+    } else {
+      $this->deprecated = false;
+      $this->was_deprecated_set = false;
+    }
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getDeprecated(): bool {
+    return $this->deprecated;
+  }
+
+  public function setDeprecated(bool $v): void {
+    $this->deprecated = $v;
+    $this->was_deprecated_set = true;
+  }
+
+  public function hasDeprecated(): bool {
+    return $this->was_deprecated_set;
   }
 
   public function MessageName(): string {
@@ -3264,6 +5228,7 @@ class ServiceOptions implements \Protobuf\Message {
       switch ($fn) {
         case 33:
           $this->deprecated = $d->readBool();
+          $this->was_deprecated_set = true;
           break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
@@ -3278,7 +5243,7 @@ class ServiceOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->deprecated !== false) {
+    if ($this->was_deprecated_set) {
       $e->writeTag(33, 0);
       $e->writeBool($this->deprecated);
     }
@@ -3291,7 +5256,9 @@ class ServiceOptions implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    if ($this->hasDeprecated()) {
+      $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -3302,6 +5269,7 @@ class ServiceOptions implements \Protobuf\Message {
       switch ($k) {
         case 'deprecated':
           $this->deprecated = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_deprecated_set = true;
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -3320,7 +5288,9 @@ class ServiceOptions implements \Protobuf\Message {
     if (!($o is ServiceOptions)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->deprecated = $o->deprecated;
+    if ($o->hasDeprecated()) {
+      $this->deprecated = $o->deprecated;
+    }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
@@ -3360,8 +5330,10 @@ abstract class MethodOptions_IdempotencyLevel {
 }
 
 class MethodOptions implements \Protobuf\Message {
-  public bool $deprecated;
-  public \google\protobuf\MethodOptions_IdempotencyLevel_enum_t $idempotency_level;
+  private bool $deprecated;
+  private bool $was_deprecated_set;
+  private \google\protobuf\MethodOptions_IdempotencyLevel_enum_t $idempotency_level;
+  private bool $was_idempotency_level_set;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
@@ -3370,10 +5342,48 @@ class MethodOptions implements \Protobuf\Message {
     ?'idempotency_level' => \google\protobuf\MethodOptions_IdempotencyLevel_enum_t,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
-    $this->deprecated = $s['deprecated'] ?? false;
-    $this->idempotency_level = $s['idempotency_level'] ?? \google\protobuf\MethodOptions_IdempotencyLevel::IDEMPOTENCY_UNKNOWN;
+    if (Shapes::keyExists($s, 'deprecated')) {
+      $this->deprecated = $s['deprecated'];
+      $this->was_deprecated_set = true;
+    } else {
+      $this->deprecated = false;
+      $this->was_deprecated_set = false;
+    }
+    if (Shapes::keyExists($s, 'idempotency_level')) {
+      $this->idempotency_level = $s['idempotency_level'];
+      $this->was_idempotency_level_set = true;
+    } else {
+      $this->idempotency_level = \google\protobuf\MethodOptions_IdempotencyLevel::IDEMPOTENCY_UNKNOWN;
+      $this->was_idempotency_level_set = false;
+    }
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getDeprecated(): bool {
+    return $this->deprecated;
+  }
+
+  public function setDeprecated(bool $v): void {
+    $this->deprecated = $v;
+    $this->was_deprecated_set = true;
+  }
+
+  public function hasDeprecated(): bool {
+    return $this->was_deprecated_set;
+  }
+
+  public function getIdempotencyLevel(): \google\protobuf\MethodOptions_IdempotencyLevel_enum_t {
+    return $this->idempotency_level;
+  }
+
+  public function setIdempotencyLevel(\google\protobuf\MethodOptions_IdempotencyLevel_enum_t $v): void {
+    $this->idempotency_level = $v;
+    $this->was_idempotency_level_set = true;
+  }
+
+  public function hasIdempotencyLevel(): bool {
+    return $this->was_idempotency_level_set;
   }
 
   public function MessageName(): string {
@@ -3395,9 +5405,11 @@ class MethodOptions implements \Protobuf\Message {
       switch ($fn) {
         case 33:
           $this->deprecated = $d->readBool();
+          $this->was_deprecated_set = true;
           break;
         case 34:
           $this->idempotency_level = \google\protobuf\MethodOptions_IdempotencyLevel::FromInt($d->readVarint());
+          $this->was_idempotency_level_set = true;
           break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
@@ -3412,11 +5424,11 @@ class MethodOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
-    if ($this->deprecated !== false) {
+    if ($this->was_deprecated_set) {
       $e->writeTag(33, 0);
       $e->writeBool($this->deprecated);
     }
-    if ($this->idempotency_level !== \google\protobuf\MethodOptions_IdempotencyLevel::IDEMPOTENCY_UNKNOWN) {
+    if ($this->was_idempotency_level_set) {
       $e->writeTag(34, 0);
       $e->writeVarint($this->idempotency_level);
     }
@@ -3429,8 +5441,12 @@ class MethodOptions implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
-    $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
-    $e->writeEnum('idempotency_level', 'idempotencyLevel', \google\protobuf\MethodOptions_IdempotencyLevel::ToStringDict(), $this->idempotency_level, false);
+    if ($this->hasDeprecated()) {
+      $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    }
+    if ($this->hasIdempotencyLevel()) {
+      $e->writeEnum('idempotency_level', 'idempotencyLevel', \google\protobuf\MethodOptions_IdempotencyLevel::ToStringDict(), $this->idempotency_level, false);
+    }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -3441,9 +5457,11 @@ class MethodOptions implements \Protobuf\Message {
       switch ($k) {
         case 'deprecated':
           $this->deprecated = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_deprecated_set = true;
           break;
         case 'idempotency_level': case 'idempotencyLevel':
           $this->idempotency_level = \google\protobuf\MethodOptions_IdempotencyLevel::FromMixed($v);
+          $this->was_idempotency_level_set = true;
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -3462,8 +5480,12 @@ class MethodOptions implements \Protobuf\Message {
     if (!($o is MethodOptions)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
-    $this->deprecated = $o->deprecated;
-    $this->idempotency_level = $o->idempotency_level;
+    if ($o->hasDeprecated()) {
+      $this->deprecated = $o->deprecated;
+    }
+    if ($o->hasIdempotencyLevel()) {
+      $this->idempotency_level = $o->idempotency_level;
+    }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
@@ -3565,12 +5587,18 @@ class UninterpretedOption_NamePart implements \Protobuf\Message {
 
 class UninterpretedOption implements \Protobuf\Message {
   public vec<\google\protobuf\UninterpretedOption_NamePart> $name;
-  public string $identifier_value;
-  public int $positive_int_value;
-  public int $negative_int_value;
-  public float $double_value;
-  public string $string_value;
-  public string $aggregate_value;
+  private string $identifier_value;
+  private bool $was_identifier_value_set;
+  private int $positive_int_value;
+  private bool $was_positive_int_value_set;
+  private int $negative_int_value;
+  private bool $was_negative_int_value_set;
+  private float $double_value;
+  private bool $was_double_value_set;
+  private string $string_value;
+  private bool $was_string_value_set;
+  private string $aggregate_value;
+  private bool $was_aggregate_value_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -3583,13 +5611,127 @@ class UninterpretedOption implements \Protobuf\Message {
     ?'aggregate_value' => string,
   ) $s = shape()) {
     $this->name = $s['name'] ?? vec[];
-    $this->identifier_value = $s['identifier_value'] ?? '';
-    $this->positive_int_value = $s['positive_int_value'] ?? 0;
-    $this->negative_int_value = $s['negative_int_value'] ?? 0;
-    $this->double_value = $s['double_value'] ?? 0.0;
-    $this->string_value = $s['string_value'] ?? '';
-    $this->aggregate_value = $s['aggregate_value'] ?? '';
+    if (Shapes::keyExists($s, 'identifier_value')) {
+      $this->identifier_value = $s['identifier_value'];
+      $this->was_identifier_value_set = true;
+    } else {
+      $this->identifier_value = '';
+      $this->was_identifier_value_set = false;
+    }
+    if (Shapes::keyExists($s, 'positive_int_value')) {
+      $this->positive_int_value = $s['positive_int_value'];
+      $this->was_positive_int_value_set = true;
+    } else {
+      $this->positive_int_value = 0;
+      $this->was_positive_int_value_set = false;
+    }
+    if (Shapes::keyExists($s, 'negative_int_value')) {
+      $this->negative_int_value = $s['negative_int_value'];
+      $this->was_negative_int_value_set = true;
+    } else {
+      $this->negative_int_value = 0;
+      $this->was_negative_int_value_set = false;
+    }
+    if (Shapes::keyExists($s, 'double_value')) {
+      $this->double_value = $s['double_value'];
+      $this->was_double_value_set = true;
+    } else {
+      $this->double_value = 0.0;
+      $this->was_double_value_set = false;
+    }
+    if (Shapes::keyExists($s, 'string_value')) {
+      $this->string_value = $s['string_value'];
+      $this->was_string_value_set = true;
+    } else {
+      $this->string_value = '';
+      $this->was_string_value_set = false;
+    }
+    if (Shapes::keyExists($s, 'aggregate_value')) {
+      $this->aggregate_value = $s['aggregate_value'];
+      $this->was_aggregate_value_set = true;
+    } else {
+      $this->aggregate_value = '';
+      $this->was_aggregate_value_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getIdentifierValue(): string {
+    return $this->identifier_value;
+  }
+
+  public function setIdentifierValue(string $v): void {
+    $this->identifier_value = $v;
+    $this->was_identifier_value_set = true;
+  }
+
+  public function hasIdentifierValue(): bool {
+    return $this->was_identifier_value_set;
+  }
+
+  public function getPositiveIntValue(): int {
+    return $this->positive_int_value;
+  }
+
+  public function setPositiveIntValue(int $v): void {
+    $this->positive_int_value = $v;
+    $this->was_positive_int_value_set = true;
+  }
+
+  public function hasPositiveIntValue(): bool {
+    return $this->was_positive_int_value_set;
+  }
+
+  public function getNegativeIntValue(): int {
+    return $this->negative_int_value;
+  }
+
+  public function setNegativeIntValue(int $v): void {
+    $this->negative_int_value = $v;
+    $this->was_negative_int_value_set = true;
+  }
+
+  public function hasNegativeIntValue(): bool {
+    return $this->was_negative_int_value_set;
+  }
+
+  public function getDoubleValue(): float {
+    return $this->double_value;
+  }
+
+  public function setDoubleValue(float $v): void {
+    $this->double_value = $v;
+    $this->was_double_value_set = true;
+  }
+
+  public function hasDoubleValue(): bool {
+    return $this->was_double_value_set;
+  }
+
+  public function getStringValue(): string {
+    return $this->string_value;
+  }
+
+  public function setStringValue(string $v): void {
+    $this->string_value = $v;
+    $this->was_string_value_set = true;
+  }
+
+  public function hasStringValue(): bool {
+    return $this->was_string_value_set;
+  }
+
+  public function getAggregateValue(): string {
+    return $this->aggregate_value;
+  }
+
+  public function setAggregateValue(string $v): void {
+    $this->aggregate_value = $v;
+    $this->was_aggregate_value_set = true;
+  }
+
+  public function hasAggregateValue(): bool {
+    return $this->was_aggregate_value_set;
   }
 
   public function MessageName(): string {
@@ -3616,21 +5758,27 @@ class UninterpretedOption implements \Protobuf\Message {
           break;
         case 3:
           $this->identifier_value = $d->readString();
+          $this->was_identifier_value_set = true;
           break;
         case 4:
           $this->positive_int_value = $d->readVarint();
+          $this->was_positive_int_value_set = true;
           break;
         case 5:
           $this->negative_int_value = $d->readVarint();
+          $this->was_negative_int_value_set = true;
           break;
         case 6:
           $this->double_value = $d->readDouble();
+          $this->was_double_value_set = true;
           break;
         case 7:
           $this->string_value = $d->readString();
+          $this->was_string_value_set = true;
           break;
         case 8:
           $this->aggregate_value = $d->readString();
+          $this->was_aggregate_value_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -3645,27 +5793,27 @@ class UninterpretedOption implements \Protobuf\Message {
       $msg->WriteTo($nested);
       $e->writeEncoder($nested, 2);
     }
-    if ($this->identifier_value !== '') {
+    if ($this->was_identifier_value_set) {
       $e->writeTag(3, 2);
       $e->writeString($this->identifier_value);
     }
-    if ($this->positive_int_value !== 0) {
+    if ($this->was_positive_int_value_set) {
       $e->writeTag(4, 0);
       $e->writeVarint($this->positive_int_value);
     }
-    if ($this->negative_int_value !== 0) {
+    if ($this->was_negative_int_value_set) {
       $e->writeTag(5, 0);
       $e->writeVarint($this->negative_int_value);
     }
-    if ($this->double_value !== 0.0) {
+    if ($this->was_double_value_set) {
       $e->writeTag(6, 1);
       $e->writeDouble($this->double_value);
     }
-    if ($this->string_value !== '') {
+    if ($this->was_string_value_set) {
       $e->writeTag(7, 2);
       $e->writeString($this->string_value);
     }
-    if ($this->aggregate_value !== '') {
+    if ($this->was_aggregate_value_set) {
       $e->writeTag(8, 2);
       $e->writeString($this->aggregate_value);
     }
@@ -3674,12 +5822,24 @@ class UninterpretedOption implements \Protobuf\Message {
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
     $e->writeMessageList('name', 'name', $this->name);
-    $e->writeString('identifier_value', 'identifierValue', $this->identifier_value, false);
-    $e->writeInt64Unsigned('positive_int_value', 'positiveIntValue', $this->positive_int_value, false);
-    $e->writeInt64Signed('negative_int_value', 'negativeIntValue', $this->negative_int_value, false);
-    $e->writeFloat('double_value', 'doubleValue', $this->double_value, false);
-    $e->writeBytes('string_value', 'stringValue', $this->string_value, false);
-    $e->writeString('aggregate_value', 'aggregateValue', $this->aggregate_value, false);
+    if ($this->hasIdentifierValue()) {
+      $e->writeString('identifier_value', 'identifierValue', $this->identifier_value, false);
+    }
+    if ($this->hasPositiveIntValue()) {
+      $e->writeInt64Unsigned('positive_int_value', 'positiveIntValue', $this->positive_int_value, false);
+    }
+    if ($this->hasNegativeIntValue()) {
+      $e->writeInt64Signed('negative_int_value', 'negativeIntValue', $this->negative_int_value, false);
+    }
+    if ($this->hasDoubleValue()) {
+      $e->writeFloat('double_value', 'doubleValue', $this->double_value, false);
+    }
+    if ($this->hasStringValue()) {
+      $e->writeBytes('string_value', 'stringValue', $this->string_value, false);
+    }
+    if ($this->hasAggregateValue()) {
+      $e->writeString('aggregate_value', 'aggregateValue', $this->aggregate_value, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -3696,21 +5856,27 @@ class UninterpretedOption implements \Protobuf\Message {
           break;
         case 'identifier_value': case 'identifierValue':
           $this->identifier_value = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_identifier_value_set = true;
           break;
         case 'positive_int_value': case 'positiveIntValue':
           $this->positive_int_value = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          $this->was_positive_int_value_set = true;
           break;
         case 'negative_int_value': case 'negativeIntValue':
           $this->negative_int_value = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          $this->was_negative_int_value_set = true;
           break;
         case 'double_value': case 'doubleValue':
           $this->double_value = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          $this->was_double_value_set = true;
           break;
         case 'string_value': case 'stringValue':
           $this->string_value = \Protobuf\Internal\JsonDecoder::readBytes($v);
+          $this->was_string_value_set = true;
           break;
         case 'aggregate_value': case 'aggregateValue':
           $this->aggregate_value = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_aggregate_value_set = true;
           break;
         default:
         break;
@@ -3727,12 +5893,24 @@ class UninterpretedOption implements \Protobuf\Message {
       $nv->CopyFrom($v);
       $this->name []= $nv;
     }
-    $this->identifier_value = $o->identifier_value;
-    $this->positive_int_value = $o->positive_int_value;
-    $this->negative_int_value = $o->negative_int_value;
-    $this->double_value = $o->double_value;
-    $this->string_value = $o->string_value;
-    $this->aggregate_value = $o->aggregate_value;
+    if ($o->hasIdentifierValue()) {
+      $this->identifier_value = $o->identifier_value;
+    }
+    if ($o->hasPositiveIntValue()) {
+      $this->positive_int_value = $o->positive_int_value;
+    }
+    if ($o->hasNegativeIntValue()) {
+      $this->negative_int_value = $o->negative_int_value;
+    }
+    if ($o->hasDoubleValue()) {
+      $this->double_value = $o->double_value;
+    }
+    if ($o->hasStringValue()) {
+      $this->string_value = $o->string_value;
+    }
+    if ($o->hasAggregateValue()) {
+      $this->aggregate_value = $o->aggregate_value;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }
@@ -3741,8 +5919,10 @@ class UninterpretedOption implements \Protobuf\Message {
 class SourceCodeInfo_Location implements \Protobuf\Message {
   public vec<int> $path;
   public vec<int> $span;
-  public string $leading_comments;
-  public string $trailing_comments;
+  private string $leading_comments;
+  private bool $was_leading_comments_set;
+  private string $trailing_comments;
+  private bool $was_trailing_comments_set;
   public vec<string> $leading_detached_comments;
   private string $XXX_unrecognized;
 
@@ -3755,10 +5935,48 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
   ) $s = shape()) {
     $this->path = $s['path'] ?? vec[];
     $this->span = $s['span'] ?? vec[];
-    $this->leading_comments = $s['leading_comments'] ?? '';
-    $this->trailing_comments = $s['trailing_comments'] ?? '';
+    if (Shapes::keyExists($s, 'leading_comments')) {
+      $this->leading_comments = $s['leading_comments'];
+      $this->was_leading_comments_set = true;
+    } else {
+      $this->leading_comments = '';
+      $this->was_leading_comments_set = false;
+    }
+    if (Shapes::keyExists($s, 'trailing_comments')) {
+      $this->trailing_comments = $s['trailing_comments'];
+      $this->was_trailing_comments_set = true;
+    } else {
+      $this->trailing_comments = '';
+      $this->was_trailing_comments_set = false;
+    }
     $this->leading_detached_comments = $s['leading_detached_comments'] ?? vec[];
     $this->XXX_unrecognized = '';
+  }
+
+  public function getLeadingComments(): string {
+    return $this->leading_comments;
+  }
+
+  public function setLeadingComments(string $v): void {
+    $this->leading_comments = $v;
+    $this->was_leading_comments_set = true;
+  }
+
+  public function hasLeadingComments(): bool {
+    return $this->was_leading_comments_set;
+  }
+
+  public function getTrailingComments(): string {
+    return $this->trailing_comments;
+  }
+
+  public function setTrailingComments(string $v): void {
+    $this->trailing_comments = $v;
+    $this->was_trailing_comments_set = true;
+  }
+
+  public function hasTrailingComments(): bool {
+    return $this->was_trailing_comments_set;
   }
 
   public function MessageName(): string {
@@ -3800,9 +6018,11 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
           break;
         case 3:
           $this->leading_comments = $d->readString();
+          $this->was_leading_comments_set = true;
           break;
         case 4:
           $this->trailing_comments = $d->readString();
+          $this->was_trailing_comments_set = true;
           break;
         case 6:
           $this->leading_detached_comments []= $d->readString();
@@ -3829,11 +6049,11 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
       }
       $e->writeEncoder($packed, 2);
     }
-    if ($this->leading_comments !== '') {
+    if ($this->was_leading_comments_set) {
       $e->writeTag(3, 2);
       $e->writeString($this->leading_comments);
     }
-    if ($this->trailing_comments !== '') {
+    if ($this->was_trailing_comments_set) {
       $e->writeTag(4, 2);
       $e->writeString($this->trailing_comments);
     }
@@ -3847,8 +6067,12 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
     $e->writePrimitiveList('path', 'path', $this->path);
     $e->writePrimitiveList('span', 'span', $this->span);
-    $e->writeString('leading_comments', 'leadingComments', $this->leading_comments, false);
-    $e->writeString('trailing_comments', 'trailingComments', $this->trailing_comments, false);
+    if ($this->hasLeadingComments()) {
+      $e->writeString('leading_comments', 'leadingComments', $this->leading_comments, false);
+    }
+    if ($this->hasTrailingComments()) {
+      $e->writeString('trailing_comments', 'trailingComments', $this->trailing_comments, false);
+    }
     $e->writePrimitiveList('leading_detached_comments', 'leadingDetachedComments', $this->leading_detached_comments);
   }
 
@@ -3869,9 +6093,11 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
           break;
         case 'leading_comments': case 'leadingComments':
           $this->leading_comments = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_leading_comments_set = true;
           break;
         case 'trailing_comments': case 'trailingComments':
           $this->trailing_comments = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_trailing_comments_set = true;
           break;
         case 'leading_detached_comments': case 'leadingDetachedComments':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -3890,8 +6116,12 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
     }
     $this->path = $o->path;
     $this->span = $o->span;
-    $this->leading_comments = $o->leading_comments;
-    $this->trailing_comments = $o->trailing_comments;
+    if ($o->hasLeadingComments()) {
+      $this->leading_comments = $o->leading_comments;
+    }
+    if ($o->hasTrailingComments()) {
+      $this->trailing_comments = $o->trailing_comments;
+    }
     $this->leading_detached_comments = $o->leading_detached_comments;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -3985,9 +6215,12 @@ class SourceCodeInfo implements \Protobuf\Message {
 
 class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
   public vec<int> $path;
-  public string $source_file;
-  public int $begin;
-  public int $end;
+  private string $source_file;
+  private bool $was_source_file_set;
+  private int $begin;
+  private bool $was_begin_set;
+  private int $end;
+  private bool $was_end_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -3997,10 +6230,67 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
     ?'end' => int,
   ) $s = shape()) {
     $this->path = $s['path'] ?? vec[];
-    $this->source_file = $s['source_file'] ?? '';
-    $this->begin = $s['begin'] ?? 0;
-    $this->end = $s['end'] ?? 0;
+    if (Shapes::keyExists($s, 'source_file')) {
+      $this->source_file = $s['source_file'];
+      $this->was_source_file_set = true;
+    } else {
+      $this->source_file = '';
+      $this->was_source_file_set = false;
+    }
+    if (Shapes::keyExists($s, 'begin')) {
+      $this->begin = $s['begin'];
+      $this->was_begin_set = true;
+    } else {
+      $this->begin = 0;
+      $this->was_begin_set = false;
+    }
+    if (Shapes::keyExists($s, 'end')) {
+      $this->end = $s['end'];
+      $this->was_end_set = true;
+    } else {
+      $this->end = 0;
+      $this->was_end_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getSourceFile(): string {
+    return $this->source_file;
+  }
+
+  public function setSourceFile(string $v): void {
+    $this->source_file = $v;
+    $this->was_source_file_set = true;
+  }
+
+  public function hasSourceFile(): bool {
+    return $this->was_source_file_set;
+  }
+
+  public function getBegin(): int {
+    return $this->begin;
+  }
+
+  public function setBegin(int $v): void {
+    $this->begin = $v;
+    $this->was_begin_set = true;
+  }
+
+  public function hasBegin(): bool {
+    return $this->was_begin_set;
+  }
+
+  public function getEnd(): int {
+    return $this->end;
+  }
+
+  public function setEnd(int $v): void {
+    $this->end = $v;
+    $this->was_end_set = true;
+  }
+
+  public function hasEnd(): bool {
+    return $this->was_end_set;
   }
 
   public function MessageName(): string {
@@ -4032,12 +6322,15 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
           break;
         case 2:
           $this->source_file = $d->readString();
+          $this->was_source_file_set = true;
           break;
         case 3:
           $this->begin = $d->readVarint32Signed();
+          $this->was_begin_set = true;
           break;
         case 4:
           $this->end = $d->readVarint32Signed();
+          $this->was_end_set = true;
           break;
         default:
           $d->skip($fn, $wt);
@@ -4054,15 +6347,15 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
       }
       $e->writeEncoder($packed, 1);
     }
-    if ($this->source_file !== '') {
+    if ($this->was_source_file_set) {
       $e->writeTag(2, 2);
       $e->writeString($this->source_file);
     }
-    if ($this->begin !== 0) {
+    if ($this->was_begin_set) {
       $e->writeTag(3, 0);
       $e->writeVarint($this->begin);
     }
-    if ($this->end !== 0) {
+    if ($this->was_end_set) {
       $e->writeTag(4, 0);
       $e->writeVarint($this->end);
     }
@@ -4071,9 +6364,15 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
     $e->writePrimitiveList('path', 'path', $this->path);
-    $e->writeString('source_file', 'sourceFile', $this->source_file, false);
-    $e->writeInt32('begin', 'begin', $this->begin, false);
-    $e->writeInt32('end', 'end', $this->end, false);
+    if ($this->hasSourceFile()) {
+      $e->writeString('source_file', 'sourceFile', $this->source_file, false);
+    }
+    if ($this->hasBegin()) {
+      $e->writeInt32('begin', 'begin', $this->begin, false);
+    }
+    if ($this->hasEnd()) {
+      $e->writeInt32('end', 'end', $this->end, false);
+    }
   }
 
   public function MergeJsonFrom(mixed $m): void {
@@ -4088,12 +6387,15 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
           break;
         case 'source_file': case 'sourceFile':
           $this->source_file = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_source_file_set = true;
           break;
         case 'begin':
           $this->begin = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_begin_set = true;
           break;
         case 'end':
           $this->end = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_end_set = true;
           break;
         default:
         break;
@@ -4106,9 +6408,15 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     $this->path = $o->path;
-    $this->source_file = $o->source_file;
-    $this->begin = $o->begin;
-    $this->end = $o->end;
+    if ($o->hasSourceFile()) {
+      $this->source_file = $o->source_file;
+    }
+    if ($o->hasBegin()) {
+      $this->begin = $o->begin;
+    }
+    if ($o->hasEnd()) {
+      $this->end = $o->end;
+    }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
   }

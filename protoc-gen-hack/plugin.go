@@ -579,15 +579,22 @@ func (f *field) writeDecoder(w *writer, dec, wt string) {
 	if f.isMap {
 		w.p("$obj = new %s();", f.phpType())
 		w.p("$obj->MergeFrom(%s->readDecoder());", dec)
-		k := "$obj->key"
-		if f.isMapWithBoolKey() {
-			k = fmt.Sprintf("%s\\BoolMapKey::FromBool($obj->key)", libNs)
-		}
 		_, vv := f.mapFields()
+		k := "$obj->key"
+		if vv.isProto2Optional() {
+			k = "$obj->getKey()"
+		}
+		if f.isMapWithBoolKey() {
+			k = fmt.Sprintf("%s\\BoolMapKey::FromBool(%s)", libNs, k)
+		}
+		v := "$obj->value"
+		if vv.isProto2Optional() {
+			v = "$obj->getValue()"
+		}
 		if vv.isMessageOrGroup() {
-			w.p("$this->%s[%s] = $obj->value ?? new %s();", f.varName(), k, vv.phpType())
+			w.p("$this->%s[%s] = %s ?? new %s();", f.varName(), k, v, vv.phpType())
 		} else {
-			w.p("$this->%s[%s] = $obj->value;", f.varName(), k)
+			w.p("$this->%s[%s] = %s;", f.varName(), k, v)
 		}
 		return
 	}
@@ -609,7 +616,7 @@ func (f *field) writeDecoder(w *writer, dec, wt string) {
 			} else {
 				w.p("if ($this->%s is null) {", f.varName())
 				w.p("$this->%s = new %s();", f.varName(), f.phpType())
-				if f.isProto3Optional() {
+				if f.isOptional() {
 					w.p("$this->was_%s_set = true;", f.varName())
 				}
 				w.p("}")
@@ -660,7 +667,7 @@ func (f *field) writeDecoder(w *writer, dec, wt string) {
 	}
 	if !f.isRepeated() {
 		w.p("$this->%s = %s;", f.varName(), reader)
-		if f.isProto3Optional() {
+		if f.isOptional() {
 			w.p("$this->was_%s_set = true;", f.varName())
 		}
 		return
@@ -739,12 +746,18 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 	if f.isMap {
 		w.p("foreach ($this->%s as $k => $v) {", f.varName())
 		w.p("$obj = new %s();", f.phpType())
+		_, vv := f.mapFields()
 		k := "$k"
 		if f.isMapWithBoolKey() {
 			k = fmt.Sprintf("%s\\BoolMapKey::ToBool($k)", libNs)
 		}
-		w.p("$obj->key = %s;", k)
-		w.p("$obj->value = $v;")
+		if vv.isProto2Optional() {
+			w.p("$obj->setKey(%s);", k)
+			w.p("$obj->setValue($v);")
+		} else {
+			w.p("$obj->key = %s;", k)
+			w.p("$obj->value = $v;")
+		}
 		w.p("$nested = new %s\\Encoder();", libNsInternal)
 		w.p("$obj->WriteTo($nested);")
 		w.p("%s->writeEncoder($nested, %d);", enc, f.fd.GetNumber())
@@ -761,13 +774,13 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 			w.p("$msg = $this->%s;", f.varName())
 			w.p("if ($msg != null) {")
 		}
-		if f.isProto3Optional() {
+		if f.isOptional() {
 			w.p("if ($this->was_%s_set) {", f.varName())
 		}
 		w.p("$nested = new %s\\Encoder();", libNsInternal)
 		w.p("$msg->WriteTo($nested);")
 		w.p("%s->writeEncoder($nested, %d);", enc, f.fd.GetNumber())
-		if f.isProto3Optional() {
+		if f.isOptional() {
 			w.p("}")
 		}
 		w.p("}")
@@ -777,14 +790,14 @@ func (f field) writeEncoder(w *writer, enc string, alwaysEmitDefaultValue bool) 
 	tagWriter, writer := f.primitiveWriters(enc)
 
 	if !f.isRepeated() {
-		if f.isProto3Optional() {
+		if f.isOptional() {
 			w.p("if ($this->was_%s_set) {", f.varName())
 		} else if !alwaysEmitDefaultValue {
 			w.p("if ($this->%s !== %s) {", f.varName(), f.defaultValue())
 		}
 		w.p(tagWriter)
 		w.p("%s;", writer)
-		if f.isProto3Optional() || !alwaysEmitDefaultValue {
+		if f.isOptional() || !alwaysEmitDefaultValue {
 			w.p("}")
 		}
 		return
@@ -840,7 +853,7 @@ func (f field) writeCopy(w *writer, c string) {
 		w.p("if ($tmp is nonnull) {")
 		w.p("$nv = new %s();", f.phpType())
 		w.p("$nv->CopyFrom($tmp);")
-		if f.isProto3Optional() {
+		if f.isOptional() {
 			camelCaseName := camelCase(f.varName())
 			w.p("$this->set%s($nv);", camelCaseName)
 			w.p("} else if (%s->has%s()) {", c, camelCaseName)
@@ -850,12 +863,12 @@ func (f field) writeCopy(w *writer, c string) {
 		}
 		w.p("}")
 	} else {
-		if f.isProto3Optional() {
+		if f.isOptional() {
 			camelCaseName := camelCase(f.varName())
 			w.p("if (%s->has%s()) {", c, camelCaseName)
 		}
 		w.p("$this->%s = %s->%s;", f.varName(), c, f.varName())
-		if f.isProto3Optional() {
+		if f.isOptional() {
 			w.p("}")
 		}
 	}
@@ -1049,7 +1062,7 @@ func (f *field) writeJsonDecoder(w *writer, v string) {
 			w.p("$this->%s[%s] = $obj;", f.fd.GetName(), kjr)
 		} else {
 			w.p("$this->%s[%s] = %s;", f.fd.GetName(), kjr, vv.jsonReader("$v"))
-			if f.isProto3Optional() {
+			if f.isOptional() {
 				w.p("$this->was_%s_set = true;", f.fd.GetName())
 			}
 		}
@@ -1077,7 +1090,7 @@ func (f *field) writeJsonDecoder(w *writer, v string) {
 				}
 				w.p("if ($this->%s is null) {", f.varName())
 				w.p("$this->%s = new %s();", f.varName(), f.phpType())
-				if f.isProto3Optional() {
+				if f.isOptional() {
 					w.p("$this->was_%s_set = true;", f.varName())
 				}
 				w.p("}")
@@ -1097,7 +1110,7 @@ func (f *field) writeJsonDecoder(w *writer, v string) {
 			w.p("$this->%s = new %s(%s);", f.oneof.name, f.oneof.classNameForField(f), f.jsonReader(v))
 		} else {
 			w.p("$this->%s = %s;", f.varName(), f.jsonReader(v))
-			if f.isProto3Optional() {
+			if f.isOptional() {
 				w.p("$this->was_%s_set = true;", f.varName())
 			}
 		}
@@ -1167,7 +1180,7 @@ func (f field) writeJsonEncoder(w *writer, enc string, forceEmitDefault bool) {
 		emitDefault = ""
 	}
 
-	if f.isProto3Optional() {
+	if f.isOptional() {
 		camelCaseName := camelCase(f.fd.GetName())
 		w.p("if ($this->has%s()) {", camelCaseName)
 	}
@@ -1177,7 +1190,7 @@ func (f field) writeJsonEncoder(w *writer, enc string, forceEmitDefault bool) {
 	} else {
 		w.p("%s->write%s%s('%s', '%s', $this->%s%s);", enc, writer, repeated, f.fd.GetName(), f.fd.GetJsonName(), f.varName(), emitDefault)
 	}
-	if f.isProto3Optional() {
+	if f.isOptional() {
 		w.p("}")
 	}
 }
@@ -1191,6 +1204,14 @@ func (f *field) isOneofMember() bool {
 
 func (f *field) isProto3Optional() bool {
 	return f.fd.Proto3Optional != nil && *f.fd.Proto3Optional
+}
+
+func (f *field) isProto2Optional() bool {
+	return f.syn == SyntaxProto2 && f.fd.GetLabel() == desc.FieldDescriptorProto_LABEL_OPTIONAL && f.fd.OneofIndex == nil
+}
+
+func (f *field) isOptional() bool {
+    return f.isProto3Optional() || f.isProto2Optional()
 }
 
 // writeEnum writes an enumeration type and constants definitions.
@@ -1371,8 +1392,10 @@ func camelCase(in string) string {
 	words := strings.Split(in, "_")
 	camelCaseName := ""
 	for _, word := range words {
-		camelCaseName += strings.ToUpper(word[:1])
-		camelCaseName += word[1:]
+		if len(word) > 0 {
+			camelCaseName += strings.ToUpper(word[:1])
+			camelCaseName += word[1:]
+		}
 	}
 	return camelCaseName
 }
@@ -1449,7 +1472,7 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 			continue
 		}
 		// w.p("// field %s = %d", f.fd.GetName(), f.fd.GetNumber())
-		if f.isProto3Optional() {
+		if f.isOptional() {
 			// To keep the presence bit in sync, we must switch to
 			// an explicit setter and make those fields private.
 			// TODO: We should make all usage go through getters/setters.
@@ -1483,7 +1506,7 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 		if f.isOneofMember() {
 			continue
 		}
-		if f.isProto3Optional() {
+		if f.isOptional() {
 			varName := f.varName()
 			w.p("if (Shapes::keyExists($s, '%s')) {", varName)
 			w.p("$this->%s = $s['%s'];", varName, varName)
@@ -1505,7 +1528,7 @@ func writeDescriptor(w *writer, dp *desc.DescriptorProto, ns *Namespace, prefixN
 
 	// Getters, setters & presence checks.
 	for _, f := range fields {
-		if !f.isProto3Optional() {
+		if !f.isOptional() {
 			continue
 		}
 		camelCaseName := camelCase(f.varName())

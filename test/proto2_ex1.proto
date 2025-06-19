@@ -15,9 +15,11 @@ message example1 {
   optional AEnum1 enum_default = 1;
   optional AEnum1 enum_custom = 2 [ default = CLASS ];
 
-	optional double adouble = 3 [ default = 3];
-	optional float afloat = 4 [default = 4.5];
-	optional bool abool = 5 [default = true];
-	optional string astring = 6 [default = "custom!"];
-	optional bytes abytes = 7 [default = "foo"];
+  optional double adouble = 3 [ default = 3];
+  optional float afloat = 4 [default = 4.5];
+  optional bool abool = 5 [default = true];
+  optional string astring = 6 [default = "custom!"];
+  optional bytes abytes = 7 [default = "foo"];
+
+  required string required_field = 8;
 }
