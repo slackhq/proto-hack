@@ -429,7 +429,7 @@ class TestAllTypesProto2_NestedMessage implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasA()) {
-      $this->a = $o->a;
+      $this->setA($o->getA());
     }
     $tmp = $o->corecursive;
     if ($tmp is nonnull) {
@@ -575,10 +575,10 @@ class TestAllTypesProto2_MapInt32Int32Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -716,10 +716,10 @@ class TestAllTypesProto2_MapInt64Int64Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -857,10 +857,10 @@ class TestAllTypesProto2_MapUint32Uint32Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -998,10 +998,10 @@ class TestAllTypesProto2_MapUint64Uint64Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1139,10 +1139,10 @@ class TestAllTypesProto2_MapSint32Sint32Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1280,10 +1280,10 @@ class TestAllTypesProto2_MapSint64Sint64Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1421,10 +1421,10 @@ class TestAllTypesProto2_MapFixed32Fixed32Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1562,10 +1562,10 @@ class TestAllTypesProto2_MapFixed64Fixed64Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1703,10 +1703,10 @@ class TestAllTypesProto2_MapSfixed32Sfixed32Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1844,10 +1844,10 @@ class TestAllTypesProto2_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1985,10 +1985,10 @@ class TestAllTypesProto2_MapInt32FloatEntry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -2126,10 +2126,10 @@ class TestAllTypesProto2_MapInt32DoubleEntry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -2267,10 +2267,10 @@ class TestAllTypesProto2_MapBoolBoolEntry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -2408,10 +2408,10 @@ class TestAllTypesProto2_MapStringStringEntry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -2549,10 +2549,10 @@ class TestAllTypesProto2_MapStringBytesEntry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -2701,7 +2701,7 @@ class TestAllTypesProto2_MapStringNestedMessageEntry implements \Protobuf\Messag
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     $tmp = $o->value;
     if ($tmp is nonnull) {
@@ -2858,7 +2858,7 @@ class TestAllTypesProto2_MapStringForeignMessageEntry implements \Protobuf\Messa
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     $tmp = $o->value;
     if ($tmp is nonnull) {
@@ -3004,10 +3004,10 @@ class TestAllTypesProto2_MapStringNestedEnumEntry implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -3145,10 +3145,10 @@ class TestAllTypesProto2_MapStringForeignEnumEntry implements \Protobuf\Message 
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasKey()) {
-      $this->key = $o->key;
+      $this->setKey($o->getKey());
     }
     if ($o->hasValue()) {
-      $this->value = $o->value;
+      $this->setValue($o->getValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -3286,10 +3286,10 @@ class TestAllTypesProto2_Data implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasGroupInt32()) {
-      $this->group_int32 = $o->group_int32;
+      $this->setGroupInt32($o->getGroupInt32());
     }
     if ($o->hasGroupUint32()) {
-      $this->group_uint32 = $o->group_uint32;
+      $this->setGroupUint32($o->getGroupUint32());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -3448,7 +3448,7 @@ class TestAllTypesProto2_MessageSetCorrectExtension1 implements \Protobuf\Messag
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasStr()) {
-      $this->str = $o->str;
+      $this->setStr($o->getStr());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -3548,7 +3548,7 @@ class TestAllTypesProto2_MessageSetCorrectExtension2 implements \Protobuf\Messag
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasI()) {
-      $this->i = $o->i;
+      $this->setI($o->getI());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -7446,49 +7446,49 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasOptionalInt32()) {
-      $this->optional_int32 = $o->optional_int32;
+      $this->setOptionalInt32($o->getOptionalInt32());
     }
     if ($o->hasOptionalInt64()) {
-      $this->optional_int64 = $o->optional_int64;
+      $this->setOptionalInt64($o->getOptionalInt64());
     }
     if ($o->hasOptionalUint32()) {
-      $this->optional_uint32 = $o->optional_uint32;
+      $this->setOptionalUint32($o->getOptionalUint32());
     }
     if ($o->hasOptionalUint64()) {
-      $this->optional_uint64 = $o->optional_uint64;
+      $this->setOptionalUint64($o->getOptionalUint64());
     }
     if ($o->hasOptionalSint32()) {
-      $this->optional_sint32 = $o->optional_sint32;
+      $this->setOptionalSint32($o->getOptionalSint32());
     }
     if ($o->hasOptionalSint64()) {
-      $this->optional_sint64 = $o->optional_sint64;
+      $this->setOptionalSint64($o->getOptionalSint64());
     }
     if ($o->hasOptionalFixed32()) {
-      $this->optional_fixed32 = $o->optional_fixed32;
+      $this->setOptionalFixed32($o->getOptionalFixed32());
     }
     if ($o->hasOptionalFixed64()) {
-      $this->optional_fixed64 = $o->optional_fixed64;
+      $this->setOptionalFixed64($o->getOptionalFixed64());
     }
     if ($o->hasOptionalSfixed32()) {
-      $this->optional_sfixed32 = $o->optional_sfixed32;
+      $this->setOptionalSfixed32($o->getOptionalSfixed32());
     }
     if ($o->hasOptionalSfixed64()) {
-      $this->optional_sfixed64 = $o->optional_sfixed64;
+      $this->setOptionalSfixed64($o->getOptionalSfixed64());
     }
     if ($o->hasOptionalFloat()) {
-      $this->optional_float = $o->optional_float;
+      $this->setOptionalFloat($o->getOptionalFloat());
     }
     if ($o->hasOptionalDouble()) {
-      $this->optional_double = $o->optional_double;
+      $this->setOptionalDouble($o->getOptionalDouble());
     }
     if ($o->hasOptionalBool()) {
-      $this->optional_bool = $o->optional_bool;
+      $this->setOptionalBool($o->getOptionalBool());
     }
     if ($o->hasOptionalString()) {
-      $this->optional_string = $o->optional_string;
+      $this->setOptionalString($o->getOptionalString());
     }
     if ($o->hasOptionalBytes()) {
-      $this->optional_bytes = $o->optional_bytes;
+      $this->setOptionalBytes($o->getOptionalBytes());
     }
     $tmp = $o->optional_nested_message;
     if ($tmp is nonnull) {
@@ -7507,16 +7507,16 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $this->setOptionalForeignMessage(null);
     }
     if ($o->hasOptionalNestedEnum()) {
-      $this->optional_nested_enum = $o->optional_nested_enum;
+      $this->setOptionalNestedEnum($o->getOptionalNestedEnum());
     }
     if ($o->hasOptionalForeignEnum()) {
-      $this->optional_foreign_enum = $o->optional_foreign_enum;
+      $this->setOptionalForeignEnum($o->getOptionalForeignEnum());
     }
     if ($o->hasOptionalStringPiece()) {
-      $this->optional_string_piece = $o->optional_string_piece;
+      $this->setOptionalStringPiece($o->getOptionalStringPiece());
     }
     if ($o->hasOptionalCord()) {
-      $this->optional_cord = $o->optional_cord;
+      $this->setOptionalCord($o->getOptionalCord());
     }
     $tmp = $o->recursive_message;
     if ($tmp is nonnull) {
@@ -7619,103 +7619,103 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $this->setData(null);
     }
     if ($o->hasDefaultInt32()) {
-      $this->default_int32 = $o->default_int32;
+      $this->setDefaultInt32($o->getDefaultInt32());
     }
     if ($o->hasDefaultInt64()) {
-      $this->default_int64 = $o->default_int64;
+      $this->setDefaultInt64($o->getDefaultInt64());
     }
     if ($o->hasDefaultUint32()) {
-      $this->default_uint32 = $o->default_uint32;
+      $this->setDefaultUint32($o->getDefaultUint32());
     }
     if ($o->hasDefaultUint64()) {
-      $this->default_uint64 = $o->default_uint64;
+      $this->setDefaultUint64($o->getDefaultUint64());
     }
     if ($o->hasDefaultSint32()) {
-      $this->default_sint32 = $o->default_sint32;
+      $this->setDefaultSint32($o->getDefaultSint32());
     }
     if ($o->hasDefaultSint64()) {
-      $this->default_sint64 = $o->default_sint64;
+      $this->setDefaultSint64($o->getDefaultSint64());
     }
     if ($o->hasDefaultFixed32()) {
-      $this->default_fixed32 = $o->default_fixed32;
+      $this->setDefaultFixed32($o->getDefaultFixed32());
     }
     if ($o->hasDefaultFixed64()) {
-      $this->default_fixed64 = $o->default_fixed64;
+      $this->setDefaultFixed64($o->getDefaultFixed64());
     }
     if ($o->hasDefaultSfixed32()) {
-      $this->default_sfixed32 = $o->default_sfixed32;
+      $this->setDefaultSfixed32($o->getDefaultSfixed32());
     }
     if ($o->hasDefaultSfixed64()) {
-      $this->default_sfixed64 = $o->default_sfixed64;
+      $this->setDefaultSfixed64($o->getDefaultSfixed64());
     }
     if ($o->hasDefaultFloat()) {
-      $this->default_float = $o->default_float;
+      $this->setDefaultFloat($o->getDefaultFloat());
     }
     if ($o->hasDefaultDouble()) {
-      $this->default_double = $o->default_double;
+      $this->setDefaultDouble($o->getDefaultDouble());
     }
     if ($o->hasDefaultBool()) {
-      $this->default_bool = $o->default_bool;
+      $this->setDefaultBool($o->getDefaultBool());
     }
     if ($o->hasDefaultString()) {
-      $this->default_string = $o->default_string;
+      $this->setDefaultString($o->getDefaultString());
     }
     if ($o->hasDefaultBytes()) {
-      $this->default_bytes = $o->default_bytes;
+      $this->setDefaultBytes($o->getDefaultBytes());
     }
     if ($o->hasFieldname1()) {
-      $this->fieldname1 = $o->fieldname1;
+      $this->setFieldname1($o->getFieldname1());
     }
     if ($o->hasFieldName2()) {
-      $this->field_name2 = $o->field_name2;
+      $this->setFieldName2($o->getFieldName2());
     }
     if ($o->hasFieldName3()) {
-      $this->_field_name3 = $o->_field_name3;
+      $this->setFieldName3($o->getFieldName3());
     }
     if ($o->hasFieldName4()) {
-      $this->field__name4_ = $o->field__name4_;
+      $this->setFieldName4($o->getFieldName4());
     }
     if ($o->hasField0name5()) {
-      $this->field0name5 = $o->field0name5;
+      $this->setField0name5($o->getField0name5());
     }
     if ($o->hasField0Name6()) {
-      $this->field_0_name6 = $o->field_0_name6;
+      $this->setField0Name6($o->getField0Name6());
     }
     if ($o->hasFieldName7()) {
-      $this->fieldName7 = $o->fieldName7;
+      $this->setFieldName7($o->getFieldName7());
     }
     if ($o->hasFieldName8()) {
-      $this->FieldName8 = $o->FieldName8;
+      $this->setFieldName8($o->getFieldName8());
     }
     if ($o->hasFieldName9()) {
-      $this->field_Name9 = $o->field_Name9;
+      $this->setFieldName9($o->getFieldName9());
     }
     if ($o->hasFieldName10()) {
-      $this->Field_Name10 = $o->Field_Name10;
+      $this->setFieldName10($o->getFieldName10());
     }
     if ($o->hasFIELDNAME11()) {
-      $this->FIELD_NAME11 = $o->FIELD_NAME11;
+      $this->setFIELDNAME11($o->getFIELDNAME11());
     }
     if ($o->hasFIELDName12()) {
-      $this->FIELD_name12 = $o->FIELD_name12;
+      $this->setFIELDName12($o->getFIELDName12());
     }
     if ($o->hasFieldName13()) {
-      $this->__field_name13 = $o->__field_name13;
+      $this->setFieldName13($o->getFieldName13());
     }
     if ($o->hasFieldName14()) {
-      $this->__Field_name14 = $o->__Field_name14;
+      $this->setFieldName14($o->getFieldName14());
     }
     if ($o->hasFieldName15()) {
-      $this->field__name15 = $o->field__name15;
+      $this->setFieldName15($o->getFieldName15());
     }
     if ($o->hasFieldName16()) {
-      $this->field__Name16 = $o->field__Name16;
+      $this->setFieldName16($o->getFieldName16());
     }
     if ($o->hasFieldName17()) {
-      $this->field_name17__ = $o->field_name17__;
+      $this->setFieldName17($o->getFieldName17());
     }
     if ($o->hasFieldName18()) {
-      $this->Field_name18__ = $o->Field_name18__;
+      $this->setFieldName18($o->getFieldName18());
     }
     $this->oneof_field = $o->oneof_field->Copy();
     $this->XXX_unrecognized = $o->XXX_unrecognized;
@@ -7816,7 +7816,7 @@ class ForeignMessageProto2 implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasC()) {
-      $this->c = $o->c;
+      $this->setC($o->getC());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -7916,7 +7916,7 @@ class UnknownToTestAllTypes_OptionalGroup implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasA()) {
-      $this->a = $o->a;
+      $this->setA($o->getA());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -8213,10 +8213,10 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasOptionalInt32()) {
-      $this->optional_int32 = $o->optional_int32;
+      $this->setOptionalInt32($o->getOptionalInt32());
     }
     if ($o->hasOptionalString()) {
-      $this->optional_string = $o->optional_string;
+      $this->setOptionalString($o->getOptionalString());
     }
     $tmp = $o->nested_message;
     if ($tmp is nonnull) {
@@ -8235,7 +8235,7 @@ class UnknownToTestAllTypes implements \Protobuf\Message {
       $this->setOptionalgroup(null);
     }
     if ($o->hasOptionalBool()) {
-      $this->optional_bool = $o->optional_bool;
+      $this->setOptionalBool($o->getOptionalBool());
     }
     $this->repeated_int32 = $o->repeated_int32;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
@@ -8479,7 +8479,7 @@ class OneStringProto2 implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasData()) {
-      $this->data = $o->data;
+      $this->setData($o->getData());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();

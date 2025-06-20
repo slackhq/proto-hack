@@ -484,22 +484,22 @@ class optional_proto3 implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasAdouble()) {
-      $this->adouble = $o->adouble;
+      $this->setAdouble($o->getAdouble());
     }
     if ($o->hasAint64()) {
-      $this->aint64 = $o->aint64;
+      $this->setAint64($o->getAint64());
     }
     if ($o->hasAbool()) {
-      $this->abool = $o->abool;
+      $this->setAbool($o->getAbool());
     }
     if ($o->hasAstring()) {
-      $this->astring = $o->astring;
+      $this->setAstring($o->getAstring());
     }
     if ($o->hasAbytes()) {
-      $this->abytes = $o->abytes;
+      $this->setAbytes($o->getAbytes());
     }
     if ($o->hasAnenum()) {
-      $this->anenum = $o->anenum;
+      $this->setAnenum($o->getAnenum());
     }
     $tmp = $o->amsg;
     if ($tmp is nonnull) {
