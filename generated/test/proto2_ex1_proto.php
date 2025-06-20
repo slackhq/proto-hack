@@ -367,25 +367,25 @@ class example1 implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasEnumDefault()) {
-      $this->enum_default = $o->enum_default;
+      $this->setEnumDefault($o->getEnumDefault());
     }
     if ($o->hasEnumCustom()) {
-      $this->enum_custom = $o->enum_custom;
+      $this->setEnumCustom($o->getEnumCustom());
     }
     if ($o->hasAdouble()) {
-      $this->adouble = $o->adouble;
+      $this->setAdouble($o->getAdouble());
     }
     if ($o->hasAfloat()) {
-      $this->afloat = $o->afloat;
+      $this->setAfloat($o->getAfloat());
     }
     if ($o->hasAbool()) {
-      $this->abool = $o->abool;
+      $this->setAbool($o->getAbool());
     }
     if ($o->hasAstring()) {
-      $this->astring = $o->astring;
+      $this->setAstring($o->getAstring());
     }
     if ($o->hasAbytes()) {
-      $this->abytes = $o->abytes;
+      $this->setAbytes($o->getAbytes());
     }
     $this->required_field = $o->required_field;
     $this->XXX_unrecognized = $o->XXX_unrecognized;

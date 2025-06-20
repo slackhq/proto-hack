@@ -502,10 +502,10 @@ class FileDescriptorProto implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasName()) {
-      $this->name = $o->name;
+      $this->setName($o->getName());
     }
     if ($o->hasPackage()) {
-      $this->package = $o->package;
+      $this->setPackage($o->getPackage());
     }
     $this->dependency = $o->dependency;
     foreach ($o->message_type as $v) {
@@ -547,7 +547,7 @@ class FileDescriptorProto implements \Protobuf\Message {
     $this->public_dependency = $o->public_dependency;
     $this->weak_dependency = $o->weak_dependency;
     if ($o->hasSyntax()) {
-      $this->syntax = $o->syntax;
+      $this->setSyntax($o->getSyntax());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -734,10 +734,10 @@ class DescriptorProto_ExtensionRange implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasStart()) {
-      $this->start = $o->start;
+      $this->setStart($o->getStart());
     }
     if ($o->hasEnd()) {
-      $this->end = $o->end;
+      $this->setEnd($o->getEnd());
     }
     $tmp = $o->options;
     if ($tmp is nonnull) {
@@ -883,10 +883,10 @@ class DescriptorProto_ReservedRange implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasStart()) {
-      $this->start = $o->start;
+      $this->setStart($o->getStart());
     }
     if ($o->hasEnd()) {
-      $this->end = $o->end;
+      $this->setEnd($o->getEnd());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1198,7 +1198,7 @@ class DescriptorProto implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasName()) {
-      $this->name = $o->name;
+      $this->setName($o->getName());
     }
     foreach ($o->field as $v) {
       $nv = new \google\protobuf\FieldDescriptorProto();
@@ -1919,25 +1919,25 @@ class FieldDescriptorProto implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasName()) {
-      $this->name = $o->name;
+      $this->setName($o->getName());
     }
     if ($o->hasExtendee()) {
-      $this->extendee = $o->extendee;
+      $this->setExtendee($o->getExtendee());
     }
     if ($o->hasNumber()) {
-      $this->number = $o->number;
+      $this->setNumber($o->getNumber());
     }
     if ($o->hasLabel()) {
-      $this->label = $o->label;
+      $this->setLabel($o->getLabel());
     }
     if ($o->hasType()) {
-      $this->type = $o->type;
+      $this->setType($o->getType());
     }
     if ($o->hasTypeName()) {
-      $this->type_name = $o->type_name;
+      $this->setTypeName($o->getTypeName());
     }
     if ($o->hasDefaultValue()) {
-      $this->default_value = $o->default_value;
+      $this->setDefaultValue($o->getDefaultValue());
     }
     $tmp = $o->options;
     if ($tmp is nonnull) {
@@ -1948,13 +1948,13 @@ class FieldDescriptorProto implements \Protobuf\Message {
       $this->setOptions(null);
     }
     if ($o->hasOneofIndex()) {
-      $this->oneof_index = $o->oneof_index;
+      $this->setOneofIndex($o->getOneofIndex());
     }
     if ($o->hasJsonName()) {
-      $this->json_name = $o->json_name;
+      $this->setJsonName($o->getJsonName());
     }
     if ($o->hasProto3Optional()) {
-      $this->proto3_optional = $o->proto3_optional;
+      $this->setProto3Optional($o->getProto3Optional());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -2103,7 +2103,7 @@ class OneofDescriptorProto implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasName()) {
-      $this->name = $o->name;
+      $this->setName($o->getName());
     }
     $tmp = $o->options;
     if ($tmp is nonnull) {
@@ -2249,10 +2249,10 @@ class EnumDescriptorProto_EnumReservedRange implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasStart()) {
-      $this->start = $o->start;
+      $this->setStart($o->getStart());
     }
     if ($o->hasEnd()) {
-      $this->end = $o->end;
+      $this->setEnd($o->getEnd());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -2459,7 +2459,7 @@ class EnumDescriptorProto implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasName()) {
-      $this->name = $o->name;
+      $this->setName($o->getName());
     }
     foreach ($o->value as $v) {
       $nv = new \google\protobuf\EnumValueDescriptorProto();
@@ -2665,10 +2665,10 @@ class EnumValueDescriptorProto implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasName()) {
-      $this->name = $o->name;
+      $this->setName($o->getName());
     }
     if ($o->hasNumber()) {
-      $this->number = $o->number;
+      $this->setNumber($o->getNumber());
     }
     $tmp = $o->options;
     if ($tmp is nonnull) {
@@ -2846,7 +2846,7 @@ class ServiceDescriptorProto implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasName()) {
-      $this->name = $o->name;
+      $this->setName($o->getName());
     }
     foreach ($o->method as $v) {
       $nv = new \google\protobuf\MethodDescriptorProto();
@@ -3160,13 +3160,13 @@ class MethodDescriptorProto implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasName()) {
-      $this->name = $o->name;
+      $this->setName($o->getName());
     }
     if ($o->hasInputType()) {
-      $this->input_type = $o->input_type;
+      $this->setInputType($o->getInputType());
     }
     if ($o->hasOutputType()) {
-      $this->output_type = $o->output_type;
+      $this->setOutputType($o->getOutputType());
     }
     $tmp = $o->options;
     if ($tmp is nonnull) {
@@ -3177,10 +3177,10 @@ class MethodDescriptorProto implements \Protobuf\Message {
       $this->setOptions(null);
     }
     if ($o->hasClientStreaming()) {
-      $this->client_streaming = $o->client_streaming;
+      $this->setClientStreaming($o->getClientStreaming());
     }
     if ($o->hasServerStreaming()) {
-      $this->server_streaming = $o->server_streaming;
+      $this->setServerStreaming($o->getServerStreaming());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -4051,64 +4051,64 @@ class FileOptions implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasJavaPackage()) {
-      $this->java_package = $o->java_package;
+      $this->setJavaPackage($o->getJavaPackage());
     }
     if ($o->hasJavaOuterClassname()) {
-      $this->java_outer_classname = $o->java_outer_classname;
+      $this->setJavaOuterClassname($o->getJavaOuterClassname());
     }
     if ($o->hasOptimizeFor()) {
-      $this->optimize_for = $o->optimize_for;
+      $this->setOptimizeFor($o->getOptimizeFor());
     }
     if ($o->hasJavaMultipleFiles()) {
-      $this->java_multiple_files = $o->java_multiple_files;
+      $this->setJavaMultipleFiles($o->getJavaMultipleFiles());
     }
     if ($o->hasGoPackage()) {
-      $this->go_package = $o->go_package;
+      $this->setGoPackage($o->getGoPackage());
     }
     if ($o->hasCcGenericServices()) {
-      $this->cc_generic_services = $o->cc_generic_services;
+      $this->setCcGenericServices($o->getCcGenericServices());
     }
     if ($o->hasJavaGenericServices()) {
-      $this->java_generic_services = $o->java_generic_services;
+      $this->setJavaGenericServices($o->getJavaGenericServices());
     }
     if ($o->hasPyGenericServices()) {
-      $this->py_generic_services = $o->py_generic_services;
+      $this->setPyGenericServices($o->getPyGenericServices());
     }
     if ($o->hasJavaGenerateEqualsAndHash()) {
-      $this->java_generate_equals_and_hash = $o->java_generate_equals_and_hash;
+      $this->setJavaGenerateEqualsAndHash($o->getJavaGenerateEqualsAndHash());
     }
     if ($o->hasDeprecated()) {
-      $this->deprecated = $o->deprecated;
+      $this->setDeprecated($o->getDeprecated());
     }
     if ($o->hasJavaStringCheckUtf8()) {
-      $this->java_string_check_utf8 = $o->java_string_check_utf8;
+      $this->setJavaStringCheckUtf8($o->getJavaStringCheckUtf8());
     }
     if ($o->hasCcEnableArenas()) {
-      $this->cc_enable_arenas = $o->cc_enable_arenas;
+      $this->setCcEnableArenas($o->getCcEnableArenas());
     }
     if ($o->hasObjcClassPrefix()) {
-      $this->objc_class_prefix = $o->objc_class_prefix;
+      $this->setObjcClassPrefix($o->getObjcClassPrefix());
     }
     if ($o->hasCsharpNamespace()) {
-      $this->csharp_namespace = $o->csharp_namespace;
+      $this->setCsharpNamespace($o->getCsharpNamespace());
     }
     if ($o->hasSwiftPrefix()) {
-      $this->swift_prefix = $o->swift_prefix;
+      $this->setSwiftPrefix($o->getSwiftPrefix());
     }
     if ($o->hasPhpClassPrefix()) {
-      $this->php_class_prefix = $o->php_class_prefix;
+      $this->setPhpClassPrefix($o->getPhpClassPrefix());
     }
     if ($o->hasPhpNamespace()) {
-      $this->php_namespace = $o->php_namespace;
+      $this->setPhpNamespace($o->getPhpNamespace());
     }
     if ($o->hasPhpGenericServices()) {
-      $this->php_generic_services = $o->php_generic_services;
+      $this->setPhpGenericServices($o->getPhpGenericServices());
     }
     if ($o->hasPhpMetadataNamespace()) {
-      $this->php_metadata_namespace = $o->php_metadata_namespace;
+      $this->setPhpMetadataNamespace($o->getPhpMetadataNamespace());
     }
     if ($o->hasRubyPackage()) {
-      $this->ruby_package = $o->ruby_package;
+      $this->setRubyPackage($o->getRubyPackage());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -4348,16 +4348,16 @@ class MessageOptions implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasMessageSetWireFormat()) {
-      $this->message_set_wire_format = $o->message_set_wire_format;
+      $this->setMessageSetWireFormat($o->getMessageSetWireFormat());
     }
     if ($o->hasNoStandardDescriptorAccessor()) {
-      $this->no_standard_descriptor_accessor = $o->no_standard_descriptor_accessor;
+      $this->setNoStandardDescriptorAccessor($o->getNoStandardDescriptorAccessor());
     }
     if ($o->hasDeprecated()) {
-      $this->deprecated = $o->deprecated;
+      $this->setDeprecated($o->getDeprecated());
     }
     if ($o->hasMapEntry()) {
-      $this->map_entry = $o->map_entry;
+      $this->setMapEntry($o->getMapEntry());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -4767,25 +4767,25 @@ class FieldOptions implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasCtype()) {
-      $this->ctype = $o->ctype;
+      $this->setCtype($o->getCtype());
     }
     if ($o->hasPacked()) {
-      $this->packed = $o->packed;
+      $this->setPacked($o->getPacked());
     }
     if ($o->hasDeprecated()) {
-      $this->deprecated = $o->deprecated;
+      $this->setDeprecated($o->getDeprecated());
     }
     if ($o->hasLazy()) {
-      $this->lazy = $o->lazy;
+      $this->setLazy($o->getLazy());
     }
     if ($o->hasJstype()) {
-      $this->jstype = $o->jstype;
+      $this->setJstype($o->getJstype());
     }
     if ($o->hasWeak()) {
-      $this->weak = $o->weak;
+      $this->setWeak($o->getWeak());
     }
     if ($o->hasUnverifiedLazy()) {
-      $this->unverified_lazy = $o->unverified_lazy;
+      $this->setUnverifiedLazy($o->getUnverifiedLazy());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -5034,10 +5034,10 @@ class EnumOptions implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasAllowAlias()) {
-      $this->allow_alias = $o->allow_alias;
+      $this->setAllowAlias($o->getAllowAlias());
     }
     if ($o->hasDeprecated()) {
-      $this->deprecated = $o->deprecated;
+      $this->setDeprecated($o->getDeprecated());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -5163,7 +5163,7 @@ class EnumValueOptions implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasDeprecated()) {
-      $this->deprecated = $o->deprecated;
+      $this->setDeprecated($o->getDeprecated());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -5289,7 +5289,7 @@ class ServiceOptions implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasDeprecated()) {
-      $this->deprecated = $o->deprecated;
+      $this->setDeprecated($o->getDeprecated());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -5481,10 +5481,10 @@ class MethodOptions implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasDeprecated()) {
-      $this->deprecated = $o->deprecated;
+      $this->setDeprecated($o->getDeprecated());
     }
     if ($o->hasIdempotencyLevel()) {
-      $this->idempotency_level = $o->idempotency_level;
+      $this->setIdempotencyLevel($o->getIdempotencyLevel());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -5894,22 +5894,22 @@ class UninterpretedOption implements \Protobuf\Message {
       $this->name []= $nv;
     }
     if ($o->hasIdentifierValue()) {
-      $this->identifier_value = $o->identifier_value;
+      $this->setIdentifierValue($o->getIdentifierValue());
     }
     if ($o->hasPositiveIntValue()) {
-      $this->positive_int_value = $o->positive_int_value;
+      $this->setPositiveIntValue($o->getPositiveIntValue());
     }
     if ($o->hasNegativeIntValue()) {
-      $this->negative_int_value = $o->negative_int_value;
+      $this->setNegativeIntValue($o->getNegativeIntValue());
     }
     if ($o->hasDoubleValue()) {
-      $this->double_value = $o->double_value;
+      $this->setDoubleValue($o->getDoubleValue());
     }
     if ($o->hasStringValue()) {
-      $this->string_value = $o->string_value;
+      $this->setStringValue($o->getStringValue());
     }
     if ($o->hasAggregateValue()) {
-      $this->aggregate_value = $o->aggregate_value;
+      $this->setAggregateValue($o->getAggregateValue());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -6117,10 +6117,10 @@ class SourceCodeInfo_Location implements \Protobuf\Message {
     $this->path = $o->path;
     $this->span = $o->span;
     if ($o->hasLeadingComments()) {
-      $this->leading_comments = $o->leading_comments;
+      $this->setLeadingComments($o->getLeadingComments());
     }
     if ($o->hasTrailingComments()) {
-      $this->trailing_comments = $o->trailing_comments;
+      $this->setTrailingComments($o->getTrailingComments());
     }
     $this->leading_detached_comments = $o->leading_detached_comments;
     $this->XXX_unrecognized = $o->XXX_unrecognized;
@@ -6409,13 +6409,13 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
     }
     $this->path = $o->path;
     if ($o->hasSourceFile()) {
-      $this->source_file = $o->source_file;
+      $this->setSourceFile($o->getSourceFile());
     }
     if ($o->hasBegin()) {
-      $this->begin = $o->begin;
+      $this->setBegin($o->getBegin());
     }
     if ($o->hasEnd()) {
-      $this->end = $o->end;
+      $this->setEnd($o->getEnd());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();

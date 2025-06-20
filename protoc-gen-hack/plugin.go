@@ -866,10 +866,10 @@ func (f field) writeCopy(w *writer, c string) {
 		if f.isOptional() {
 			camelCaseName := camelCase(f.varName())
 			w.p("if (%s->has%s()) {", c, camelCaseName)
-		}
-		w.p("$this->%s = %s->%s;", f.varName(), c, f.varName())
-		if f.isOptional() {
+			w.p("$this->set%s(%s->get%s());", camelCaseName, c, camelCaseName)
 			w.p("}")
+		} else {
+			w.p("$this->%s = %s->%s;", f.varName(), c, f.varName())
 		}
 	}
 }

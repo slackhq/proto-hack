@@ -211,16 +211,16 @@ class Version implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasMajor()) {
-      $this->major = $o->major;
+      $this->setMajor($o->getMajor());
     }
     if ($o->hasMinor()) {
-      $this->minor = $o->minor;
+      $this->setMinor($o->getMinor());
     }
     if ($o->hasPatch()) {
-      $this->patch = $o->patch;
+      $this->setPatch($o->getPatch());
     }
     if ($o->hasSuffix()) {
-      $this->suffix = $o->suffix;
+      $this->setSuffix($o->getSuffix());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -407,7 +407,7 @@ class CodeGeneratorRequest implements \Protobuf\Message {
     }
     $this->file_to_generate = $o->file_to_generate;
     if ($o->hasParameter()) {
-      $this->parameter = $o->parameter;
+      $this->setParameter($o->getParameter());
     }
     $tmp = $o->compiler_version;
     if ($tmp is nonnull) {
@@ -670,13 +670,13 @@ class CodeGeneratorResponse_File implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasName()) {
-      $this->name = $o->name;
+      $this->setName($o->getName());
     }
     if ($o->hasInsertionPoint()) {
-      $this->insertion_point = $o->insertion_point;
+      $this->setInsertionPoint($o->getInsertionPoint());
     }
     if ($o->hasContent()) {
-      $this->content = $o->content;
+      $this->setContent($o->getContent());
     }
     $tmp = $o->generated_code_info;
     if ($tmp is nonnull) {
@@ -843,10 +843,10 @@ class CodeGeneratorResponse implements \Protobuf\Message {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
     }
     if ($o->hasError()) {
-      $this->error = $o->error;
+      $this->setError($o->getError());
     }
     if ($o->hasSupportedFeatures()) {
-      $this->supported_features = $o->supported_features;
+      $this->setSupportedFeatures($o->getSupportedFeatures());
     }
     foreach ($o->file as $v) {
       $nv = new \google\protobuf\compiler\CodeGeneratorResponse_File();
