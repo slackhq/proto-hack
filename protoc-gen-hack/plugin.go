@@ -106,10 +106,8 @@ func gen(req *ppb.CodeGeneratorRequest) *ppb.CodeGeneratorResponse {
 			case "file_per_entity":
 				filePerEntity = true
 			case "allow_proto2_dangerous":
-				// proto2 is not fully supported. In particular:
-				// - the marshaling of default values is handled like proto3.
-				// - custom default values are not supproted
-				// - possibly other things.
+				// proto2 is not fully supported, see conformance/failures.txt
+				// to see which proto2 conformance tests are still failing
 				allowProto2 = true
 			default:
 				panic(fmt.Errorf("unsupported compiler option: '%s'", opt))
