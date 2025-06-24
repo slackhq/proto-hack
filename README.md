@@ -37,11 +37,15 @@ In addition to generated code, you will need the library code in `/lib`.
 
 # Development
 ## Build the docker image
-`cd ci && docker build -t proto-hack-dev .`
+```
+cd ci && docker build -t proto-hack-dev .
+```
 
 ## Mount the Docker container
-`# In the root folder`  
-`docker run -it --rm -v "$(pwd):/workspace" -w /workspace proto-hack-dev /bin/bash`
+```
+# In the root folder
+docker run -it --rm -v "$(pwd):/workspace" -w /workspace proto-hack-dev /bin/bash
+```
 
 ## In the Docker Image
 testing: `bazelisk test //...`
