@@ -48,8 +48,9 @@ docker run -it --rm -v "$(pwd):/workspace" -w /workspace proto-hack-dev /bin/bas
 ```
 
 ## In the Docker Image
-testing: `bazelisk test //...`
-codegen: `bazelisk run :gen`
+codegen: `bazelisk run :gen`  
+testing: `bazelisk test //...`  
+test syntax: `hh_client .`
 
 # Notes
 - Unsigned 64 bit integer types (e.g. uint64, fixed64) are represented using
