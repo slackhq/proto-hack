@@ -36,8 +36,21 @@ In addition to generated code, you will need the library code in `/lib`.
 ```
 
 # Development
-testing: `bazelisk test //...`
-codegen: `bazelisk run :gen`
+## Build the docker image
+```
+cd ci && docker build -t proto-hack-dev .
+```
+
+## Mount the Docker container
+```
+# In the root folder
+docker run -it --rm -v "$(pwd):/workspace" -w /workspace proto-hack-dev /bin/bash
+```
+
+## In the Docker Image
+codegen: `bazelisk run :gen`  
+testing: `bazelisk test //...`  
+test syntax: `hh_client .`
 
 # Notes
 - Unsigned 64 bit integer types (e.g. uint64, fixed64) are represented using
