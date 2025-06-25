@@ -21,11 +21,11 @@ go_rules_dependencies()
 
 go_register_toolchains(version = "1.22.2")
 
-PBV = "23.2"
+PBV = "25.3"
 
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "c213b097a4f2546ad28a11e17dfef659d9f9ef141f43835a1760a5f35d395803",
+    sha256 = "5156b22536feaa88cf95503153a6b2cd67cc80f20f1218f154b84a12c288a220",
     strip_prefix = "protobuf-" + PBV,
     urls = ["https://github.com/protocolbuffers/protobuf/archive/refs/tags/v" + PBV + ".zip"],
 )
