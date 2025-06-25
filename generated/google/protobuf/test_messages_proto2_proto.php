@@ -1854,6 +1854,147 @@ class TestAllTypesProto2_MapSfixed64Sfixed64Entry implements \Protobuf\Message {
   }
 }
 
+class TestAllTypesProto2_MapInt32BoolEntry implements \Protobuf\Message {
+  private int $key;
+  private bool $was_key_set;
+  private bool $value;
+  private bool $was_value_set;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'key' => int,
+    ?'value' => bool,
+  ) $s = shape()) {
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = false;
+      $this->was_value_set = false;
+    }
+    $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): bool {
+    return $this->value;
+  }
+
+  public function setValue(bool $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllTypesProto2.MapInt32BoolEntry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto2_MapInt32BoolEntry {
+    $msg = new TestAllTypesProto2_MapInt32BoolEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 1:
+          $this->key = $d->readVarint32Signed();
+          $this->was_key_set = true;
+          break;
+        case 2:
+          $this->value = $d->readBool();
+          $this->was_value_set = true;
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->was_key_set) {
+      $e->writeTag(1, 0);
+      $e->writeVarint($this->key);
+    }
+    if ($this->was_value_set) {
+      $e->writeTag(2, 0);
+      $e->writeBool($this->value);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    if ($this->hasKey()) {
+      $e->writeInt32('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeBool('value', 'value', $this->value, false);
+    }
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'key':
+          $this->key = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_key_set = true;
+          break;
+        case 'value':
+          $this->value = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_value_set = true;
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto2_MapInt32BoolEntry)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->hasKey()) {
+      $this->setKey($o->getKey());
+    }
+    if ($o->hasValue()) {
+      $this->setValue($o->getValue());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
 class TestAllTypesProto2_MapInt32FloatEntry implements \Protobuf\Message {
   private int $key;
   private bool $was_key_set;
@@ -2130,6 +2271,163 @@ class TestAllTypesProto2_MapInt32DoubleEntry implements \Protobuf\Message {
     }
     if ($o->hasValue()) {
       $this->setValue($o->getValue());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestAllTypesProto2_MapInt32NestedMessageEntry implements \Protobuf\Message {
+  private int $key;
+  private bool $was_key_set;
+  private ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $value;
+  private bool $was_value_set;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'key' => int,
+    ?'value' => ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage,
+  ) $s = shape()) {
+    if (Shapes::keyExists($s, 'key')) {
+      $this->key = $s['key'];
+      $this->was_key_set = true;
+    } else {
+      $this->key = 0;
+      $this->was_key_set = false;
+    }
+    if (Shapes::keyExists($s, 'value')) {
+      $this->value = $s['value'];
+      $this->was_value_set = true;
+    } else {
+      $this->value = null;
+      $this->was_value_set = false;
+    }
+    $this->XXX_unrecognized = '';
+  }
+
+  public function getKey(): int {
+    return $this->key;
+  }
+
+  public function setKey(int $v): void {
+    $this->key = $v;
+    $this->was_key_set = true;
+  }
+
+  public function hasKey(): bool {
+    return $this->was_key_set;
+  }
+
+  public function getValue(): ?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage {
+    return $this->value;
+  }
+
+  public function setValue(?\protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage $v): void {
+    $this->value = $v;
+    $this->was_value_set = true;
+  }
+
+  public function hasValue(): bool {
+    return $this->was_value_set;
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllTypesProto2.MapInt32NestedMessageEntry";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto2_MapInt32NestedMessageEntry {
+    $msg = new TestAllTypesProto2_MapInt32NestedMessageEntry();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 1:
+          $this->key = $d->readVarint32Signed();
+          $this->was_key_set = true;
+          break;
+        case 2:
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+            $this->was_value_set = true;
+          }
+          $this->value->MergeFrom($d->readDecoder());
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->was_key_set) {
+      $e->writeTag(1, 0);
+      $e->writeVarint($this->key);
+    }
+    $msg = $this->value;
+    if ($msg != null) {
+      if ($this->was_value_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 2);
+      }
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    if ($this->hasKey()) {
+      $e->writeInt32('key', 'key', $this->key, false);
+    }
+    if ($this->hasValue()) {
+      $e->writeMessage('value', 'value', $this->value, false);
+    }
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'key':
+          $this->key = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_key_set = true;
+          break;
+        case 'value':
+          if ($v is null) break;
+          if ($this->value is null) {
+            $this->value = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+            $this->was_value_set = true;
+          }
+          $this->value->MergeJsonFrom($v);
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto2_MapInt32NestedMessageEntry)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->hasKey()) {
+      $this->setKey($o->getKey());
+    }
+    $tmp = $o->value;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+      $nv->CopyFrom($tmp);
+      $this->setValue($nv);
+    } else if ($o->hasValue()) {
+      $this->setValue(null);
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -3296,6 +3594,147 @@ class TestAllTypesProto2_Data implements \Protobuf\Message {
   }
 }
 
+class TestAllTypesProto2_MultiWordGroupField implements \Protobuf\Message {
+  private int $group_int32;
+  private bool $was_group_int32_set;
+  private int $group_uint32;
+  private bool $was_group_uint32_set;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'group_int32' => int,
+    ?'group_uint32' => int,
+  ) $s = shape()) {
+    if (Shapes::keyExists($s, 'group_int32')) {
+      $this->group_int32 = $s['group_int32'];
+      $this->was_group_int32_set = true;
+    } else {
+      $this->group_int32 = 0;
+      $this->was_group_int32_set = false;
+    }
+    if (Shapes::keyExists($s, 'group_uint32')) {
+      $this->group_uint32 = $s['group_uint32'];
+      $this->was_group_uint32_set = true;
+    } else {
+      $this->group_uint32 = 0;
+      $this->was_group_uint32_set = false;
+    }
+    $this->XXX_unrecognized = '';
+  }
+
+  public function getGroupInt32(): int {
+    return $this->group_int32;
+  }
+
+  public function setGroupInt32(int $v): void {
+    $this->group_int32 = $v;
+    $this->was_group_int32_set = true;
+  }
+
+  public function hasGroupInt32(): bool {
+    return $this->was_group_int32_set;
+  }
+
+  public function getGroupUint32(): int {
+    return $this->group_uint32;
+  }
+
+  public function setGroupUint32(int $v): void {
+    $this->group_uint32 = $v;
+    $this->was_group_uint32_set = true;
+  }
+
+  public function hasGroupUint32(): bool {
+    return $this->was_group_uint32_set;
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllTypesProto2.MultiWordGroupField";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto2_MultiWordGroupField {
+    $msg = new TestAllTypesProto2_MultiWordGroupField();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 205:
+          $this->group_int32 = $d->readVarint32Signed();
+          $this->was_group_int32_set = true;
+          break;
+        case 206:
+          $this->group_uint32 = $d->readVarint32();
+          $this->was_group_uint32_set = true;
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->was_group_int32_set) {
+      $e->writeTag(205, 0);
+      $e->writeVarint($this->group_int32);
+    }
+    if ($this->was_group_uint32_set) {
+      $e->writeTag(206, 0);
+      $e->writeVarint($this->group_uint32);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    if ($this->hasGroupInt32()) {
+      $e->writeInt32('group_int32', 'groupInt32', $this->group_int32, false);
+    }
+    if ($this->hasGroupUint32()) {
+      $e->writeInt32('group_uint32', 'groupUint32', $this->group_uint32, false);
+    }
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'group_int32': case 'groupInt32':
+          $this->group_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_group_int32_set = true;
+          break;
+        case 'group_uint32': case 'groupUint32':
+          $this->group_uint32 = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          $this->was_group_uint32_set = true;
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto2_MultiWordGroupField)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->hasGroupInt32()) {
+      $this->setGroupInt32($o->getGroupInt32());
+    }
+    if ($o->hasGroupUint32()) {
+      $this->setGroupUint32($o->getGroupUint32());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
 class TestAllTypesProto2_MessageSetCorrect implements \Protobuf\Message {
   private string $XXX_unrecognized;
 
@@ -3555,6 +3994,150 @@ class TestAllTypesProto2_MessageSetCorrectExtension2 implements \Protobuf\Messag
   }
 }
 
+enum TestAllTypesProto2_ExtensionWithOneof_oneof_field_oneof_t: int {
+  NOT_SET = 0;
+  a = 1;
+  b = 2;
+}
+
+interface TestAllTypesProto2_ExtensionWithOneof_oneof_field {
+  public function WhichOneof(): TestAllTypesProto2_ExtensionWithOneof_oneof_field_oneof_t;
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void;
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void;
+  public function Copy(): TestAllTypesProto2_ExtensionWithOneof_oneof_field;
+}
+
+class TestAllTypesProto2_ExtensionWithOneof_oneof_field_NOT_SET implements TestAllTypesProto2_ExtensionWithOneof_oneof_field {
+  public function WhichOneof(): TestAllTypesProto2_ExtensionWithOneof_oneof_field_oneof_t {
+    return TestAllTypesProto2_ExtensionWithOneof_oneof_field_oneof_t::NOT_SET;
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {}
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {}
+
+  public function Copy(): TestAllTypesProto2_ExtensionWithOneof_oneof_field { return $this; }
+}
+
+class TestAllTypesProto2_ExtensionWithOneof_oneof_field_a implements TestAllTypesProto2_ExtensionWithOneof_oneof_field {
+  public function __construct(public int $a) {}
+
+  public function WhichOneof(): TestAllTypesProto2_ExtensionWithOneof_oneof_field_oneof_t {
+    return TestAllTypesProto2_ExtensionWithOneof_oneof_field_oneof_t::a;
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeTag(1, 0);;
+    $e->writeVarint($this->a);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeInt32('a', 'a', $this->a, true);
+  }
+
+  public function Copy(): TestAllTypesProto2_ExtensionWithOneof_oneof_field {
+    return new TestAllTypesProto2_ExtensionWithOneof_oneof_field_a($this->a);
+  }
+}
+
+class TestAllTypesProto2_ExtensionWithOneof_oneof_field_b implements TestAllTypesProto2_ExtensionWithOneof_oneof_field {
+  public function __construct(public int $b) {}
+
+  public function WhichOneof(): TestAllTypesProto2_ExtensionWithOneof_oneof_field_oneof_t {
+    return TestAllTypesProto2_ExtensionWithOneof_oneof_field_oneof_t::b;
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeTag(2, 0);;
+    $e->writeVarint($this->b);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeInt32('b', 'b', $this->b, true);
+  }
+
+  public function Copy(): TestAllTypesProto2_ExtensionWithOneof_oneof_field {
+    return new TestAllTypesProto2_ExtensionWithOneof_oneof_field_b($this->b);
+  }
+}
+
+class TestAllTypesProto2_ExtensionWithOneof implements \Protobuf\Message {
+  public TestAllTypesProto2_ExtensionWithOneof_oneof_field $oneof_field;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'oneof_field' => TestAllTypesProto2_ExtensionWithOneof_oneof_field,
+  ) $s = shape()) {
+    $this->oneof_field = $s['oneof_field'] ?? new TestAllTypesProto2_ExtensionWithOneof_oneof_field_NOT_SET();
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllTypesProto2.ExtensionWithOneof";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllTypesProto2_ExtensionWithOneof {
+    $msg = new TestAllTypesProto2_ExtensionWithOneof();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 1:
+          $this->oneof_field = new TestAllTypesProto2_ExtensionWithOneof_oneof_field_a($d->readVarint32Signed());
+          break;
+        case 2:
+          $this->oneof_field = new TestAllTypesProto2_ExtensionWithOneof_oneof_field_b($d->readVarint32Signed());
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $this->oneof_field->WriteTo($e);
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $this->oneof_field->WriteJsonTo($e);
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'a':
+          $this->oneof_field = new TestAllTypesProto2_ExtensionWithOneof_oneof_field_a(\Protobuf\Internal\JsonDecoder::readInt32Signed($v));
+          break;
+        case 'b':
+          $this->oneof_field = new TestAllTypesProto2_ExtensionWithOneof_oneof_field_b(\Protobuf\Internal\JsonDecoder::readInt32Signed($v));
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllTypesProto2_ExtensionWithOneof)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->oneof_field = $o->oneof_field->Copy();
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
 class TestAllTypesProto2 implements \Protobuf\Message {
   private int $optional_int32;
   private bool $was_optional_int32_set;
@@ -3659,8 +4242,10 @@ class TestAllTypesProto2 implements \Protobuf\Message {
   public dict<int, int> $map_fixed64_fixed64;
   public dict<int, int> $map_sfixed32_sfixed32;
   public dict<int, int> $map_sfixed64_sfixed64;
+  public dict<int, bool> $map_int32_bool;
   public dict<int, float> $map_int32_float;
   public dict<int, float> $map_int32_double;
+  public dict<int, \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage> $map_int32_nested_message;
   public dict<\Protobuf\Internal\bool_map_key_t, bool> $map_bool_bool;
   public dict<string, string> $map_string_string;
   public dict<string, string> $map_string_bytes;
@@ -3670,6 +4255,8 @@ class TestAllTypesProto2 implements \Protobuf\Message {
   public dict<string, \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t> $map_string_foreign_enum;
   private ?\protobuf_test_messages\proto2\TestAllTypesProto2_Data $data;
   private bool $was_data_set;
+  private ?\protobuf_test_messages\proto2\TestAllTypesProto2_MultiWordGroupField $multiwordgroupfield;
+  private bool $was_multiwordgroupfield_set;
   private int $default_int32;
   private bool $was_default_int32_set;
   private int $default_int64;
@@ -3736,6 +4323,8 @@ class TestAllTypesProto2 implements \Protobuf\Message {
   private bool $was_field_name17___set;
   private int $Field_name18__;
   private bool $was_Field_name18___set;
+  private ?\protobuf_test_messages\proto2\TestAllTypesProto2_MessageSetCorrect $message_set_correct;
+  private bool $was_message_set_correct_set;
   public TestAllTypesProto2_oneof_field $oneof_field;
   private string $XXX_unrecognized;
 
@@ -3821,8 +4410,10 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     ?'map_fixed64_fixed64' => dict<int, int>,
     ?'map_sfixed32_sfixed32' => dict<int, int>,
     ?'map_sfixed64_sfixed64' => dict<int, int>,
+    ?'map_int32_bool' => dict<int, bool>,
     ?'map_int32_float' => dict<int, float>,
     ?'map_int32_double' => dict<int, float>,
+    ?'map_int32_nested_message' => dict<int, \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage>,
     ?'map_bool_bool' => dict<\Protobuf\Internal\bool_map_key_t, bool>,
     ?'map_string_string' => dict<string, string>,
     ?'map_string_bytes' => dict<string, string>,
@@ -3831,6 +4422,7 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     ?'map_string_nested_enum' => dict<string, \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum_enum_t>,
     ?'map_string_foreign_enum' => dict<string, \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t>,
     ?'data' => ?\protobuf_test_messages\proto2\TestAllTypesProto2_Data,
+    ?'multiwordgroupfield' => ?\protobuf_test_messages\proto2\TestAllTypesProto2_MultiWordGroupField,
     ?'default_int32' => int,
     ?'default_int64' => int,
     ?'default_uint32' => int,
@@ -3864,6 +4456,7 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     ?'field__Name16' => int,
     ?'field_name17__' => int,
     ?'Field_name18__' => int,
+    ?'message_set_correct' => ?\protobuf_test_messages\proto2\TestAllTypesProto2_MessageSetCorrect,
     ?'oneof_field' => TestAllTypesProto2_oneof_field,
   ) $s = shape()) {
     if (Shapes::keyExists($s, 'optional_int32')) {
@@ -4079,8 +4672,10 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->map_fixed64_fixed64 = $s['map_fixed64_fixed64'] ?? dict[];
     $this->map_sfixed32_sfixed32 = $s['map_sfixed32_sfixed32'] ?? dict[];
     $this->map_sfixed64_sfixed64 = $s['map_sfixed64_sfixed64'] ?? dict[];
+    $this->map_int32_bool = $s['map_int32_bool'] ?? dict[];
     $this->map_int32_float = $s['map_int32_float'] ?? dict[];
     $this->map_int32_double = $s['map_int32_double'] ?? dict[];
+    $this->map_int32_nested_message = $s['map_int32_nested_message'] ?? dict[];
     $this->map_bool_bool = $s['map_bool_bool'] ?? dict[];
     $this->map_string_string = $s['map_string_string'] ?? dict[];
     $this->map_string_bytes = $s['map_string_bytes'] ?? dict[];
@@ -4094,6 +4689,13 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     } else {
       $this->data = null;
       $this->was_data_set = false;
+    }
+    if (Shapes::keyExists($s, 'multiwordgroupfield')) {
+      $this->multiwordgroupfield = $s['multiwordgroupfield'];
+      $this->was_multiwordgroupfield_set = true;
+    } else {
+      $this->multiwordgroupfield = null;
+      $this->was_multiwordgroupfield_set = false;
     }
     if (Shapes::keyExists($s, 'default_int32')) {
       $this->default_int32 = $s['default_int32'];
@@ -4325,6 +4927,13 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     } else {
       $this->Field_name18__ = 0;
       $this->was_Field_name18___set = false;
+    }
+    if (Shapes::keyExists($s, 'message_set_correct')) {
+      $this->message_set_correct = $s['message_set_correct'];
+      $this->was_message_set_correct_set = true;
+    } else {
+      $this->message_set_correct = null;
+      $this->was_message_set_correct_set = false;
     }
     $this->oneof_field = $s['oneof_field'] ?? new TestAllTypesProto2_oneof_field_NOT_SET();
     $this->XXX_unrecognized = '';
@@ -4627,6 +5236,19 @@ class TestAllTypesProto2 implements \Protobuf\Message {
 
   public function hasData(): bool {
     return $this->was_data_set;
+  }
+
+  public function getMultiwordgroupfield(): ?\protobuf_test_messages\proto2\TestAllTypesProto2_MultiWordGroupField {
+    return $this->multiwordgroupfield;
+  }
+
+  public function setMultiwordgroupfield(?\protobuf_test_messages\proto2\TestAllTypesProto2_MultiWordGroupField $v): void {
+    $this->multiwordgroupfield = $v;
+    $this->was_multiwordgroupfield_set = true;
+  }
+
+  public function hasMultiwordgroupfield(): bool {
+    return $this->was_multiwordgroupfield_set;
   }
 
   public function getDefaultInt32(): int {
@@ -5056,6 +5678,19 @@ class TestAllTypesProto2 implements \Protobuf\Message {
 
   public function hasFieldName18(): bool {
     return $this->was_Field_name18___set;
+  }
+
+  public function getMessageSetCorrect(): ?\protobuf_test_messages\proto2\TestAllTypesProto2_MessageSetCorrect {
+    return $this->message_set_correct;
+  }
+
+  public function setMessageSetCorrect(?\protobuf_test_messages\proto2\TestAllTypesProto2_MessageSetCorrect $v): void {
+    $this->message_set_correct = $v;
+    $this->was_message_set_correct_set = true;
+  }
+
+  public function hasMessageSetCorrect(): bool {
+    return $this->was_message_set_correct_set;
   }
 
   public function MessageName(): string {
@@ -5719,6 +6354,16 @@ class TestAllTypesProto2 implements \Protobuf\Message {
             $this->unpacked_nested_enum []= \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromInt($d->readVarint());
           }
           break;
+        case 103:
+          $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32NestedMessageEntry();
+          $obj->MergeFrom($d->readDecoder());
+          $this->map_int32_nested_message[$obj->getKey()] = $obj->getValue() ?? new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+          break;
+        case 104:
+          $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32BoolEntry();
+          $obj->MergeFrom($d->readDecoder());
+          $this->map_int32_bool[$obj->getKey()] = $obj->getValue();
+          break;
         case 111:
           $this->oneof_field = new TestAllTypesProto2_oneof_field_oneof_uint32($d->readVarint32());
           break;
@@ -5758,6 +6403,13 @@ class TestAllTypesProto2 implements \Protobuf\Message {
             $this->was_data_set = true;
           }
           $this->data->MergeFrom($d->readDecoder());
+          break;
+        case 204:
+          if ($this->multiwordgroupfield is null) {
+            $this->multiwordgroupfield = new \protobuf_test_messages\proto2\TestAllTypesProto2_MultiWordGroupField();
+            $this->was_multiwordgroupfield_set = true;
+          }
+          $this->multiwordgroupfield->MergeFrom($d->readDecoder());
           break;
         case 241:
           $this->default_int32 = $d->readVarint32Signed();
@@ -5890,6 +6542,13 @@ class TestAllTypesProto2 implements \Protobuf\Message {
         case 418:
           $this->Field_name18__ = $d->readVarint32Signed();
           $this->was_Field_name18___set = true;
+          break;
+        case 500:
+          if ($this->message_set_correct is null) {
+            $this->message_set_correct = new \protobuf_test_messages\proto2\TestAllTypesProto2_MessageSetCorrect();
+            $this->was_message_set_correct_set = true;
+          }
+          $this->message_set_correct->MergeFrom($d->readDecoder());
           break;
         default:
           $d->skip($fn, $wt);
@@ -6391,12 +7050,36 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $e->writeTag(102, 0);
       $e->writeVarint($elem);
     }
+    foreach ($this->map_int32_nested_message as $k => $v) {
+      $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32NestedMessageEntry();
+      $obj->setKey($k);
+      $obj->setValue($v);
+      $nested = new \Protobuf\Internal\Encoder();
+      $obj->WriteTo($nested);
+      $e->writeEncoder($nested, 103);
+    }
+    foreach ($this->map_int32_bool as $k => $v) {
+      $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_MapInt32BoolEntry();
+      $obj->setKey($k);
+      $obj->setValue($v);
+      $nested = new \Protobuf\Internal\Encoder();
+      $obj->WriteTo($nested);
+      $e->writeEncoder($nested, 104);
+    }
     $msg = $this->data;
     if ($msg != null) {
       if ($this->was_data_set) {
         $nested = new \Protobuf\Internal\Encoder();
         $msg->WriteTo($nested);
         $e->writeEncoder($nested, 201);
+      }
+    }
+    $msg = $this->multiwordgroupfield;
+    if ($msg != null) {
+      if ($this->was_multiwordgroupfield_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 204);
       }
     }
     if ($this->was_default_int32_set) {
@@ -6530,6 +7213,14 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     if ($this->was_Field_name18___set) {
       $e->writeTag(418, 0);
       $e->writeVarint($this->Field_name18__);
+    }
+    $msg = $this->message_set_correct;
+    if ($msg != null) {
+      if ($this->was_message_set_correct_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 500);
+      }
     }
     $this->oneof_field->WriteTo($e);
     $e->writeRaw($this->XXX_unrecognized);
@@ -6670,8 +7361,13 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $e->writeFloatList('unpacked_double', 'unpackedDouble', $this->unpacked_double);
     $e->writePrimitiveList('unpacked_bool', 'unpackedBool', $this->unpacked_bool);
     $e->writeEnumList('unpacked_nested_enum', 'unpackedNestedEnum', \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::ToStringDict(), $this->unpacked_nested_enum);
+    $e->writeMessageMap('map_int32_nested_message', 'mapInt32NestedMessage', $this->map_int32_nested_message);
+    $e->writePrimitiveMap('map_int32_bool', 'mapInt32Bool', $this->map_int32_bool);
     if ($this->hasData()) {
       $e->writeMessage('data', 'data', $this->data, false);
+    }
+    if ($this->hasMultiwordgroupfield()) {
+      $e->writeMessage('multiwordgroupfield', 'multiwordgroupfield', $this->multiwordgroupfield, false);
     }
     if ($this->hasDefaultInt32()) {
       $e->writeInt32('default_int32', 'defaultInt32', $this->default_int32, false);
@@ -6771,6 +7467,9 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     }
     if ($this->hasFieldName18()) {
       $e->writeInt32('Field_name18__', 'FieldName18', $this->Field_name18__, false);
+    }
+    if ($this->hasMessageSetCorrect()) {
+      $e->writeMessage('message_set_correct', 'messageSetCorrect', $this->message_set_correct, false);
     }
     $this->oneof_field->WriteJsonTo($e);
   }
@@ -7266,6 +7965,22 @@ class TestAllTypesProto2 implements \Protobuf\Message {
             $this->unpacked_nested_enum []= \protobuf_test_messages\proto2\TestAllTypesProto2_NestedEnum::FromMixed($vv);
           }
           break;
+        case 'map_int32_nested_message': case 'mapInt32NestedMessage':
+          if ($v !== null) {
+            foreach (\Protobuf\Internal\JsonDecoder::readObject($v) as $k => $v) {
+              $obj = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+              $obj->MergeJsonFrom($v);
+              $this->map_int32_nested_message[\Protobuf\Internal\JsonDecoder::readInt32Signed($k)] = $obj;
+            }
+          }
+          break;
+        case 'map_int32_bool': case 'mapInt32Bool':
+          if ($v !== null) {
+            foreach (\Protobuf\Internal\JsonDecoder::readObject($v) as $k => $v) {
+              $this->map_int32_bool[\Protobuf\Internal\JsonDecoder::readInt32Signed($k)] = \Protobuf\Internal\JsonDecoder::readBool($v);
+            }
+          }
+          break;
         case 'oneof_uint32': case 'oneofUint32':
           $this->oneof_field = new TestAllTypesProto2_oneof_field_oneof_uint32(\Protobuf\Internal\JsonDecoder::readInt32Unsigned($v));
           break;
@@ -7302,6 +8017,14 @@ class TestAllTypesProto2 implements \Protobuf\Message {
             $this->was_data_set = true;
           }
           $this->data->MergeJsonFrom($v);
+          break;
+        case 'multiwordgroupfield':
+          if ($v is null) break;
+          if ($this->multiwordgroupfield is null) {
+            $this->multiwordgroupfield = new \protobuf_test_messages\proto2\TestAllTypesProto2_MultiWordGroupField();
+            $this->was_multiwordgroupfield_set = true;
+          }
+          $this->multiwordgroupfield->MergeJsonFrom($v);
           break;
         case 'default_int32': case 'defaultInt32':
           $this->default_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
@@ -7434,6 +8157,14 @@ class TestAllTypesProto2 implements \Protobuf\Message {
         case 'Field_name18__': case 'FieldName18':
           $this->Field_name18__ = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
           $this->was_Field_name18___set = true;
+          break;
+        case 'message_set_correct': case 'messageSetCorrect':
+          if ($v is null) break;
+          if ($this->message_set_correct is null) {
+            $this->message_set_correct = new \protobuf_test_messages\proto2\TestAllTypesProto2_MessageSetCorrect();
+            $this->was_message_set_correct_set = true;
+          }
+          $this->message_set_correct->MergeJsonFrom($v);
           break;
         default:
         break;
@@ -7610,6 +8341,12 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     $this->unpacked_double = $o->unpacked_double;
     $this->unpacked_bool = $o->unpacked_bool;
     $this->unpacked_nested_enum = $o->unpacked_nested_enum;
+    foreach ($o->map_int32_nested_message as $k => $v) {
+      $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_NestedMessage();
+      $nv->CopyFrom($v);
+      $this->map_int32_nested_message[$k] = $nv;
+    }
+    $this->map_int32_bool = $o->map_int32_bool;
     $tmp = $o->data;
     if ($tmp is nonnull) {
       $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_Data();
@@ -7617,6 +8354,14 @@ class TestAllTypesProto2 implements \Protobuf\Message {
       $this->setData($nv);
     } else if ($o->hasData()) {
       $this->setData(null);
+    }
+    $tmp = $o->multiwordgroupfield;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_MultiWordGroupField();
+      $nv->CopyFrom($tmp);
+      $this->setMultiwordgroupfield($nv);
+    } else if ($o->hasMultiwordgroupfield()) {
+      $this->setMultiwordgroupfield(null);
     }
     if ($o->hasDefaultInt32()) {
       $this->setDefaultInt32($o->getDefaultInt32());
@@ -7716,6 +8461,14 @@ class TestAllTypesProto2 implements \Protobuf\Message {
     }
     if ($o->hasFieldName18()) {
       $this->setFieldName18($o->getFieldName18());
+    }
+    $tmp = $o->message_set_correct;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\TestAllTypesProto2_MessageSetCorrect();
+      $nv->CopyFrom($tmp);
+      $this->setMessageSetCorrect($nv);
+    } else if ($o->hasMessageSetCorrect()) {
+      $this->setMessageSetCorrect(null);
     }
     $this->oneof_field = $o->oneof_field->Copy();
     $this->XXX_unrecognized = $o->XXX_unrecognized;
@@ -7817,6 +8570,147 @@ class ForeignMessageProto2 implements \Protobuf\Message {
     }
     if ($o->hasC()) {
       $this->setC($o->getC());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class GroupField implements \Protobuf\Message {
+  private int $group_int32;
+  private bool $was_group_int32_set;
+  private int $group_uint32;
+  private bool $was_group_uint32_set;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'group_int32' => int,
+    ?'group_uint32' => int,
+  ) $s = shape()) {
+    if (Shapes::keyExists($s, 'group_int32')) {
+      $this->group_int32 = $s['group_int32'];
+      $this->was_group_int32_set = true;
+    } else {
+      $this->group_int32 = 0;
+      $this->was_group_int32_set = false;
+    }
+    if (Shapes::keyExists($s, 'group_uint32')) {
+      $this->group_uint32 = $s['group_uint32'];
+      $this->was_group_uint32_set = true;
+    } else {
+      $this->group_uint32 = 0;
+      $this->was_group_uint32_set = false;
+    }
+    $this->XXX_unrecognized = '';
+  }
+
+  public function getGroupInt32(): int {
+    return $this->group_int32;
+  }
+
+  public function setGroupInt32(int $v): void {
+    $this->group_int32 = $v;
+    $this->was_group_int32_set = true;
+  }
+
+  public function hasGroupInt32(): bool {
+    return $this->was_group_int32_set;
+  }
+
+  public function getGroupUint32(): int {
+    return $this->group_uint32;
+  }
+
+  public function setGroupUint32(int $v): void {
+    $this->group_uint32 = $v;
+    $this->was_group_uint32_set = true;
+  }
+
+  public function hasGroupUint32(): bool {
+    return $this->was_group_uint32_set;
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.GroupField";
+  }
+
+  public static function ParseFrom(string $input): ?GroupField {
+    $msg = new GroupField();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 122:
+          $this->group_int32 = $d->readVarint32Signed();
+          $this->was_group_int32_set = true;
+          break;
+        case 123:
+          $this->group_uint32 = $d->readVarint32();
+          $this->was_group_uint32_set = true;
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->was_group_int32_set) {
+      $e->writeTag(122, 0);
+      $e->writeVarint($this->group_int32);
+    }
+    if ($this->was_group_uint32_set) {
+      $e->writeTag(123, 0);
+      $e->writeVarint($this->group_uint32);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    if ($this->hasGroupInt32()) {
+      $e->writeInt32('group_int32', 'groupInt32', $this->group_int32, false);
+    }
+    if ($this->hasGroupUint32()) {
+      $e->writeInt32('group_uint32', 'groupUint32', $this->group_uint32, false);
+    }
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'group_int32': case 'groupInt32':
+          $this->group_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_group_int32_set = true;
+          break;
+        case 'group_uint32': case 'groupUint32':
+          $this->group_uint32 = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          $this->was_group_uint32_set = true;
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is GroupField)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->hasGroupInt32()) {
+      $this->setGroupInt32($o->getGroupInt32());
+    }
+    if ($o->hasGroupUint32()) {
+      $this->setGroupUint32($o->getGroupUint32());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -8486,6 +9380,1971 @@ class OneStringProto2 implements \Protobuf\Message {
   }
 }
 
+class ProtoWithKeywords implements \Protobuf\Message {
+  private int $inline;
+  private bool $was_inline_set;
+  private string $concept;
+  private bool $was_concept_set;
+  public vec<string> $requires;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'inline' => int,
+    ?'concept' => string,
+    ?'requires' => vec<string>,
+  ) $s = shape()) {
+    if (Shapes::keyExists($s, 'inline')) {
+      $this->inline = $s['inline'];
+      $this->was_inline_set = true;
+    } else {
+      $this->inline = 0;
+      $this->was_inline_set = false;
+    }
+    if (Shapes::keyExists($s, 'concept')) {
+      $this->concept = $s['concept'];
+      $this->was_concept_set = true;
+    } else {
+      $this->concept = '';
+      $this->was_concept_set = false;
+    }
+    $this->requires = $s['requires'] ?? vec[];
+    $this->XXX_unrecognized = '';
+  }
+
+  public function getInline(): int {
+    return $this->inline;
+  }
+
+  public function setInline(int $v): void {
+    $this->inline = $v;
+    $this->was_inline_set = true;
+  }
+
+  public function hasInline(): bool {
+    return $this->was_inline_set;
+  }
+
+  public function getConcept(): string {
+    return $this->concept;
+  }
+
+  public function setConcept(string $v): void {
+    $this->concept = $v;
+    $this->was_concept_set = true;
+  }
+
+  public function hasConcept(): bool {
+    return $this->was_concept_set;
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.ProtoWithKeywords";
+  }
+
+  public static function ParseFrom(string $input): ?ProtoWithKeywords {
+    $msg = new ProtoWithKeywords();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 1:
+          $this->inline = $d->readVarint32Signed();
+          $this->was_inline_set = true;
+          break;
+        case 2:
+          $this->concept = $d->readString();
+          $this->was_concept_set = true;
+          break;
+        case 3:
+          $this->requires []= $d->readString();
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->was_inline_set) {
+      $e->writeTag(1, 0);
+      $e->writeVarint($this->inline);
+    }
+    if ($this->was_concept_set) {
+      $e->writeTag(2, 2);
+      $e->writeString($this->concept);
+    }
+    foreach ($this->requires as $elem) {
+      $e->writeTag(3, 2);
+      $e->writeString($elem);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    if ($this->hasInline()) {
+      $e->writeInt32('inline', 'inline', $this->inline, false);
+    }
+    if ($this->hasConcept()) {
+      $e->writeString('concept', 'concept', $this->concept, false);
+    }
+    $e->writePrimitiveList('requires', 'requires', $this->requires);
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'inline':
+          $this->inline = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_inline_set = true;
+          break;
+        case 'concept':
+          $this->concept = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_concept_set = true;
+          break;
+        case 'requires':
+          foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
+            $this->requires []= \Protobuf\Internal\JsonDecoder::readString($vv);
+          }
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is ProtoWithKeywords)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->hasInline()) {
+      $this->setInline($o->getInline());
+    }
+    if ($o->hasConcept()) {
+      $this->setConcept($o->getConcept());
+    }
+    $this->requires = $o->requires;
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+newtype TestAllRequiredTypesProto2_NestedEnum_enum_t as int = int;
+abstract class TestAllRequiredTypesProto2_NestedEnum {
+  const TestAllRequiredTypesProto2_NestedEnum_enum_t FOO = 0;
+  const TestAllRequiredTypesProto2_NestedEnum_enum_t BAR = 1;
+  const TestAllRequiredTypesProto2_NestedEnum_enum_t BAZ = 2;
+  const TestAllRequiredTypesProto2_NestedEnum_enum_t NEG = -1;
+  private static dict<int, string> $itos = dict[
+    0 => 'FOO',
+    1 => 'BAR',
+    2 => 'BAZ',
+    -1 => 'NEG',
+  ];
+  public static function ToStringDict(): dict<int, string> {
+    return self::$itos;
+  }
+  private static dict<string, int> $stoi = dict[
+    'FOO' => 0,
+    'BAR' => 1,
+    'BAZ' => 2,
+    'NEG' => -1,
+  ];
+  public static function FromMixed(mixed $m): TestAllRequiredTypesProto2_NestedEnum_enum_t {
+    if ($m is string) return idx(self::$stoi, $m, \is_numeric($m) ? ((int) $m) : 0);
+    if ($m is int) return $m;
+    return 0;
+  }
+  public static function FromInt(int $i): TestAllRequiredTypesProto2_NestedEnum_enum_t {
+    return $i;
+  }
+}
+
+class TestAllRequiredTypesProto2_NestedMessage implements \Protobuf\Message {
+  public int $a;
+  public ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2 $corecursive;
+  private ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2 $optional_corecursive;
+  private bool $was_optional_corecursive_set;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'a' => int,
+    ?'corecursive' => ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2,
+    ?'optional_corecursive' => ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2,
+  ) $s = shape()) {
+    $this->a = $s['a'] ?? 0;
+    $this->corecursive = $s['corecursive'] ?? null;
+    if (Shapes::keyExists($s, 'optional_corecursive')) {
+      $this->optional_corecursive = $s['optional_corecursive'];
+      $this->was_optional_corecursive_set = true;
+    } else {
+      $this->optional_corecursive = null;
+      $this->was_optional_corecursive_set = false;
+    }
+    $this->XXX_unrecognized = '';
+  }
+
+  public function getOptionalCorecursive(): ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2 {
+    return $this->optional_corecursive;
+  }
+
+  public function setOptionalCorecursive(?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2 $v): void {
+    $this->optional_corecursive = $v;
+    $this->was_optional_corecursive_set = true;
+  }
+
+  public function hasOptionalCorecursive(): bool {
+    return $this->was_optional_corecursive_set;
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.NestedMessage";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllRequiredTypesProto2_NestedMessage {
+    $msg = new TestAllRequiredTypesProto2_NestedMessage();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 1:
+          $this->a = $d->readVarint32Signed();
+          break;
+        case 2:
+          if ($this->corecursive is null) {
+            $this->corecursive = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+          }
+          $this->corecursive->MergeFrom($d->readDecoder());
+          break;
+        case 3:
+          if ($this->optional_corecursive is null) {
+            $this->optional_corecursive = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+            $this->was_optional_corecursive_set = true;
+          }
+          $this->optional_corecursive->MergeFrom($d->readDecoder());
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->a !== 0) {
+      $e->writeTag(1, 0);
+      $e->writeVarint($this->a);
+    }
+    $msg = $this->corecursive;
+    if ($msg != null) {
+      $nested = new \Protobuf\Internal\Encoder();
+      $msg->WriteTo($nested);
+      $e->writeEncoder($nested, 2);
+    }
+    $msg = $this->optional_corecursive;
+    if ($msg != null) {
+      if ($this->was_optional_corecursive_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 3);
+      }
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeInt32('a', 'a', $this->a, false);
+    $e->writeMessage('corecursive', 'corecursive', $this->corecursive, false);
+    if ($this->hasOptionalCorecursive()) {
+      $e->writeMessage('optional_corecursive', 'optionalCorecursive', $this->optional_corecursive, false);
+    }
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'a':
+          $this->a = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'corecursive':
+          if ($v is null) break;
+          if ($this->corecursive is null) {
+            $this->corecursive = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+          }
+          $this->corecursive->MergeJsonFrom($v);
+          break;
+        case 'optional_corecursive': case 'optionalCorecursive':
+          if ($v is null) break;
+          if ($this->optional_corecursive is null) {
+            $this->optional_corecursive = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+            $this->was_optional_corecursive_set = true;
+          }
+          $this->optional_corecursive->MergeJsonFrom($v);
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllRequiredTypesProto2_NestedMessage)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->a = $o->a;
+    $tmp = $o->corecursive;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+      $nv->CopyFrom($tmp);
+      $this->corecursive = $nv;
+    }
+    $tmp = $o->optional_corecursive;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+      $nv->CopyFrom($tmp);
+      $this->setOptionalCorecursive($nv);
+    } else if ($o->hasOptionalCorecursive()) {
+      $this->setOptionalCorecursive(null);
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestAllRequiredTypesProto2_Data implements \Protobuf\Message {
+  public int $group_int32;
+  public int $group_uint32;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'group_int32' => int,
+    ?'group_uint32' => int,
+  ) $s = shape()) {
+    $this->group_int32 = $s['group_int32'] ?? 0;
+    $this->group_uint32 = $s['group_uint32'] ?? 0;
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.Data";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllRequiredTypesProto2_Data {
+    $msg = new TestAllRequiredTypesProto2_Data();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 202:
+          $this->group_int32 = $d->readVarint32Signed();
+          break;
+        case 203:
+          $this->group_uint32 = $d->readVarint32();
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->group_int32 !== 0) {
+      $e->writeTag(202, 0);
+      $e->writeVarint($this->group_int32);
+    }
+    if ($this->group_uint32 !== 0) {
+      $e->writeTag(203, 0);
+      $e->writeVarint($this->group_uint32);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeInt32('group_int32', 'groupInt32', $this->group_int32, false);
+    $e->writeInt32('group_uint32', 'groupUint32', $this->group_uint32, false);
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'group_int32': case 'groupInt32':
+          $this->group_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'group_uint32': case 'groupUint32':
+          $this->group_uint32 = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllRequiredTypesProto2_Data)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->group_int32 = $o->group_int32;
+    $this->group_uint32 = $o->group_uint32;
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestAllRequiredTypesProto2_MessageSetCorrect implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrect";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllRequiredTypesProto2_MessageSetCorrect {
+    $msg = new TestAllRequiredTypesProto2_MessageSetCorrect();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllRequiredTypesProto2_MessageSetCorrect)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestAllRequiredTypesProto2_MessageSetCorrectExtension1 implements \Protobuf\Message {
+  public string $str;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'str' => string,
+  ) $s = shape()) {
+    $this->str = $s['str'] ?? '';
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension1";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllRequiredTypesProto2_MessageSetCorrectExtension1 {
+    $msg = new TestAllRequiredTypesProto2_MessageSetCorrectExtension1();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 25:
+          $this->str = $d->readString();
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->str !== '') {
+      $e->writeTag(25, 2);
+      $e->writeString($this->str);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeString('str', 'str', $this->str, false);
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'str':
+          $this->str = \Protobuf\Internal\JsonDecoder::readString($v);
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllRequiredTypesProto2_MessageSetCorrectExtension1)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->str = $o->str;
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestAllRequiredTypesProto2_MessageSetCorrectExtension2 implements \Protobuf\Message {
+  public int $i;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'i' => int,
+  ) $s = shape()) {
+    $this->i = $s['i'] ?? 0;
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllRequiredTypesProto2.MessageSetCorrectExtension2";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllRequiredTypesProto2_MessageSetCorrectExtension2 {
+    $msg = new TestAllRequiredTypesProto2_MessageSetCorrectExtension2();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 9:
+          $this->i = $d->readVarint32Signed();
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->i !== 0) {
+      $e->writeTag(9, 0);
+      $e->writeVarint($this->i);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeInt32('i', 'i', $this->i, false);
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'i':
+          $this->i = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllRequiredTypesProto2_MessageSetCorrectExtension2)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->i = $o->i;
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestAllRequiredTypesProto2 implements \Protobuf\Message {
+  public int $required_int32;
+  public int $required_int64;
+  public int $required_uint32;
+  public int $required_uint64;
+  public int $required_sint32;
+  public int $required_sint64;
+  public int $required_fixed32;
+  public int $required_fixed64;
+  public int $required_sfixed32;
+  public int $required_sfixed64;
+  public float $required_float;
+  public float $required_double;
+  public bool $required_bool;
+  public string $required_string;
+  public string $required_bytes;
+  public ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedMessage $required_nested_message;
+  public ?\protobuf_test_messages\proto2\ForeignMessageProto2 $required_foreign_message;
+  public \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedEnum_enum_t $required_nested_enum;
+  public \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t $required_foreign_enum;
+  public string $required_string_piece;
+  public string $required_cord;
+  public ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2 $recursive_message;
+  private ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2 $optional_recursive_message;
+  private bool $was_optional_recursive_message_set;
+  public ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2_Data $data;
+  public int $default_int32;
+  public int $default_int64;
+  public int $default_uint32;
+  public int $default_uint64;
+  public int $default_sint32;
+  public int $default_sint64;
+  public int $default_fixed32;
+  public int $default_fixed64;
+  public int $default_sfixed32;
+  public int $default_sfixed64;
+  public float $default_float;
+  public float $default_double;
+  public bool $default_bool;
+  public string $default_string;
+  public string $default_bytes;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'required_int32' => int,
+    ?'required_int64' => int,
+    ?'required_uint32' => int,
+    ?'required_uint64' => int,
+    ?'required_sint32' => int,
+    ?'required_sint64' => int,
+    ?'required_fixed32' => int,
+    ?'required_fixed64' => int,
+    ?'required_sfixed32' => int,
+    ?'required_sfixed64' => int,
+    ?'required_float' => float,
+    ?'required_double' => float,
+    ?'required_bool' => bool,
+    ?'required_string' => string,
+    ?'required_bytes' => string,
+    ?'required_nested_message' => ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedMessage,
+    ?'required_foreign_message' => ?\protobuf_test_messages\proto2\ForeignMessageProto2,
+    ?'required_nested_enum' => \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedEnum_enum_t,
+    ?'required_foreign_enum' => \protobuf_test_messages\proto2\ForeignEnumProto2_enum_t,
+    ?'required_string_piece' => string,
+    ?'required_cord' => string,
+    ?'recursive_message' => ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2,
+    ?'optional_recursive_message' => ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2,
+    ?'data' => ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2_Data,
+    ?'default_int32' => int,
+    ?'default_int64' => int,
+    ?'default_uint32' => int,
+    ?'default_uint64' => int,
+    ?'default_sint32' => int,
+    ?'default_sint64' => int,
+    ?'default_fixed32' => int,
+    ?'default_fixed64' => int,
+    ?'default_sfixed32' => int,
+    ?'default_sfixed64' => int,
+    ?'default_float' => float,
+    ?'default_double' => float,
+    ?'default_bool' => bool,
+    ?'default_string' => string,
+    ?'default_bytes' => string,
+  ) $s = shape()) {
+    $this->required_int32 = $s['required_int32'] ?? 0;
+    $this->required_int64 = $s['required_int64'] ?? 0;
+    $this->required_uint32 = $s['required_uint32'] ?? 0;
+    $this->required_uint64 = $s['required_uint64'] ?? 0;
+    $this->required_sint32 = $s['required_sint32'] ?? 0;
+    $this->required_sint64 = $s['required_sint64'] ?? 0;
+    $this->required_fixed32 = $s['required_fixed32'] ?? 0;
+    $this->required_fixed64 = $s['required_fixed64'] ?? 0;
+    $this->required_sfixed32 = $s['required_sfixed32'] ?? 0;
+    $this->required_sfixed64 = $s['required_sfixed64'] ?? 0;
+    $this->required_float = $s['required_float'] ?? 0.0;
+    $this->required_double = $s['required_double'] ?? 0.0;
+    $this->required_bool = $s['required_bool'] ?? false;
+    $this->required_string = $s['required_string'] ?? '';
+    $this->required_bytes = $s['required_bytes'] ?? '';
+    $this->required_nested_message = $s['required_nested_message'] ?? null;
+    $this->required_foreign_message = $s['required_foreign_message'] ?? null;
+    $this->required_nested_enum = $s['required_nested_enum'] ?? \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedEnum::FOO;
+    $this->required_foreign_enum = $s['required_foreign_enum'] ?? \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO;
+    $this->required_string_piece = $s['required_string_piece'] ?? '';
+    $this->required_cord = $s['required_cord'] ?? '';
+    $this->recursive_message = $s['recursive_message'] ?? null;
+    if (Shapes::keyExists($s, 'optional_recursive_message')) {
+      $this->optional_recursive_message = $s['optional_recursive_message'];
+      $this->was_optional_recursive_message_set = true;
+    } else {
+      $this->optional_recursive_message = null;
+      $this->was_optional_recursive_message_set = false;
+    }
+    $this->data = $s['data'] ?? null;
+    $this->default_int32 = $s['default_int32'] ?? -123456789;
+    $this->default_int64 = $s['default_int64'] ?? -9123456789123456789;
+    $this->default_uint32 = $s['default_uint32'] ?? 2123456789;
+    $this->default_uint64 = $s['default_uint64'] ?? -8323287284586094827;
+    $this->default_sint32 = $s['default_sint32'] ?? -123456789;
+    $this->default_sint64 = $s['default_sint64'] ?? -9123456789123456789;
+    $this->default_fixed32 = $s['default_fixed32'] ?? 2123456789;
+    $this->default_fixed64 = $s['default_fixed64'] ?? -8323287284586094827;
+    $this->default_sfixed32 = $s['default_sfixed32'] ?? -123456789;
+    $this->default_sfixed64 = $s['default_sfixed64'] ?? -9123456789123456789;
+    $this->default_float = $s['default_float'] ?? (float)9e+09;
+    $this->default_double = $s['default_double'] ?? (float)7e+22;
+    $this->default_bool = $s['default_bool'] ?? true;
+    $this->default_string = $s['default_string'] ?? 'Rosebud';
+    $this->default_bytes = $s['default_bytes'] ?? \stripcslashes('joshua');
+    $this->XXX_unrecognized = '';
+  }
+
+  public function getOptionalRecursiveMessage(): ?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2 {
+    return $this->optional_recursive_message;
+  }
+
+  public function setOptionalRecursiveMessage(?\protobuf_test_messages\proto2\TestAllRequiredTypesProto2 $v): void {
+    $this->optional_recursive_message = $v;
+    $this->was_optional_recursive_message_set = true;
+  }
+
+  public function hasOptionalRecursiveMessage(): bool {
+    return $this->was_optional_recursive_message_set;
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestAllRequiredTypesProto2";
+  }
+
+  public static function ParseFrom(string $input): ?TestAllRequiredTypesProto2 {
+    $msg = new TestAllRequiredTypesProto2();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 1:
+          $this->required_int32 = $d->readVarint32Signed();
+          break;
+        case 2:
+          $this->required_int64 = $d->readVarint();
+          break;
+        case 3:
+          $this->required_uint32 = $d->readVarint32();
+          break;
+        case 4:
+          $this->required_uint64 = $d->readVarint();
+          break;
+        case 5:
+          $this->required_sint32 = $d->readVarintZigZag32();
+          break;
+        case 6:
+          $this->required_sint64 = $d->readVarintZigZag64();
+          break;
+        case 7:
+          $this->required_fixed32 = $d->readLittleEndianInt32Unsigned();
+          break;
+        case 8:
+          $this->required_fixed64 = $d->readLittleEndianInt64();
+          break;
+        case 9:
+          $this->required_sfixed32 = $d->readLittleEndianInt32Signed();
+          break;
+        case 10:
+          $this->required_sfixed64 = $d->readLittleEndianInt64();
+          break;
+        case 11:
+          $this->required_float = $d->readFloat();
+          break;
+        case 12:
+          $this->required_double = $d->readDouble();
+          break;
+        case 13:
+          $this->required_bool = $d->readBool();
+          break;
+        case 14:
+          $this->required_string = $d->readString();
+          break;
+        case 15:
+          $this->required_bytes = $d->readString();
+          break;
+        case 18:
+          if ($this->required_nested_message is null) {
+            $this->required_nested_message = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedMessage();
+          }
+          $this->required_nested_message->MergeFrom($d->readDecoder());
+          break;
+        case 19:
+          if ($this->required_foreign_message is null) {
+            $this->required_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          }
+          $this->required_foreign_message->MergeFrom($d->readDecoder());
+          break;
+        case 21:
+          $this->required_nested_enum = \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedEnum::FromInt($d->readVarint());
+          break;
+        case 22:
+          $this->required_foreign_enum = \protobuf_test_messages\proto2\ForeignEnumProto2::FromInt($d->readVarint());
+          break;
+        case 24:
+          $this->required_string_piece = $d->readString();
+          break;
+        case 25:
+          $this->required_cord = $d->readString();
+          break;
+        case 27:
+          if ($this->recursive_message is null) {
+            $this->recursive_message = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+          }
+          $this->recursive_message->MergeFrom($d->readDecoder());
+          break;
+        case 28:
+          if ($this->optional_recursive_message is null) {
+            $this->optional_recursive_message = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+            $this->was_optional_recursive_message_set = true;
+          }
+          $this->optional_recursive_message->MergeFrom($d->readDecoder());
+          break;
+        case 201:
+          if ($this->data is null) {
+            $this->data = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_Data();
+          }
+          $this->data->MergeFrom($d->readDecoder());
+          break;
+        case 241:
+          $this->default_int32 = $d->readVarint32Signed();
+          break;
+        case 242:
+          $this->default_int64 = $d->readVarint();
+          break;
+        case 243:
+          $this->default_uint32 = $d->readVarint32();
+          break;
+        case 244:
+          $this->default_uint64 = $d->readVarint();
+          break;
+        case 245:
+          $this->default_sint32 = $d->readVarintZigZag32();
+          break;
+        case 246:
+          $this->default_sint64 = $d->readVarintZigZag64();
+          break;
+        case 247:
+          $this->default_fixed32 = $d->readLittleEndianInt32Unsigned();
+          break;
+        case 248:
+          $this->default_fixed64 = $d->readLittleEndianInt64();
+          break;
+        case 249:
+          $this->default_sfixed32 = $d->readLittleEndianInt32Signed();
+          break;
+        case 250:
+          $this->default_sfixed64 = $d->readLittleEndianInt64();
+          break;
+        case 251:
+          $this->default_float = $d->readFloat();
+          break;
+        case 252:
+          $this->default_double = $d->readDouble();
+          break;
+        case 253:
+          $this->default_bool = $d->readBool();
+          break;
+        case 254:
+          $this->default_string = $d->readString();
+          break;
+        case 255:
+          $this->default_bytes = $d->readString();
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->required_int32 !== 0) {
+      $e->writeTag(1, 0);
+      $e->writeVarint($this->required_int32);
+    }
+    if ($this->required_int64 !== 0) {
+      $e->writeTag(2, 0);
+      $e->writeVarint($this->required_int64);
+    }
+    if ($this->required_uint32 !== 0) {
+      $e->writeTag(3, 0);
+      $e->writeVarint($this->required_uint32);
+    }
+    if ($this->required_uint64 !== 0) {
+      $e->writeTag(4, 0);
+      $e->writeVarint($this->required_uint64);
+    }
+    if ($this->required_sint32 !== 0) {
+      $e->writeTag(5, 0);
+      $e->writeVarintZigZag32($this->required_sint32);
+    }
+    if ($this->required_sint64 !== 0) {
+      $e->writeTag(6, 0);
+      $e->writeVarintZigZag64($this->required_sint64);
+    }
+    if ($this->required_fixed32 !== 0) {
+      $e->writeTag(7, 5);
+      $e->writeLittleEndianInt32Unsigned($this->required_fixed32);
+    }
+    if ($this->required_fixed64 !== 0) {
+      $e->writeTag(8, 1);
+      $e->writeLittleEndianInt64($this->required_fixed64);
+    }
+    if ($this->required_sfixed32 !== 0) {
+      $e->writeTag(9, 5);
+      $e->writeLittleEndianInt32Signed($this->required_sfixed32);
+    }
+    if ($this->required_sfixed64 !== 0) {
+      $e->writeTag(10, 1);
+      $e->writeLittleEndianInt64($this->required_sfixed64);
+    }
+    if ($this->required_float !== 0.0) {
+      $e->writeTag(11, 5);
+      $e->writeFloat($this->required_float);
+    }
+    if ($this->required_double !== 0.0) {
+      $e->writeTag(12, 1);
+      $e->writeDouble($this->required_double);
+    }
+    if ($this->required_bool !== false) {
+      $e->writeTag(13, 0);
+      $e->writeBool($this->required_bool);
+    }
+    if ($this->required_string !== '') {
+      $e->writeTag(14, 2);
+      $e->writeString($this->required_string);
+    }
+    if ($this->required_bytes !== '') {
+      $e->writeTag(15, 2);
+      $e->writeString($this->required_bytes);
+    }
+    $msg = $this->required_nested_message;
+    if ($msg != null) {
+      $nested = new \Protobuf\Internal\Encoder();
+      $msg->WriteTo($nested);
+      $e->writeEncoder($nested, 18);
+    }
+    $msg = $this->required_foreign_message;
+    if ($msg != null) {
+      $nested = new \Protobuf\Internal\Encoder();
+      $msg->WriteTo($nested);
+      $e->writeEncoder($nested, 19);
+    }
+    if ($this->required_nested_enum !== \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedEnum::FOO) {
+      $e->writeTag(21, 0);
+      $e->writeVarint($this->required_nested_enum);
+    }
+    if ($this->required_foreign_enum !== \protobuf_test_messages\proto2\ForeignEnumProto2::FOREIGN_FOO) {
+      $e->writeTag(22, 0);
+      $e->writeVarint($this->required_foreign_enum);
+    }
+    if ($this->required_string_piece !== '') {
+      $e->writeTag(24, 2);
+      $e->writeString($this->required_string_piece);
+    }
+    if ($this->required_cord !== '') {
+      $e->writeTag(25, 2);
+      $e->writeString($this->required_cord);
+    }
+    $msg = $this->recursive_message;
+    if ($msg != null) {
+      $nested = new \Protobuf\Internal\Encoder();
+      $msg->WriteTo($nested);
+      $e->writeEncoder($nested, 27);
+    }
+    $msg = $this->optional_recursive_message;
+    if ($msg != null) {
+      if ($this->was_optional_recursive_message_set) {
+        $nested = new \Protobuf\Internal\Encoder();
+        $msg->WriteTo($nested);
+        $e->writeEncoder($nested, 28);
+      }
+    }
+    $msg = $this->data;
+    if ($msg != null) {
+      $nested = new \Protobuf\Internal\Encoder();
+      $msg->WriteTo($nested);
+      $e->writeEncoder($nested, 201);
+    }
+    if ($this->default_int32 !== -123456789) {
+      $e->writeTag(241, 0);
+      $e->writeVarint($this->default_int32);
+    }
+    if ($this->default_int64 !== -9123456789123456789) {
+      $e->writeTag(242, 0);
+      $e->writeVarint($this->default_int64);
+    }
+    if ($this->default_uint32 !== 2123456789) {
+      $e->writeTag(243, 0);
+      $e->writeVarint($this->default_uint32);
+    }
+    if ($this->default_uint64 !== -8323287284586094827) {
+      $e->writeTag(244, 0);
+      $e->writeVarint($this->default_uint64);
+    }
+    if ($this->default_sint32 !== -123456789) {
+      $e->writeTag(245, 0);
+      $e->writeVarintZigZag32($this->default_sint32);
+    }
+    if ($this->default_sint64 !== -9123456789123456789) {
+      $e->writeTag(246, 0);
+      $e->writeVarintZigZag64($this->default_sint64);
+    }
+    if ($this->default_fixed32 !== 2123456789) {
+      $e->writeTag(247, 5);
+      $e->writeLittleEndianInt32Unsigned($this->default_fixed32);
+    }
+    if ($this->default_fixed64 !== -8323287284586094827) {
+      $e->writeTag(248, 1);
+      $e->writeLittleEndianInt64($this->default_fixed64);
+    }
+    if ($this->default_sfixed32 !== -123456789) {
+      $e->writeTag(249, 5);
+      $e->writeLittleEndianInt32Signed($this->default_sfixed32);
+    }
+    if ($this->default_sfixed64 !== -9123456789123456789) {
+      $e->writeTag(250, 1);
+      $e->writeLittleEndianInt64($this->default_sfixed64);
+    }
+    if ($this->default_float !== (float)9e+09) {
+      $e->writeTag(251, 5);
+      $e->writeFloat($this->default_float);
+    }
+    if ($this->default_double !== (float)7e+22) {
+      $e->writeTag(252, 1);
+      $e->writeDouble($this->default_double);
+    }
+    if ($this->default_bool !== true) {
+      $e->writeTag(253, 0);
+      $e->writeBool($this->default_bool);
+    }
+    if ($this->default_string !== 'Rosebud') {
+      $e->writeTag(254, 2);
+      $e->writeString($this->default_string);
+    }
+    if ($this->default_bytes !== \stripcslashes('joshua')) {
+      $e->writeTag(255, 2);
+      $e->writeString($this->default_bytes);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeInt32('required_int32', 'requiredInt32', $this->required_int32, false);
+    $e->writeInt64Signed('required_int64', 'requiredInt64', $this->required_int64, false);
+    $e->writeInt32('required_uint32', 'requiredUint32', $this->required_uint32, false);
+    $e->writeInt64Unsigned('required_uint64', 'requiredUint64', $this->required_uint64, false);
+    $e->writeInt32('required_sint32', 'requiredSint32', $this->required_sint32, false);
+    $e->writeInt64Signed('required_sint64', 'requiredSint64', $this->required_sint64, false);
+    $e->writeInt32('required_fixed32', 'requiredFixed32', $this->required_fixed32, false);
+    $e->writeInt64Unsigned('required_fixed64', 'requiredFixed64', $this->required_fixed64, false);
+    $e->writeInt32('required_sfixed32', 'requiredSfixed32', $this->required_sfixed32, false);
+    $e->writeInt64Signed('required_sfixed64', 'requiredSfixed64', $this->required_sfixed64, false);
+    $e->writeFloat('required_float', 'requiredFloat', $this->required_float, false);
+    $e->writeFloat('required_double', 'requiredDouble', $this->required_double, false);
+    $e->writeBool('required_bool', 'requiredBool', $this->required_bool, false);
+    $e->writeString('required_string', 'requiredString', $this->required_string, false);
+    $e->writeBytes('required_bytes', 'requiredBytes', $this->required_bytes, false);
+    $e->writeMessage('required_nested_message', 'requiredNestedMessage', $this->required_nested_message, false);
+    $e->writeMessage('required_foreign_message', 'requiredForeignMessage', $this->required_foreign_message, false);
+    $e->writeEnum('required_nested_enum', 'requiredNestedEnum', \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedEnum::ToStringDict(), $this->required_nested_enum, false);
+    $e->writeEnum('required_foreign_enum', 'requiredForeignEnum', \protobuf_test_messages\proto2\ForeignEnumProto2::ToStringDict(), $this->required_foreign_enum, false);
+    $e->writeString('required_string_piece', 'requiredStringPiece', $this->required_string_piece, false);
+    $e->writeString('required_cord', 'requiredCord', $this->required_cord, false);
+    $e->writeMessage('recursive_message', 'recursiveMessage', $this->recursive_message, false);
+    if ($this->hasOptionalRecursiveMessage()) {
+      $e->writeMessage('optional_recursive_message', 'optionalRecursiveMessage', $this->optional_recursive_message, false);
+    }
+    $e->writeMessage('data', 'data', $this->data, false);
+    $e->writeInt32('default_int32', 'defaultInt32', $this->default_int32, false);
+    $e->writeInt64Signed('default_int64', 'defaultInt64', $this->default_int64, false);
+    $e->writeInt32('default_uint32', 'defaultUint32', $this->default_uint32, false);
+    $e->writeInt64Unsigned('default_uint64', 'defaultUint64', $this->default_uint64, false);
+    $e->writeInt32('default_sint32', 'defaultSint32', $this->default_sint32, false);
+    $e->writeInt64Signed('default_sint64', 'defaultSint64', $this->default_sint64, false);
+    $e->writeInt32('default_fixed32', 'defaultFixed32', $this->default_fixed32, false);
+    $e->writeInt64Unsigned('default_fixed64', 'defaultFixed64', $this->default_fixed64, false);
+    $e->writeInt32('default_sfixed32', 'defaultSfixed32', $this->default_sfixed32, false);
+    $e->writeInt64Signed('default_sfixed64', 'defaultSfixed64', $this->default_sfixed64, false);
+    $e->writeFloat('default_float', 'defaultFloat', $this->default_float, false);
+    $e->writeFloat('default_double', 'defaultDouble', $this->default_double, false);
+    $e->writeBool('default_bool', 'defaultBool', $this->default_bool, false);
+    $e->writeString('default_string', 'defaultString', $this->default_string, false);
+    $e->writeBytes('default_bytes', 'defaultBytes', $this->default_bytes, false);
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'required_int32': case 'requiredInt32':
+          $this->required_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'required_int64': case 'requiredInt64':
+          $this->required_int64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          break;
+        case 'required_uint32': case 'requiredUint32':
+          $this->required_uint32 = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          break;
+        case 'required_uint64': case 'requiredUint64':
+          $this->required_uint64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          break;
+        case 'required_sint32': case 'requiredSint32':
+          $this->required_sint32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'required_sint64': case 'requiredSint64':
+          $this->required_sint64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          break;
+        case 'required_fixed32': case 'requiredFixed32':
+          $this->required_fixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'required_fixed64': case 'requiredFixed64':
+          $this->required_fixed64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          break;
+        case 'required_sfixed32': case 'requiredSfixed32':
+          $this->required_sfixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'required_sfixed64': case 'requiredSfixed64':
+          $this->required_sfixed64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          break;
+        case 'required_float': case 'requiredFloat':
+          $this->required_float = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          break;
+        case 'required_double': case 'requiredDouble':
+          $this->required_double = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          break;
+        case 'required_bool': case 'requiredBool':
+          $this->required_bool = \Protobuf\Internal\JsonDecoder::readBool($v);
+          break;
+        case 'required_string': case 'requiredString':
+          $this->required_string = \Protobuf\Internal\JsonDecoder::readString($v);
+          break;
+        case 'required_bytes': case 'requiredBytes':
+          $this->required_bytes = \Protobuf\Internal\JsonDecoder::readBytes($v);
+          break;
+        case 'required_nested_message': case 'requiredNestedMessage':
+          if ($v is null) break;
+          if ($this->required_nested_message is null) {
+            $this->required_nested_message = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedMessage();
+          }
+          $this->required_nested_message->MergeJsonFrom($v);
+          break;
+        case 'required_foreign_message': case 'requiredForeignMessage':
+          if ($v is null) break;
+          if ($this->required_foreign_message is null) {
+            $this->required_foreign_message = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+          }
+          $this->required_foreign_message->MergeJsonFrom($v);
+          break;
+        case 'required_nested_enum': case 'requiredNestedEnum':
+          $this->required_nested_enum = \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedEnum::FromMixed($v);
+          break;
+        case 'required_foreign_enum': case 'requiredForeignEnum':
+          $this->required_foreign_enum = \protobuf_test_messages\proto2\ForeignEnumProto2::FromMixed($v);
+          break;
+        case 'required_string_piece': case 'requiredStringPiece':
+          $this->required_string_piece = \Protobuf\Internal\JsonDecoder::readString($v);
+          break;
+        case 'required_cord': case 'requiredCord':
+          $this->required_cord = \Protobuf\Internal\JsonDecoder::readString($v);
+          break;
+        case 'recursive_message': case 'recursiveMessage':
+          if ($v is null) break;
+          if ($this->recursive_message is null) {
+            $this->recursive_message = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+          }
+          $this->recursive_message->MergeJsonFrom($v);
+          break;
+        case 'optional_recursive_message': case 'optionalRecursiveMessage':
+          if ($v is null) break;
+          if ($this->optional_recursive_message is null) {
+            $this->optional_recursive_message = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+            $this->was_optional_recursive_message_set = true;
+          }
+          $this->optional_recursive_message->MergeJsonFrom($v);
+          break;
+        case 'data':
+          if ($v is null) break;
+          if ($this->data is null) {
+            $this->data = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_Data();
+          }
+          $this->data->MergeJsonFrom($v);
+          break;
+        case 'default_int32': case 'defaultInt32':
+          $this->default_int32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'default_int64': case 'defaultInt64':
+          $this->default_int64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          break;
+        case 'default_uint32': case 'defaultUint32':
+          $this->default_uint32 = \Protobuf\Internal\JsonDecoder::readInt32Unsigned($v);
+          break;
+        case 'default_uint64': case 'defaultUint64':
+          $this->default_uint64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          break;
+        case 'default_sint32': case 'defaultSint32':
+          $this->default_sint32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'default_sint64': case 'defaultSint64':
+          $this->default_sint64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          break;
+        case 'default_fixed32': case 'defaultFixed32':
+          $this->default_fixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'default_fixed64': case 'defaultFixed64':
+          $this->default_fixed64 = \Protobuf\Internal\JsonDecoder::readInt64Unsigned($v);
+          break;
+        case 'default_sfixed32': case 'defaultSfixed32':
+          $this->default_sfixed32 = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          break;
+        case 'default_sfixed64': case 'defaultSfixed64':
+          $this->default_sfixed64 = \Protobuf\Internal\JsonDecoder::readInt64Signed($v);
+          break;
+        case 'default_float': case 'defaultFloat':
+          $this->default_float = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          break;
+        case 'default_double': case 'defaultDouble':
+          $this->default_double = \Protobuf\Internal\JsonDecoder::readFloat($v);
+          break;
+        case 'default_bool': case 'defaultBool':
+          $this->default_bool = \Protobuf\Internal\JsonDecoder::readBool($v);
+          break;
+        case 'default_string': case 'defaultString':
+          $this->default_string = \Protobuf\Internal\JsonDecoder::readString($v);
+          break;
+        case 'default_bytes': case 'defaultBytes':
+          $this->default_bytes = \Protobuf\Internal\JsonDecoder::readBytes($v);
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestAllRequiredTypesProto2)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->required_int32 = $o->required_int32;
+    $this->required_int64 = $o->required_int64;
+    $this->required_uint32 = $o->required_uint32;
+    $this->required_uint64 = $o->required_uint64;
+    $this->required_sint32 = $o->required_sint32;
+    $this->required_sint64 = $o->required_sint64;
+    $this->required_fixed32 = $o->required_fixed32;
+    $this->required_fixed64 = $o->required_fixed64;
+    $this->required_sfixed32 = $o->required_sfixed32;
+    $this->required_sfixed64 = $o->required_sfixed64;
+    $this->required_float = $o->required_float;
+    $this->required_double = $o->required_double;
+    $this->required_bool = $o->required_bool;
+    $this->required_string = $o->required_string;
+    $this->required_bytes = $o->required_bytes;
+    $tmp = $o->required_nested_message;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_NestedMessage();
+      $nv->CopyFrom($tmp);
+      $this->required_nested_message = $nv;
+    }
+    $tmp = $o->required_foreign_message;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\ForeignMessageProto2();
+      $nv->CopyFrom($tmp);
+      $this->required_foreign_message = $nv;
+    }
+    $this->required_nested_enum = $o->required_nested_enum;
+    $this->required_foreign_enum = $o->required_foreign_enum;
+    $this->required_string_piece = $o->required_string_piece;
+    $this->required_cord = $o->required_cord;
+    $tmp = $o->recursive_message;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+      $nv->CopyFrom($tmp);
+      $this->recursive_message = $nv;
+    }
+    $tmp = $o->optional_recursive_message;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2();
+      $nv->CopyFrom($tmp);
+      $this->setOptionalRecursiveMessage($nv);
+    } else if ($o->hasOptionalRecursiveMessage()) {
+      $this->setOptionalRecursiveMessage(null);
+    }
+    $tmp = $o->data;
+    if ($tmp is nonnull) {
+      $nv = new \protobuf_test_messages\proto2\TestAllRequiredTypesProto2_Data();
+      $nv->CopyFrom($tmp);
+      $this->data = $nv;
+    }
+    $this->default_int32 = $o->default_int32;
+    $this->default_int64 = $o->default_int64;
+    $this->default_uint32 = $o->default_uint32;
+    $this->default_uint64 = $o->default_uint64;
+    $this->default_sint32 = $o->default_sint32;
+    $this->default_sint64 = $o->default_sint64;
+    $this->default_fixed32 = $o->default_fixed32;
+    $this->default_fixed64 = $o->default_fixed64;
+    $this->default_sfixed32 = $o->default_sfixed32;
+    $this->default_sfixed64 = $o->default_sfixed64;
+    $this->default_float = $o->default_float;
+    $this->default_double = $o->default_double;
+    $this->default_bool = $o->default_bool;
+    $this->default_string = $o->default_string;
+    $this->default_bytes = $o->default_bytes;
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+enum TestLargeOneof_large_oneof_oneof_t: int {
+  NOT_SET = 0;
+  a1 = 1;
+  a2 = 2;
+  a3 = 3;
+  a4 = 4;
+  a5 = 5;
+}
+
+interface TestLargeOneof_large_oneof {
+  public function WhichOneof(): TestLargeOneof_large_oneof_oneof_t;
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void;
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void;
+  public function Copy(): TestLargeOneof_large_oneof;
+}
+
+class TestLargeOneof_large_oneof_NOT_SET implements TestLargeOneof_large_oneof {
+  public function WhichOneof(): TestLargeOneof_large_oneof_oneof_t {
+    return TestLargeOneof_large_oneof_oneof_t::NOT_SET;
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {}
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {}
+
+  public function Copy(): TestLargeOneof_large_oneof { return $this; }
+}
+
+class TestLargeOneof_large_oneof_a1 implements TestLargeOneof_large_oneof {
+  public function __construct(public \protobuf_test_messages\proto2\TestLargeOneof_A1 $a1) {}
+
+  public function WhichOneof(): TestLargeOneof_large_oneof_oneof_t {
+    return TestLargeOneof_large_oneof_oneof_t::a1;
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $nested = new \Protobuf\Internal\Encoder();
+    $this->a1->WriteTo($nested);
+    $e->writeEncoder($nested, 1);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeMessage('a1', 'a1', $this->a1, true);
+  }
+
+  public function Copy(): TestLargeOneof_large_oneof {
+    $nv = new \protobuf_test_messages\proto2\TestLargeOneof_A1();
+    $nv->CopyFrom($this->a1);
+    return new TestLargeOneof_large_oneof_a1($nv);
+  }
+}
+
+class TestLargeOneof_large_oneof_a2 implements TestLargeOneof_large_oneof {
+  public function __construct(public \protobuf_test_messages\proto2\TestLargeOneof_A2 $a2) {}
+
+  public function WhichOneof(): TestLargeOneof_large_oneof_oneof_t {
+    return TestLargeOneof_large_oneof_oneof_t::a2;
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $nested = new \Protobuf\Internal\Encoder();
+    $this->a2->WriteTo($nested);
+    $e->writeEncoder($nested, 2);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeMessage('a2', 'a2', $this->a2, true);
+  }
+
+  public function Copy(): TestLargeOneof_large_oneof {
+    $nv = new \protobuf_test_messages\proto2\TestLargeOneof_A2();
+    $nv->CopyFrom($this->a2);
+    return new TestLargeOneof_large_oneof_a2($nv);
+  }
+}
+
+class TestLargeOneof_large_oneof_a3 implements TestLargeOneof_large_oneof {
+  public function __construct(public \protobuf_test_messages\proto2\TestLargeOneof_A3 $a3) {}
+
+  public function WhichOneof(): TestLargeOneof_large_oneof_oneof_t {
+    return TestLargeOneof_large_oneof_oneof_t::a3;
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $nested = new \Protobuf\Internal\Encoder();
+    $this->a3->WriteTo($nested);
+    $e->writeEncoder($nested, 3);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeMessage('a3', 'a3', $this->a3, true);
+  }
+
+  public function Copy(): TestLargeOneof_large_oneof {
+    $nv = new \protobuf_test_messages\proto2\TestLargeOneof_A3();
+    $nv->CopyFrom($this->a3);
+    return new TestLargeOneof_large_oneof_a3($nv);
+  }
+}
+
+class TestLargeOneof_large_oneof_a4 implements TestLargeOneof_large_oneof {
+  public function __construct(public \protobuf_test_messages\proto2\TestLargeOneof_A4 $a4) {}
+
+  public function WhichOneof(): TestLargeOneof_large_oneof_oneof_t {
+    return TestLargeOneof_large_oneof_oneof_t::a4;
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $nested = new \Protobuf\Internal\Encoder();
+    $this->a4->WriteTo($nested);
+    $e->writeEncoder($nested, 4);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeMessage('a4', 'a4', $this->a4, true);
+  }
+
+  public function Copy(): TestLargeOneof_large_oneof {
+    $nv = new \protobuf_test_messages\proto2\TestLargeOneof_A4();
+    $nv->CopyFrom($this->a4);
+    return new TestLargeOneof_large_oneof_a4($nv);
+  }
+}
+
+class TestLargeOneof_large_oneof_a5 implements TestLargeOneof_large_oneof {
+  public function __construct(public \protobuf_test_messages\proto2\TestLargeOneof_A5 $a5) {}
+
+  public function WhichOneof(): TestLargeOneof_large_oneof_oneof_t {
+    return TestLargeOneof_large_oneof_oneof_t::a5;
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $nested = new \Protobuf\Internal\Encoder();
+    $this->a5->WriteTo($nested);
+    $e->writeEncoder($nested, 5);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeMessage('a5', 'a5', $this->a5, true);
+  }
+
+  public function Copy(): TestLargeOneof_large_oneof {
+    $nv = new \protobuf_test_messages\proto2\TestLargeOneof_A5();
+    $nv->CopyFrom($this->a5);
+    return new TestLargeOneof_large_oneof_a5($nv);
+  }
+}
+
+class TestLargeOneof_A1 implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestLargeOneof.A1";
+  }
+
+  public static function ParseFrom(string $input): ?TestLargeOneof_A1 {
+    $msg = new TestLargeOneof_A1();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestLargeOneof_A1)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestLargeOneof_A2 implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestLargeOneof.A2";
+  }
+
+  public static function ParseFrom(string $input): ?TestLargeOneof_A2 {
+    $msg = new TestLargeOneof_A2();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestLargeOneof_A2)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestLargeOneof_A3 implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestLargeOneof.A3";
+  }
+
+  public static function ParseFrom(string $input): ?TestLargeOneof_A3 {
+    $msg = new TestLargeOneof_A3();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestLargeOneof_A3)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestLargeOneof_A4 implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestLargeOneof.A4";
+  }
+
+  public static function ParseFrom(string $input): ?TestLargeOneof_A4 {
+    $msg = new TestLargeOneof_A4();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestLargeOneof_A4)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestLargeOneof_A5 implements \Protobuf\Message {
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+  ) $s = shape()) {
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestLargeOneof.A5";
+  }
+
+  public static function ParseFrom(string $input): ?TestLargeOneof_A5 {
+    $msg = new TestLargeOneof_A5();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestLargeOneof_A5)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
+class TestLargeOneof implements \Protobuf\Message {
+  public TestLargeOneof_large_oneof $large_oneof;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'large_oneof' => TestLargeOneof_large_oneof,
+  ) $s = shape()) {
+    $this->large_oneof = $s['large_oneof'] ?? new TestLargeOneof_large_oneof_NOT_SET();
+    $this->XXX_unrecognized = '';
+  }
+
+  public function MessageName(): string {
+    return "protobuf_test_messages.proto2.TestLargeOneof";
+  }
+
+  public static function ParseFrom(string $input): ?TestLargeOneof {
+    $msg = new TestLargeOneof();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 1:
+          if ($this->large_oneof->WhichOneof() == TestLargeOneof_large_oneof_oneof_t::a1) {
+            ($this->large_oneof as TestLargeOneof_large_oneof_a1)->a1->MergeFrom($d->readDecoder());
+          } else {
+            $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A1();
+            $obj->MergeFrom($d->readDecoder());
+            $this->large_oneof = new TestLargeOneof_large_oneof_a1($obj);
+          }
+          break;
+        case 2:
+          if ($this->large_oneof->WhichOneof() == TestLargeOneof_large_oneof_oneof_t::a2) {
+            ($this->large_oneof as TestLargeOneof_large_oneof_a2)->a2->MergeFrom($d->readDecoder());
+          } else {
+            $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A2();
+            $obj->MergeFrom($d->readDecoder());
+            $this->large_oneof = new TestLargeOneof_large_oneof_a2($obj);
+          }
+          break;
+        case 3:
+          if ($this->large_oneof->WhichOneof() == TestLargeOneof_large_oneof_oneof_t::a3) {
+            ($this->large_oneof as TestLargeOneof_large_oneof_a3)->a3->MergeFrom($d->readDecoder());
+          } else {
+            $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A3();
+            $obj->MergeFrom($d->readDecoder());
+            $this->large_oneof = new TestLargeOneof_large_oneof_a3($obj);
+          }
+          break;
+        case 4:
+          if ($this->large_oneof->WhichOneof() == TestLargeOneof_large_oneof_oneof_t::a4) {
+            ($this->large_oneof as TestLargeOneof_large_oneof_a4)->a4->MergeFrom($d->readDecoder());
+          } else {
+            $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A4();
+            $obj->MergeFrom($d->readDecoder());
+            $this->large_oneof = new TestLargeOneof_large_oneof_a4($obj);
+          }
+          break;
+        case 5:
+          if ($this->large_oneof->WhichOneof() == TestLargeOneof_large_oneof_oneof_t::a5) {
+            ($this->large_oneof as TestLargeOneof_large_oneof_a5)->a5->MergeFrom($d->readDecoder());
+          } else {
+            $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A5();
+            $obj->MergeFrom($d->readDecoder());
+            $this->large_oneof = new TestLargeOneof_large_oneof_a5($obj);
+          }
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    $this->large_oneof->WriteTo($e);
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $this->large_oneof->WriteJsonTo($e);
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'a1':
+          $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A1();
+          $obj->MergeJsonFrom($v);
+          $this->large_oneof = new TestLargeOneof_large_oneof_a1($obj);
+          break;
+        case 'a2':
+          $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A2();
+          $obj->MergeJsonFrom($v);
+          $this->large_oneof = new TestLargeOneof_large_oneof_a2($obj);
+          break;
+        case 'a3':
+          $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A3();
+          $obj->MergeJsonFrom($v);
+          $this->large_oneof = new TestLargeOneof_large_oneof_a3($obj);
+          break;
+        case 'a4':
+          $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A4();
+          $obj->MergeJsonFrom($v);
+          $this->large_oneof = new TestLargeOneof_large_oneof_a4($obj);
+          break;
+        case 'a5':
+          $obj = new \protobuf_test_messages\proto2\TestLargeOneof_A5();
+          $obj->MergeJsonFrom($v);
+          $this->large_oneof = new TestLargeOneof_large_oneof_a5($obj);
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is TestLargeOneof)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    $this->large_oneof = $o->large_oneof->Copy();
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
 
 class XXX_FileDescriptor_google_protobuf_test_messages_proto2__proto implements \Protobuf\Internal\FileDescriptor {
   const string NAME = 'google/protobuf/test_messages_proto2.proto';
@@ -8494,7 +11353,7 @@ class XXX_FileDescriptor_google_protobuf_test_messages_proto2__proto implements 
   }
 
   public function FileDescriptorProtoBytes(): string {
-    // 11824 bytes of gzipped FileDescriptorProto as a string
-    return (string)\gzuncompress("\x78\xda\xb4\x5a\xe9\x73\xdb\xc6\x15\xe7\x12\x92\x48\xad\x78\x69\x2d\x3b\x1b\xa5\x99\xc0\xb2\x1d\x23\x76\x6c\x4b\x14\xb2\x92\xd8\x34\x89\x65\x8b\x96\x93\x48\x4a\x20\xbb\x87\xd3\x84\xa5\x24\x48\x61\x4d\x12\x2a\x8f\xc4\xfa\xd2\xcc\x74\xfa\xa1\xd3\x7e\x49\xef\x3b\x3d\xfe\x85\x7e\xea\xf4\x1f\x68\xda\x7f\xa4\xd7\x74\xa6\x4d\xdb\x1c\x3d\xdc\xd9\x13\xbb\x0\x64\xd7\xa4\xea\x19\x8b\xe4\xc3\xef\xfd\xde\x7b\x8b\xb7\x3f\xec\x2\x80\xe7\xf6\x82\x60\xaf\xe9\x5f\xda\xef\x4\xbd\x60\xab\xbf\x7b\xa9\xe7\x77\x7b\xb5\x96\xdf\xed\xd6\xf7\xfc\x6e\x8d\x99\xcb\x17\xd9\x7\x7a\x54\x82\x6a\x6\x88\x1f\x2d\xcf\xfc\xf2\x65\x88\x6e\xf8\xdd\xde\xe5\x66\xf3\xc6\xc1\xbe\xdf\x7d\x89\x99\xd1\x19\x58\x8\xf6\x7b\x8d\xa0\x5d\x6f\xd6\x1a\xed\xde\x7c\x19\x3\x1b\x38\xa3\x5e\x5e\x5a\xaf\x53\x63\x14\x46\x5c\x9c\xb6\x81\x63\x19\x30\xe2\xa2\xb3\xb0\xa8\x60\x7d\x4e\x67\xd9\xc0\xc9\x7b\xca\xfb\x26\xb3\xc6\x80\xc4\xc5\x23\x36\x70\x46\x4c\x60\x84\xb1\xcb\x19\x47\x6d\xe0\x4c\x86\xc0\xcd\x38\x63\x97\x33\x8e\xd9\xc0\x41\x26\x90\xb8\xe8\x9\x58\x52\xc0\xdd\xc6\x1d\x7f\x67\xbe\x8c\x33\x36\x70\x32\x9e\x22\xa8\x72\x73\x1c\x4a\x5c\x9c\xb5\x81\x33\x16\x81\x12\x17\x9d\x87\x93\x61\x78\x49\x3b\x6e\x3\xa7\xe8\x29\x8e\x4d\x61\x4f\x0\x13\x17\x43\x1b\x38\xa5\x28\x98\xb8\xc6\xd0\xef\x36\x83\x7a\xf\x4f\xd8\xc0\x49\x87\x43\x5f\xa5\x46\xa3\xfe\x9d\xa0\xbf\xd5\xf4\x71\xce\x6\xe\x8\xeb\xbf\xca\xac\xe8\x14\x54\x9e\xb5\xad\x20\x68\xe2\xbc\xd\x9c\xac\x97\x93\xc6\xe5\x20\x68\x9a\xa3\xd9\xeb\x34\xda\x7b\xb8\x60\x3\x67\x5c\x1b\x4d\x66\x35\xb2\xdb\x3a\xe8\xf9\x5d\x5c\xb4\x81\x93\xb\xb3\x5b\xa6\x46\xf4\x26\x7c\x48\xc1\xda\x7e\xb7\xe7\xef\xc8\x6\xc5\xc8\x6\xce\x44\xf9\xd9\x8b\xf7\x6c\xdf\x8b\xf1\xd6\xbd\xb8\xce\x78\xd6\x38\xd0\x3b\x2e\xf9\xd\x33\x6a\x41\x1c\x8e\x5e\xd0\xf1\x1b\x7b\x6d\x15\xf9\x18\x8b\x3c\x7f\x9f\xc8\x55\xee\x25\x8\x79\x6c\xef\x84\x1a\x7c\xe3\x28\x6a\xc3\xa9\x68\x9d\x7e\xbb\xdf\xc2\xc7\x6d\xe0\x14\xca\x4f\xf\x5a\xe4\x4a\xbb\xdf\xf2\x90\x59\x21\xb5\xa1\x1d\x78\x3c\x56\x1e\xb\x78\x82\x5\x9c\xfd\xdf\x6a\xa3\x54\xa2\xb0\x63\x91\xc2\x58\x14\xa2\x45\xe1\xdd\x50\xdb\x6f\xf8\xdb\x3e\xc6\xb4\x27\x96\xd3\xd9\x74\xe8\xc7\xfb\xe2\x25\x7a\x18\x9d\xd5\x5a\x6d\x3b\xe8\xec\xe0\x87\x5\x1e\x84\xed\x76\x25\xe8\xec\xa0\xd7\xe0\x64\xc7\xdf\xee\x77\xba\x8d\x37\x7c\x75\x7a\x1e\x61\xa7\x67\xee\x81\xc7\xcc\x2b\x29\x2e\x79\x5a\xce\xc0\x42\xc7\xdf\xf7\xeb\xf4\x7c\x70\x11\x79\xcc\xb6\xa8\xca\x49\xab\x52\x39\x1d\x46\x5c\x6c\xdb\x16\x55\x39\xd\xc6\x35\x49\xc1\x84\xca\x9d\xb4\x2d\xaa\x72\xd2\x1c\xaa\x9c\x1\x24\x2e\x9e\xb1\x2d\xaa\x72\x3a\x30\xc2\x28\x54\xee\x94\x6d\x51\x95\x93\xe6\xcd\x38\xa3\x50\xb9\xd3\xb6\x45\x55\x4e\x7\x72\x95\x53\x40\x29\x47\x67\x6c\x8b\xaa\x9c\xb4\x6b\x2a\x67\x42\x89\x8b\x1f\xb7\x2d\xaa\x72\x6\x94\xab\x5c\x18\x5e\xd2\x9e\xb5\x2d\xaa\x72\x2a\x1\x4d\xe5\x22\x60\xe2\x62\xc7\xb6\xa8\xca\x99\x60\xae\x72\x61\x12\x4c\xe5\x9e\xb0\x2d\xaa\x72\x2a\x5\xa9\x72\xa\x26\x54\xee\x9c\x6d\x51\x95\x93\xe6\x50\xe5\x14\x90\xa9\xdc\x79\xdb\xa2\x2a\x27\x8d\x52\xe5\xc2\xc\xb9\xca\x3d\x69\x5b\x54\xe5\x54\x7e\x4a\xe5\x42\x36\xa6\x72\x17\x6c\x8b\xaa\x9c\xa2\x93\x2a\xa7\x60\x11\x95\x9b\xb5\xad\x23\x51\x39\xc9\x1f\x53\xb9\x70\xf4\x22\x2a\x37\xc7\x22\xf\xa6\x72\x6a\xf0\x63\x2a\x17\xad\x93\x89\xce\xbc\x6d\xd\xaf\x72\x66\x85\x52\xe5\x62\xe5\xb1\x80\x2e\xb\x38\x80\xca\x45\xa\x93\x2a\x17\xe9\x6\xa1\x72\x84\xf6\x4\x57\x39\xb3\x2f\x94\xca\x29\x3f\xa6\x72\xb\x2\xf\xc2\x76\x63\x2a\x77\x6\xe6\xf6\xeb\xdb\xb7\x95\x6\xbd\x40\x35\x68\x39\x5d\x2\xde\x4\xb7\x4b\x15\xd2\x60\xc4\xc5\x2f\x52\xd\x8a\xc0\x98\x66\xe4\x5\x4c\x68\xd0\x1a\xd5\x20\x86\x13\xfe\x4a\x85\x74\x20\x71\xf1\x3a\xd5\xa0\x28\xd0\x60\x14\x1a\xb4\x41\x35\x48\x7\x6e\x46\x19\x85\x6\xbd\x44\x35\x28\xa\x64\x2a\x54\x10\x40\x29\x16\x2f\x53\xd\x62\x48\x41\x11\xaa\x90\x1\x25\x2e\xf6\xa8\x6\xc5\xa0\x4c\x85\x8a\x32\xbc\xa4\xdd\xa4\x1a\xc4\xb0\x82\x45\x53\x21\x13\x4c\x5c\x7c\x83\x6a\x50\x1c\xcc\x54\x48\xe\x3d\xd7\xa0\x9b\x54\x83\xf4\xa1\x97\x2a\x24\xeb\x17\x1a\xf4\x49\xaa\x41\x7a\xfd\x4a\x85\x84\x1f\xd7\xa0\x4f\x51\xd\x62\x30\xc8\xcd\x4c\x85\xda\x10\x9\x90\x3e\x97\x3e\x3d\xfc\x5c\x62\x91\x4a\x9c\x5b\x9b\x4d\x4f\xc0\x42\xbf\x6d\x34\xe2\x67\x44\x23\xa6\xbc\xbc\x3c\xc2\x5b\x31\x2\x25\x2e\xbe\x25\x9a\xd1\x84\xf2\x93\xa2\xa0\xa2\x21\x5f\x11\xd\x99\xf2\x14\x8b\x68\xc9\x28\x98\xb8\xf8\xb3\xa2\x29\x23\xe0\x8\xb3\x68\xcc\x57\x45\x63\x6a\xe0\xcd\x38\xb3\x68\xce\xd7\x44\x73\x46\xc0\xc4\x45\x17\x60\x49\x81\x65\x27\xd5\x44\x83\xa6\x3c\x45\x24\x5b\x34\x6\x27\x2e\xfe\x9c\x68\xd2\x28\x9c\xb8\xe8\x12\x9c\xc\x53\x91\xf4\x75\xd1\xa8\x29\x4f\x71\xa9\x56\x8d\x3b\x10\x17\x6f\x89\x66\x8d\x39\xf0\xe9\x15\x26\xc4\x1a\x76\x5b\x34\xac\x76\x7a\x78\xcb\xea\xe3\x22\x9a\x76\x47\x34\xad\x36\x2e\xa2\x6d\xcf\x42\xe5\xcd\x1b\xd7\x17\x8d\x9b\xf2\x72\xf2\x0\x6b\xdd\xe\x9c\x52\x40\xbd\x79\x77\x8f\xa4\x79\x53\x1e\x92\xec\x5a\xfb\x36\x61\xb1\x55\xdf\xe7\x9d\x2b\xfa\x77\x91\x5d\xe2\xae\x3e\x78\xb8\xb5\xfa\x3e\x6b\x74\xf6\x67\xa5\xdd\xeb\x1c\x78\xf9\x96\x6e\xd3\xa2\x11\x57\x4c\x81\xa5\xe1\xa2\x11\x97\xfd\x31\xa2\x9\x1b\xea\xc0\x49\x1a\x8d\xcf\x1f\x39\x8d\x2a\x2c\x5e\x75\xa0\x78\x7c\xbe\xf1\xbf\x3c\x22\x2d\x47\xb7\xea\x31\x89\x2b\x67\xe3\xc7\x87\x8c\x49\x5c\xfe\xd7\x8c\x29\xad\x32\x26\x9f\xcd\x72\x52\x3f\x3d\x44\x4c\x3e\xfb\x37\x23\x75\xea\x56\x3d\x26\x71\xa5\x36\x7c\x62\xc8\x98\xc4\xdd\x8c\xd4\xa9\x5b\xd1\x1d\x78\x8c\xc6\x14\x13\x5c\x69\xcc\x33\x2c\xea\xea\x40\x51\x85\x18\x89\xf\x1e\x97\x16\x66\xda\x8d\xc8\xc4\x55\x72\xf5\xec\xb0\x91\x89\x2b\x3e\x22\x91\x95\x1d\x7d\x11\x1e\x67\xe3\x2c\x8b\x56\xd2\xf7\x1c\x8b\xfd\xfc\x60\x63\x2d\x48\xe4\x27\x8f\x4e\x4b\x8c\x1e\x31\xe3\xd3\x33\x2d\x6b\xbf\x3c\x74\x7c\xe2\xca\xcf\x68\xfc\xf0\x88\xa9\x4f\x5c\x95\x97\x87\xd5\x27\xa6\xe1\x11\x7d\xe2\xba\x1e\xc0\x52\x18\x4d\x8\xfb\x15\x16\x6e\x65\xf0\x70\xfc\x32\xc0\xe3\x15\x5a\x86\x11\xed\x42\x9a\x1\xbb\x2c\xf0\x6b\xc3\x55\x16\x6d\x79\xa0\x68\xf4\x22\x42\xff\xf3\x50\x13\xad\xd0\xa2\xa6\x2b\x5f\x88\x8b\xdd\xd9\xca\x30\xd3\x95\x51\xf0\xbf\xda\x74\xd5\xac\x72\x30\x45\x4c\xbe\xd1\xab\xe\x31\x98\x9c\x96\xed\xd\xc3\xc1\xd4\x8c\xe8\x2b\x0\x3e\xac\x45\x8c\xec\x19\xaf\xb1\xd0\x6b\x43\x84\x36\x76\x89\x3c\x85\x13\xad\xc4\x83\xe8\x6b\x0\x4e\x6b\xa9\x44\x77\x91\xab\x2c\x97\xf5\x21\x72\x31\xf7\x90\x3c\x99\x87\x5a\xc9\x47\xd1\x5b\xf0\x44\x7c\x5c\xd8\xd2\xe2\xfa\x30\xb3\x58\xab\x9b\xae\x25\xb4\x59\x1c\x39\x82\xbe\x4\xe0\x43\x9\xc3\xc1\x52\x78\x9e\xa5\xf0\xc2\xf0\x63\x11\xe6\x30\xd5\x4a\x38\x84\x4e\xc1\x5c\xd0\xf6\x83\x5d\xb9\x12\x8\x6c\xe0\xe4\x57\x53\xde\x4\xb3\x8a\xeb\x77\x17\x4e\x71\x50\xa4\x7b\xf6\x8f\xe4\xbe\xea\x6a\xca\x43\x8c\xde\xec\x16\x95\x99\x98\x98\x5f\xb0\x81\x33\xae\x32\x13\xd3\xe9\x24\xe4\x3f\xc5\x4c\xea\xd8\xc0\xc9\xad\xa6\x3c\xc8\x8c\x7c\x2\x3c\x6\xa1\x80\x50\x29\xe9\xda\xc0\xc9\xae\xa6\xbc\x71\x8e\xa0\x32\x60\xc\x1\x71\x71\xcf\x6\xce\x88\x31\x4\xc4\xd\x3\x71\xb9\xed\xdb\xc0\x49\xab\x40\x5c\x27\x15\x8f\xd0\xc8\x37\x6c\xe0\x0\xc5\x23\xb4\xed\x55\x99\xd\x3b\xcd\x6f\xe\x7f\xcf\x56\xd5\xc2\x4e\xe7\xb\x70\x64\xa7\xde\xab\xe3\x77\x81\xd\x1c\x58\x26\xf\xce\x7c\xb5\xde\xab\x7b\x8c\x4\xcd\xc2\xfc\x8e\xbf\x5b\xef\x37\x7b\x62\x11\xfc\x17\xf6\xe0\xa6\x2\x2f\xcc\x95\xe7\xdd\xa7\xc8\xc2\xe2\x92\x97\x13\x8\xbe\x94\xad\x18\x1e\xc4\xc5\x7f\xa5\x1e\x56\x65\xea\xc2\x92\x72\x49\xf4\x25\x2e\x2a\xc3\x82\xf4\x15\xbd\xf8\x1e\x75\xce\x57\x60\x39\x74\x91\xf4\xa2\x31\x9f\x36\x7d\x88\x8b\xff\x46\x7d\x46\x2a\x53\x73\xb3\x9\x1\x75\x6f\x33\xa2\x58\x1f\xfe\x9d\x7a\x4f\x1a\x5\x4a\x9f\xcd\x58\x44\xb1\xbe\xfb\x7\xf5\x41\x87\x94\xa8\x7b\x13\x17\xb9\xb0\x28\xbd\xe5\x92\xe5\x7d\xea\x9e\x31\x8a\x94\x11\xe4\x42\xeb\x99\x88\x17\x71\xf1\x7\xd4\x6b\xec\x90\x32\xd\x7f\xe2\x22\x2\x4b\x2a\x67\x19\xf6\x43\x4a\x50\x34\x2a\x95\x41\xd4\x32\xe7\xb9\xa8\x1f\x71\xf1\x47\xd4\xaf\x74\x48\xb5\x26\x3\xdb\x57\xab\x7e\xe0\xf3\xe6\x9f\xd4\x3d\x5d\x19\x5d\xf2\xcf\xcf\x86\xd\xc0\xe7\xcf\x85\x70\x68\xc5\xc\xfa\x17\x45\x83\xca\xe8\x82\x7f\xbe\x5c\x56\x63\x29\x66\x92\x3\xa5\x3b\x9f\xd9\xff\xa6\xe0\x6c\x65\xa4\xd7\xe9\xfb\xde\x84\x38\xc4\x26\xf8\x25\xed\x9c\x71\x2d\xf9\xf\xc5\x8e\x57\x32\x5e\xd0\xf5\xb7\xfa\x3b\xe1\x69\xe2\xaa\xf2\x64\x98\x36\xd7\x95\xbb\x14\x9f\xab\x8c\x7d\x3e\xe8\xbe\xde\xaf\xab\xbc\x95\xc0\xec\x36\xfc\xe6\x4e\xbb\xde\xf2\xe7\xf0\xd7\x2d\xf6\x70\x53\x33\x21\x1b\x4e\xb0\x5f\x35\xfa\xb3\x8c\xbf\xa1\x23\xd6\xa9\x9\x9d\x84\xb9\x5a\x8\x99\xc7\xdf\x14\x90\xaa\x84\xcc\xa3\x19\x98\xe7\x8\x6\x71\x6b\xf8\x5b\x51\x1a\x26\x52\xec\xd7\x2c\x85\x3c\x85\xbf\xcd\x11\xba\xd\x9d\x92\x34\xb3\x8c\x87\xe0\xef\x18\x20\xca\x43\x54\x45\xf4\xd7\x2\xfe\x6e\x34\xd0\x2\x5\xa8\xd4\x16\xf1\xf7\xa2\xd9\x2e\x86\x25\xd3\x9f\x4b\xf8\xfb\x51\x8a\x25\x34\x3\x73\x55\x85\x98\x9b\xc5\x3f\x10\x79\x28\x92\xb9\x59\x86\xb9\xbe\xf2\xe2\xd5\xda\xfa\xe5\xb5\x95\xb9\x39\xfc\x43\x89\xa1\x46\x6e\xb\x31\x6c\xac\xcb\xf8\x47\x6\x86\xd9\xd0\x69\x58\xa8\x69\xe3\x3b\x37\x8f\x7f\x1c\x8b\x36\xcf\x51\xd5\x10\xe5\xe2\x77\x62\x28\x37\x1c\x40\xe\x7a\xa\xff\x44\x1f\x40\x6\xd2\x46\x99\x57\x47\xf0\x4f\x63\x20\x42\xe3\x69\x39\x2d\xd4\x6a\xf8\x67\x31\xd4\x2\x45\x69\x39\x2d\xd6\x6a\xf8\xe7\xb1\xac\x16\xa7\x3b\x30\x6f\x5e\x3d\x73\x10\xd4\xc5\x73\x76\x50\x47\x9b\x70\x62\x3b\x50\x8f\xac\xd8\x83\xf5\x81\x1e\x7b\xe9\x2c\xd3\xcf\x41\x14\xbf\xb9\x81\x4a\xd0\xba\xed\x1f\x88\xd0\xf4\x2b\x9a\x82\xa3\x6f\xd4\x9b\x7d\x1e\x76\xd4\xe3\x3f\x2a\xe9\x45\x10\x32\xe8\x37\x2c\x74\x6\x2b\x81\xc1\xd2\x19\x96\xe1\x54\xd2\x2d\x8\x9d\x23\x9f\xc0\x91\x4f\xe6\x30\x6e\x29\xe8\x1c\x23\x9\x1c\x23\x71\x8e\xd8\x2d\x2\x9d\x63\x32\x81\x63\x32\x99\xc3\xd8\xf2\xeb\x1c\x28\x81\x3\xe9\x1c\x57\xe1\x89\xe4\xd\xbc\xce\x92\x49\x60\xc9\x1c\xc2\x62\x6e\xc6\x75\x96\xb1\x4\x96\x31\x9d\xa5\xa\xf1\x61\xdb\x6a\x9d\xa7\x98\xc0\x53\x3c\x8c\x27\xb2\x3d\xd6\x79\x4a\x9\x3c\xa5\xc4\x6e\xd3\x37\xbb\xf7\xeb\xd7\xb4\xce\x70\x19\x1e\x4b\xd8\xbf\xde\x8f\x2\xe8\x14\xcf\xc0\x52\x74\x53\xaa\xfb\x67\x13\xfc\xb3\x9\x4d\x12\xdd\x68\xea\x1c\xe3\x9\x1c\xe3\xf1\x32\xa2\x3b\xc7\xfb\x51\xe4\x74\x8a\xaf\x2\xf8\xc8\x3d\xb6\x80\x9\x5c\x37\x75\xae\x23\x78\x4c\xa9\x25\xf3\x16\xfc\xd8\xbd\xb6\x80\x9\xc9\x5c\x37\x93\x19\xe8\xc9\xa5\x96\xc0\x97\x1\x6f\xd1\xa4\xbd\x5f\x42\x74\x4f\x8f\x3e\xec\xc3\x4c\x2d\x8d\x3\xf8\xf0\xa1\xdb\xbf\x84\x34\xaa\x66\x1a\xf\xfe\x88\x53\xb\xfd\x22\x1c\xa1\x1b\x7\x7a\xdd\xdf\xeb\x4\x7d\x71\xb7\x8\xff\x86\xcf\x9\xc8\x6c\x7c\x8b\x30\x3\x73\x1c\x21\x16\xf9\xbf\xe5\x1a\xcd\xdd\xb8\x84\x4f\x9f\x84\x93\x62\xac\x37\xfd\xde\x95\xa0\xd3\xf1\xb7\x7b\xe7\xb2\xd9\x91\xd2\xdd\xbb\x77\xef\x66\x2a\xe9\x2c\x98\xfe\x88\x36\x60\x14\xb3\x72\xa7\xe7\xb7\xbb\x8d\xa0\x3d\x47\xcb\xed\xf6\x3a\xfc\x6d\x10\x8f\x7e\x2d\xff\x1a\xc0\xe3\xa2\xa6\x5a\xd7\xef\xd5\x7c\x9\x46\x57\x6\xd8\x66\x47\x43\xe3\xf\x7f\xf5\x1a\xeb\xa5\xb5\x23\x20\xb\xeb\xf0\x8e\xb5\xd4\x41\x65\x9d\x7e\xff\x9e\xc5\x97\xe9\xc5\xbf\xc1\xde\xc\x1b\xf5\x40\xa3\xfc\xee\xff\xb7\xf0\xb7\x7f\xc1\x96\xe9\x47\x5c\x79\x39\xb1\xf2\x99\x25\x8\xb5\x3b\x28\x19\x68\x55\x37\x36\x4a\x29\xfa\x65\xf9\xb2\x57\x2\xfc\xcb\xad\x52\x9a\x9e\xff\xf5\x95\x6b\xac\x61\xd8\x3f\x70\x6e\x34\x7b\xa7\xf4\x2e\x58\xce\xab\x8d\x3c\x5d\x3e\x3d\x3f\x96\xfd\x5d\xa6\xf4\xf6\xfa\xcc\x69\x38\x95\x34\xcb\xe9\x50\x6e\xcb\x75\xd4\xf6\xcc\x3b\x16\x3c\x7e\xb3\x7d\xbb\x1d\xbc\xd9\xbe\x11\xe8\xf5\xa0\xc7\x63\x2f\x39\xfe\x3e\x93\xf4\x96\xa3\x13\x7f\xeb\xed\xf\x99\xc4\xd7\xde\x5e\x81\x85\xc8\xed\x96\x3f\x66\x6\x57\xab\x7c\xdb\x58\x1e\x36\xc2\xd7\xa6\xd8\xc4\xc3\x7f\xca\xb0\x1b\x6\xf7\xbb\xc7\x9a\x58\xfc\xc5\xd\x41\x75\x8d\x52\x79\x26\x33\x3a\x1d\x7d\x19\xf0\xcf\x99\x84\xb7\x1\x1f\x8f\xbd\x3e\xf5\x5e\x26\xe1\xfd\xa9\xe9\x47\x61\xde\x88\x66\x2e\x74\x67\x4e\xc0\xa9\xf5\x7e\xb3\xb9\x7a\xb0\x1f\xf4\x5e\xf7\xbb\xd\xd1\x68\x33\x97\x60\x81\x76\xcc\x46\xbb\x79\x20\x2c\x8f\xc2\x11\x16\x18\xc2\xb1\xdb\xd5\x7a\xb3\xeb\x97\x52\x68\x1c\x8e\xde\xbe\xd1\xe9\xfb\x25\x30\x73\x6\x16\x37\xda\xbe\x78\x7\x83\xb7\x2\x12\xf7\x56\xb8\x84\xb2\xef\xe7\xaa\x70\x32\xa6\x8b\xa8\x8\x27\xaa\x1b\xde\xca\xf5\x6b\xeb\x35\xde\x9e\x9a\x81\xb7\xa9\x61\xb8\x55\x4a\x57\x6e\xc1\xa2\x9a\x96\xbc\x7e\xf4\xe0\xcb\x73\x7c\x87\xd\x43\x41\x31\xb1\x21\x5b\xbe\x4\x9d\xed\xa0\x75\x91\xbf\xe7\x7b\x6f\xd2\x55\xf0\x1\x0\xff\xd\x0\x0\xff\xff\x9c\xd5\x12\x39");
+    // 15568 bytes of gzipped FileDescriptorProto as a string
+    return (string)\gzuncompress("\x78\xda\xbc\x5b\xdb\x73\x1c\x47\xf5\xd6\xf4\x4a\x5a\xa9\xa5\x5d\xad\x5a\xb2\xdd\x56\x92\xca\x58\xb6\xe3\xb1\x1d\xdb\xd2\x6a\x3c\x96\xf6\x97\x38\xb1\x6c\xc9\xf2\x4d\xf2\x6f\x64\x13\x62\x93\x2c\x2b\xed\x48\x5e\xbc\xbb\xa3\xec\xc5\xb6\x80\x22\x55\x94\x29\x20\xbc\x24\x40\xb8\x4\x8\x90\x7f\x81\x47\xaa\x80\x47\x2\x81\x67\xf8\xb\x8\x97\x82\x82\x4\x72\xe1\x62\xaa\xaf\xd3\x3d\x33\xb2\xac\x5d\x5\x3f\xac\xb5\x67\xbe\xfe\x4e\x9f\x9e\xd3\xdf\x4c\x77\x9f\x85\x87\x56\x7d\x7f\xb5\xec\x1d\x5b\xab\xf9\xd\x7f\xa9\xb9\x72\xac\xe1\xd5\x1b\xf9\x8a\x57\xaf\x17\x56\xbd\x7a\x9e\x9a\xb3\x47\xe9\x7f\xe8\x11\x1\xca\x6b\x20\x76\x35\x3b\xfa\xbb\x67\x21\xba\xe2\xd5\x1b\xa7\xca\xe5\x2b\xeb\x6b\x5e\xfd\x32\x35\xa3\xfd\x30\xed\xaf\x35\x4a\x7e\xb5\x50\xce\x97\xaa\x8d\x89\x2c\x36\x4c\xc3\xea\x72\x53\xc2\x7a\x8e\x18\xc3\x30\xc7\xc6\xc0\x34\xac\x84\x6\x73\x6c\x74\x0\xe\x48\x58\x93\xd1\x25\x4c\xc3\x4a\xb9\xb2\xf5\x55\x6a\x8d\x0\x1d\x1b\x77\x9a\x86\xd5\xa9\x3\x43\x8c\x75\xc6\xd8\x65\x1a\xd6\x60\x0\x5c\x8c\x32\xd6\x19\x63\xb7\x69\x58\x48\x7\x3a\x36\x3a\x8\x33\x12\xb8\x52\xba\xe3\x15\x27\xb2\x38\x69\x1a\x56\xd2\x95\x4\xb3\xcc\x1c\x85\x3a\x36\xee\x31\xd\xab\x3b\x4\x75\x6c\x74\x18\xe\x6\xee\x5\x6d\xaf\x69\x58\x3\xae\xe4\x58\xe4\xf6\x18\xb0\x63\x63\x68\x1a\x56\x26\xc\x76\x6c\x6d\xe8\x57\xca\x7e\xa1\x81\xfb\x4c\xc3\x2\xc1\xd0\xcf\x12\xa3\x16\x7f\xd1\x6f\x2e\x95\x3d\xdc\x6f\x1a\x96\x11\xc4\x7f\x86\x5a\xd1\x5e\x28\x5b\xe6\x97\x7c\xbf\x8c\x53\xa6\x61\xf5\xb8\xfd\xc2\x38\xed\xfb\x65\x7d\x34\x1b\xb5\x52\x75\x15\xa7\x4d\xc3\xea\x55\x46\x93\x5a\xb5\xde\x2d\xad\x37\xbc\x3a\x1e\x30\xd\xab\x3f\xe8\xdd\x34\x31\xa2\xdb\x70\x97\x84\x55\xbd\x7a\xc3\x2b\x8a\x4\xc5\xc8\x34\xac\xbe\xec\x53\x47\xef\x9b\xbe\x47\xa3\xa9\x7b\x74\x9e\xf2\x5c\x62\x40\x77\x87\xe0\xd7\xcc\xa8\x2\x71\x30\x7a\x7e\xcd\x2b\xad\x56\xa5\xe7\x21\xea\x79\x62\x13\xcf\xb3\xac\x15\x27\x64\xbe\xdd\x9d\x72\xf0\xb5\xab\xa8\xa\x87\xc3\x71\x7a\xd5\x66\x5\xef\x30\xd\x2b\x9d\x7d\xa2\xd5\x20\x67\xaa\xcd\x8a\x8b\xf4\x8\x89\xd\x15\xe1\x8e\x48\x78\xd4\xe1\x4e\xea\x70\xec\xc1\x62\x23\x54\x3c\xb0\xa1\x50\x60\xd4\x8b\xa3\x78\x61\xd9\x90\x5f\x2b\x79\xcb\x1e\xc6\x24\x27\xa6\x41\xf\x8\xda\xb1\xbc\xb8\x4c\x2e\xa3\x3\x4a\xaa\x2d\xfb\xb5\x22\xde\xcd\xf1\x46\x90\x6e\xa7\xfd\x5a\x11\x3d\xf\x7\x6b\xde\x72\xb3\x56\x2f\xdd\xf2\xe4\xed\x79\x88\xde\x9e\xf1\x2d\x8f\x99\x9b\x91\x5c\xe2\xb6\xec\x87\xe9\x9a\xb7\xe6\x15\xc8\xfd\x60\x22\xf2\xa8\x99\x20\x2a\x27\xac\x52\xe5\x54\x98\x63\x63\xd3\x4c\x10\x95\x53\x60\x4c\x93\x24\x8c\xab\xdc\x1e\x33\x41\x54\x4e\x98\x3\x95\xd3\x80\x8e\x8d\x47\xcd\x4\x51\x39\x15\x18\x62\xe4\x2a\xb7\xd7\x4c\x10\x95\x13\xe6\xc5\x28\x23\x57\xb9\x7d\x66\x82\xa8\x9c\xa\x64\x2a\x27\x81\x42\x8e\xf6\x9b\x9\xa2\x72\xc2\xae\xa8\x9c\xe\x75\x6c\xfc\x98\x99\x20\x2a\xa7\x41\x99\xca\x5\xee\x5\xed\x1\x33\x41\x54\x4e\x76\x40\x51\xb9\x10\xd8\xb1\xb1\x65\x26\x88\xca\xe9\x60\xa6\x72\x41\x27\xa8\xca\x1d\x34\x13\x44\xe5\x64\x17\x84\xca\x49\x18\x57\xb9\x43\x66\x82\xa8\x9c\x30\x7\x2a\x27\x81\x54\xe5\xe\x9b\x9\xa2\x72\xc2\x28\x54\x2e\xe8\x21\x53\xb9\xc7\xcd\x4\x51\x39\xd9\x3f\xa9\x72\x1\x1b\x55\xb9\x23\x66\x82\xa8\x9c\xa4\x13\x2a\x27\x61\x21\x95\x1b\x33\x13\xdb\xa2\x72\x82\x3f\xa2\x72\xc1\xe8\x85\x54\x6e\x9c\x7a\x6e\x4d\xe5\xe4\xe0\x47\x54\x2e\x1c\x27\x15\x9d\x9\x33\xd1\xbe\xca\xe9\x11\xa\x95\x8b\x84\x47\x1d\xda\xd4\x61\xb\x2a\x17\xa\x4c\xa8\x5c\x28\x1b\xb8\xca\x39\x24\x27\x98\xca\xe9\x79\x21\x55\x4e\xb6\xa3\x2a\x77\x82\xe3\x8d\x20\xdd\xa8\xca\xed\x87\xfd\x6b\x85\xe5\x9b\x52\x83\x2e\x10\xd\x9a\x6\x19\xc3\xed\x63\x76\xa1\x42\xa\xcc\xb1\xf1\x45\xa2\x41\x21\x18\xd5\x8c\x14\x87\x71\xd\xba\x44\x34\x88\xe2\x78\x7b\xa9\x42\x2a\xd0\xb1\xf1\x3c\xd1\xa0\x30\x50\x63\xe4\x1a\xb4\x40\x34\x48\x5\x2e\x86\x19\xb9\x6\x5d\x26\x1a\x14\x6\x52\x15\x4a\x73\xa0\x10\x8b\xff\x27\x1a\x44\x91\x9c\x22\x50\x21\xd\xea\xd8\xd8\x25\x1a\x14\x81\x52\x15\x1a\x10\xee\x5\xed\x22\xd1\x20\x8a\xe5\x2c\x8a\xa\xe9\x60\xc7\xc6\x57\x88\x6\x45\xc1\x54\x85\xc4\xd0\x33\xd\xba\x4a\x34\x48\x1d\x7a\xa1\x42\x22\x7e\xae\x41\x1f\x23\x1a\xa4\xc6\x2f\x55\x88\xb7\x63\x1a\xf4\xc\xd1\x20\xa\x83\xcc\x4c\x55\xa8\xa\x11\x7\xa9\x73\xe9\xe3\xed\xcf\x25\xea\x29\xc3\xb8\x95\xd9\x74\x10\xa6\x9b\x55\x2d\x11\x9f\xe5\x89\xd8\xe1\xa6\xc4\x15\x96\x8a\x21\xa8\x63\xe3\x6b\x3c\x19\x75\x28\xbb\x29\x12\xca\x13\xf2\x3a\x4f\xc8\xe\x57\xb2\xf0\x94\xc\x83\x1d\x1b\x7f\x82\x27\x65\x8\x1c\x62\xe6\x89\xf9\x1c\x4f\x4c\x5\xbc\x18\x65\xe6\xc9\xf9\x3c\x4f\xce\x10\xd8\xb1\xd1\x11\x98\x91\x60\x91\x49\x79\x9e\xa0\x1d\xae\x24\x12\x29\x1a\x81\x3b\x36\xfe\x24\x4f\xd2\x30\xdc\xb1\xd1\x31\x38\x18\x74\x45\xd0\x17\x78\xa2\x76\xb8\x92\x4b\xa6\x6a\xb4\x81\x63\xe3\x25\x9e\xac\x91\x6\x6c\x7a\x5\x1d\xa2\x9\xbb\xcc\x13\x56\xb9\x3d\x2c\x65\xd5\x71\xe1\x49\x5b\xe4\x49\xab\x8c\xb\x4f\xdb\x3\x50\xb6\x66\x89\xeb\xf1\xc4\xed\x70\xfb\xc5\x5\x9a\xba\x35\x38\x2c\x81\x6a\xf2\xae\x6c\x4b\xf2\x76\xb8\x48\xb0\x2b\xe9\x5b\x86\x3\x95\xc2\x1a\xcb\x5c\x9e\xbf\x93\xf4\x11\x77\x66\xeb\xee\x2e\x15\xd6\x68\xa2\xd3\x8f\x99\x6a\xa3\xb6\xee\xa6\x2a\xaa\x4d\xf1\xe6\xd8\x7c\xa\x4c\xb5\xe7\xcd\xb1\xe9\x87\xe6\x8d\xdb\x50\xd\xe\x12\x6f\x6c\xfe\x88\x69\x94\xa3\xfe\x66\x5b\xf2\xc7\xe6\x1b\xfb\x64\x1e\x49\x38\xaa\x55\xf5\xe9\xd8\x62\x36\xfe\x5f\x9b\x3e\x1d\x9b\x7d\xea\x3e\x85\x55\xf8\x64\xb3\x59\x4c\xea\x27\xda\xf0\xc9\x66\xff\x62\x28\x4e\xd5\xaa\xfa\x74\x6c\xa1\xd\x4f\xb6\xe9\xd3\xb1\x17\x43\x71\xaa\x56\x74\x7\xe\x11\x9f\x7c\x82\x4b\x8d\x39\x49\xbd\xce\xb5\xe4\x95\x8b\x11\xff\x8f\xf9\x25\x81\xe9\x76\xcd\xb3\x63\x4b\xb9\x7a\xaa\x5d\xcf\x8e\xcd\xff\xb\x79\x96\x76\xf4\x39\xb8\x83\x8e\xb3\x8\x5a\x4a\xdf\xd3\xd4\xf7\xf9\xd6\xc6\x9a\x93\x88\xff\x99\x77\x12\x62\xf8\x8a\xee\x9f\xdc\x69\x11\xfb\xa9\xb6\xfd\x3b\xb6\xf8\x3f\xec\x3f\xb8\x82\x4a\x30\x1d\xe8\x13\x55\xcf\x1b\xd4\xf1\xe9\xd6\xe5\x89\x68\x2d\xf3\xd8\x5f\x51\x4c\xba\x14\xb2\x7\xc0\x74\xbb\x52\x48\x1f\x17\x21\x29\x64\x8f\x10\x1f\x66\x2\x6f\xfc\x19\x72\x9a\xba\x9b\x69\xdd\x1d\x7b\xe2\x30\x7f\xe9\x8a\x66\x44\x5f\x30\x20\xe\x3c\x86\x16\x54\xab\xd4\xf3\xc5\xd6\x3d\x6b\x2b\x28\xd6\x81\x1d\x95\xb8\x6b\x68\x5\x92\x91\xa0\xf7\x92\xdd\xd0\x33\xd4\xf7\x74\x4b\xbe\xc9\x8d\xb\xee\x67\x5f\x25\xb0\x48\x85\x62\x6b\xf\xbe\x20\x9d\x69\x47\xa1\x28\x5\xfb\x54\x14\x4a\xb1\x8a\x9b\xca\x7d\xb2\xb5\xed\x6c\x1b\x37\x95\xd1\xd2\xe5\x70\x70\x53\x15\x23\xfa\x92\x1\x77\x2b\x1e\x43\x77\xf5\x2c\x75\x7d\xa9\xd\xd7\x31\xb7\x75\x67\x25\xf6\x22\xfa\x8a\x1\x47\x94\xae\x84\x17\xce\x73\xb4\x2f\xf3\x6d\xf4\x45\x5f\x36\xb3\xce\xec\xaa\xc4\x5f\x45\x2f\xc2\x9d\xd1\x71\xa1\x6f\x53\xe7\xda\x11\x2e\x25\x6e\xf2\xfa\xa4\x8\x57\xe8\xa\xfa\xbc\x1\x77\xc5\xc\x7\xed\xc2\x79\xda\x85\xb\xed\x8f\x45\xd0\x87\xe1\x4a\xcc\x25\xb4\x17\xf6\xfb\x55\xcf\x5f\x11\x2f\x3f\xbe\x69\x58\xa9\xb9\xe\xb7\x8f\x5a\xf9\x2b\x4b\x1d\xe\x33\x50\x28\x7b\xd6\xb6\x65\x2b\x79\xae\xc3\x45\x94\x5e\xcf\x16\xd9\x33\x3e\x31\x5f\x30\xd\xab\x57\xf6\x8c\x4f\xa7\x3d\x90\x7d\xe5\x33\xa9\x66\x1a\x56\xff\x5c\x87\xb\xa9\x91\x4d\x80\x47\x21\xe4\x10\x22\x25\x75\xd3\xb0\x7a\xe6\x3a\xdc\x5e\x86\x20\x32\xa0\xd\x81\x63\xe3\x86\x69\x58\x9d\xda\x10\x38\x76\xe0\x88\xc9\x7e\xd3\x34\x2c\x20\x1d\x31\xbd\x96\x3c\x5c\xab\x6f\x99\x86\x65\x48\x1e\xae\xb1\xcf\x89\xde\xd0\xdb\x7c\xbb\xfd\x6d\x6a\x19\xb\xbd\x9d\x17\x60\x67\xb1\xd0\x28\xe0\x37\xd\xd3\xb0\x60\xd6\xd9\x3a\xf3\x99\x42\xa3\xe0\x52\x12\xfa\x4e\xd3\x2c\x37\x4a\xb7\xfd\x5a\x71\xb5\xe6\x37\xd7\x56\x4a\x5e\xb9\x88\xdf\x62\xdc\xad\xe8\x15\x61\x7b\xc6\xaf\x15\xcf\x12\xb6\x59\xc2\xe6\xc6\xb9\x40\x63\x30\x55\xf4\x56\xa\xcd\x72\x83\xaf\x38\xfe\x4a\x4f\xc9\x72\xf0\xc8\x78\x76\xc2\x3e\xee\x9c\x98\x9c\x72\xfb\x39\x82\xad\x1b\x72\x5a\xb\xc7\xc6\x7f\x23\x2d\x12\xb9\xe1\x23\x53\xb2\x49\x6c\x5b\xc7\x46\x59\x98\x16\x6d\xf9\x2c\x78\x87\x34\x4e\xe5\x60\x36\x68\x22\xe8\xf9\x94\x78\x42\x6f\xe3\xd8\xf8\x5d\xd2\xa6\x33\x37\x3c\x3e\x16\xe3\x50\x6d\xad\x7b\xe4\x2f\xe3\x7f\x27\xad\x7\xb5\x0\x45\x9b\xc5\x88\x47\xfe\x32\xfd\xf\xd2\x6\x6d\x10\xa2\xda\xda\xb1\x91\xd\x7\x44\x6b\xf1\x7e\xf8\x1e\x69\x9e\xd4\x82\x14\x1e\xc4\x5b\xed\xc9\x50\x2b\xc7\xc6\xef\x93\x56\xdd\x1b\x84\xa9\xb5\x77\x6c\xe4\xc0\x8c\xec\xb3\x70\xfb\x1\x21\x18\xd0\x22\x15\x4e\xe4\x3b\xe5\xd3\xe1\x76\x8e\x8d\x3f\x24\xed\x32\x1b\x44\xab\x33\xd0\x4d\xc\x99\xf\x6c\xc6\xfe\x93\x34\x7\xb9\xae\x29\xef\xf0\x58\x90\x0\x6c\xe6\x1e\x9\x86\x96\xcf\xdd\x7f\x11\xb4\x91\xeb\x3a\xe1\x1d\xce\x66\xe5\x58\xf2\x39\x6c\x41\xd1\x9c\x69\xca\xbf\x9\xb8\x27\xd7\xd9\xa8\x35\x3d\xb7\x8f\x5f\xa2\xd2\x72\x4c\xb9\x67\x4c\xc5\xfe\x43\xb0\xbd\xb9\xa4\xeb\xd7\xbd\xa5\x66\x31\xb8\x4d\x4c\xcf\x1e\xf\xba\xcd\x14\xed\x1e\xc1\xf7\xe7\xba\x3f\xe5\xd7\x6f\x34\xb\xb2\xdf\x52\xda\xe8\x7c\xa9\x16\x2a\xde\x38\x7e\x25\x41\x4f\x92\x15\x13\x32\x61\x1f\xfd\x96\x27\x5f\xb3\xf8\xab\x2a\x62\x9e\x98\xd0\x1e\xd8\x9f\xf\x20\x13\xf8\x6b\x1c\x32\x2b\x20\x13\x68\x14\xa6\x18\x82\x42\xec\x3c\xfe\x7a\x98\x86\xca\x23\xfd\x36\x46\x20\xc7\xf1\xab\xc\xa1\xda\xd0\x5e\x41\x33\x46\x79\x1c\xfc\xd\xd\x44\x78\x1c\x19\x11\xf9\x76\x2\x7f\x33\xec\xe8\x4\x1\xc8\xae\x4d\xe2\x6f\x85\x7b\x3b\x19\x84\x4c\xbe\x4e\xe1\x6f\x87\x29\xa6\xd0\x28\xec\x9f\x95\x88\xf1\x31\xfc\x1a\xef\x87\x24\x19\x1f\xa3\x98\x73\x33\x17\xcf\xe4\xe7\x4f\x5d\x9a\x19\x1f\xc7\xdf\x11\x18\x62\x64\xb6\x0\x43\xc7\x3a\x8b\xbf\xab\x61\xa8\xd\xed\x83\xe9\xbc\x32\xbe\xe3\x13\xf8\x7b\x11\x6f\x13\xc\x35\x1b\xa0\x6c\xfc\x7a\x4\x65\x7\x3\xc8\x40\xc7\xf1\xf7\xd5\x1\xa4\x20\x65\x94\x59\x74\xe\xfe\x41\x4\xe4\x10\x7f\x4a\x9f\x4e\xe4\xf3\xf8\x87\x11\xd4\x9\x82\x52\xfa\x34\x99\xcf\xe3\x37\x22\xbd\x9a\x44\xd\x38\xc4\x95\x3f\x5f\xf7\x1a\xf9\x65\xbf\x56\xf3\x96\x1b\xf8\xdd\x4\x7d\x37\x68\x65\x11\xc6\x20\x8b\x5e\xe3\x34\xe3\x72\x7\x2b\x61\xd3\x48\xd\xa6\xf4\xb7\x85\x7e\x68\x14\x78\x29\x85\x51\x40\x8b\xb0\x6f\xd9\x97\xa7\x92\xb4\x76\xa2\xa5\x93\x4d\x95\x65\xe4\x69\x88\xa2\xfb\x57\x28\x3\x13\x37\xbd\x75\xee\x9a\xfc\x89\x86\x61\xd7\xad\x42\xb9\xc9\xdc\x76\xb9\xec\x4b\xe\x4c\x1a\x1\x83\xba\x27\xa5\x32\x24\x62\x18\x12\x2a\xc3\x34\x1c\x8e\xdb\x65\x52\x39\x52\x31\x1c\xa9\x78\xe\x6d\xd7\x48\xe5\xe8\x8c\xe1\xe8\x8c\x72\x44\x76\x81\x54\x8e\xc1\x18\x8e\xc1\x78\xe\x6d\x57\x47\xe5\x40\x31\x1c\x48\xe5\x38\x3\x77\xc6\xef\xd1\xa8\x2c\xc9\x18\x96\xe4\x6\x2c\xfa\x7e\x8b\xca\xd2\x1d\xc3\xd2\xad\xb2\xcc\x42\xbc\xd1\xce\x89\xca\x33\x10\xc3\x33\xb0\x11\x4f\x68\x7\x44\xe5\xc9\xc4\xf0\x64\x54\x9e\xa7\xe0\x60\x64\x43\x63\xb3\x74\xed\x89\x4d\x57\x75\x97\x62\x33\x6\xa0\x32\x9c\x82\x43\x31\x1b\xf\x9b\x51\x18\x2a\xc5\x97\xd\x38\xb2\xf1\x16\x42\xc\xd5\x55\x95\x6a\x1b\x8e\x80\x95\xbe\x9c\x84\x99\xf0\x8e\x82\xda\x81\x9e\xcd\x6\x94\x67\x7c\x78\x97\x40\xe5\xe8\x8d\xe1\xe8\x8d\xe\x69\x78\xd9\xbf\x19\x45\xbf\x4a\xf1\x92\x1\x1f\xba\xcf\xfa\x3d\x86\xeb\x23\x1c\xd3\x17\xe1\xc3\xf7\x5b\xbf\xc7\x74\xe6\x9c\xde\x99\x96\x4e\xda\x95\xe\xdc\x35\xd8\x7c\x8b\x5b\xb8\xc7\x78\x77\x55\xef\xed\x1e\xbe\x2b\xdd\x58\x87\xbb\x37\x5c\xbb\xc7\x74\x63\x56\xef\xc6\xd6\x8f\xe4\x15\xd7\x17\x61\x27\x59\xf5\x91\x57\x27\xba\x6\xe3\x6b\xae\x5f\xb0\x49\x5\xa9\x8d\xad\xb2\x46\x61\x3f\x43\xf0\x75\xd2\x2f\xd9\x3\x87\x35\x63\xcf\xa3\x91\xeb\x70\x28\x66\x9d\x17\x26\xff\xd5\xe6\xe4\xbf\x8e\x21\xdf\x3\x7\x23\xef\x7\x87\x7a\x7a\x3a\x33\xf7\xee\xdd\xbb\x97\xcc\x81\x1e\x63\xe4\x43\x92\xdd\x61\xcc\xcc\x9d\x86\x57\xad\x97\xfc\xea\x38\x19\xcb\x7a\xa3\xc6\x4a\xa3\x5c\xf2\x67\xf6\xe7\x6\xdc\xa1\xbe\xc3\x78\x2\x8c\xb6\xe3\xf5\x5\x7f\xf0\xe3\xe7\x69\xa2\x5e\xda\x6\xb2\x20\xe\x77\x28\x78\x2b\x92\xd6\x91\xf7\xee\x1b\x7c\x96\xbc\x26\x95\x68\x99\x64\x97\x6b\x94\xb2\x6f\x7e\xb4\x81\xbf\xfc\x23\xba\x8c\xda\xe6\xc8\xb3\xf1\x91\xdf\x5\x10\xc9\x6f\xcf\x94\x1a\x37\x16\xaa\x9e\xbf\x82\xd2\xf2\xbd\x70\xae\x83\xbc\x19\xa6\xa1\xb1\xc4\x5e\xcc\xc8\xf7\xa5\xec\x4f\xc\x38\x2c\xc3\xce\xdf\x2e\x35\x6e\xe4\xe9\x6e\xca\xf6\x8c\xc0\xab\xaf\xfd\x25\x47\x47\xa0\x85\x3\x82\x68\x30\x2e\xf2\x22\xb6\xe9\x94\xdc\x98\x22\xd3\x6c\x74\xa\x42\x65\x8b\x31\x9\x13\xb3\xb\xb\x99\xe\xf2\xc7\xf4\x29\x37\x63\xb0\x3f\xae\x65\x0\x99\x6\xf3\x33\x67\xe9\xbc\xa1\xff\x8c\x43\x5d\x3d\x77\x32\x6f\x1a\x21\xc2\xf3\xdd\x3d\x6f\x27\x33\x2f\xcf\x9f\xef\xe9\xf9\xe9\xdd\x27\x33\x3f\xbb\xfb\xa4\x9b\xae\x79\x75\xaf\x76\x8b\x1e\xca\x13\x97\xfb\xe0\x70\x9c\xc6\x92\x5c\x5b\x16\xaf\xe4\xcb\xa3\x97\x21\x54\xd4\xe0\x51\x5d\xd\x3e\x1d\x11\x83\x3d\x21\x31\xf8\x4c\x44\xb\x46\x5f\x4f\xc0\x1d\x57\xab\x37\xab\xfe\xed\xea\x15\x5f\x1d\x40\xf4\x58\xa4\xc8\xfa\xf7\xc9\xb8\x2a\x6b\x2b\x5a\x75\xfb\x87\x64\x6c\xd9\xed\x75\x98\xe\xed\x7d\xfe\x31\xd9\xfa\xd3\x27\x55\xd5\xd6\x2e\xa5\xa0\x6c\x93\xc6\x87\xff\x94\xa4\x3b\x6c\x9b\x1d\x78\xc4\x6\x7f\x74\x81\x53\xd1\xd1\x76\x75\x66\xb4\x2f\x5c\x8c\xfc\xe7\x64\x4c\x35\xf2\x63\x91\xf2\xcd\x77\x92\x31\xf5\x9b\x23\x8f\xc0\x94\xe6\x4d\x5f\x85\x8d\xee\x84\xc3\xf3\xcd\x72\x79\x6e\x7d\xcd\x6f\xdc\xf0\xea\x25\x9e\xd9\xa3\xc7\x60\x9a\x64\xe7\x42\xb5\xbc\xce\x2d\x8f\xc0\x4e\xea\x18\xc2\xee\x9b\xb3\x85\x72\xdd\xcb\x74\xa0\x5e\xd8\x75\xf3\x4a\xad\xe9\x65\x8c\xd1\xfd\x70\x60\xa1\xea\xf1\x1a\x30\x96\x5c\x88\x6f\x74\xb2\x47\x22\xfd\x7b\xb4\x0\x7\xe9\x55\x32\x39\x2e\x78\xeb\xb7\xfd\x5a\xb1\x8e\x76\xc2\xee\x52\xb5\x5c\xaa\x7a\xbc\x5f\xfc\x1b\xc2\x30\xb9\xec\x57\x97\xbd\xb5\x6\x7f\xc7\x12\x5f\xd1\x8\xec\xa9\x79\x2f\x34\x4b\x35\xaf\x8e\x13\xb4\x3c\x51\x7e\x1f\x7d\x6b\x37\x1c\xe1\xa3\xed\x32\x5b\x31\x54\xdd\xcf\xa1\x45\x59\xdd\xf\xd8\xb8\x31\xab\x52\xf7\x1a\xc0\x68\x75\x3f\x60\x75\xaf\x12\x26\xaa\x54\x39\x4c\x56\xf7\x3\x56\xf7\xca\xcc\x6a\xdd\xab\x2\xa4\xd5\xfd\x80\xd5\xbd\x6\xc0\x10\xa3\xac\xee\x7\xac\xee\x95\x99\x17\xa3\x8c\xb2\xba\x1f\xb0\xba\xd7\x0\x28\xea\x5e\x39\x30\xa8\xee\x7\xac\xee\x95\xd9\xb5\xba\x57\x15\x4a\xab\xfb\x1\xab\x7b\x55\xa0\xa2\xee\x55\xb8\xf\xaa\xfb\x1\xab\x7b\xe5\x1d\xd0\xea\x5e\x35\x30\xad\xee\x7\xac\xee\x55\x5\x8b\xba\x57\xd1\x9\x5e\xdd\xf\x58\xdd\x2b\xef\x42\x50\xf7\xca\x61\xb2\xba\x1f\xb0\xba\x57\x66\x56\xeb\x5e\x39\x90\x57\xf7\x3\x56\xf7\xca\x8c\x41\xdd\xab\xe8\xa1\xa8\xee\x7\xac\xee\x95\xf7\x4f\xa9\x7b\x15\x6c\xbc\xba\x1f\xb0\xba\x57\x4e\x47\xf7\xfd\x5e\x84\xbb\x24\x2c\x52\xdd\xf\xac\xbe\xec\xd9\x7\x7b\xdc\xc4\xa4\x70\xb4\xfe\x95\x41\x62\xea\x5f\xc5\x28\x46\xaa\xfc\x41\x1b\xf5\xaf\xfc\x26\xe8\x47\x75\xb7\xe0\x70\x38\x5e\x5e\xe5\xf\xac\xf4\x83\x3e\x5b\x37\xe\x56\xd4\xc1\xaa\x91\x6\x75\xb0\xa1\x30\x79\xb5\x3f\x68\xb5\xe\x56\xb\x30\xa8\x83\xd5\xb2\x43\x56\xfb\x83\xa0\xe\x56\xcd\x13\xa5\xe\x96\xb7\xe3\xd5\xfe\x20\xa8\x83\x65\x17\x68\x1d\xec\x4a\x7c\xb5\x3f\xb9\x4d\x53\x2d\x8f\x5d\x4c\xd5\xff\x6d\x38\x22\x1f\x2e\x51\x87\xf\xd3\xe7\x65\x1b\xe\xe5\xf\x4b\xdc\xb0\xe3\xc5\xe0\xd4\xb\x58\x30\x7b\xb2\xf5\x84\x50\x4e\xbf\xe2\xce\xa0\xc0\x96\xcf\xa0\x40\x3b\x67\x50\xa0\x85\x33\x28\xd0\xd6\x19\x14\x68\xe1\xc\xa\xb4\x77\x6\x5\x5a\x3a\x83\x2\xed\x9e\x41\x81\x16\xcf\xa0\x40\x7b\x67\x50\x60\x4b\x67\x50\x60\x2b\x67\x50\x60\xb\x67\x50\x60\x8b\x67\x50\x60\xa3\x33\xa8\x91\xb7\x8d\xd\xb6\xe2\x1\xdb\x8a\xbf\x1e\xde\x8a\x6f\x53\x76\x54\x36\x54\x56\x7e\xfe\xa5\x7a\x49\xb4\xab\x35\x43\xca\xcf\xa5\xe4\x1\xc0\xc6\xfb\x24\x60\xf3\x7d\x12\xd0\xc2\x56\xc6\x4b\xe0\x1\xb7\x32\x80\xd8\xca\xf8\xcd\x86\x2b\xfa\xb\xad\x8b\xe2\xc6\x5b\x1a\x57\xb7\x91\x74\xb3\xad\x8d\x2f\x82\x7\xda\xda\x0\x6c\x6b\xe3\xb7\xff\x9b\x81\x90\x5b\x1c\x1f\xc9\x48\xc4\x6f\x75\xb4\xbf\xc6\x17\x8b\xfa\xd1\x57\x12\x30\x4d\x7a\x76\xb1\x50\x5b\xf5\xd8\x86\xc9\x34\x4\x85\x71\xcc\x82\x1a\x7b\x80\xa0\x82\xa6\x47\x4f\x8d\xcf\x75\xb8\xa0\x30\x4e\x39\xb2\x7c\x7b\x76\xab\x1c\x59\xca\x91\xa5\x1c\x13\x7c\x22\x6f\x95\x63\x82\x72\x4c\x50\xe\xf6\x43\xe7\xad\x73\xd8\x94\xc3\xa6\x1c\xc7\xe9\x6f\xa0\xb7\xce\x71\x9c\x72\x1c\x1f\xe9\x84\xe0\xd4\x38\xfd\xcc\xd2\xcf\x9\xfa\x69\xd3\xcf\xe3\xd3\x29\xd8\x57\x26\x8d\xd8\xc6\xd3\xa1\x59\x38\x18\x79\x71\x44\x3\xb0\x6f\x76\xc1\x9d\x39\x77\x76\x3e\xcf\x6e\xb6\x62\x60\x37\x5d\x33\x5c\xcb\x80\xdc\x35\x38\x10\x6c\x6c\xb1\xc7\xf7\xd6\x4f\x40\xf1\x1d\xba\x68\x4e\x4b\x26\xaa\x6f\xb9\xcf\x42\xa8\x54\xeb\xb4\x40\xbb\x4e\x37\x38\xe\x6e\xd2\x50\x29\x13\x52\xfc\x4d\x4f\x42\x6b\xd9\xaf\x1c\x65\xbf\xd5\xbf\x3f\xc5\x9c\xf1\xbe\x61\xbc\x1\xba\x99\xdb\xff\x6\x0\x0\xff\xff\x74\x3e\x9d\x68");
   }
 }

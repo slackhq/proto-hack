@@ -107,6 +107,8 @@ class FileDescriptorProto implements \Protobuf\Message {
   private bool $was_source_code_info_set;
   private string $syntax;
   private bool $was_syntax_set;
+  private string $edition;
+  private bool $was_edition_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -122,6 +124,7 @@ class FileDescriptorProto implements \Protobuf\Message {
     ?'options' => ?\google\protobuf\FileOptions,
     ?'source_code_info' => ?\google\protobuf\SourceCodeInfo,
     ?'syntax' => string,
+    ?'edition' => string,
   ) $s = shape()) {
     if (Shapes::keyExists($s, 'name')) {
       $this->name = $s['name'];
@@ -164,6 +167,13 @@ class FileDescriptorProto implements \Protobuf\Message {
     } else {
       $this->syntax = '';
       $this->was_syntax_set = false;
+    }
+    if (Shapes::keyExists($s, 'edition')) {
+      $this->edition = $s['edition'];
+      $this->was_edition_set = true;
+    } else {
+      $this->edition = '';
+      $this->was_edition_set = false;
     }
     $this->XXX_unrecognized = '';
   }
@@ -231,6 +241,19 @@ class FileDescriptorProto implements \Protobuf\Message {
 
   public function hasSyntax(): bool {
     return $this->was_syntax_set;
+  }
+
+  public function getEdition(): string {
+    return $this->edition;
+  }
+
+  public function setEdition(string $v): void {
+    $this->edition = $v;
+    $this->was_edition_set = true;
+  }
+
+  public function hasEdition(): bool {
+    return $this->was_edition_set;
   }
 
   public function MessageName(): string {
@@ -319,6 +342,10 @@ class FileDescriptorProto implements \Protobuf\Message {
           $this->syntax = $d->readString();
           $this->was_syntax_set = true;
           break;
+        case 13:
+          $this->edition = $d->readString();
+          $this->was_edition_set = true;
+          break;
         default:
           $d->skip($fn, $wt);
       }
@@ -387,6 +414,10 @@ class FileDescriptorProto implements \Protobuf\Message {
       $e->writeTag(12, 2);
       $e->writeString($this->syntax);
     }
+    if ($this->was_edition_set) {
+      $e->writeTag(13, 2);
+      $e->writeString($this->edition);
+    }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
@@ -412,6 +443,9 @@ class FileDescriptorProto implements \Protobuf\Message {
     $e->writePrimitiveList('weak_dependency', 'weakDependency', $this->weak_dependency);
     if ($this->hasSyntax()) {
       $e->writeString('syntax', 'syntax', $this->syntax, false);
+    }
+    if ($this->hasEdition()) {
+      $e->writeString('edition', 'edition', $this->edition, false);
     }
   }
 
@@ -491,6 +525,10 @@ class FileDescriptorProto implements \Protobuf\Message {
           $this->syntax = \Protobuf\Internal\JsonDecoder::readString($v);
           $this->was_syntax_set = true;
           break;
+        case 'edition':
+          $this->edition = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_edition_set = true;
+          break;
         default:
         break;
       }
@@ -548,6 +586,9 @@ class FileDescriptorProto implements \Protobuf\Message {
     $this->weak_dependency = $o->weak_dependency;
     if ($o->hasSyntax()) {
       $this->setSyntax($o->getSyntax());
+    }
+    if ($o->hasEdition()) {
+      $this->setEdition($o->getEdition());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -1249,15 +1290,371 @@ class DescriptorProto implements \Protobuf\Message {
   }
 }
 
+newtype ExtensionRangeOptions_VerificationState_enum_t as int = int;
+abstract class ExtensionRangeOptions_VerificationState {
+  const ExtensionRangeOptions_VerificationState_enum_t DECLARATION = 0;
+  const ExtensionRangeOptions_VerificationState_enum_t UNVERIFIED = 1;
+  private static dict<int, string> $itos = dict[
+    0 => 'DECLARATION',
+    1 => 'UNVERIFIED',
+  ];
+  public static function ToStringDict(): dict<int, string> {
+    return self::$itos;
+  }
+  private static dict<string, int> $stoi = dict[
+    'DECLARATION' => 0,
+    'UNVERIFIED' => 1,
+  ];
+  public static function FromMixed(mixed $m): ExtensionRangeOptions_VerificationState_enum_t {
+    if ($m is string) return idx(self::$stoi, $m, \is_numeric($m) ? ((int) $m) : 0);
+    if ($m is int) return $m;
+    return 0;
+  }
+  public static function FromInt(int $i): ExtensionRangeOptions_VerificationState_enum_t {
+    return $i;
+  }
+}
+
+class ExtensionRangeOptions_Declaration implements \Protobuf\Message {
+  private int $number;
+  private bool $was_number_set;
+  private string $full_name;
+  private bool $was_full_name_set;
+  private string $type;
+  private bool $was_type_set;
+  private bool $is_repeated;
+  private bool $was_is_repeated_set;
+  private bool $reserved;
+  private bool $was_reserved_set;
+  private bool $repeated;
+  private bool $was_repeated_set;
+  private string $XXX_unrecognized;
+
+  public function __construct(shape(
+    ?'number' => int,
+    ?'full_name' => string,
+    ?'type' => string,
+    ?'is_repeated' => bool,
+    ?'reserved' => bool,
+    ?'repeated' => bool,
+  ) $s = shape()) {
+    if (Shapes::keyExists($s, 'number')) {
+      $this->number = $s['number'];
+      $this->was_number_set = true;
+    } else {
+      $this->number = 0;
+      $this->was_number_set = false;
+    }
+    if (Shapes::keyExists($s, 'full_name')) {
+      $this->full_name = $s['full_name'];
+      $this->was_full_name_set = true;
+    } else {
+      $this->full_name = '';
+      $this->was_full_name_set = false;
+    }
+    if (Shapes::keyExists($s, 'type')) {
+      $this->type = $s['type'];
+      $this->was_type_set = true;
+    } else {
+      $this->type = '';
+      $this->was_type_set = false;
+    }
+    if (Shapes::keyExists($s, 'is_repeated')) {
+      $this->is_repeated = $s['is_repeated'];
+      $this->was_is_repeated_set = true;
+    } else {
+      $this->is_repeated = false;
+      $this->was_is_repeated_set = false;
+    }
+    if (Shapes::keyExists($s, 'reserved')) {
+      $this->reserved = $s['reserved'];
+      $this->was_reserved_set = true;
+    } else {
+      $this->reserved = false;
+      $this->was_reserved_set = false;
+    }
+    if (Shapes::keyExists($s, 'repeated')) {
+      $this->repeated = $s['repeated'];
+      $this->was_repeated_set = true;
+    } else {
+      $this->repeated = false;
+      $this->was_repeated_set = false;
+    }
+    $this->XXX_unrecognized = '';
+  }
+
+  public function getNumber(): int {
+    return $this->number;
+  }
+
+  public function setNumber(int $v): void {
+    $this->number = $v;
+    $this->was_number_set = true;
+  }
+
+  public function hasNumber(): bool {
+    return $this->was_number_set;
+  }
+
+  public function getFullName(): string {
+    return $this->full_name;
+  }
+
+  public function setFullName(string $v): void {
+    $this->full_name = $v;
+    $this->was_full_name_set = true;
+  }
+
+  public function hasFullName(): bool {
+    return $this->was_full_name_set;
+  }
+
+  public function getType(): string {
+    return $this->type;
+  }
+
+  public function setType(string $v): void {
+    $this->type = $v;
+    $this->was_type_set = true;
+  }
+
+  public function hasType(): bool {
+    return $this->was_type_set;
+  }
+
+  public function getIsRepeated(): bool {
+    return $this->is_repeated;
+  }
+
+  public function setIsRepeated(bool $v): void {
+    $this->is_repeated = $v;
+    $this->was_is_repeated_set = true;
+  }
+
+  public function hasIsRepeated(): bool {
+    return $this->was_is_repeated_set;
+  }
+
+  public function getReserved(): bool {
+    return $this->reserved;
+  }
+
+  public function setReserved(bool $v): void {
+    $this->reserved = $v;
+    $this->was_reserved_set = true;
+  }
+
+  public function hasReserved(): bool {
+    return $this->was_reserved_set;
+  }
+
+  public function getRepeated(): bool {
+    return $this->repeated;
+  }
+
+  public function setRepeated(bool $v): void {
+    $this->repeated = $v;
+    $this->was_repeated_set = true;
+  }
+
+  public function hasRepeated(): bool {
+    return $this->was_repeated_set;
+  }
+
+  public function MessageName(): string {
+    return "google.protobuf.ExtensionRangeOptions.Declaration";
+  }
+
+  public static function ParseFrom(string $input): ?ExtensionRangeOptions_Declaration {
+    $msg = new ExtensionRangeOptions_Declaration();
+    $e = \Protobuf\Unmarshal($input, $msg);
+    if (!$e->Ok()) {
+      return null;
+    }
+    return $msg;
+  }
+
+  public function MergeFrom(\Protobuf\Internal\Decoder $d): void {
+    while (!$d->isEOF()){
+      list($fn, $wt) = $d->readTag();
+      switch ($fn) {
+        case 1:
+          $this->number = $d->readVarint32Signed();
+          $this->was_number_set = true;
+          break;
+        case 2:
+          $this->full_name = $d->readString();
+          $this->was_full_name_set = true;
+          break;
+        case 3:
+          $this->type = $d->readString();
+          $this->was_type_set = true;
+          break;
+        case 4:
+          $this->is_repeated = $d->readBool();
+          $this->was_is_repeated_set = true;
+          break;
+        case 5:
+          $this->reserved = $d->readBool();
+          $this->was_reserved_set = true;
+          break;
+        case 6:
+          $this->repeated = $d->readBool();
+          $this->was_repeated_set = true;
+          break;
+        default:
+          $d->skip($fn, $wt);
+      }
+    }
+    $this->XXX_unrecognized = $d->skippedRaw();
+  }
+
+  public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    if ($this->was_number_set) {
+      $e->writeTag(1, 0);
+      $e->writeVarint($this->number);
+    }
+    if ($this->was_full_name_set) {
+      $e->writeTag(2, 2);
+      $e->writeString($this->full_name);
+    }
+    if ($this->was_type_set) {
+      $e->writeTag(3, 2);
+      $e->writeString($this->type);
+    }
+    if ($this->was_is_repeated_set) {
+      $e->writeTag(4, 0);
+      $e->writeBool($this->is_repeated);
+    }
+    if ($this->was_reserved_set) {
+      $e->writeTag(5, 0);
+      $e->writeBool($this->reserved);
+    }
+    if ($this->was_repeated_set) {
+      $e->writeTag(6, 0);
+      $e->writeBool($this->repeated);
+    }
+    $e->writeRaw($this->XXX_unrecognized);
+  }
+
+  public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    if ($this->hasNumber()) {
+      $e->writeInt32('number', 'number', $this->number, false);
+    }
+    if ($this->hasFullName()) {
+      $e->writeString('full_name', 'fullName', $this->full_name, false);
+    }
+    if ($this->hasType()) {
+      $e->writeString('type', 'type', $this->type, false);
+    }
+    if ($this->hasIsRepeated()) {
+      $e->writeBool('is_repeated', 'isRepeated', $this->is_repeated, false);
+    }
+    if ($this->hasReserved()) {
+      $e->writeBool('reserved', 'reserved', $this->reserved, false);
+    }
+    if ($this->hasRepeated()) {
+      $e->writeBool('repeated', 'repeated', $this->repeated, false);
+    }
+  }
+
+  public function MergeJsonFrom(mixed $m): void {
+    if ($m === null) return;
+    $d = \Protobuf\Internal\JsonDecoder::readObject($m);
+    foreach ($d as $k => $v) {
+      switch ($k) {
+        case 'number':
+          $this->number = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
+          $this->was_number_set = true;
+          break;
+        case 'full_name': case 'fullName':
+          $this->full_name = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_full_name_set = true;
+          break;
+        case 'type':
+          $this->type = \Protobuf\Internal\JsonDecoder::readString($v);
+          $this->was_type_set = true;
+          break;
+        case 'is_repeated': case 'isRepeated':
+          $this->is_repeated = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_is_repeated_set = true;
+          break;
+        case 'reserved':
+          $this->reserved = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_reserved_set = true;
+          break;
+        case 'repeated':
+          $this->repeated = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_repeated_set = true;
+          break;
+        default:
+        break;
+      }
+    }
+  }
+
+  public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
+    if (!($o is ExtensionRangeOptions_Declaration)) {
+      return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    if ($o->hasNumber()) {
+      $this->setNumber($o->getNumber());
+    }
+    if ($o->hasFullName()) {
+      $this->setFullName($o->getFullName());
+    }
+    if ($o->hasType()) {
+      $this->setType($o->getType());
+    }
+    if ($o->hasIsRepeated()) {
+      $this->setIsRepeated($o->getIsRepeated());
+    }
+    if ($o->hasReserved()) {
+      $this->setReserved($o->getReserved());
+    }
+    if ($o->hasRepeated()) {
+      $this->setRepeated($o->getRepeated());
+    }
+    $this->XXX_unrecognized = $o->XXX_unrecognized;
+    return \Errors\Ok();
+  }
+}
+
 class ExtensionRangeOptions implements \Protobuf\Message {
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
+  public vec<\google\protobuf\ExtensionRangeOptions_Declaration> $declaration;
+  private \google\protobuf\ExtensionRangeOptions_VerificationState_enum_t $verification;
+  private bool $was_verification_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
+    ?'declaration' => vec<\google\protobuf\ExtensionRangeOptions_Declaration>,
+    ?'verification' => \google\protobuf\ExtensionRangeOptions_VerificationState_enum_t,
   ) $s = shape()) {
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
+    $this->declaration = $s['declaration'] ?? vec[];
+    if (Shapes::keyExists($s, 'verification')) {
+      $this->verification = $s['verification'];
+      $this->was_verification_set = true;
+    } else {
+      $this->verification = \google\protobuf\ExtensionRangeOptions_VerificationState::UNVERIFIED;
+      $this->was_verification_set = false;
+    }
     $this->XXX_unrecognized = '';
+  }
+
+  public function getVerification(): \google\protobuf\ExtensionRangeOptions_VerificationState_enum_t {
+    return $this->verification;
+  }
+
+  public function setVerification(\google\protobuf\ExtensionRangeOptions_VerificationState_enum_t $v): void {
+    $this->verification = $v;
+    $this->was_verification_set = true;
+  }
+
+  public function hasVerification(): bool {
+    return $this->was_verification_set;
   }
 
   public function MessageName(): string {
@@ -1277,6 +1674,15 @@ class ExtensionRangeOptions implements \Protobuf\Message {
     while (!$d->isEOF()){
       list($fn, $wt) = $d->readTag();
       switch ($fn) {
+        case 2:
+          $obj = new \google\protobuf\ExtensionRangeOptions_Declaration();
+          $obj->MergeFrom($d->readDecoder());
+          $this->declaration []= $obj;
+          break;
+        case 3:
+          $this->verification = \google\protobuf\ExtensionRangeOptions_VerificationState::FromInt($d->readVarint());
+          $this->was_verification_set = true;
+          break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
           $obj->MergeFrom($d->readDecoder());
@@ -1290,6 +1696,15 @@ class ExtensionRangeOptions implements \Protobuf\Message {
   }
 
   public function WriteTo(\Protobuf\Internal\Encoder $e): void {
+    foreach ($this->declaration as $msg) {
+      $nested = new \Protobuf\Internal\Encoder();
+      $msg->WriteTo($nested);
+      $e->writeEncoder($nested, 2);
+    }
+    if ($this->was_verification_set) {
+      $e->writeTag(3, 0);
+      $e->writeVarint($this->verification);
+    }
     foreach ($this->uninterpreted_option as $msg) {
       $nested = new \Protobuf\Internal\Encoder();
       $msg->WriteTo($nested);
@@ -1299,6 +1714,10 @@ class ExtensionRangeOptions implements \Protobuf\Message {
   }
 
   public function WriteJsonTo(\Protobuf\Internal\JsonEncoder $e): void {
+    $e->writeMessageList('declaration', 'declaration', $this->declaration);
+    if ($this->hasVerification()) {
+      $e->writeEnum('verification', 'verification', \google\protobuf\ExtensionRangeOptions_VerificationState::ToStringDict(), $this->verification, false);
+    }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -1307,6 +1726,17 @@ class ExtensionRangeOptions implements \Protobuf\Message {
     $d = \Protobuf\Internal\JsonDecoder::readObject($m);
     foreach ($d as $k => $v) {
       switch ($k) {
+        case 'declaration':
+          foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
+            $obj = new \google\protobuf\ExtensionRangeOptions_Declaration();
+            $obj->MergeJsonFrom($vv);
+            $this->declaration []= $obj;
+          }
+          break;
+        case 'verification':
+          $this->verification = \google\protobuf\ExtensionRangeOptions_VerificationState::FromMixed($v);
+          $this->was_verification_set = true;
+          break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
             $obj = new \google\protobuf\UninterpretedOption();
@@ -1323,6 +1753,14 @@ class ExtensionRangeOptions implements \Protobuf\Message {
   public function CopyFrom(\Protobuf\Message $o): \Errors\Error {
     if (!($o is ExtensionRangeOptions)) {
       return \Errors\Errorf('CopyFrom failed: incorrect type received: %s', $o->MessageName());
+    }
+    foreach ($o->declaration as $v) {
+      $nv = new \google\protobuf\ExtensionRangeOptions_Declaration();
+      $nv->CopyFrom($v);
+      $this->declaration []= $nv;
+    }
+    if ($o->hasVerification()) {
+      $this->setVerification($o->getVerification());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -4129,6 +4567,8 @@ class MessageOptions implements \Protobuf\Message {
   private bool $was_deprecated_set;
   private bool $map_entry;
   private bool $was_map_entry_set;
+  private bool $deprecated_legacy_json_field_conflicts;
+  private bool $was_deprecated_legacy_json_field_conflicts_set;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
@@ -4137,6 +4577,7 @@ class MessageOptions implements \Protobuf\Message {
     ?'no_standard_descriptor_accessor' => bool,
     ?'deprecated' => bool,
     ?'map_entry' => bool,
+    ?'deprecated_legacy_json_field_conflicts' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
     if (Shapes::keyExists($s, 'message_set_wire_format')) {
@@ -4166,6 +4607,13 @@ class MessageOptions implements \Protobuf\Message {
     } else {
       $this->map_entry = false;
       $this->was_map_entry_set = false;
+    }
+    if (Shapes::keyExists($s, 'deprecated_legacy_json_field_conflicts')) {
+      $this->deprecated_legacy_json_field_conflicts = $s['deprecated_legacy_json_field_conflicts'];
+      $this->was_deprecated_legacy_json_field_conflicts_set = true;
+    } else {
+      $this->deprecated_legacy_json_field_conflicts = false;
+      $this->was_deprecated_legacy_json_field_conflicts_set = false;
     }
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
@@ -4223,6 +4671,19 @@ class MessageOptions implements \Protobuf\Message {
     return $this->was_map_entry_set;
   }
 
+  public function getDeprecatedLegacyJsonFieldConflicts(): bool {
+    return $this->deprecated_legacy_json_field_conflicts;
+  }
+
+  public function setDeprecatedLegacyJsonFieldConflicts(bool $v): void {
+    $this->deprecated_legacy_json_field_conflicts = $v;
+    $this->was_deprecated_legacy_json_field_conflicts_set = true;
+  }
+
+  public function hasDeprecatedLegacyJsonFieldConflicts(): bool {
+    return $this->was_deprecated_legacy_json_field_conflicts_set;
+  }
+
   public function MessageName(): string {
     return "google.protobuf.MessageOptions";
   }
@@ -4256,6 +4717,10 @@ class MessageOptions implements \Protobuf\Message {
           $this->map_entry = $d->readBool();
           $this->was_map_entry_set = true;
           break;
+        case 11:
+          $this->deprecated_legacy_json_field_conflicts = $d->readBool();
+          $this->was_deprecated_legacy_json_field_conflicts_set = true;
+          break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
           $obj->MergeFrom($d->readDecoder());
@@ -4285,6 +4750,10 @@ class MessageOptions implements \Protobuf\Message {
       $e->writeTag(7, 0);
       $e->writeBool($this->map_entry);
     }
+    if ($this->was_deprecated_legacy_json_field_conflicts_set) {
+      $e->writeTag(11, 0);
+      $e->writeBool($this->deprecated_legacy_json_field_conflicts);
+    }
     foreach ($this->uninterpreted_option as $msg) {
       $nested = new \Protobuf\Internal\Encoder();
       $msg->WriteTo($nested);
@@ -4305,6 +4774,9 @@ class MessageOptions implements \Protobuf\Message {
     }
     if ($this->hasMapEntry()) {
       $e->writeBool('map_entry', 'mapEntry', $this->map_entry, false);
+    }
+    if ($this->hasDeprecatedLegacyJsonFieldConflicts()) {
+      $e->writeBool('deprecated_legacy_json_field_conflicts', 'deprecatedLegacyJsonFieldConflicts', $this->deprecated_legacy_json_field_conflicts, false);
     }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
@@ -4329,6 +4801,10 @@ class MessageOptions implements \Protobuf\Message {
         case 'map_entry': case 'mapEntry':
           $this->map_entry = \Protobuf\Internal\JsonDecoder::readBool($v);
           $this->was_map_entry_set = true;
+          break;
+        case 'deprecated_legacy_json_field_conflicts': case 'deprecatedLegacyJsonFieldConflicts':
+          $this->deprecated_legacy_json_field_conflicts = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_deprecated_legacy_json_field_conflicts_set = true;
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -4358,6 +4834,9 @@ class MessageOptions implements \Protobuf\Message {
     }
     if ($o->hasMapEntry()) {
       $this->setMapEntry($o->getMapEntry());
+    }
+    if ($o->hasDeprecatedLegacyJsonFieldConflicts()) {
+      $this->setDeprecatedLegacyJsonFieldConflicts($o->getDeprecatedLegacyJsonFieldConflicts());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -4425,6 +4904,83 @@ abstract class FieldOptions_JSType {
   }
 }
 
+newtype FieldOptions_OptionRetention_enum_t as int = int;
+abstract class FieldOptions_OptionRetention {
+  const FieldOptions_OptionRetention_enum_t RETENTION_UNKNOWN = 0;
+  const FieldOptions_OptionRetention_enum_t RETENTION_RUNTIME = 1;
+  const FieldOptions_OptionRetention_enum_t RETENTION_SOURCE = 2;
+  private static dict<int, string> $itos = dict[
+    0 => 'RETENTION_UNKNOWN',
+    1 => 'RETENTION_RUNTIME',
+    2 => 'RETENTION_SOURCE',
+  ];
+  public static function ToStringDict(): dict<int, string> {
+    return self::$itos;
+  }
+  private static dict<string, int> $stoi = dict[
+    'RETENTION_UNKNOWN' => 0,
+    'RETENTION_RUNTIME' => 1,
+    'RETENTION_SOURCE' => 2,
+  ];
+  public static function FromMixed(mixed $m): FieldOptions_OptionRetention_enum_t {
+    if ($m is string) return idx(self::$stoi, $m, \is_numeric($m) ? ((int) $m) : 0);
+    if ($m is int) return $m;
+    return 0;
+  }
+  public static function FromInt(int $i): FieldOptions_OptionRetention_enum_t {
+    return $i;
+  }
+}
+
+newtype FieldOptions_OptionTargetType_enum_t as int = int;
+abstract class FieldOptions_OptionTargetType {
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_UNKNOWN = 0;
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_FILE = 1;
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_EXTENSION_RANGE = 2;
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_MESSAGE = 3;
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_FIELD = 4;
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_ONEOF = 5;
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_ENUM = 6;
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_ENUM_ENTRY = 7;
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_SERVICE = 8;
+  const FieldOptions_OptionTargetType_enum_t TARGET_TYPE_METHOD = 9;
+  private static dict<int, string> $itos = dict[
+    0 => 'TARGET_TYPE_UNKNOWN',
+    1 => 'TARGET_TYPE_FILE',
+    2 => 'TARGET_TYPE_EXTENSION_RANGE',
+    3 => 'TARGET_TYPE_MESSAGE',
+    4 => 'TARGET_TYPE_FIELD',
+    5 => 'TARGET_TYPE_ONEOF',
+    6 => 'TARGET_TYPE_ENUM',
+    7 => 'TARGET_TYPE_ENUM_ENTRY',
+    8 => 'TARGET_TYPE_SERVICE',
+    9 => 'TARGET_TYPE_METHOD',
+  ];
+  public static function ToStringDict(): dict<int, string> {
+    return self::$itos;
+  }
+  private static dict<string, int> $stoi = dict[
+    'TARGET_TYPE_UNKNOWN' => 0,
+    'TARGET_TYPE_FILE' => 1,
+    'TARGET_TYPE_EXTENSION_RANGE' => 2,
+    'TARGET_TYPE_MESSAGE' => 3,
+    'TARGET_TYPE_FIELD' => 4,
+    'TARGET_TYPE_ONEOF' => 5,
+    'TARGET_TYPE_ENUM' => 6,
+    'TARGET_TYPE_ENUM_ENTRY' => 7,
+    'TARGET_TYPE_SERVICE' => 8,
+    'TARGET_TYPE_METHOD' => 9,
+  ];
+  public static function FromMixed(mixed $m): FieldOptions_OptionTargetType_enum_t {
+    if ($m is string) return idx(self::$stoi, $m, \is_numeric($m) ? ((int) $m) : 0);
+    if ($m is int) return $m;
+    return 0;
+  }
+  public static function FromInt(int $i): FieldOptions_OptionTargetType_enum_t {
+    return $i;
+  }
+}
+
 class FieldOptions implements \Protobuf\Message {
   private \google\protobuf\FieldOptions_CType_enum_t $ctype;
   private bool $was_ctype_set;
@@ -4440,6 +4996,13 @@ class FieldOptions implements \Protobuf\Message {
   private bool $was_deprecated_set;
   private bool $weak;
   private bool $was_weak_set;
+  private bool $debug_redact;
+  private bool $was_debug_redact_set;
+  private \google\protobuf\FieldOptions_OptionRetention_enum_t $retention;
+  private bool $was_retention_set;
+  private \google\protobuf\FieldOptions_OptionTargetType_enum_t $target;
+  private bool $was_target_set;
+  public vec<\google\protobuf\FieldOptions_OptionTargetType_enum_t> $targets;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
@@ -4451,6 +5014,10 @@ class FieldOptions implements \Protobuf\Message {
     ?'unverified_lazy' => bool,
     ?'deprecated' => bool,
     ?'weak' => bool,
+    ?'debug_redact' => bool,
+    ?'retention' => \google\protobuf\FieldOptions_OptionRetention_enum_t,
+    ?'target' => \google\protobuf\FieldOptions_OptionTargetType_enum_t,
+    ?'targets' => vec<\google\protobuf\FieldOptions_OptionTargetType_enum_t>,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
     if (Shapes::keyExists($s, 'ctype')) {
@@ -4502,6 +5069,28 @@ class FieldOptions implements \Protobuf\Message {
       $this->weak = false;
       $this->was_weak_set = false;
     }
+    if (Shapes::keyExists($s, 'debug_redact')) {
+      $this->debug_redact = $s['debug_redact'];
+      $this->was_debug_redact_set = true;
+    } else {
+      $this->debug_redact = false;
+      $this->was_debug_redact_set = false;
+    }
+    if (Shapes::keyExists($s, 'retention')) {
+      $this->retention = $s['retention'];
+      $this->was_retention_set = true;
+    } else {
+      $this->retention = \google\protobuf\FieldOptions_OptionRetention::RETENTION_UNKNOWN;
+      $this->was_retention_set = false;
+    }
+    if (Shapes::keyExists($s, 'target')) {
+      $this->target = $s['target'];
+      $this->was_target_set = true;
+    } else {
+      $this->target = \google\protobuf\FieldOptions_OptionTargetType::TARGET_TYPE_UNKNOWN;
+      $this->was_target_set = false;
+    }
+    $this->targets = $s['targets'] ?? vec[];
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
   }
@@ -4597,6 +5186,45 @@ class FieldOptions implements \Protobuf\Message {
     return $this->was_weak_set;
   }
 
+  public function getDebugRedact(): bool {
+    return $this->debug_redact;
+  }
+
+  public function setDebugRedact(bool $v): void {
+    $this->debug_redact = $v;
+    $this->was_debug_redact_set = true;
+  }
+
+  public function hasDebugRedact(): bool {
+    return $this->was_debug_redact_set;
+  }
+
+  public function getRetention(): \google\protobuf\FieldOptions_OptionRetention_enum_t {
+    return $this->retention;
+  }
+
+  public function setRetention(\google\protobuf\FieldOptions_OptionRetention_enum_t $v): void {
+    $this->retention = $v;
+    $this->was_retention_set = true;
+  }
+
+  public function hasRetention(): bool {
+    return $this->was_retention_set;
+  }
+
+  public function getTarget(): \google\protobuf\FieldOptions_OptionTargetType_enum_t {
+    return $this->target;
+  }
+
+  public function setTarget(\google\protobuf\FieldOptions_OptionTargetType_enum_t $v): void {
+    $this->target = $v;
+    $this->was_target_set = true;
+  }
+
+  public function hasTarget(): bool {
+    return $this->was_target_set;
+  }
+
   public function MessageName(): string {
     return "google.protobuf.FieldOptions";
   }
@@ -4642,6 +5270,28 @@ class FieldOptions implements \Protobuf\Message {
           $this->unverified_lazy = $d->readBool();
           $this->was_unverified_lazy_set = true;
           break;
+        case 16:
+          $this->debug_redact = $d->readBool();
+          $this->was_debug_redact_set = true;
+          break;
+        case 17:
+          $this->retention = \google\protobuf\FieldOptions_OptionRetention::FromInt($d->readVarint());
+          $this->was_retention_set = true;
+          break;
+        case 18:
+          $this->target = \google\protobuf\FieldOptions_OptionTargetType::FromInt($d->readVarint());
+          $this->was_target_set = true;
+          break;
+        case 19:
+          if ($wt == 2) {
+            $packed = $d->readDecoder();
+            while (!$packed->isEOF()) {
+              $this->targets []= \google\protobuf\FieldOptions_OptionTargetType::FromInt($packed->readVarint());
+            }
+          } else {
+            $this->targets []= \google\protobuf\FieldOptions_OptionTargetType::FromInt($d->readVarint());
+          }
+          break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
           $obj->MergeFrom($d->readDecoder());
@@ -4683,6 +5333,22 @@ class FieldOptions implements \Protobuf\Message {
       $e->writeTag(15, 0);
       $e->writeBool($this->unverified_lazy);
     }
+    if ($this->was_debug_redact_set) {
+      $e->writeTag(16, 0);
+      $e->writeBool($this->debug_redact);
+    }
+    if ($this->was_retention_set) {
+      $e->writeTag(17, 0);
+      $e->writeVarint($this->retention);
+    }
+    if ($this->was_target_set) {
+      $e->writeTag(18, 0);
+      $e->writeVarint($this->target);
+    }
+    foreach ($this->targets as $elem) {
+      $e->writeTag(19, 0);
+      $e->writeVarint($elem);
+    }
     foreach ($this->uninterpreted_option as $msg) {
       $nested = new \Protobuf\Internal\Encoder();
       $msg->WriteTo($nested);
@@ -4713,6 +5379,16 @@ class FieldOptions implements \Protobuf\Message {
     if ($this->hasUnverifiedLazy()) {
       $e->writeBool('unverified_lazy', 'unverifiedLazy', $this->unverified_lazy, false);
     }
+    if ($this->hasDebugRedact()) {
+      $e->writeBool('debug_redact', 'debugRedact', $this->debug_redact, false);
+    }
+    if ($this->hasRetention()) {
+      $e->writeEnum('retention', 'retention', \google\protobuf\FieldOptions_OptionRetention::ToStringDict(), $this->retention, false);
+    }
+    if ($this->hasTarget()) {
+      $e->writeEnum('target', 'target', \google\protobuf\FieldOptions_OptionTargetType::ToStringDict(), $this->target, false);
+    }
+    $e->writeEnumList('targets', 'targets', \google\protobuf\FieldOptions_OptionTargetType::ToStringDict(), $this->targets);
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
 
@@ -4748,6 +5424,23 @@ class FieldOptions implements \Protobuf\Message {
         case 'unverified_lazy': case 'unverifiedLazy':
           $this->unverified_lazy = \Protobuf\Internal\JsonDecoder::readBool($v);
           $this->was_unverified_lazy_set = true;
+          break;
+        case 'debug_redact': case 'debugRedact':
+          $this->debug_redact = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_debug_redact_set = true;
+          break;
+        case 'retention':
+          $this->retention = \google\protobuf\FieldOptions_OptionRetention::FromMixed($v);
+          $this->was_retention_set = true;
+          break;
+        case 'target':
+          $this->target = \google\protobuf\FieldOptions_OptionTargetType::FromMixed($v);
+          $this->was_target_set = true;
+          break;
+        case 'targets':
+          foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
+            $this->targets []= \google\protobuf\FieldOptions_OptionTargetType::FromMixed($vv);
+          }
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -4787,6 +5480,16 @@ class FieldOptions implements \Protobuf\Message {
     if ($o->hasUnverifiedLazy()) {
       $this->setUnverifiedLazy($o->getUnverifiedLazy());
     }
+    if ($o->hasDebugRedact()) {
+      $this->setDebugRedact($o->getDebugRedact());
+    }
+    if ($o->hasRetention()) {
+      $this->setRetention($o->getRetention());
+    }
+    if ($o->hasTarget()) {
+      $this->setTarget($o->getTarget());
+    }
+    $this->targets = $o->targets;
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
       $nv->CopyFrom($v);
@@ -4887,12 +5590,15 @@ class EnumOptions implements \Protobuf\Message {
   private bool $was_allow_alias_set;
   private bool $deprecated;
   private bool $was_deprecated_set;
+  private bool $deprecated_legacy_json_field_conflicts;
+  private bool $was_deprecated_legacy_json_field_conflicts_set;
   public vec<\google\protobuf\UninterpretedOption> $uninterpreted_option;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
     ?'allow_alias' => bool,
     ?'deprecated' => bool,
+    ?'deprecated_legacy_json_field_conflicts' => bool,
     ?'uninterpreted_option' => vec<\google\protobuf\UninterpretedOption>,
   ) $s = shape()) {
     if (Shapes::keyExists($s, 'allow_alias')) {
@@ -4908,6 +5614,13 @@ class EnumOptions implements \Protobuf\Message {
     } else {
       $this->deprecated = false;
       $this->was_deprecated_set = false;
+    }
+    if (Shapes::keyExists($s, 'deprecated_legacy_json_field_conflicts')) {
+      $this->deprecated_legacy_json_field_conflicts = $s['deprecated_legacy_json_field_conflicts'];
+      $this->was_deprecated_legacy_json_field_conflicts_set = true;
+    } else {
+      $this->deprecated_legacy_json_field_conflicts = false;
+      $this->was_deprecated_legacy_json_field_conflicts_set = false;
     }
     $this->uninterpreted_option = $s['uninterpreted_option'] ?? vec[];
     $this->XXX_unrecognized = '';
@@ -4939,6 +5652,19 @@ class EnumOptions implements \Protobuf\Message {
     return $this->was_deprecated_set;
   }
 
+  public function getDeprecatedLegacyJsonFieldConflicts(): bool {
+    return $this->deprecated_legacy_json_field_conflicts;
+  }
+
+  public function setDeprecatedLegacyJsonFieldConflicts(bool $v): void {
+    $this->deprecated_legacy_json_field_conflicts = $v;
+    $this->was_deprecated_legacy_json_field_conflicts_set = true;
+  }
+
+  public function hasDeprecatedLegacyJsonFieldConflicts(): bool {
+    return $this->was_deprecated_legacy_json_field_conflicts_set;
+  }
+
   public function MessageName(): string {
     return "google.protobuf.EnumOptions";
   }
@@ -4964,6 +5690,10 @@ class EnumOptions implements \Protobuf\Message {
           $this->deprecated = $d->readBool();
           $this->was_deprecated_set = true;
           break;
+        case 6:
+          $this->deprecated_legacy_json_field_conflicts = $d->readBool();
+          $this->was_deprecated_legacy_json_field_conflicts_set = true;
+          break;
         case 999:
           $obj = new \google\protobuf\UninterpretedOption();
           $obj->MergeFrom($d->readDecoder());
@@ -4985,6 +5715,10 @@ class EnumOptions implements \Protobuf\Message {
       $e->writeTag(3, 0);
       $e->writeBool($this->deprecated);
     }
+    if ($this->was_deprecated_legacy_json_field_conflicts_set) {
+      $e->writeTag(6, 0);
+      $e->writeBool($this->deprecated_legacy_json_field_conflicts);
+    }
     foreach ($this->uninterpreted_option as $msg) {
       $nested = new \Protobuf\Internal\Encoder();
       $msg->WriteTo($nested);
@@ -4999,6 +5733,9 @@ class EnumOptions implements \Protobuf\Message {
     }
     if ($this->hasDeprecated()) {
       $e->writeBool('deprecated', 'deprecated', $this->deprecated, false);
+    }
+    if ($this->hasDeprecatedLegacyJsonFieldConflicts()) {
+      $e->writeBool('deprecated_legacy_json_field_conflicts', 'deprecatedLegacyJsonFieldConflicts', $this->deprecated_legacy_json_field_conflicts, false);
     }
     $e->writeMessageList('uninterpreted_option', 'uninterpretedOption', $this->uninterpreted_option);
   }
@@ -5015,6 +5752,10 @@ class EnumOptions implements \Protobuf\Message {
         case 'deprecated':
           $this->deprecated = \Protobuf\Internal\JsonDecoder::readBool($v);
           $this->was_deprecated_set = true;
+          break;
+        case 'deprecated_legacy_json_field_conflicts': case 'deprecatedLegacyJsonFieldConflicts':
+          $this->deprecated_legacy_json_field_conflicts = \Protobuf\Internal\JsonDecoder::readBool($v);
+          $this->was_deprecated_legacy_json_field_conflicts_set = true;
           break;
         case 'uninterpreted_option': case 'uninterpretedOption':
           foreach(\Protobuf\Internal\JsonDecoder::readList($v) as $vv) {
@@ -5038,6 +5779,9 @@ class EnumOptions implements \Protobuf\Message {
     }
     if ($o->hasDeprecated()) {
       $this->setDeprecated($o->getDeprecated());
+    }
+    if ($o->hasDeprecatedLegacyJsonFieldConflicts()) {
+      $this->setDeprecatedLegacyJsonFieldConflicts($o->getDeprecatedLegacyJsonFieldConflicts());
     }
     foreach ($o->uninterpreted_option as $v) {
       $nv = new \google\protobuf\UninterpretedOption();
@@ -6213,6 +6957,34 @@ class SourceCodeInfo implements \Protobuf\Message {
   }
 }
 
+newtype GeneratedCodeInfo_Annotation_Semantic_enum_t as int = int;
+abstract class GeneratedCodeInfo_Annotation_Semantic {
+  const GeneratedCodeInfo_Annotation_Semantic_enum_t NONE = 0;
+  const GeneratedCodeInfo_Annotation_Semantic_enum_t SET = 1;
+  const GeneratedCodeInfo_Annotation_Semantic_enum_t ALIAS = 2;
+  private static dict<int, string> $itos = dict[
+    0 => 'NONE',
+    1 => 'SET',
+    2 => 'ALIAS',
+  ];
+  public static function ToStringDict(): dict<int, string> {
+    return self::$itos;
+  }
+  private static dict<string, int> $stoi = dict[
+    'NONE' => 0,
+    'SET' => 1,
+    'ALIAS' => 2,
+  ];
+  public static function FromMixed(mixed $m): GeneratedCodeInfo_Annotation_Semantic_enum_t {
+    if ($m is string) return idx(self::$stoi, $m, \is_numeric($m) ? ((int) $m) : 0);
+    if ($m is int) return $m;
+    return 0;
+  }
+  public static function FromInt(int $i): GeneratedCodeInfo_Annotation_Semantic_enum_t {
+    return $i;
+  }
+}
+
 class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
   public vec<int> $path;
   private string $source_file;
@@ -6221,6 +6993,8 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
   private bool $was_begin_set;
   private int $end;
   private bool $was_end_set;
+  private \google\protobuf\GeneratedCodeInfo_Annotation_Semantic_enum_t $semantic;
+  private bool $was_semantic_set;
   private string $XXX_unrecognized;
 
   public function __construct(shape(
@@ -6228,6 +7002,7 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
     ?'source_file' => string,
     ?'begin' => int,
     ?'end' => int,
+    ?'semantic' => \google\protobuf\GeneratedCodeInfo_Annotation_Semantic_enum_t,
   ) $s = shape()) {
     $this->path = $s['path'] ?? vec[];
     if (Shapes::keyExists($s, 'source_file')) {
@@ -6250,6 +7025,13 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
     } else {
       $this->end = 0;
       $this->was_end_set = false;
+    }
+    if (Shapes::keyExists($s, 'semantic')) {
+      $this->semantic = $s['semantic'];
+      $this->was_semantic_set = true;
+    } else {
+      $this->semantic = \google\protobuf\GeneratedCodeInfo_Annotation_Semantic::NONE;
+      $this->was_semantic_set = false;
     }
     $this->XXX_unrecognized = '';
   }
@@ -6293,6 +7075,19 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
     return $this->was_end_set;
   }
 
+  public function getSemantic(): \google\protobuf\GeneratedCodeInfo_Annotation_Semantic_enum_t {
+    return $this->semantic;
+  }
+
+  public function setSemantic(\google\protobuf\GeneratedCodeInfo_Annotation_Semantic_enum_t $v): void {
+    $this->semantic = $v;
+    $this->was_semantic_set = true;
+  }
+
+  public function hasSemantic(): bool {
+    return $this->was_semantic_set;
+  }
+
   public function MessageName(): string {
     return "google.protobuf.GeneratedCodeInfo.Annotation";
   }
@@ -6332,6 +7127,10 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
           $this->end = $d->readVarint32Signed();
           $this->was_end_set = true;
           break;
+        case 5:
+          $this->semantic = \google\protobuf\GeneratedCodeInfo_Annotation_Semantic::FromInt($d->readVarint());
+          $this->was_semantic_set = true;
+          break;
         default:
           $d->skip($fn, $wt);
       }
@@ -6359,6 +7158,10 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
       $e->writeTag(4, 0);
       $e->writeVarint($this->end);
     }
+    if ($this->was_semantic_set) {
+      $e->writeTag(5, 0);
+      $e->writeVarint($this->semantic);
+    }
     $e->writeRaw($this->XXX_unrecognized);
   }
 
@@ -6372,6 +7175,9 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
     }
     if ($this->hasEnd()) {
       $e->writeInt32('end', 'end', $this->end, false);
+    }
+    if ($this->hasSemantic()) {
+      $e->writeEnum('semantic', 'semantic', \google\protobuf\GeneratedCodeInfo_Annotation_Semantic::ToStringDict(), $this->semantic, false);
     }
   }
 
@@ -6397,6 +7203,10 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
           $this->end = \Protobuf\Internal\JsonDecoder::readInt32Signed($v);
           $this->was_end_set = true;
           break;
+        case 'semantic':
+          $this->semantic = \google\protobuf\GeneratedCodeInfo_Annotation_Semantic::FromMixed($v);
+          $this->was_semantic_set = true;
+          break;
         default:
         break;
       }
@@ -6416,6 +7226,9 @@ class GeneratedCodeInfo_Annotation implements \Protobuf\Message {
     }
     if ($o->hasEnd()) {
       $this->setEnd($o->getEnd());
+    }
+    if ($o->hasSemantic()) {
+      $this->setSemantic($o->getSemantic());
     }
     $this->XXX_unrecognized = $o->XXX_unrecognized;
     return \Errors\Ok();
@@ -6515,7 +7328,7 @@ class XXX_FileDescriptor_google_protobuf_descriptor__proto implements \Protobuf\
   }
 
   public function FileDescriptorProtoBytes(): string {
-    // 10338 bytes of gzipped FileDescriptorProto as a string
-    return (string)\gzuncompress("\x78\xda\xc4\x59\x5d\x6f\xe3\xc6\xb9\x8e\x24\x4a\xa6\x5e\xc9\xd2\x78\xec\xec\x72\x9d\x8f\xf5\x2a\x1f\xeb\xdd\x24\xda\x60\xbf\xb2\x71\xe\x72\x8e\x2c\x71\x1d\xf9\xc8\x92\xe\x25\x9f\x7c\x0\x5\x31\x26\x47\x32\x77\x29\x92\x21\xa9\xdd\x75\x50\x14\xb\xf4\xaa\x97\xed\x65\x51\xf4\xa2\x37\x1\xfa\x3\xa\xf4\xae\xfd\x3\x5\xfa\xf\xa\xb4\x40\xfb\x13\x7a\x59\xcc\xc\x49\x51\x1f\xce\x3a\x1\x92\x5c\xd9\xf3\xcc\xf3\xbe\xf3\xce\xcb\x67\x66\xde\x19\xc1\xce\xd8\x75\xc7\x36\xbd\xe5\xf9\x6e\xe8\x9e\x4c\x47\xb7\x4c\x1a\x18\xbe\xe5\x85\xae\x5f\xe7\x18\xae\xa\x46\x3d\x66\xd4\x8e\x60\xe3\xa1\x65\xd3\x56\x42\x1c\xd0\x10\x3f\x0\x69\x64\xd9\x54\xc9\xec\xe4\x76\x4b\xb7\xdf\xac\x2f\x18\xd5\xe7\x2d\xfa\xc\xd6\xb8\x45\xed\x1f\x12\x6c\xae\xe8\xc5\x18\x24\x87\x4c\x98\xc7\xcc\x6e\x51\xe3\xff\x63\x5\xd6\x3c\x62\x3c\x26\x63\xaa\x64\x39\x1c\x37\xf1\xeb\x0\x26\xf5\xa8\x63\x52\xc7\x38\x53\x72\x3b\xb9\xdd\xa2\x96\x42\xf0\x3b\xb0\xe1\x4d\x4f\x6c\xcb\xd0\x53\x34\xd8\xc9\xed\xe6\x35\x24\x3a\x5a\x33\xf2\x75\xa8\x3e\xa5\xe4\x71\x9a\x5a\xe2\xd4\xa\x83\x53\xc4\x26\x94\x27\x34\x8\xc8\x98\xea\xe1\x99\x47\x15\x89\xcf\x7e\x67\x69\xf6\x8b\x33\x2f\x45\x56\xc3\x33\x8f\xe2\x6\x14\xa9\x33\x9d\x8\xf\xf9\x73\xf2\xa7\x3a\xd3\xc9\xa2\x17\x99\x99\x45\x2e\xd6\x2\xea\x3f\xb1\xc\xaa\x14\xb8\x83\xeb\x4b\xe\x6\xa2\x7f\xd1\x47\x6c\x87\x9b\x50\xa4\xcf\x42\xea\x4\x96\xeb\x28\x6b\xdc\xc9\x5b\x2b\xbe\x22\xb5\xcd\x45\x17\x33\x3b\x7c\x1f\xd6\x5c\x2f\xb4\x5c\x27\x50\xe4\x9d\xcc\x6e\xe9\xf6\xab\x2b\x85\xd0\x13\x1c\x2d\x26\xe3\x36\xa0\xc0\x9d\xfa\x6\xd5\xd\xd7\xa4\xba\xe5\x8c\x5c\xa5\xc8\x1d\x5c\x5d\x9e\x8\x27\x36\x5d\x93\xb6\x9d\x91\xab\x55\x82\xb9\x36\xbe\x4\x85\xe0\xcc\x9\xc9\x33\xa5\xcc\x15\x12\xb5\x6a\x7f\x2c\x40\xf5\x22\x12\xfb\x8\xf2\x23\x36\x4b\x25\xfb\x6d\x72\x20\x6c\xe6\x93\x58\xf8\x8e\x49\x6c\x40\xc9\xa1\x41\x48\x4d\xa1\x88\xdc\x5\x35\x5\xc2\x68\x59\x52\xd2\x77\x92\xd4\x67\x50\x4d\x42\xd2\x7d\xe2\x8c\x63\x6d\xde\x7a\x51\x24\x75\x35\xb6\xd3\x98\x99\x56\xa1\x73\x6d\xdc\x2\x70\x1d\xea\x8e\x74\x93\x1a\xb6\x22\x9f\x93\xa5\x1e\xa3\x2c\x65\xc9\x15\xa8\x61\xe3\xf\x67\x52\x5b\x3b\x47\x29\x47\x62\x91\x2d\xa9\xed\x18\x2a\x3e\x65\xba\xa7\x66\x34\xb3\x22\xf\xa2\xfe\xc2\x99\x69\x91\x99\x98\xd8\xba\x9f\x6e\xe2\x37\x20\x1\x74\x2e\x2b\xe0\xbb\x50\x39\x6\xbb\x64\x42\xb7\xbf\x82\xca\x7c\x7a\xf0\x16\xe4\x83\x90\xf8\x21\x57\x61\x5e\x13\xd\x8c\x20\x47\x1d\x93\xef\x72\x79\x8d\xfd\x8b\xff\x67\x36\xe1\x1c\x9f\xf0\xdb\xcb\x5f\x74\xce\xf3\xe2\xbc\xb7\x3f\x80\xf5\xb9\x9\x5c\x74\xe8\xda\x4f\xe1\xe5\x95\xae\xf1\x67\xb0\x35\x75\x2c\x27\xa4\xbe\xe7\x53\xa6\x58\x31\x94\xf2\xcf\xb5\x73\x34\x77\x9c\x66\xb\x2f\xda\xe6\x74\x19\xbc\x59\x94\xff\xb5\x86\x9e\x3f\x7f\xfe\x3c\x5b\xfb\x73\x1\xb6\x56\xad\x99\x95\xcb\xf7\x12\x14\x9c\xe9\xe4\x84\xfa\x3c\x49\x79\x2d\x6a\xe1\x6\xe4\x6d\x72\x42\x6d\x45\xda\xc9\xec\x56\x6e\xbf\x73\xa1\x55\x59\xef\x30\x13\x4d\x58\xe2\x8f\x41\x8a\xb6\x68\xe6\xe1\xe6\xc5\x3c\xb0\xb5\xa4\x71\x3b\xfc\xa\x14\xd9\x5f\xa1\x8d\x2\x8f\x59\x66\x0\xd3\x5\xde\x6\x99\x2f\x13\x93\xc6\x47\x5b\xd2\x66\xc2\x32\xe9\x88\x4c\xed\x50\x7f\x42\xec\x29\xe5\x82\x2f\x6a\xe5\x8\xfc\x7f\x86\xe1\xab\x50\x12\xab\xca\x72\x4c\xfa\x8c\xef\x9e\x79\x4d\x2c\xb4\x36\x43\xd8\xf0\x8f\x2\xd7\x89\xa5\xc9\x87\x60\x0\x1f\xfe\x83\xc5\x8d\xfb\xb5\xd5\xd3\x5b\x5a\x4b\xd7\xa1\xca\x19\x77\xa2\x4f\x4f\x6c\x65\x63\x27\xb3\x2b\x6b\x15\x1\xf7\x22\xb4\xf6\x87\x2c\x48\x7c\x63\xa9\x42\x69\xf8\x79\x5f\xd5\x5b\xbd\xe3\xfd\x8e\x8a\x32\xb8\x2\xc0\x81\x87\x9d\x5e\x63\x88\xb2\x49\xbb\xdd\x1d\xde\xbf\x8b\x72\x89\xc1\xb1\x0\xa4\x34\xe1\xce\x6d\x94\xc7\x8\xca\xc2\x41\xfb\x33\xb5\x75\xff\x2e\x2a\xcc\x23\x77\x6e\xa3\x35\xbc\xe\x45\x8e\xec\xf7\x7a\x1d\x24\x27\x3e\x7\x43\xad\xdd\x3d\x40\xc5\xc4\xe7\x81\xd6\x3b\xee\x23\x48\x3c\x1c\xa9\x83\x41\xe3\x40\x45\xa5\x84\xb1\xff\xf9\x50\x1d\xa0\xf2\x5c\x58\x77\x6e\xa3\xf5\x64\x8\xb5\x7b\x7c\x84\x2a\x78\x3\xd6\xc5\x10\x71\x10\xd5\x5\xe8\xfe\x5d\x84\x66\x81\x8\x2f\x1b\x73\xc0\xfd\xbb\x8\xd7\x9a\x90\xe7\x32\xc4\x18\x2a\x9d\xc6\xbe\xda\xd1\x7b\xfd\x61\xbb\xd7\x6d\x74\x50\x66\x86\x69\xea\xff\x1d\xb7\x35\xb5\x85\xb2\x69\xac\xaf\x36\x86\x6a\xb\xe5\x6a\x6\x6c\xad\xda\x50\x57\x2e\xa1\x94\x16\xb2\xe7\x68\x81\xfb\x5a\xd4\x42\xed\xef\x59\xd8\x5c\x71\xa8\xac\x1c\xe4\xbf\x21\x2f\xb4\x2c\x8e\xd9\x1b\x2b\x4f\x27\xae\xec\xa5\xa3\x96\xdb\xa5\x4b\x8d\xdc\x39\xa5\x6\x73\xb1\x24\xd8\x9f\x2c\x6d\xfe\xe2\x7c\xbc\x7f\x91\xf3\x91\x63\xdf\xee\x10\xc8\xaf\x38\x4\x3e\x82\x8d\x25\x47\x17\xde\x8c\x7f\x9e\x1\xe5\xbc\xe4\xbc\x60\x4b\xcc\xce\x6d\x89\x1f\x2d\x66\xf0\xda\xf9\x1f\x61\xe9\x5b\x7f\x9d\x81\x4b\xab\x4b\xca\x95\x31\x7c\xc\x85\x9\xd\x4f\xdd\xb8\xac\x7a\x7b\xc5\x61\xcd\xba\x17\x3f\x76\x64\x95\x3e\xed\x73\xe7\xd5\x85\x22\x9a\xa5\x48\x7f\x91\x85\x97\x57\x3a\x5f\x19\xe8\x6b\x0\x96\xe3\x4d\x43\x51\x3a\x89\x9d\xb8\xc8\x11\xbe\x79\xb1\x5d\x76\x1a\x26\xfd\x39\xde\xf\x2\xe2\x84\x7\xb3\x40\x25\x1e\xe8\xeb\xe7\xcc\x74\x49\x98\xef\x3\x32\x6c\x8b\x3a\xa1\x1e\x84\x3e\x25\x13\xcb\x19\xf3\xa3\x46\xde\xcb\x8f\x88\x1d\x50\xad\x2a\xba\x7\x71\x2f\xb3\xe0\x2\xf2\x53\x16\x85\x39\xb\xd1\x9d\x58\xd4\x7e\x59\x84\x52\xaa\x0\xc7\xd7\xa0\xfc\x88\x3c\x21\x7a\x7c\xa9\x12\x99\x28\x31\xac\x1f\x5d\xac\xde\x87\x2d\x4e\x71\xa7\x21\xf5\x75\xc3\x26\x41\xc0\x93\x26\x73\x2a\x66\x7d\x3d\xd6\xd5\x8c\x7b\xf0\x3d\xd8\xe4\x16\x93\xa9\x1d\x5a\x9e\x4d\x75\x76\xcd\xb\xf8\x91\x93\x44\xb6\xc1\x18\x47\x11\x81\x45\x14\xe0\x16\xbc\xc6\xcd\xc6\xd4\xa1\x3e\x9\xa9\x4e\xbf\x9c\x12\x3b\xd0\x89\x63\xea\xa7\x24\x38\x55\xb6\x98\x83\xfd\xac\x92\xd1\xae\x30\xe2\x41\xc4\x53\x39\xad\xe1\x98\x9f\x90\xe0\x14\xef\xc1\x25\xee\x25\x8\x7d\xcb\x19\xeb\xc6\x29\x35\x1e\xeb\xd3\x70\xf4\x40\x79\x25\x3d\x3e\x8f\x70\xc0\x39\x4d\x46\x39\xe\x47\xf\xf0\x0\xca\xec\x63\x4c\xac\xaf\xa8\x3e\x72\x7d\x7e\x86\x56\x56\x6c\x4d\xa9\xc\xd6\x7b\x91\xc1\x91\x6b\xd2\xbd\xfc\xa0\xaf\xaa\x2d\xad\x14\x7b\x79\xe8\xfa\x4c\x50\x63\x37\x49\x70\x49\x8\x6a\xec\xc6\xe9\xbd\x7\x9b\x86\x21\xe6\x6c\x19\x7a\x74\x19\xb\x14\x34\x97\x2c\xc3\x38\x10\x84\x48\xe3\x1\xfe\x10\x5e\x9e\x25\x2b\x6d\xb8\xb1\x34\xcb\x45\xd3\x7b\xb0\xe9\x9d\x2d\x1b\xe2\xb9\x11\xbd\xb3\x45\xb3\xf\x60\xcb\x3b\xf5\x96\xed\x6e\xa6\xed\xb0\x77\xea\x2d\x1a\xbe\xc5\x6f\xe6\x3e\x35\x48\x48\x4d\xe5\x72\x9a\x9e\xea\xc0\x75\x40\x86\xa1\x53\x87\x9c\xd8\x54\x27\x3e\x75\x48\xa0\x5c\xe5\x64\x29\xf4\xa7\x54\xab\x18\x86\xca\x3b\x1b\xbc\xf\xdf\x84\xd\xf7\xe4\x91\x21\x14\xa9\x7b\x3e\x1d\x59\xcf\x94\x37\x79\x7a\xab\xac\x83\xeb\xb1\xcf\x61\x7c\x3\x90\x11\x9c\x12\xdf\xe3\x5b\x72\xe0\x11\x83\x2a\x6f\x9\xaa\xc0\xbb\x31\xcc\x56\x44\xf0\xd4\x1a\x85\xb1\xc7\xeb\x62\x45\x70\x2c\xf2\xb6\xb\x88\x65\x62\x6e\xe0\x5d\x4e\xab\x78\xa7\x5e\x7a\xdc\x37\x60\x9d\x31\x67\x83\xde\x10\x85\x9b\x77\x9a\x1a\xf1\x2e\x5c\x62\xa4\x9\xd\x89\x49\x42\x92\x62\xbf\xcb\xd9\x2c\xed\x47\x51\xe7\x5c\x9c\xfe\xf4\xe4\x2c\x11\xd6\x7b\x22\x4e\x86\xc5\xd2\xfa\xde\x8a\xf3\xda\x1e\x94\xd3\xba\xc7\x45\x10\xca\x47\x19\x56\x4\x35\x7b\x2d\x56\xbe\x7c\xa1\xa2\x2c\x2b\xa3\x3a\xed\xa1\xaa\x6b\xc7\xdd\x61\xfb\x48\x45\xb9\x54\x61\x7f\x28\xc9\x6f\xa3\xeb\xac\x6a\xa8\xcc\xdf\xd4\xf0\x7f\xc1\xe5\xf8\x59\x25\xa0\xa1\xfe\xd4\xf2\xf9\x82\x9c\x10\x71\x38\x26\xfa\xd9\x8a\x58\x3\x1a\x7e\x6a\xf9\x6c\xb9\x4d\x48\x88\x3b\x70\xd5\x71\xf5\x20\x24\x8e\x49\x7c\x53\x9f\x3d\x68\xe9\xc4\x30\x68\x10\xb8\xe2\x20\x4c\xbc\xbc\xea\xb8\x83\x88\x3c\x3b\x21\x1a\x11\x75\x41\xbe\xb9\xf3\xe4\xfb\xa\x14\x27\xc4\xd3\xa9\x13\xfa\x67\xbc\x3e\x97\x35\x79\x42\x3c\x95\xb5\x7f\x90\x6b\xd2\xa1\x24\x4b\x28\x7f\x28\xc9\x79\x54\x38\x94\xe4\x2\x5a\x3b\x94\x64\x19\x15\xf\x25\xb9\x88\xa0\xf6\x2b\x9\xca\xe9\xa\x9e\x5d\x88\xc\x7e\x86\x65\xf8\x2e\xf7\xc6\x37\xd6\xfb\xf5\x26\x3b\xdc\xf6\xa\xa2\x5c\xd6\x84\x25\x2b\x2c\x98\xfc\xa8\x28\x4f\x64\x2d\x6a\xe1\x3\x28\x3c\xa\xb8\xef\x2\xf7\xfd\xe6\x37\xfb\x3e\x1c\x70\xe7\xc5\xc3\x81\xde\xed\x69\x47\x8d\x8e\x16\x99\xe3\x2b\x20\xd9\xe4\xab\xb3\xf9\x63\x90\x43\xb8\xe\xd5\xa9\xf3\x84\xfa\xd6\xc8\xa2\xa6\xce\x59\xd5\x34\xab\x32\xeb\xed\x30\xfe\x5\x3f\xe3\x15\x90\x9e\x52\xf2\x78\xfe\xb0\xe2\xd0\xf7\xb8\x9c\x6e\x41\x9e\xe7\x17\x3\x44\x19\x46\x2f\x61\x19\xa4\x66\x4f\x63\x4b\xa\x41\x59\xa0\x7a\xbf\xad\x36\x55\x94\xad\xdd\x83\x82\x48\x1a\x5b\x6e\x49\xda\xd0\x4b\x51\x33\xf2\x91\x89\x7b\x8f\x8f\xf6\x55\xd\x65\x97\xc4\x52\xb\xa0\x9c\xae\xe4\x7f\x98\xeb\xfc\x9f\x32\x50\x4a\x55\xe6\xac\xa4\x22\xb6\xed\x3e\xd5\x89\x6d\x91\x20\x92\x12\x70\xa8\xc1\x90\x8b\x7e\xba\x1f\x68\x91\xe5\x51\xa1\xf6\xdb\xc\xa0\xc5\xd2\x78\x21\xcc\xcc\x8f\x19\x66\xed\x37\x19\xa8\xcc\xd7\xc3\xb\xe1\x5d\xfb\x51\xc3\xfb\x5b\x16\xd6\xe7\xaa\xe0\x8b\x46\xf7\x25\x6c\x58\x26\x9d\x78\x6e\x48\x1d\xe3\x4c\xb7\xe9\x13\x6a\x2b\x35\xbe\xc9\xdc\xfa\xe6\x3a\xbb\xde\x9e\xd9\x75\x98\xd9\xde\x66\xbb\xa5\x1e\xf5\x7b\x43\xb5\xdb\xfc\x5c\x3f\xee\xfe\x6f\xb7\xf7\x69\x57\x43\xd6\x2\xed\x7b\x5c\xf6\x7d\x40\x8b\x41\xe1\xcb\xb0\x2a\x2c\xf4\x12\xde\x84\x6a\xb7\xa7\xf\xda\x2d\x55\x57\x1f\x3e\x54\x9b\xc3\x81\x78\x39\x49\xd8\xc3\xb9\x5\x5e\xfb\x75\xe\x36\x57\x44\x82\x1b\xd1\x9d\x47\x5c\xc3\xde\xbb\x48\xf4\x75\x56\x75\xf4\x89\x1f\x46\x57\xa4\x1b\xc0\xb2\xe4\x84\x6c\x73\xf5\xa3\x17\x29\x71\x11\xaa\xce\x70\xf1\x28\xf5\x2e\x60\xcf\xd\xac\xd0\x7a\x42\x75\xcb\x89\x9f\xaf\xd8\xc5\x48\xd2\x50\xdc\xd3\x76\xc2\x84\xed\xd0\x31\x59\x60\xb3\xcd\x3f\xa7\xa1\xb8\x27\x61\x5f\x83\xb2\xe9\x4e\x59\xb5\x28\x78\xec\xac\xc9\x68\x25\x81\x25\x94\xe8\x1e\x30\x7b\x37\x2b\x6b\x25\x81\x9\xca\x75\xa8\x92\xf1\xd8\x67\xce\x63\x47\xe2\x66\x53\x49\x60\x4e\xdc\x3e\x4\x39\xce\x3\x3b\xec\x59\x26\x74\x4f\x5c\xd7\xb3\xbb\x45\x4d\x76\xe2\xce\x6b\x50\xb6\x2\x7d\xf6\x33\x40\x76\x27\xbb\x2b\x6b\x25\x2b\x48\x9e\x50\x6b\x5f\x67\xa1\x32\xff\x33\x6\x6e\x81\x6c\xbb\x6\xe1\xd2\x12\xbf\xa1\xed\xbe\xe0\x97\x8f\x7a\x27\xe2\x6b\x89\xe5\xf6\x5f\x32\x20\xc7\x30\xbe\x4\x92\x47\xc2\x53\xee\x2e\xbf\x9f\x45\x19\x8d\xb7\x19\x1e\x78\xc4\xe1\x12\x88\x70\xd6\x66\xdf\xd5\xa6\xc4\xe4\xd7\x26\x77\x32\xa1\x4e\x18\xc4\xdf\x35\xc2\x9b\x11\x8c\xdf\x81\x8d\xd0\x27\x96\x3d\xc7\x95\x38\x17\xc5\x1d\x9\x79\xf\xae\xc4\x7e\x4d\x1a\x12\xe3\x94\x9a\x33\xa3\x2\x7f\x1e\xb9\x1c\x11\x5a\x51\x7f\x6c\x5b\xfb\x6b\x6\x36\xe2\x8b\x9e\x99\x24\xeb\x8\x80\x38\x8e\x1b\xa6\xd3\xb5\x2c\xe5\x25\xbb\x7a\x23\x31\xd2\x52\xe\xb6\x27\x0\xb3\x9e\x73\xd3\x76\x15\x4a\xd1\x6f\x54\xfc\x87\x4e\xf1\x34\x0\x2\x62\x37\x42\xbc\x5\xf9\x13\x3a\xb6\x9c\xe8\xe5\x59\x34\xe2\x7\x1c\x29\x79\xc0\xd9\xff\x19\x6c\x1a\xee\x64\x31\xdc\x7d\xb4\xf0\x3c\x11\x7c\x92\xf9\xe2\xbd\x88\x34\x76\x6d\xe2\x8c\xeb\xae\x3f\x9e\xfd\x50\xcb\x2a\xa4\x20\xf5\x73\xad\x77\xf2\xef\x4c\xe6\x77\xd9\xdc\x41\x7f\xff\xf7\xd9\xed\x3\x61\xd8\x8f\x93\xa1\xd1\x91\x4d\xd\x36\xc1\xff\x4\x0\x0\xff\xff\xa5\x44\x7d\x26");
+    // 12261 bytes of gzipped FileDescriptorProto as a string
+    return (string)\gzuncompress("\x78\xda\xcc\x5a\x4f\x6f\x1b\xc9\xb1\x37\xff\x8a\x2c\x52\x64\xab\x25\xdb\xb4\xbc\xbb\x96\xe9\x5d\x5b\xf6\xae\xe9\x85\xfc\x67\xbd\xda\x87\x7d\x8f\x22\x47\x32\xb5\x14\xa9\x37\xa4\xbc\xf6\x2\xf\x83\xd6\xb0\x49\x8d\x3d\x9c\x99\x9d\x19\xda\xd6\x1e\x1e\xc\x3c\x3c\x20\x1\x72\xc9\x2d\x8\x82\x1c\x72\x59\x20\x40\x4e\x1\x2\x4\x39\xe5\xb\x4\xf9\x8\x1\x72\x48\x80\x7c\x81\x9c\x82\xa0\xbb\x67\x86\x33\x43\xca\x96\x17\xf0\x26\x27\xa9\xab\x7e\x55\x5d\x5d\x5d\x53\x5d\xd5\x4d\x58\x1b\x99\xe6\x48\xa7\xb7\x2c\xdb\x74\xcd\xc3\xc9\xf0\xd6\x80\x3a\xaa\xad\x59\xae\x69\xd7\x38\xd\x97\x5\xa2\xe6\x23\xaa\x7b\xb0\xb4\xad\xe9\xb4\x19\x0\x7b\xd4\xc5\xf7\x21\x3d\xd4\x74\x5a\x49\xac\xa5\xd6\xb\x1b\xef\xd7\x62\x42\xb5\xa8\xc4\x3e\x23\xcb\x5c\xa2\xfa\x8f\x34\x2c\xcf\xe1\x62\xc\x69\x83\x8c\x99\xc6\xc4\x7a\x5e\xe6\xff\xe3\xa\x2c\x58\x44\x7d\x4a\x46\xb4\x92\xe4\x64\x7f\x88\xdf\x3\x18\x50\x8b\x1a\x3\x6a\xa8\xc7\x95\xd4\x5a\x6a\x3d\x2f\x87\x28\xf8\x43\x58\xb2\x26\x87\xba\xa6\x2a\x21\x18\xac\xa5\xd6\x33\x32\x12\x8c\xe6\x14\x7c\xd\xca\xcf\x29\x79\x1a\x86\x16\x38\xb4\xc4\xc8\x21\x60\x3\x8a\x63\xea\x38\x64\x44\x15\xf7\xd8\xa2\x95\x34\x5f\xfd\xda\xcc\xea\xe3\x2b\x2f\x78\x52\xfd\x63\x8b\xe2\x3a\xe4\xa9\x31\x19\xb\xd\x99\x13\xfc\x27\x19\x93\x71\x5c\x4b\x8e\x89\x79\x2a\x16\x1c\x6a\x3f\xd3\x54\x5a\xc9\x72\x5\xd7\x66\x14\xf4\x4\x3f\xae\xc3\x97\xc3\xd\xc8\xd3\x17\x2e\x35\x1c\xcd\x34\x2a\xb\x5c\xc9\x7\x73\x76\x91\xea\x83\xb8\x8a\xa9\x1c\xbe\x7\xb\xa6\xe5\x6a\xa6\xe1\x54\x72\x6b\x89\xf5\xc2\xc6\x3b\x73\x3\xa1\x2b\x30\xb2\xf\xc6\x2d\x40\x8e\x39\xb1\x55\xaa\xa8\xe6\x80\x2a\x9a\x31\x34\x2b\x79\xae\xe0\xd2\xec\x42\x38\xb0\x61\xe\x68\xcb\x18\x9a\x72\xc9\x89\x8c\xf1\x39\xc8\x3a\xc7\x86\x4b\x5e\x54\x8a\x3c\x42\xbc\x11\xb\x1d\x3a\xd0\xd8\x74\x95\x45\x11\x3a\xde\xb0\xfa\xdb\x2c\x94\x4f\x13\x7c\x9f\x41\x66\xc8\xd6\x5f\x49\xbe\x89\x77\x84\x4c\xd4\xbd\xd9\xef\xe8\xde\x3a\x14\xc\xea\xb8\x74\x20\x62\x25\x75\xca\x68\x3\x21\x34\x1b\x6c\xe9\xef\x14\x6c\x8f\xa0\x1c\x98\xa4\xd8\xc4\x18\xf9\x51\x7b\xeb\x75\x96\xd4\x24\x5f\x4e\x66\x62\x72\x89\x46\xc6\xb8\x9\x60\x1a\xd4\x1c\x2a\x3\xaa\xea\x95\xdc\x9\x5e\xea\x32\xc8\x8c\x97\x4c\x41\x55\x75\xfc\xe9\x34\x8\x17\x4e\x88\xa1\x3d\xf1\xf9\xcd\xc4\xe1\x1\x94\x6c\xca\xbe\x8\x3a\xf0\x56\x96\xe7\x46\xd4\x5e\xbb\x32\xd9\x13\x13\xb\x5b\xb4\xc3\x43\x7c\x5\x2\x82\xc2\xc3\xa\x78\x7e\x2a\xfa\xc4\xe\x19\xd3\xd5\x6f\xa0\x14\x75\xf\x5e\x81\x8c\xe3\x12\xdb\xe5\x51\x98\x91\xc5\x0\x23\x48\x51\x63\xc0\xf3\x5f\x46\x66\xff\xe2\xff\x9a\x2e\x38\xc5\x17\x7c\x75\x76\x47\x23\x9a\xe3\xeb\x5e\xfd\x4\x16\x23\xb\x38\xed\xd4\xd5\x5f\xa5\xe1\xec\x5c\xdd\xf8\x11\xac\x4c\xc\xcd\x70\xa9\x6d\xd9\x94\x85\xac\x98\xab\xf2\x97\x85\x13\x82\xee\x20\x8c\x16\x5a\xe4\xe5\xc9\x2c\x11\x3f\x86\x2\x8b\xf\x62\x13\xae\x50\x7c\x8d\x1b\xa7\x5b\x72\xad\x39\x95\xdc\x4a\xfd\x20\x91\x94\xc3\xba\xf0\x11\x14\x9f\x51\x5b\x1b\x6a\xaa\xd0\xcd\xdc\x59\xda\xb8\x7f\x4a\xdd\xf\x43\xa2\x3d\x97\xb8\x74\x13\xe\x3a\xf\x25\xb9\xb5\xdd\x92\x9a\x72\x44\xf3\xea\xaf\x13\x50\x8\xd9\xc2\xd2\x96\x31\x19\x1f\x52\xdb\xf3\xb8\x37\xc2\x17\x21\x3f\x9c\xe8\xba\x8\x1b\x71\xe6\xe5\x18\x81\x85\xc\xcb\x52\x5e\x22\xe0\x59\x8a\xfd\x8f\xaf\x40\x41\x73\x14\x9b\x5a\x94\xb8\x74\x50\x49\xaf\x25\xd6\x73\x5b\xc9\x4a\x42\x6\xcd\x91\x3d\x2a\x5e\x85\x9c\x1f\x7b\x95\xc\x43\xc8\xc1\x58\xf0\x3c\xe9\xac\xcf\x13\xe3\xea\x1d\x58\x9a\x59\x24\x2e\x43\xa1\x29\x35\xda\x75\xb9\xde\x6f\x75\x3b\xe8\xc\x2e\x41\x68\xdd\x28\x71\x23\x9f\xfb\xeb\x2\x7a\xf9\xf2\xe5\xcb\x64\xf5\xf7\x59\x58\x99\x97\xe5\xe6\x26\xdc\xa9\x4f\x52\x11\x9f\xd4\x21\xa3\x93\x43\xaa\xf3\xc5\x95\x36\x3e\x3c\x55\x1e\xad\xb5\x99\x88\x2c\x24\xf1\xe7\x9e\xe7\x32\x5c\xc3\x8d\xd3\x69\x60\xd9\xcf\xf3\xf2\x45\xc8\xb3\xbf\x62\x5b\xb2\x62\x5b\x18\x81\x6f\xcb\x2a\xe4\x78\x62\x1b\xd0\x60\xcb\xfc\x31\x4b\x5\x3\x3a\x24\x13\xdd\x55\x9e\x11\x7d\x42\x79\x8a\xca\xcb\x45\x8f\xf8\x90\xd1\xf0\x25\x28\x88\x3c\xa8\x19\x3\xfa\x82\x9f\x84\x19\x59\xa4\xc6\x16\xa3\xb0\xe9\x9f\x38\xa6\xe1\x27\x13\x3e\x5\x23\xf0\xe9\x3f\x89\x1f\xc2\xef\xce\x5f\xde\x4c\xf6\xbb\x6\x65\x8e\xb8\xed\x7d\xab\x44\xaf\x2c\xf1\x0\x28\x9\x72\xd7\xa3\x56\x7f\x93\x84\x34\x3f\xa\xca\x50\xe8\x3f\xde\x97\x94\x66\xf7\x60\xab\x2d\xa1\x4\xdb\x7a\x4e\xd8\x6e\x77\xeb\x7d\x94\xc\xc6\xad\x4e\xff\xde\x1d\x94\xa\x4\xe\x4\x21\x1d\x6\xdc\xde\x40\x19\x8c\xa0\x28\x14\xb4\x1e\x49\xcd\x7b\x77\x50\x36\x4a\xb9\xbd\x81\x16\xf0\x22\xe4\x39\x65\xab\xdb\x6d\xa3\x5c\xa0\xb3\xd7\x97\x5b\x9d\x1d\x94\xf\x74\xee\xc8\xdd\x83\x7d\x4\x81\x86\x3d\xa9\xd7\xab\xef\x48\xa8\x10\x20\xb6\x1e\xf7\xa5\x1e\x2a\x46\xcc\xba\xbd\x81\x16\x83\x29\xa4\xce\xc1\x1e\x2a\xe1\x25\x58\x14\x53\xf8\x46\x94\x63\xa4\x7b\x77\x10\x9a\x1a\x22\xb4\x2c\x45\x8\xf7\xee\x20\x5c\x6d\x40\x86\x87\x21\xc6\x50\x6a\xd7\xb7\xa4\xb6\xd2\xdd\x67\x1f\x4d\xbd\x8d\x12\x53\x9a\x2c\xfd\xf7\x41\x4b\x96\x9a\x28\x19\xa6\xed\x4b\xf5\xbe\xd4\x44\xa9\xaa\xa\x2b\xf3\x8e\xc0\xb9\x9f\x50\x28\x16\x92\x27\xc4\x2\xd7\x15\x8f\x85\xea\x9f\x93\xb0\x3c\xa7\xc\x98\x3b\xc9\x7f\x42\x46\xc4\xb2\x48\xc5\xd7\xe7\xd6\x13\x3c\xb2\x67\x8a\x23\x2e\x17\x2e\x1b\x53\x27\x94\x8d\x4c\xc5\x4c\xc0\xfe\xcf\xcc\x71\x2d\x2a\x9a\x7b\xa7\xa9\x68\x38\xed\xcd\x8e\xed\xcc\x9c\x63\xfb\x33\x58\x9a\x51\x74\xea\xe3\xf3\xff\x12\x50\x39\xc9\x39\xaf\x49\x89\xc9\x48\x4a\xfc\x2c\xee\xc1\xcb\x27\x6f\xc2\xcc\x5e\x7f\x9b\x80\x73\xf3\xdb\x83\xb9\x36\x7c\xe\xd9\x31\x75\x8f\x4c\xbf\x10\xbe\x3a\xa7\xbc\x62\xec\xf8\x66\x7b\x52\xe1\xfa\x2c\x75\x52\x8d\x2f\xac\x99\xb1\xf4\x87\x49\x38\x3b\x57\xf9\x5c\x43\xdf\x5\xd0\xc\x6b\xe2\x8a\x62\x57\x64\xe2\x3c\xa7\xf0\xe4\xc5\xb2\xec\xc4\xd\xf8\xe2\x10\x5\x41\xe2\x80\xfb\x53\x43\xd3\xdc\xd0\xf7\x4e\x58\xe9\x4c\x60\x7e\xc\x48\xd5\x35\x6a\xb8\x8a\xe3\xda\x94\x8c\x35\x63\x24\xce\xd9\xcd\xcc\x90\xe8\xe\x95\xcb\x82\xdd\xf3\xb9\x4c\x82\x7\x90\x1d\x92\xc8\x46\x24\x4\x3b\x90\xa8\xfe\x38\xf\x85\x50\x33\x85\x2f\x43\xf1\x9\x79\x46\x14\xbf\x41\x16\x9e\x28\x30\xda\xbe\xd7\x24\x7f\xc\x2b\x1c\x62\x4e\x5c\x6a\x2b\xaa\x4e\x1c\x87\x3b\x2d\xc7\xa1\x98\xf1\xba\x8c\xd5\xf0\x39\xf8\x2e\x2c\x73\x89\xf1\x44\x77\x35\x4b\xa7\xa\x6b\xd9\x1d\x7e\xe4\x4\x96\x2d\x31\xc4\x9e\x7\x60\x16\x39\xb8\x9\xef\x72\xb1\x11\x35\xa8\x4d\x5c\xaa\xd0\xaf\x27\x44\x77\x14\x62\xc\x94\x23\xe2\x1c\x55\x56\x82\xb2\xe4\x2\x3\xee\x78\x38\x89\xc3\xea\xc6\xe0\x1\x71\x8e\xf0\x26\x9c\xe3\x5a\x1c\xd7\xd6\x8c\x91\xa2\x1e\x51\xf5\xa9\x32\x71\x87\xf7\x2b\x17\xc3\xf3\x73\xb\x7b\x1c\xd3\x60\x90\x3\x77\x78\x1f\xf7\xa0\xc8\x36\x63\xac\x7d\x43\x95\xa1\x69\xf3\x33\xb4\x34\x27\x35\x85\x3c\x58\xeb\x7a\x2\x7b\xe6\x80\x6e\x66\x7a\xfb\x92\xd4\x94\xb\xbe\x96\x6d\xd3\x66\x1\x35\x32\x3\x7\x17\x44\x40\x8d\x4c\xdf\xbd\x77\x61\x59\x55\xc5\x9a\x35\x55\xf1\x1a\x6b\xa7\x82\x22\xce\x52\xd5\x1d\x1\xf0\x62\xdc\xc1\x9f\xc2\xd9\xa9\xb3\xc2\x82\x4b\x33\xab\x8c\x8b\xde\x85\x65\xeb\x78\x56\x10\x47\x66\xb4\x8e\xe3\x62\x9f\xc0\x8a\x75\x64\xcd\xca\xdd\x8\xcb\x61\xeb\xc8\x8a\xb\x7e\xc0\x6f\x59\x6c\xaa\xf2\xea\xf0\x7c\x18\x1e\x62\xe0\x1a\x20\x55\x55\xa8\x41\xe\x75\xaa\x10\x9b\x1a\xc4\xa9\x5c\xe2\xe0\xb4\x6b\x4f\xa8\x5c\x52\x55\x89\x33\xeb\x9c\x87\x6f\xc0\x92\x79\xf8\x44\x15\x11\xa9\x58\x36\x1d\x6a\x2f\x2a\xef\x73\xf7\x96\x19\x83\xc7\xe3\x3e\x27\xe3\xeb\x80\x54\xe7\x88\xd8\x16\x4f\xc9\x8e\x45\x54\x5a\xf9\x40\x40\x5\xbd\xe3\x93\xd9\x17\xe1\x3c\xd7\x86\xae\xaf\xf1\x9a\xf8\x22\x38\xcd\xd3\xb6\xe\x88\x79\x22\x32\xf1\x3a\x87\x95\xac\x23\x2b\x3c\xef\x15\x58\x64\xc8\xe9\xa4\xd7\x45\xe1\x66\x1d\x85\x66\xbc\x3\xe7\x18\x68\x4c\x5d\x32\x20\x2e\x9\xa1\x3f\xe2\x68\xe6\xf6\x3d\x8f\x19\xb1\xd3\x9e\x1c\x1e\x7\x81\x75\x53\xd8\xc9\x68\x7e\x68\xbd\xb5\x6e\xaa\xba\x9\xc5\x70\xdc\xe3\x3c\x88\xc8\x47\x9\x56\x4\x35\xba\x4d\x56\xbe\x7c\x25\xa1\x24\x2b\xa3\xda\xad\xbe\xa4\xc8\x7\x9d\x7e\x6b\x4f\x42\xa9\x50\x61\xbf\x9b\xce\x5d\x45\xd7\xaa\xbf\x4b\x41\x29\xda\x5b\xe3\xff\x80\xf3\xfe\x15\x99\x43\x5d\xe5\xb9\x66\xf3\xf\x72\x4c\xc4\xe1\x18\xc4\xcf\x8a\x87\xea\x51\xf7\x4b\xcd\x66\x9f\xdb\x98\xb8\xb8\xd\x97\xc\x53\x71\x5c\x62\xc\x88\x3d\x50\xa6\x97\x93\xa\x51\x55\xea\x38\xa6\x38\x8\x3\x2d\xef\x18\x66\xcf\x3\x4f\x4f\x88\xba\x7\x8d\x85\x6f\xea\xa4\xf0\xbd\x8\xf9\x31\xb1\x14\x6a\xb8\xf6\x31\xaf\xcf\x73\x72\x6e\x4c\x2c\x89\x8d\xf1\x43\xb8\x3a\x85\x2a\x3a\x1d\x11\xf5\x58\xe1\xc5\x38\xbf\xe8\x51\x54\xd3\x18\xea\x9a\xea\x3a\x3c\x3f\x88\x1c\x57\x9d\x4a\xb4\xb9\xc0\xae\x63\x1a\xbc\x6\x6f\xf8\xe8\xb7\xb7\xc3\xd1\x5d\x4a\xa3\xcc\x6e\x3a\x97\x41\xd9\xdd\x74\x2e\x8b\x16\x76\xd3\xb9\x1c\xca\xef\xa6\x73\x79\x4\xd5\xff\xcf\x43\x31\xdc\x19\xb0\x46\x4b\xe5\x67\x63\x82\x67\xcf\x2b\xaf\xec\x23\x6a\xd\x76\x68\x6e\x66\x45\x19\x2e\xb\x49\x56\xb0\xb0\xb0\xa6\xa2\xec\xc9\xc9\xde\x8\xef\x40\xf6\x89\xc3\x75\x67\xb9\xee\xf7\x5f\xad\x7b\xb7\xc7\x95\xe7\x77\x7b\x4a\xa7\x2b\xef\xd5\xdb\xb2\x27\x8e\x2f\x40\x5a\x27\xdf\x1c\x47\x8f\x57\x4e\xc2\x35\x28\x4f\xc\xd1\x75\xb3\xad\x62\xa8\x72\x18\x55\x9a\x72\xdb\xc\x7f\xca\xf0\xb8\x0\xe9\xe7\x94\x3c\x8d\x1e\x82\x9c\x84\xd7\xa1\x38\xa0\x87\x93\x91\x62\xd3\x1\x51\xdd\x68\xea\x2f\x70\x96\xcc\x39\xf8\xb\xc8\xb3\x3d\x32\xf8\x1e\x2f\x71\x17\xdc\x7c\xb5\xb\xbc\x2d\xf6\x85\xe4\xa9\x3c\xde\x85\xac\x4b\xec\x11\x75\x79\xe6\x2f\xcd\xb9\xae\x9a\xa3\xa9\xcf\x25\x98\x5b\x79\x8c\x7a\x1a\xf0\x3\x58\x10\xff\x39\x95\xe5\xb5\xd4\x9b\x2b\x93\x7d\xf1\xb7\x98\xb3\x6e\x41\x86\x7\x1b\x6\xf0\xc2\xd\x9d\xc1\x39\x48\x37\xba\x32\xcb\x5b\x8\x8a\x82\xaa\xec\xb7\xa4\x86\x84\x92\xd5\xbb\x90\x15\x11\xc4\x72\x5a\x10\x43\xe8\x8c\x37\xf4\x74\x24\x7c\xee\xc1\xde\x96\x24\xa3\x64\xf5\x0\xca\x31\xaf\xe3\xb3\xb0\x24\x4b\x7d\xa9\xc3\xba\x36\xe5\xa0\xf3\x45\xa7\xfb\x65\x7\x9d\x89\x92\xfd\x4\x99\xc0\x2b\x80\xa6\xe4\x5e\xf7\x40\xe6\xd6\xfc\x28\x9\x28\xee\x36\x7c\x1e\x96\xfb\x75\x79\x47\xea\x2b\xa2\x13\xd\x54\xaf\x0\xa\x33\xb6\x5b\xbc\xd1\xbe\x4\x17\xc3\x54\xe9\x51\x5f\xea\xf4\xf8\xe4\xf5\xce\xe\xcb\xd6\x31\x7d\x7e\xef\x9b\x62\xa6\x46\xf5\x49\xed\x26\x4a\xc7\xc9\xdd\x8e\xd4\xdd\x46\x99\xf8\xec\xbc\x1f\xce\xe2\x55\x38\x17\xa7\x2a\x52\xa7\x2f\x3f\x46\xb\xf1\x89\x7b\x92\xfc\xb0\xd5\x90\x50\xe\x9f\x3\x1c\xb5\xa8\xff\xa0\xdb\x44\xf9\x99\xfc\x54\x75\xa0\x18\x6e\x4a\xbf\x97\xd4\x58\xfd\x49\x12\xa\xa1\x26\x93\x75\x7\x44\xd7\xcd\xe7\xa\xd1\x35\xe2\x78\xd9\xb\x38\xa9\xce\x28\xa7\xcd\x16\xa7\x3f\x2f\xb2\xff\x8e\xe7\x45\x6\x65\xab\x3f\x4f\x0\x8a\x77\x8f\xb1\xe5\x27\x4e\x5a\xfe\xf7\xb2\x77\x3f\x4b\x40\x29\xda\x32\xc6\xcc\xbb\xfc\x2f\x35\xef\x4f\x49\x58\x8c\x34\x8a\xa7\xb5\xee\x6b\x58\xd2\x6\x74\x6c\x99\x2e\x35\xd4\x63\x45\xa7\xcf\xa8\x5e\xa9\xf2\x14\x7f\xeb\xd5\xad\x68\xad\x35\x95\x6b\x33\xb1\xcd\xe5\x56\x53\xda\xdb\xef\xf6\xa5\x4e\xe3\xb1\x9f\x5d\x64\xa4\xc5\x60\x6f\x31\x69\xef\x3\x8a\x1b\xc5\x72\xc5\x1c\xb3\xd0\x19\xbc\xc\xe5\x4e\x57\xe9\xb5\x9a\x92\x22\x6d\x6f\x4b\x8d\x7e\x4f\x5c\x2e\x6\xe8\x3e\x4a\x86\x5d\xfc\xd3\x14\x2c\xcf\xb1\x4\xd7\xbd\x6b\x1\x71\x53\x71\xf3\x34\xd6\xd7\x58\x61\xbe\x4f\x6c\xd7\xbb\x45\xb8\xe\xcc\x4b\x86\xcb\xea\x4\xdb\xbb\xb4\x15\x77\x5\xe5\x29\x5d\xdc\xdb\x7e\x4\xd8\x32\x1d\xcd\xd5\x9e\x51\x45\x33\xfc\x1b\xde\xf4\x5a\x62\x3d\x2d\x23\x9f\xd3\x32\xdc\x0\x6d\xd0\x11\x89\xa1\x59\x1d\x93\x92\x91\xcf\x9\xd0\x97\xa1\x38\x30\x27\xac\xa1\x12\x38\x96\x2d\x12\x72\x41\xd0\x2\x88\xd7\x2a\x4f\xaf\x96\x8b\x72\x41\xd0\x4\xe4\x1a\x94\xc9\x68\x64\x33\xe5\xbe\x22\xd1\xfc\x97\x2\x32\x7\xae\xee\x42\xce\xf7\x3\xab\x87\x99\x27\x14\x4b\xdc\x68\x25\xd7\xf3\x72\xce\xf0\x99\x97\xa1\xa8\x39\xca\xf4\x6d\x33\xb9\x96\x5c\xcf\xc9\x5\xcd\x9\xde\x48\xaa\xdf\x26\xa1\x14\x7d\xb5\xc5\x4d\xc8\xe9\xa6\xf7\xc8\x22\x7e\x32\xb0\xfe\x9a\x87\xde\x5a\xdb\xc3\xcb\x81\xe4\xea\x1f\x12\x90\xf3\xc9\xf8\x1c\xa4\x2d\xe2\x1e\x71\x75\x99\xad\x24\x4a\xc8\x7c\xcc\xe8\x8e\x45\xc4\x3b\x91\x47\x67\x63\xb6\xaf\x3a\x25\x3\x7e\xb3\x60\x8e\xc7\xd4\x70\x1d\x7f\x5f\x3d\x7a\xc3\x23\xe3\xf\x61\xc9\xb5\x89\xa6\x47\xb0\x69\x8e\x45\x3e\x23\x0\x6f\xc2\x5\x5f\xef\x80\xba\x44\x3d\xa2\x83\xa9\x50\x96\xdf\x20\x9e\xf7\x0\x4d\x8f\xef\xcb\x56\xff\x98\x84\x25\xff\x2e\x64\x10\x38\x6b\xf\x80\x18\x86\xe9\x86\xdd\x35\x1b\xca\x33\x72\xb5\x7a\x20\x24\x87\x14\xac\xfe\x2d\x1\x30\x65\x9d\xe8\xb7\x4b\x50\xf0\xde\xe4\xf9\xf\x3b\xc4\xf5\x19\x8\xd2\xb6\xa6\xf3\x4b\xce\x43\x3a\xd2\xc\xef\x75\x46\xc\xfc\x4b\xce\xf4\xf4\x79\x52\x86\x9c\x43\xc7\xc4\x70\x35\xd5\x7b\x6f\xb9\xf7\x46\xc6\xd7\x7a\x9e\xb4\x1c\xe8\xa9\xae\x43\xce\xa7\xb2\xc2\xaf\xd3\xed\x48\xe8\xc\x5e\x80\x54\x4f\xea\xa3\x4\x6b\x62\xeb\xed\x56\xbd\x87\x92\x5b\xff\xb\xcb\xaa\x39\x8e\x4f\xb8\x85\x62\x17\x88\xce\x83\xc4\x57\x37\x3d\xd0\xc8\xd4\x89\x31\xaa\x99\xf6\x68\xfa\xb3\x18\xd6\x6b\x38\xa1\x1f\xc7\x58\x87\x7f\x4f\x24\x7e\x91\x4c\xed\xec\x6f\xfd\x32\xb9\xba\x23\x4\xf7\xfd\xe5\xc8\x74\xa8\x53\x95\x19\xff\xcf\x0\x0\x0\xff\xff\x1a\x3c\x21\x80");
   }
 }

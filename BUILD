@@ -62,19 +62,15 @@ sh_library(
     name = "gen_lib",
     srcs = ["gen.sh"],
     data = [
-        # We should switch to well_known_type_protos after moving to 22.X
-        # but we also need a dependency on descriptor_proto_srcs here.
-        # We cannot on 21.12 as there were some inconsistencies with the rules:
-        # https://github.com/protocolbuffers/protobuf/issues/11430
-        "@com_google_protobuf//:well_known_protos",
+        "@com_google_protobuf//:well_known_type_protos",
         "@com_google_protobuf//conformance:conformance_proto",
-        "@com_google_protobuf//:test_messages_proto3_proto",
-        "@com_google_protobuf//:test_messages_proto2_proto",
+        "@com_google_protobuf//:descriptor_proto_srcs",
         "@com_google_protobuf//:protoc",
         "//:protoc-gen-hack",
     ] + glob([
         "opt/*.proto",
         "test/*.proto",
+        "google/protobuf/*.proto",
         "test/*.pb.txt",
     ]) + ALL_GEN,
 )
@@ -113,7 +109,7 @@ sh_library(
     data = CONFORMANCE_PHP + LIB_PHP + ALL_GEN + [
         "conformance_hhvm_harness.sh",
         "conformance/failures.txt",
-        "@com_google_protobuf//:conformance_test_runner",
+        "@com_google_protobuf//conformance:conformance_test_runner",
     ],
 )
 

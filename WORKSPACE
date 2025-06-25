@@ -1,6 +1,12 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
+  name = "com_google_googletest",
+  urls = ["https://github.com/google/googletest/archive/2a02723b76eae879bafbcee5143d5104a13c3626/.zip"],
+  strip_prefix = "googletest-2a02723b76eae879bafbcee5143d5104a13c3626/",
+)
+
+http_archive(
     name = "io_bazel_rules_go",
     sha256 = "f74c98d6df55217a36859c74b460e774abc0410a47cc100d822be34d5f990f16",
     urls = [
@@ -15,11 +21,11 @@ go_rules_dependencies()
 
 go_register_toolchains(version = "1.22.2")
 
-PBV = "21.12"
+PBV = "23.2"
 
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "6a31b662deaeb0ac35e6287bda2f3369b19836e6c9f8828d4da444346f420298",
+    sha256 = "c213b097a4f2546ad28a11e17dfef659d9f9ef141f43835a1760a5f35d395803",
     strip_prefix = "protobuf-" + PBV,
     urls = ["https://github.com/protocolbuffers/protobuf/archive/refs/tags/v" + PBV + ".zip"],
 )

@@ -30,12 +30,6 @@ PROTOC=`readlink $PROTOC`
 echo protoc path: $PROTOC
 $PROTOC --version
 
-# For some reason, test_messages_proto{2,3}.proto are in virtual_imports,
-# despite an explicit dependency on those in the BUILD file :'-(
-# TODO: We should figure out a better way of handling this.
-cp external/com_google_protobuf/_virtual_imports/test_messages_proto2_proto/google/protobuf/test_messages_proto2.proto external/com_google_protobuf/src/google/protobuf/test_messages_proto2.proto
-cp external/com_google_protobuf/_virtual_imports/test_messages_proto3_proto/google/protobuf/test_messages_proto3.proto external/com_google_protobuf/src/google/protobuf/test_messages_proto3.proto
-
 PBS=`find . -name '*.proto' | grep -v _virtual_imports`
 
 ARGS="-I external/com_google_protobuf/src -I ./"

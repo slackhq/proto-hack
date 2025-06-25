@@ -31,6 +31,15 @@ Recommended.Proto3.ProtobufInput.ValidDataRepeated.ENUM.UnpackedInput.PackedOutp
 Recommended.Proto3.ProtobufInput.ValidDataRepeated.ENUM.UnpackedInput.UnpackedOutput.ProtobufOutput
 Recommended.Proto3.ProtobufInput.ValidDataScalarBinary.ENUM[4].ProtobufOutput
 Recommended.Proto3.ProtobufInput.ValidDataScalarBinary.ENUM[5].ProtobufOutput
+Recommended.Proto3.JsonInput.IgnoreUnknownEnumStringValueInMapValue.ProtobufOutput
+Recommended.Proto3.JsonInput.IgnoreUnknownEnumStringValueInRepeatedField.ProtobufOutput
+Recommended.Proto3.JsonInput.RejectUnknownEnumStringValueInMapValue
+Recommended.Proto3.JsonInput.RejectUnknownEnumStringValueInOptionalField
+Recommended.Proto3.JsonInput.RejectUnknownEnumStringValueInRepeatedField
+Recommended.ValueRejectInfNumberValue.JsonOutput
+Recommended.ValueRejectNanNumberValue.JsonOutput
+Required.Proto3.JsonInput.DurationNegativeNanos.JsonOutput
+Required.Proto3.JsonInput.DurationNegativeNanos.ProtobufOutput
 Required.DurationProtoInputTooLarge.JsonOutput
 Required.DurationProtoInputTooSmall.JsonOutput
 Required.Proto2.JsonInput.StoresDefaultPrimitive.Validator
@@ -79,11 +88,6 @@ Required.Proto3.JsonInput.TimestampWithPositiveOffset.JsonOutput
 Required.Proto3.JsonInput.TimestampWithPositiveOffset.ProtobufOutput
 Required.Proto3.JsonInput.Uint64FieldMaxValue.JsonOutput
 Required.Proto3.JsonInput.Uint64FieldMaxValue.ProtobufOutput
-Required.Proto3.ProtobufInput.RepeatedScalarSelectsLast.ENUM.JsonOutput
-Required.Proto3.ProtobufInput.ValidDataRepeated.ENUM.PackedInput.JsonOutput
-Required.Proto3.ProtobufInput.ValidDataRepeated.ENUM.UnpackedInput.JsonOutput
-Required.Proto3.ProtobufInput.ValidDataScalar.ENUM[4].JsonOutput
-Required.Proto3.ProtobufInput.ValidDataScalar.ENUM[5].JsonOutput
 Required.Proto3.ProtobufInput.ValidDataScalar.MESSAGE[0].JsonOutput
 Required.TimestampProtoInputTooLarge.JsonOutput
 Required.TimestampProtoInputTooSmall.JsonOutput
