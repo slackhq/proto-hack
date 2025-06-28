@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# This sets some variables for our releases.
+# See https://github.com/bazelbuild/bazel/blob/master/tools/buildstamp/get_workspace_status
+
+git_rev=$(git describe --tags)
+if [[ $? != 0 ]];
+then
+  exit 1
+fi
+
+echo "RELEASE_VERSION ${git_rev}"
